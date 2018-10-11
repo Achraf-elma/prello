@@ -1,8 +1,8 @@
 // Modules
-import { ActionCreator, Action } from 'redux';
+import { ActionCreator } from 'redux';
 
 // Types
-import {Card} from '../type';
+import { Card } from '../type';
 import { SetCardNameAction } from '../actionType';
 
 // Actions constants

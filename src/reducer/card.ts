@@ -1,5 +1,5 @@
 // Modules
-import { combineReducers, Action } from 'redux';
+import { combineReducers } from 'redux';
 
 // Definitions
 import { initCard } from '../type';
