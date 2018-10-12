@@ -1,19 +1,17 @@
 // Modules
 import { createStore, combineReducers } from 'redux';
 
-// State types
-import { ApplicationState } from './type';
-
 // Sub Reducers
 // import board from './reducer/board';
 // import list from './reducer/list';
-import card from './reducer/card';
+import checkItem from './reducer/checkItem';
 
 export default createStore(
-  combineReducers<ApplicationState>({
+  combineReducers({
     // board,
     // list,
-    card,
+    checkItem,
+    
   })
   // , require('./bootstrap.json');
 );

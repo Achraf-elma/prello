@@ -2,9 +2,9 @@
 import { combineReducers } from 'redux';
 
 // Definitions
-// TODO: import type, action type & type constants
+// TODO: action type constants
 
-const cards = (
+const checklists = (
   // TODO: Add state and default state,
   // TODO: Add Action
 ) => {
