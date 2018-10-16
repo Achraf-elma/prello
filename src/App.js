@@ -10,6 +10,7 @@ import store from './store';
 
 // Components
 import CheckItem from './Component/CheckList/CheckItem';
+import List from './Component/List/List';
 
 class App extends Component {
   render() {
@@ -17,6 +18,9 @@ class App extends Component {
       <div className="App">
         <Provider store={store}>
           <CheckItem id={"1"} />
+        </Provider>
+        <Provider store={store}>
+          <List id={"1"} />
         </Provider>
       </div>
     );

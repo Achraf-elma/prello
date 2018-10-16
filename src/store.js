@@ -6,11 +6,13 @@ import { createStore, combineReducers } from 'redux';
 // import list from './reducer/list';
 import checkItem from './reducer/checkItem';
 import checkList from './reducer/checklist';
+import list from './reducer/list';
+
 
 export default createStore(
   combineReducers({
     // board,
-    // list,
+    list,
     checkItem,
     checkList
   })

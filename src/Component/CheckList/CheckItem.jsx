@@ -17,6 +17,7 @@ const CheckItem = ({
     <label>
         <input type="checkbox" checked={state === "complete"} onChange={() => setCheckItemState(state !== "complete" )}/>
         {name}
+        {state}
     </label>
   </div>
 );
