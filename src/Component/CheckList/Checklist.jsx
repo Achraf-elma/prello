@@ -1,25 +1,35 @@
 // Modules
-// TODO: Import react (it avert the transpiler it needs JSX )
-// TODO: Import connect from react-redux
+import React from 'react';
+import { connect } from 'react-redux';
 
 // Action builder
-// TODO: Import action builder
+import { addNewListItem } from '../../action/actionChecklist';
 
 // Components
-// TODO: Import direct children components
+import CheckItem from './CheckItem'
 
-const Checklist = ({
-  // TODO: Put destructured props
+const CheckList = ({
+  name,
+  checklistItems,
+  addNewListItem
 }) => (
-  "a Checklist" // TODO: Create JSX DOM
+  <div className="CheckList">
+    <label>
+        {name}
+    </label>
+    
+    <h4>{checklistItems.map}</h4>
+    <button onClick ={() => addNewListItem("hello")}>Add Item</button>
+  </div>
 );
 
 const mapStateToProps = (state, props) => ({
-  // TODO: Add store state to the component props
+  name: state.checkList.name,
+  checklistItems: state.checkList.checklistItems
 })
 
 const mapDispatchToProps = (dispatch, props) => ({
-  // TODO: Add 
+  addNewListItem: (item) => dispatch(addNewListItem(props.id, item))
 })
 
-export default Checklist // TODO: Export connected Components
+export default connect(mapStateToProps, mapDispatchToProps)(CheckList); 

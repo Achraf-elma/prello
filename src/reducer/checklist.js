@@ -2,16 +2,29 @@
 import { combineReducers } from 'redux';
 
 // Definitions
-// TODO: action type constants
+import { initCheckList, ADD_NEW_LIST_ITEM } from "../action/actionChecklist";
 
-const checkItems = (
-  // TODO: Add state and default state,
-  // TODO: Add Action
-) => {
-  // TODO: Switch case
+const id = ( state = initCheckList.id, action ) => state
+const checklistItems = (state = initCheckList.checklistItems, action ) => {
+  switch(action["type"]) {
+    case ADD_NEW_LIST_ITEM:
+      return [ ...state, action.payload.newItem]
+    default:
+      return state;
+  }
 }
+
+const idBoard = ( state = initCheckList.idBoard, action ) => state
+const idCard = ( state = initCheckList.idCard, action ) => state
+const pos = ( state = initCheckList.pos, action ) => state
+const name = ( state = initCheckList.name, action ) => state
 
 // Main Reducer
 export default combineReducers({
-  // TODO: Add reducers
+  id,
+  checklistItems,
+  idBoard,
+  idCard,
+  name,
+  pos
 })
