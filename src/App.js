@@ -11,6 +11,8 @@ import store from './store';
 
 // Components
 import WIP from './Component/WIP';
+import CheckItem from './Component/CheckList/CheckItem';
+import Card from './Component/Card/Card';
 
 class App extends Component {
   render() {
