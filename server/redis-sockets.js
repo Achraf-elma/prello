@@ -9,7 +9,6 @@ const socketEvents = {
 }
 
 const boardDisptach = (socket, action) => {
-  console.log(action);
   socket.broadcast.emit("dispatch", action);
 };
 

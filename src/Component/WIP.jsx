@@ -3,7 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import classNames from 'classnames';
-import io from 'socket.io-client';
+import { socket, socketConnect } from '../socket';
 
 // Styling
 
@@ -17,23 +17,14 @@ import List from './List/List';
 
 
 class WIP extends React.Component{
-  constructor(){
-    super();
-    this.state = {}
-  }
-
   componentDidMount() {
-    let socket = io.connect({ host: "127.0.0.1", port: "3000" });
-    socket.on("dispatch",(action) => console.log("coucou") ||
-     this.props.dispatch(action))
-    this.setState({ socket });
+    let socket = socketConnect();
+    socket.on("dispatch", (action)=> this.props.dispatch(action));
   }
 
   componentWillUnmount(){
-    this.state.socket.disconnect();
+    socket().socket.disconnect();
   }
-
-  socketDispatch = (action) => this.state.socket.emit('dispatch', action);
 
   render(){
     const {
@@ -42,7 +33,7 @@ class WIP extends React.Component{
         dispatchAddListToBoard
     } = this.props;
     return (
-      <DragDropContext onDragEnd={( result ) => this.socketDispatch(dispatchOnDragEnd( result ))}>
+      <DragDropContext onDragEnd={( result ) => dispatchOnDragEnd( result )}>
         <Droppable droppableId="droppable" direction="horizontal">
           {(provided, snapshot) => (
             <div
@@ -68,7 +59,7 @@ class WIP extends React.Component{
                   )}
                 </Draggable>
               ))}
-              <ListCreator addList={(listName) => this.socketDispatch(dispatchAddListToBoard(listName))} />
+              <ListCreator addList={(listName) => dispatchAddListToBoard(listName)} />
               {provided.placeholder}
             </div>
           )}

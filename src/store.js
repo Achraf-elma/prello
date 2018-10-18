@@ -1,5 +1,8 @@
 // Modules
-import { createStore, combineReducers } from 'redux';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+
+// Socket middleWare
+import { socketDispatch } from "./socket";
 
 // Sub Reducers
 import board from './reducer/board';
@@ -9,6 +12,7 @@ import list from './reducer/list';
 import lists from './reducer/lists';
 import organization from './reducer/organization';
 import card from './reducer/card';
+import { socket } from './socket';
 
 export default createStore(
   combineReducers({
@@ -19,6 +23,7 @@ export default createStore(
     board,
     organization,
     card
-  })
+  }),
+  applyMiddleware(socketDispatch)
   // , require('./bootstrap.json');
 );
