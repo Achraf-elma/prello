@@ -12,7 +12,6 @@ import list from './reducer/list';
 import lists from './reducer/lists';
 import organization from './reducer/organization';
 import card from './reducer/card';
-import { socket } from './socket';
 
 export default createStore(
   combineReducers({

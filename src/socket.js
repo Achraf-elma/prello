@@ -1,7 +1,6 @@
 // Modules
 import io from 'socket.io-client';
 
-let lastParams;
 let currentSocket;
 
 /**
@@ -9,12 +8,6 @@ let currentSocket;
  * Dispatch middleware
  */
 export const socketDispatch = param => next => action => {
-  console.log(
-    currentSocket.connected,
-    param,
-    next,
-    action
-  );
   if (currentSocket && currentSocket.connected && !action.fromSocket ) { 
     let socketAction = ({
       fromSocket: true,
