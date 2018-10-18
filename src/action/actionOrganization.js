@@ -11,7 +11,7 @@ export const initOrganization = {
     invited : false,
     invitations : [],
     displayName: 'Team Name',
-    memberships: [] //id, idMember, memberType : admin | normal, unconfirmed (boolean = false if accepted, true if invitation pending)
+    memberships: [] //id, idMember, memberType : "admin" | "normal", unconfirmed (boolean = false if accepted, true if invitation pending)
     }
 
 // Action type constants

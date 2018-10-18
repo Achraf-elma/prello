@@ -11,13 +11,22 @@ export const initCheckList = {
   }
 
 // Action type constants
-export const ADD_NEW_LIST_ITEM = "@@checklist/ADD_NEW_LIST_ITEM"
+export const ADD_NEW_CHECKLIST_ITEM = "@@checklist/ADD_NEW_CHECKLIST_ITEM"
+export const DELETE_CHECKLIST_ITEM = "@@checklist/DELETE_CHECKLIST_ITEM"
 
 // Action Builders
-export const addNewListItem = (id, newItem) => ({
-    type: ADD_NEW_LIST_ITEM,
+export const addNewChecklistItem = (id, newItem) => ({
+    type: ADD_NEW_CHECKLIST_ITEM,
     payload: {
         id, 
         newItem
+    }
+}) 
+
+export const deleteChecklistItem = (id, itemToDelete) => ({
+    type: DELETE_CHECKLIST_ITEM,
+    payload: {
+        id, 
+        itemToDelete
     }
 }) 

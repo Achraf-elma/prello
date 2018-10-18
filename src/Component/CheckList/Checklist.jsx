@@ -3,7 +3,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 // Action builder
-import { addNewListItem } from '../../action/actionChecklist';
+import { addNewChecklistItem, deleteChecklistItem } from '../../action/actionChecklist';
+
 
 // Components
 //import CheckItem from './CheckItem'
@@ -11,15 +12,14 @@ import { addNewListItem } from '../../action/actionChecklist';
 const CheckList = ({
   name,
   checklistItems,
-  addNewListItem
+  dispatchAddNewChecklistItem,
 }) => (
   <div className="CheckList">
     <label>
         {name}
     </label>
-    
     <h4>{checklistItems}</h4>
-    <button onClick ={() => addNewListItem("hello")}>Add Item</button>
+    <button onClick ={() => dispatchAddNewChecklistItem("hello")}>Add Item</button>
   </div>
 );
 
@@ -29,7 +29,8 @@ const mapStateToProps = (state, props) => ({
 })
 
 const mapDispatchToProps = (dispatch, props) => ({
-  dispatchAddNewListItem: (item) => dispatch(addNewListItem(props.id, item))
+  dispatchAddNewChecklistItem: (item) => dispatch(addNewChecklistItem(props.id, item)),
+  dispatchDeleteChecklistItem: (item) => dispatch(deleteChecklistItem(props.id, item))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CheckList); 
