@@ -53,7 +53,6 @@ class WIP extends React.Component{
                         { "list-dragged": snapshot.isDragging }
                       )}
                     >
-                    
                      <List name={list.name} />
                     </span>
                   )}
