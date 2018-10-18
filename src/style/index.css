@@ -9,7 +9,7 @@ body {
 }
 
 .ListCreator{
-  top: 0;
+  top: 100;
   left: 0;
   position : fixed ; 
 }
@@ -17,5 +17,5 @@ body {
 
 #List{
   display: inline-block;
-  margin: 15px ; 
+  margin: 2.5em ; 
 }
