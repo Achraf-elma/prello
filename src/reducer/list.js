@@ -3,7 +3,8 @@ import { combineReducers } from 'redux';
 
 // Definitions
 // TODO: import type, action type & type constants
-import {initList, SET_LIST_POSITION,SET_LIST_CLOSED, setListClosed, setListPosition, SET_LIST_NAME, SET_LIST_BOARD, SET_LIST_SUBSCRIBED }from "../action/actionList";
+//import {initList, SET_LIST_POSITION,SET_LIST_CLOSED, setListClosed, setListPosition, SET_LIST_NAME, SET_LIST_BOARD, SET_LIST_SUBSCRIBED }from "../action/actionList";
+import {initList, SET_LIST_POSITION,SET_LIST_CLOSED, SET_LIST_NAME, SET_LIST_BOARD, SET_LIST_SUBSCRIBED }from "../action/actionList";
 
 const id = ( state = initList.id, action ) => state
 const name = ( state = initList.name, action ) => {
@@ -48,12 +49,12 @@ const subscribed = ( state = initList.subscribed, action ) => {
 }
 
 
-const cards = (
+/*const cards = (
   // TODO: Add state and default state,
   // TODO: Add Action
 ) => {
   // TODO: Switch case
-}
+}*/
 
 // Main Reducer
 export default combineReducers({

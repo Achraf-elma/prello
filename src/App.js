@@ -11,13 +11,15 @@ import store from './store';
 
 // Components
 import WIP from './Component/WIP';
-import CheckItem from './Component/CheckList/CheckItem';
-import Card from './Component/Card/Card';
+import NavBar from './Component/NavBar/NavBar';
+//import CheckItem from './Component/CheckList/CheckItem';
+//import Card from './Component/Card/Card';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
+      <NavBar navBarBrend="Prello" currentPage="Board 1" navLink= "My Boards" navMyAccount="My Account" navLogOut="Log Out"/>
         <Provider store={store}>
           <WIP />
         </Provider>
