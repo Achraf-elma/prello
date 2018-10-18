@@ -1,0 +1,21 @@
+board-lists {
+  background: lightgrey;
+  display: flex;
+  padding: 8px;
+  overflow: auto;
+}
+
+list-dragging-over {
+  background: 'lightblue';
+}
+
+list-item {
+  background: grey;
+  user-select: none;
+  padding: 16px;
+  margin: 0 8px 0 0;
+}
+
+list-dragged {
+  background: lightgreen;
+}

@@ -4,23 +4,20 @@ import { Provider } from 'react-redux';
 
 // Style
 import './style/App.css';
+import "./style/board.css";
 
 // Store
 import store from './store';
 
 // Components
-import CheckItem from './Component/CheckList/CheckItem';
-import List from './Component/List/List';
+import WIP from './Component/WIP';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
         <Provider store={store}>
-          <CheckItem id={"1"} />
-        </Provider>
-        <Provider store={store}>
-          <List id={"1"} />
+          <WIP />
         </Provider>
       </div>
     );
