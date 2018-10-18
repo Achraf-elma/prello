@@ -8,7 +8,7 @@ import checkList from './reducer/checklist';
 import list from './reducer/list';
 import lists from './reducer/lists';
 import organisation from './reducer/organisation';
-
+import card from './reducer/card';
 
 export default createStore(
   combineReducers({
@@ -17,7 +17,8 @@ export default createStore(
     checkItem,
     checkList,
     board,
-    organisation
+    organisation,
+    card
   })
   // , require('./bootstrap.json');
 );

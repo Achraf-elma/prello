@@ -37,3 +37,15 @@
 }
 
 
+.card h1{
+  color:#222;
+}
+.card{
+  border: 1px;
+  border-style : solid;
+   height: 300px;
+   margin-left: auto;
+   margin-right:auto;
+   width: 20%;
+   background-color: burlywood;
+}
