@@ -1,7 +1,7 @@
 // Modules
 
 //Default State
-export const initOrganisation = {
+export const initOrganization = {
     id : null,
     name: 'teamname',
     desc: null,
@@ -11,20 +11,20 @@ export const initOrganisation = {
     invited : false,
     invitations : [],
     displayName: 'Team Name',
-    memberships: [] //id, idMember, memberType : admin | normal, unconfirmed
+    memberships: [] //id, idMember, memberType : admin | normal, unconfirmed (boolean = false if accepted, true if invitation pending)
     }
 
 // Action type constants
-export const SET_TEAM_NAME = "@@organisation/SET_TEAM_NAME"
-export const SET_TEAM_DESC = "@@organisation/SET_TEAM_DESC"
-export const SET_TEAM_WEBSITE = "@@organisation/SET_TEAM_WEBSITE"
+export const SET_TEAM_NAME = "@@organization/SET_TEAM_NAME"
+export const SET_TEAM_DESC = "@@organization/SET_TEAM_DESC"
+export const SET_TEAM_WEBSITE = "@@organization/SET_TEAM_WEBSITE"
 
-export const ADD_NEW_BOARD_ID = "@@organisation/ADD_NEW_BOARD_ID"
-export const REMOVE_BOARD_ID = "@@organisation/REMOVE_BOARD_ID"
+export const ADD_NEW_BOARD_ID = "@@organization/ADD_NEW_BOARD_ID"
+export const REMOVE_BOARD_ID = "@@organization/REMOVE_BOARD_ID"
 
-export const ADD_NEW_TEAM_MEMBER = "@@organisation/ADD_NEW_TEAM_MEMBER"
-export const DELETE_TEAM_MEMBER = "@@organisation/DELETE_TEAM_MEMBER"
-export const SET_TEAM_MEMBER_TYPE = "@@organisation/SET_TEAM_MEMBER_TYPE"
+export const ADD_NEW_TEAM_MEMBER = "@@organization/ADD_NEW_TEAM_MEMBER"
+export const DELETE_TEAM_MEMBER = "@@organization/DELETE_TEAM_MEMBER"
+export const SET_TEAM_MEMBER_TYPE = "@@organization/SET_TEAM_MEMBER_TYPE"
 
 // Action Builders
 export const setTeamName = (id, newName) => ({
@@ -85,10 +85,10 @@ export const addNewBoardId = (id, newBoardId) => ({
     }
 }) 
 
-export const removeBoardId = (id, BoardIdToRemove) => ({
+export const removeBoardId = (id, boardIdToRemove) => ({
     type: REMOVE_BOARD_ID,
     payload: {
         id, 
-        BoardIdToRemove
+        boardIdToRemove
     }
 }) 

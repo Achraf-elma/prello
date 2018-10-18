@@ -3,16 +3,16 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 // Action builder
-import { setTeamName, setTeamDesc, setTeamWebsite, addNewTeamMember, deleteTeamMember, setTeamMemberType, addNewBoardId, removeBoardId } from '../../action/actionOrganisation';
+import { setTeamName, setTeamDesc, setTeamWebsite, addNewTeamMember, deleteTeamMember, setTeamMemberType, addNewBoardId, removeBoardId } from '../../action/actionOrganization';
 
 // Components
 //import  from './'
 
 //TODO
-const Organisation = ({
+const Organization = ({
   name
 }) => (
-  <div className="Organisation">
+  <div className="Organization">
     <label>
         {name}
     </label>
@@ -20,7 +20,7 @@ const Organisation = ({
 );
 
 const mapStateToProps = (state, props) => ({
-  name: state.organisation.name,
+  name: state.organization.name,
 })
 
 const mapDispatchToProps = (dispatch, props) => ({
@@ -34,4 +34,4 @@ const mapDispatchToProps = (dispatch, props) => ({
   dispatchRemoveBoardId: (boardId) => dispatch(removeBoardId(props.id, boardId)),
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Organisation); 
+export default connect(mapStateToProps, mapDispatchToProps)(Organization); 
