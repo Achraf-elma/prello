@@ -2,8 +2,8 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-// import 'bootstrap/dist/css/bootstrap.css';
-// import 'bootswatch/dist/lumen/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootswatch/dist/lumen/bootstrap.min.css';
 import '../../style/App.css'
 import{Card , CardBody, CardTitle, Button, CardText} from 'reactstrap'
 
@@ -22,39 +22,20 @@ const List = ({
   setListPosition,
 }) => (
 // TODO: Create JSX DOM
-  <div className = "list">
-      <Card body outline color="primary" >
+  
+      <Card body outline color="primary" id="List" >
+     
       <CardBody>
           <CardTitle> {name}</CardTitle>
-          <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
-          <Button>Button</Button>
-
-            <Card>
-            <CardBody>
-              <CardTitle> {name}</CardTitle>
-              <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
-            </CardBody>
-            </Card>
-<div></div>
-             <Card>
-            <CardBody>
-              <CardTitle> {name}</CardTitle>
-              <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
-            </CardBody>
-            </Card>
-
+          <CardText>  </CardText>
 
         </CardBody>
       </Card>
-  </div>
-    
-
+  
 );
-
  
 const mapStateToProps = ( state, props ) => ({
   //id : state.list.id,
-  name : state.list.name,
   /*closed : state.list.closed,
   idBoard : state.list.idBoard,
   pos : state.list.pos,

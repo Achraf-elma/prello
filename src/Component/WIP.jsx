@@ -9,9 +9,12 @@ import io from 'socket.io-client';
 
 // Action builder
 import { moveListInBoard, addListToBoard} from '../action/actionBoard';
+import { createList} from '../action/actionList';
 
 // Components
 import ListCreator from './ListCreator';
+import List from './List/List';
+
 
 class WIP extends React.Component{
   constructor(){
@@ -59,7 +62,8 @@ class WIP extends React.Component{
                         { "list-dragged": snapshot.isDragging }
                       )}
                     >
-                      {list.name}
+                    
+                     <List name={list.name} />
                     </span>
                   )}
                 </Draggable>
