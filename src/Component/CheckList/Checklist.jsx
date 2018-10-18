@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { addNewListItem } from '../../action/actionChecklist';
 
 // Components
-import CheckItem from './CheckItem'
+//import CheckItem from './CheckItem'
 
 const CheckList = ({
   name,
@@ -18,7 +18,7 @@ const CheckList = ({
         {name}
     </label>
     
-    <h4>{checklistItems.map}</h4>
+    <h4>{checklistItems}</h4>
     <button onClick ={() => addNewListItem("hello")}>Add Item</button>
   </div>
 );
@@ -29,7 +29,7 @@ const mapStateToProps = (state, props) => ({
 })
 
 const mapDispatchToProps = (dispatch, props) => ({
-  addNewListItem: (item) => dispatch(addNewListItem(props.id, item))
+  dispatchAddNewListItem: (item) => dispatch(addNewListItem(props.id, item))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CheckList); 
