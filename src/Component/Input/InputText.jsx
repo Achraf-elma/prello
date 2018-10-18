@@ -1,63 +1,66 @@
-// // Modules
-// import * as React from 'react';
-// import { Component } from 'react';
+// Modules
+import React from 'react';
+import classNames from 'classnames';
 
-// interface Props {
-//   validation: Function
-//   value: string
-// }
+/**
+* A custom controlled input text component
+* it needs a "validation" function props
+*/
+export default class InputText extends React.Component {
+  /**
+  * React Hook, set value just after a render
+  * trigger a render if needed
+  */
+  componentDidUpdate(previousProps, previousState) {
+    if (this.props.value !== previousProps.value || this.props.resetable) {
+      // Actualize the value when changed
+      this.textfield.current.value = (this.props.value ||  "");
+    }
+  }
 
-// /**
-// * A custom controlled input text component
-// * it needs a "validation" function props
-// */
-// export class TextInput extends Component<Props, {}>{
-//   private textfield = React.createRef<HTMLInputElement>()
-//   /**
-//   * React Hook, set value just after a render
-//   * trigger a render if needed
-//   */
-//   componentDidUpdate(previousProps: Props) {
-//     if (this.props.value !== previousProps.value) {
-//       // Actualize the value when changed
-//       this.textfield.value = (this.props.value || "");
-//     }
-//   }
+  /**
+  * There are few type of controlled input
+  * here, the input is free from control until a user leave it
+  * if the user hit escape, the input is reset
+  */
+  handleOnBlur = (event, input) => {
+    this.props.onChange(input.value);
+  }
 
-//   /**
-//   * There are few type of controlled input
-//   * here, the input is free from control until a user leave it
-//   * if the user hit escape, the input is reset
-//   */
-//   handleOnBlur = (event: React.KeyboardEvent, input: HTMLInputElement) => {
-//     this.props.validation(input.value);
-//   }
-
-//   handleOnKeyUp = (event: React.KeyboardEvent, input: HTMLInputElement) => {
-//     if (event.keyCode === 13) {
-//       this.textfield.blur();
-//       // this.props.validation( input.value );
-//     } else if (event.keyCode === 27) {
-//       input.value = (this.props.value || "");
-//     }
-//   }
+  handleOnKeyUp = (event, input) => {
+    if (event.keyCode === 13) {
+      this.textfield.current.blur();
+      // this.props.validation( input.value );
+    } else if (event.keyCode === 27) {
+      input.value = (this.props.value ||  "");
+    }
+  }
 
 
-//   render() {
-//     this.textfield;
-//     const {
-//       value,
-//     } = this.props;
-//     return (
-//       <input
-//         className="TextInput"
-//         type="text"
-//         defaultValue={value}
+  render() {
+    this.textfield = React.createRef();
+    const {
+      className,
+      style,
+      placeholder,
+      value,
+      disabled,
+      required,
+    } = this.props;
+    return (
+      <input
+        className={classNames("InputText", className)}
+        type="text"
+        style={style}
+        disabled={disabled}
+        placeholder={placeholder}
+        required={required}
+        defaultValue={value}
 
-//         ref={this.textfield}
-//         onKeyUp={(event: React.KeyboardEvent) => this.handleOnKeyUp(event, this.textfield)}
-//         onBlur={(event: React.KeyboardEvent) => this.handleOnBlur(event, this.textfield)}
-//       />
-//     )
-//   }
-// }
+        ref={this.textfield}
+        onKeyUp={(event) => this.handleOnKeyUp(event, this.textfield.current)}
+        onBlur={(event) => this.handleOnBlur(event, this.textfield.current)}
+      />
+    )
+  }
+}
