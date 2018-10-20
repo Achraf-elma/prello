@@ -2,7 +2,7 @@
 import React from 'react';
 
 
-import '../../style/App.css'
+
 import {
     Navbar,
     NavbarBrand,
@@ -18,8 +18,8 @@ const NavBar = ({
     navLogOut
 }) => (
     <div className="NavBar">
-        <Navbar color="light" light expand="md">
-        <NavbarBrand href="/">{navBarBrend}</NavbarBrand>
+        <Navbar light expand="md">
+        <NavbarBrand href="/"> <img src="./assets/logo1.png"/> </NavbarBrand>
         <Nav className="ml-auto" navbar>
             <NavItem>
                 <NavLink href="#">{currentPage}</NavLink>

@@ -1,3 +1,77 @@
-.headerImage {
- background-image: url("./assets/header.jpg"); 
+
+body, html { 
+   height: 100%;
+
+  }
+.headerContent::before {
+  content: "";
+  top:0;
+  left: 0;
+  right: 0;
+  z-index: -1;
+  background-image: url("./assets/headerComputerMan.jpg"); 
+  height:100%;
+   /* Center and scale the image nicely */
+   background-size:cover ;
+   background-repeat: no-repeat;
+   position: fixed;
+   background-attachment: scroll;
+  
+
+
+   -webkit-filter: blur(4px) grayscale(0.2) opacity(0.8);
+
+   
+
+}
+
+.headerContent {
+    margin-top:9%;
+    color : rgb(0, 0, 0);
+    text-align: center;
+    width: 100%;
+  
+    margin-left: auto;
+    margin-right: auto;
+}
+.headerContent .title{
+  text-shadow: 2px 2px 5px rgba(2, 2, 66, 0.514);
+    font-weight: 800;
+  font-size: 4em;
+  color:  rgb(4, 27, 51);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+}
+.headerContent .subtitle, p{
+  text-shadow: 2px 2px 5px rgba(2, 2, 66, 0.514);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-weight: 800;
+  font-size: 2em;
+  color: rgb(255, 255, 255);
+}
+.navbar-light{
+  background: transparent;
+  box-shadow: 0px 0px 0px #888888;
+  border: 0px;
+}
+.carousel {
+
+  position: relative;
+  display: block;
+ 
+
+}
+
+.carousel-item{
+  height: 200px;
+} 
+.carousel-item img{
+  height: 200px;
+}
+.carousel-caption {
+  text-shadow: 2px 2px 5px rgba(2, 2, 66, 0.699);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-weight: 800;
+  font-size: 1em;
+  color: rgb(255, 255, 255);
 }

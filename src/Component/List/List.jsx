@@ -2,10 +2,10 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-import 'bootstrap/dist/css/bootstrap.css';
-import 'bootswatch/dist/lumen/bootstrap.min.css';
-import '../../style/App.css'
-import{Card , CardBody, CardTitle, Button, CardText} from 'reactstrap'
+//import 'bootstrap/dist/css/bootstrap.css';
+//import 'bootswatch/dist/lumen/bootstrap.min.css';
+import '../../style/App.css';
+import{Card , CardBody, CardTitle, Button, CardText} from 'reactstrap';
 
 
 // Action builder

@@ -1,8 +1,9 @@
 // Modules
 import React from 'react';
-
-// Action builder
 import '../style/homepage.css';
+import FeaturesInfo from './featuresInfo';
+// Action builder
+
 
 
 // Components
@@ -13,16 +14,24 @@ const Homepage = ({
   // TODO: Put destructured props
   // <input type="checkbox" onChange={setCheckCardState( 1, true)}/>
 }) => (
-  <div className="jumbotron headerImage">
   <div>
+
+  <div className="headerContent ">
+    <div className="container">
+
+        <h1 className="title">Quick, simple and productive</h1>
+
+        <hr  style={{background: ' rgb(4, 27, 51)', width: 30 + '%'}} className="my-4"/>
+
+        <FeaturesInfo style = "position: relative"></FeaturesInfo>
+
+        <p>
+        <button type="button" class="btn btn-primary btn-lg">Start now</button>
+         </p>
+      </div>
 </div>
-  <h1 className="display-3">Prello!</h1>
-  <p className="lead">A simple way to manage yours projects</p>
-  <hr className="my-4"/>
-  <p>Collaborate with yours teams</p>
-  <p className="lead">
-    <a className="btn btn-primary btn-lg" href="#" role="button">Start now</a>
-  </p>
+
+
 </div>
   
   );

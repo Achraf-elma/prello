@@ -22,7 +22,7 @@
     "uuidv4": "^2.0.0"
   },
   "scripts": {
-    "server": "react-scripts build && node ./server/index.js", 
+    "server": "react-scripts build && node ./server/index.js",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
