@@ -18,6 +18,6 @@ const items = [
   
 ];
 
-const FeaturesInfo = () => <UncontrolledCarousel ride={10} items={items} />;
+const CarouselofFeatures = () => <UncontrolledCarousel ride={1000} items={items} />;
 
-export default FeaturesInfo;
+export default CarouselofFeatures;

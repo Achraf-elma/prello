@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 
 // Style
 import './style/App.css';
-import "./style/board.css";
+
 
 
 // Store
@@ -13,12 +13,9 @@ import store from './store';
 // Components
 import WIP from './Component/WIP';
 import NavBar from './Component/NavBar/NavBar';
-//import CheckItem from './Component/CheckList/CheckItem';
-//import Card from './Component/Card/Card';
-import Homepage from './Component/homepage';
-import FeaturesInfo from './Component/featuresInfo';
-import CheckItem from './Component/CheckList/CheckItem';
-import Card from './Component/Card/Card';
+import Homepage from './Component/Homepage/Homepage';
+
+
 
 class App extends Component {
   render() {
