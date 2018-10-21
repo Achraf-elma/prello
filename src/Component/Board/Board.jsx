@@ -13,6 +13,7 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import classNames from 'classnames';
 
 import List from './../../Component/List/List';
+import ListWIP from './../../Component/List/ListWIP';
 import ListCreator from './../../Component/ListCreator';
 import WIP from './../../Component/WIP';
 import WIP2 from './../../Component/Board/WIP2';

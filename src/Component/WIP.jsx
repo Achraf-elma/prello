@@ -56,9 +56,9 @@ class WIP extends React.Component{
                         { "list-dragged": snapshot.isDragging }
                       )}
                     >
-                      
+                       <td>
                        <List name={list.name}/>  
-                       
+                       </td>
                     </div>
                   )}
                 </Draggable>

@@ -4,7 +4,8 @@
 // TODO: Action type constant
 // default state
 export const initCard = {
-    id: 'string',
+    id: 0,
+    name: 'My card',
     idBoard: 'string',
     idList: 'string',
     dueDate: "Date",
@@ -14,7 +15,17 @@ export const initCard = {
   
   // Action type constants
   export const SET_CHECK_CARD_STATE = "@@card/SET_CHECK_CARD_STATE"
+  export const SET_CARD_NAME = "@@card/SET_LIST_NAME"
   export const CHANGE_CARD_DESC = "CHANGE_CARD_DESC"
+
+
+  export const setCardName= (id, name) => ({
+    type: SET_CARD_NAME,
+    payload:  {
+      id,
+      name
+    }
+  })
 
   // Action builders
   export const setCheckCardState = (id, done) => ({

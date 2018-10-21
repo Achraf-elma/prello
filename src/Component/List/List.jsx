@@ -7,7 +7,12 @@ import { connect } from 'react-redux';
 import '../../style/App.css';
 import '../../style/list.css';
 import{Card , CardHeader, CardBody, CardTitle, Button, CardText} from 'reactstrap';
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import classNames from 'classnames';
+import { moveCardInList, addCardToList} from '../../action/actionList';
+
 import MyCard from '../MyCard/MyCard';
+import CardCreator from './../../Component/CardCreator';
 
 // Action builder
 import { setListPosition, setListName } from '../../action/actionList';
@@ -18,28 +23,33 @@ import { setListPosition, setListName } from '../../action/actionList';
 
 const List = ({
   name,
+  cards,
   //pos,
+  dispatchOnDragEnd,
+    dispatchAddCardToList,
   setListName, 
   setListPosition,
 }) => (
 // TODO: Create JSX DOM
-  
-      <Card className="list">
+        <Card className="list">
+      
         <CardHeader className="list-title">{name}</CardHeader>
-      <CardBody>
-          <MyCard></MyCard>
-          <MyCard></MyCard>
-          <MyCard></MyCard>
-        </CardBody>
+
+       
+              <MyCard desc="doing"></MyCard>
+              <MyCard desc="Front"></MyCard>
+               <MyCard desc="back"></MyCard>
+          
+        
+
         <CardText>
-            <small className="text-muted"> > Add a new card</small>
-          </CardText>
-      </Card>
-  
+        <small className="text-muted"> > Add a new card</small>
+        </CardText>
+        </Card>
 );
  
 const mapStateToProps = ( state, props ) => ({
-  
+  cards: state.lists,
   //id : state.list.id,
   /*closed : state.list.closed,
   idBoard : state.list.idBoard,
@@ -49,8 +59,13 @@ const mapStateToProps = ( state, props ) => ({
 
 const mapDispatchToProps = ( dispatch, props ) => {
   return {
-    setListName: (name) => dispatch(setListName( props.id, name ))
-
+    dispatch,
+    dispatchOnDragEnd: ({source, destination}) => (
+      destination &&
+      dispatch(moveCardInList(source.index, destination.index))
+    ),
+    setListName: (name) => dispatch(setListName( props.id, name )),
+    dispatchAddCardToList: (cardName) => dispatch(addCardToList(cardName))
   }
 }
 

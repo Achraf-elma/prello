@@ -6,6 +6,8 @@ import { connect } from 'react-redux';
 import { setCheckCardState, changeCardDesc} from '../../action/actionCard';
 import CheckItem from '../CheckList/CheckItem';
 import checkItem from '../../reducer/checkItem';
+import{Card , CardHeader, CardBody, CardTitle, Button, CardText} from 'reactstrap';
+import '../../style/card.css';
 
 // Components
 // TODO: Import direct children components
@@ -19,9 +21,10 @@ const MyCard = ({
   // TODO: Put destructured props
   // <input type="checkbox" onChange={setCheckCardState( 1, true)}/>
 }) => (
-   <div>
-   <h1> {desc} </h1>
-   </div>
+   <Card className="mycard">
+     <CardHeader>{desc}</CardHeader>
+     <CardBody>{desc}</CardBody>
+    </Card>
   );
 
 const mapStateToProps = (state, props) => ({

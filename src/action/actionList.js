@@ -1,4 +1,5 @@
 // Modules
+import uuidv4 from "uuidv4";
 
 // Action Builders
 // TODO: Export Action Builder
@@ -10,6 +11,9 @@ name: 'My list',
 closed: 'closed'|'notClosed', 
 idBoard: ' ', //TODO check
 pos : 0,
+cards :  [
+  {}
+],
 subscribed : 'subscribed'|'notSubscribed', 
 }
  
@@ -20,6 +24,8 @@ export const SET_LIST_SUBSCRIBED = "@@list/SET_LIST_SUBSCRIBED "
 export const SET_LIST_NAME = "@@list/SET_LIST_NAME"
 export const SET_LIST_BOARD = "@@list/SET_LIST_BOARD"
 export const SET_NEW_LIST = "@@list/SET_NEW_LIST"
+export const MOVE_CARD_IN_LIST = "@@list/MOVE_CARD_IN_LIST"
+export const ADD_CARD_IN_LIST = "@@list/ADD_CARD_IN_LIST";
 
 
 // Action Builders
@@ -77,3 +83,20 @@ export const createList = (id, name , closed,  idBoard, pos , subscribed ) => ({
     subscribed   }
 })
 
+// Move a card position in the list
+export const moveCardInList = (cardToMovePos, newCardPos) => ({
+  type: MOVE_CARD_IN_LIST,
+  payload: {
+    cardToMovePos,
+    newCardPos,
+  }
+})
+
+// Add a new card at the end of the list
+export const addCardToList = (cardName) => ({
+  type: ADD_CARD_IN_LIST,
+  payload: {
+    id: uuidv4(),
+    name: cardName,
+  }
+})
