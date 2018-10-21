@@ -48,18 +48,18 @@
   background-color: rgba(2, 2, 66, 0.514);
 }
 .board-lists {
-  background: rgb(202, 0, 0);
+  background: none;
   display: flex;
   padding: 20px;
   overflow: auto;
 }
 
 .list-dragging-over {
-  background: blue;
+  background: none;
 }
 
 .list-item {
-  background: grey;
+  background: none;
   user-select: none;
   padding: 0px;
   margin: 0 8px 0 0;
@@ -67,6 +67,8 @@
 }
 
 .list-dragged {
-  background: lightgreen;
+  background: rgba(144, 158, 238, 0.226);
+  box-shadow: 2px 2px 4px #190d5250;
+
 }
 

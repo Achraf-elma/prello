@@ -56,9 +56,7 @@ class WIP extends React.Component{
                         { "list-dragged": snapshot.isDragging }
                       )}
                     >
-                      
-                       <List name={list.name}/>  
-                       
+                     <List name={list.name} />
                     </div>
                   )}
                 </Draggable>
@@ -89,4 +87,4 @@ const mapDispatchToProps = (dispatch, props) => ({
   dispatchAddListToBoard: (listName) => dispatch(addListToBoard(listName))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(WIP);
+export default connect(mapStateToProps, mapDispatchToProps)(DNDLists);

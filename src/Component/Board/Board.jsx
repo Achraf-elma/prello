@@ -9,6 +9,8 @@ import '../../style/board.css';
 import {setBoardClose} from './../../action/actionBoard';
 import {setBoardDesc} from './../../action/actionBoard';
 import { moveListInBoard, addListToBoard} from '../../action/actionBoard';
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import classNames from 'classnames';
 
 import List from './../../Component/List/List';
 import ListCreator from './../../Component/ListCreator';
@@ -17,7 +19,7 @@ import WIP2 from './../../Component/Board/WIP2';
 // Components
 import { Container, Row, Col } from 'reactstrap';
 
-import {DragDropContext} from 'react-beautiful-dnd';
+
 // Components
 // TODO: Import direct children components
 //import list when implemented
@@ -56,21 +58,46 @@ return (
   </div>
  
   <hr className="separator" />
-
+  <table>
+  <tr>
      <ListCreator addList={(listName) => dispatchAddListToBoard(listName)} />
-      <table>
-        <tr>
+     <DragDropContext onDragEnd={( result ) => dispatchOnDragEnd( result )}>
+     <Droppable droppableId="droppable" direction="horizontal">
+     {(provided, snapshot) => (
+            <div
+              ref={provided.innerRef}
+              className={classNames("board-lists", { "list-dragging-over": snapshot.isDraggingOver })}
+              {...provided.droppableProps}
+            >
+      
+       
           {lists.map((list, index) => ( 
-               <td>
-                  <List name={list.name}/>  
-               </td>
+                <Draggable key={list.id} draggableId={list.id} index={index}>
+                {(provided, snapshot) => (
+                  <div
+                    ref={provided.innerRef}
+                    {...provided.draggableProps}
+                    {...provided.dragHandleProps}
+                    className={classNames(
+                      "list-item",
+                      { "list-dragged": snapshot.isDragging }
+                    )}
+                  >
+                     <td>
+                     <List name={list.name}/>  
+                     </td>
+                  </div>
+                )}
+              </Draggable>
           ) )} 
+     
+        
+        </div>
+          )}
+        </Droppable>
+        </DragDropContext>
         </tr>
-  
-
         </table>
- 
-
 
       
 
@@ -89,12 +116,14 @@ const mapStateToProps = ( state, props ) => ({
   pos: state.board.pos,
 })
 
-const mapDispatchToProps = ( dispatch, props ) => ({
-  //TODO: Add
-  setBoardClose: (closed) => dispatch(setBoardClose(props.id, closed)),
-  setBoardDesc: (event) => dispatch(setBoardDesc(props.id, event.target.value)),
+const mapDispatchToProps = (dispatch, props) => ({
+  dispatch,
+  dispatchOnDragEnd: ({source, destination}) => (
+    destination &&
+    dispatch(moveListInBoard(source.index, destination.index))
+  ),
   dispatchAddListToBoard: (listName) => dispatch(addListToBoard(listName))
-})
+});
 
 // TODO: Export connected Components
 export default connect(mapStateToProps, mapDispatchToProps)(Board); 
