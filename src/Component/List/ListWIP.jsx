@@ -12,7 +12,7 @@ import classNames from 'classnames';
 import { moveCardInList, addCardToList} from '../../action/actionList';
 
 import MyCard from '../MyCard/MyCard';
-import CardCreator from '../CardCreator';
+import CardCreator from '../Creator/CardCreator';
 
 // Action builder
 import { setListPosition, setListName } from '../../action/actionList';

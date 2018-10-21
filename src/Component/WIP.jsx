@@ -12,7 +12,7 @@ import { moveListInBoard, addListToBoard} from '../action/actionBoard';
 import { createList} from '../action/actionList';
 
 // Components
-import ListCreator from './ListCreator';
+import ListCreator from './Creator/ListCreator';
 import List from './List/List';
 
 

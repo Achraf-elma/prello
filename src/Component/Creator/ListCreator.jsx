@@ -2,20 +2,20 @@
 import React from 'react';
 
 // Components
-import InputText from './Input/InputText';
+import InputText from '../Input/InputText';
 
-const CardCreator = ({
-  addCard
+const ListCreator = ({
+  addList
 }) => (
   <span className="ListCreator">
     <InputText
      className="addListInput"
       value=""
-      placeHolder="Add a new card..."
+      placeHolder="Add a new list..."
       resetable
-      onChange={(cardName) => addCard(cardName)}
+      onChange={(listName) => addList(listName)}
     />
   </span>
 );
 
-export default CardCreator;
+export default ListCreator;

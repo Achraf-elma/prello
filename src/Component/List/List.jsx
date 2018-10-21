@@ -1,25 +1,22 @@
 // Modules
-
 import React from 'react';
 import { connect } from 'react-redux';
-//import 'bootstrap/dist/css/bootstrap.css';
-//import 'bootswatch/dist/lumen/bootstrap.min.css';
-import '../../style/App.css';
-import '../../style/list.css';
 import{Card , CardHeader, CardBody, CardTitle, Button, CardText} from 'reactstrap';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import classNames from 'classnames';
-import { moveCardInList, addCardToList} from '../../action/actionList';
-
-import MyCard from '../MyCard/MyCard';
-import CardCreator from './../../Component/CardCreator';
 
 // Action builder
 import { setListPosition, setListName } from '../../action/actionList';
+import { moveCardInList, addCardToList} from '../../action/actionList';
 
 
 // Components
-// TODO: Import direct children components
+import MyCard from '../MyCard/MyCard';
+import CardCreator from './../../Component/Creator/CardCreator';
+
+// Style 
+import '../../style/App.css';
+import '../../style/list.css';
 
 const List = ({
   name,
@@ -30,7 +27,7 @@ const List = ({
   setListName, 
   setListPosition,
 }) => (
-// TODO: Create JSX DOM
+
         <Card className="list">
       
         <CardHeader className="list-title">{name}</CardHeader>
@@ -69,5 +66,4 @@ const mapDispatchToProps = ( dispatch, props ) => {
   }
 }
 
-//export default Board // TODO: Export connected Components
 export default connect(mapStateToProps, mapDispatchToProps)(List); 

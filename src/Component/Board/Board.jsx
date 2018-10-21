@@ -1,29 +1,25 @@
 // Modules
-// TODO: Import react (it avert the transpiler it needs JSX )
 import React from 'react';
-// TODO: Import connect from react-redux
 import {connect} from 'react-redux';
-import '../../style/board.css';
+import classNames from 'classnames';
+import { Container, Row, Col } from 'reactstrap';
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+
 // Action builder
-// TODO: Import action builder
+import { moveListInBoard, addListToBoard} from '../../action/actionBoard';
 import {setBoardClose} from './../../action/actionBoard';
 import {setBoardDesc} from './../../action/actionBoard';
-import { moveListInBoard, addListToBoard} from '../../action/actionBoard';
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import classNames from 'classnames';
+
+
+// Components
 
 import List from './../../Component/List/List';
 import ListWIP from './../../Component/List/ListWIP';
-import ListCreator from './../../Component/ListCreator';
+import ListCreator from '../Creator/ListCreator';
 import WIP from './../../Component/WIP';
-import WIP2 from './../../Component/Board/WIP2';
-// Components
-import { Container, Row, Col } from 'reactstrap';
 
-
-// Components
-// TODO: Import direct children components
-//import list when implemented
+// Styles
+import '../../style/board.css';
 
 class Board extends React.Component{
 
@@ -108,7 +104,6 @@ return (
 }
 
 const mapStateToProps = ( state, props ) => ({
-    // TODO: Add store state to the component props
   name: state.board.name,
   lists: state.lists,
   desc: state.board.desc,
@@ -126,5 +121,5 @@ const mapDispatchToProps = (dispatch, props) => ({
   dispatchAddListToBoard: (listName) => dispatch(addListToBoard(listName))
 });
 
-// TODO: Export connected Components
+// Export connected Components
 export default connect(mapStateToProps, mapDispatchToProps)(Board); 
