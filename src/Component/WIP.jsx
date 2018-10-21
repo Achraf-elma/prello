@@ -33,6 +33,9 @@ class WIP extends React.Component{
         dispatchAddListToBoard
     } = this.props;
     return (
+      <div>
+
+
       <DragDropContext onDragEnd={( result ) => dispatchOnDragEnd( result )}>
         <Droppable droppableId="droppable" direction="horizontal">
           {(provided, snapshot) => (
@@ -44,7 +47,7 @@ class WIP extends React.Component{
               {lists.map((list, index) => (
                 <Draggable key={list.id} draggableId={list.id} index={index}>
                   {(provided, snapshot) => (
-                    <span
+                    <div
                       ref={provided.innerRef}
                       {...provided.draggableProps}
                       {...provided.dragHandleProps}
@@ -54,16 +57,19 @@ class WIP extends React.Component{
                       )}
                     >
                      <List name={list.name} />
-                    </span>
+                    </div>
                   )}
                 </Draggable>
               ))}
-              <ListCreator addList={(listName) => dispatchAddListToBoard(listName)} />
-              {provided.placeholder}
+         
+      
+            
             </div>
           )}
         </Droppable>
+
       </DragDropContext>
+      </div>
     )
   }
 }

@@ -1,5 +1,8 @@
 // Modules
 import React from 'react';
+// Store
+import store from './store';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 // Socket
@@ -48,3 +51,4 @@ class ConnectedBoard extends React.Component {
     );
   }
 }
+export default ConnectedBoard; 

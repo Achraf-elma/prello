@@ -9,6 +9,7 @@ const ListCreator = ({
 }) => (
   <span className="ListCreator">
     <InputText
+     className="addListInput"
       value=""
       placeHolder="Add a new list..."
       resetable

@@ -1,17 +1,3 @@
-
-
-.card card-body border-primary{
-  display: 'inline-block'
-}
-
-.ListCreator{
-  top: 100;
-  left: 0;
-  position : fixed ; 
-}
-
-
-#List{
-  display: inline-block;
-  margin: 2.5em ; 
+.InputText{
+  width: 150px;
 }

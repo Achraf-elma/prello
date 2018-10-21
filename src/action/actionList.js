@@ -6,7 +6,7 @@
 //default state 
 export const initList = {
 id : 0 , //TODO check
-name: 'ListNamess',
+name: 'My list',
 closed: 'closed'|'notClosed', 
 idBoard: ' ', //TODO check
 pos : 0,

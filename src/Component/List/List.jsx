@@ -5,8 +5,9 @@ import { connect } from 'react-redux';
 //import 'bootstrap/dist/css/bootstrap.css';
 //import 'bootswatch/dist/lumen/bootstrap.min.css';
 import '../../style/App.css';
+import '../../style/list.css';
 import{Card , CardBody, CardTitle, Button, CardText} from 'reactstrap';
-
+import MyCard from '../MyCard/MyCard';
 
 // Action builder
 import { setListPosition, setListName } from '../../action/actionList';
@@ -23,18 +24,20 @@ const List = ({
 }) => (
 // TODO: Create JSX DOM
   
-      <Card body outline color="primary" id="List" >
-     
+      <Card className="list">
       <CardBody>
-          <CardTitle> {name}</CardTitle>
-          <CardText>  </CardText>
-
+          <CardTitle className="list-title">{name}</CardTitle>
+          <hr/>
+          <MyCard></MyCard>
+          <MyCard></MyCard>
+          <MyCard></MyCard>
         </CardBody>
       </Card>
   
 );
  
 const mapStateToProps = ( state, props ) => ({
+  
   //id : state.list.id,
   /*closed : state.list.closed,
   idBoard : state.list.idBoard,

@@ -12,8 +12,11 @@ export const ADD_LIST_TO_BOARD = "@@board/ADD_LIST_TO_BOARD";
 // default state
 export const initBoard = {
   id: "5612e4f91b25c15e873722b8",
-  name: "Init Board",
+  name: "My Board",
   desc: "My first board",
+  lists : [
+    {}
+  ],
   memberships: [
     {
       "id": "5612e4fb1b25c15e8737234b",

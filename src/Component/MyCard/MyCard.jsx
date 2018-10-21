@@ -10,7 +10,7 @@ import checkItem from '../../reducer/checkItem';
 // Components
 // TODO: Import direct children components
 
-const Card = ({
+const MyCard = ({
   id,
   desc,
   state,
@@ -19,12 +19,9 @@ const Card = ({
   // TODO: Put destructured props
   // <input type="checkbox" onChange={setCheckCardState( 1, true)}/>
 }) => (
-   <div className="card">
-   <h1>{desc} {id} {state}</h1>
-   <hr/>
-    <input type="text" value={desc}  onChange={changeCardDesc}/>
-  
-</div>
+   <div>
+   <h1> {desc} </h1>
+   </div>
   );
 
 const mapStateToProps = (state, props) => ({
@@ -39,4 +36,4 @@ const mapDispatchToProps = (dispatch, props) => ({
   // TODO: Add 
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Card); 
+export default connect(mapStateToProps, mapDispatchToProps)(MyCard); 

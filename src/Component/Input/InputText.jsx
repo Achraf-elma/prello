@@ -42,7 +42,7 @@ export default class InputText extends React.Component {
     const {
       className,
       style,
-      placeholder,
+      placeHolder,
       value,
       disabled,
       required,
@@ -53,7 +53,7 @@ export default class InputText extends React.Component {
         type="text"
         style={style}
         disabled={disabled}
-        placeholder={placeholder}
+        placeHolder={placeHolder}
         required={required}
         defaultValue={value}
 
