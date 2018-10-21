@@ -1,9 +1,9 @@
 .list{
-  background-color: rgba(230, 230, 248, 0.822);
+  background-color: rgba(255, 255, 255, 0.822);
   margin: 7px 10px auto 10px;
   box-shadow: 10px 10px 1px #190d5250;
-  border: 1px;
-  border-color:black;
+  border: 4px;
+  border-color: black;
 }
 
 .list-title{
@@ -29,3 +29,14 @@
   background: lightgreen;
 }
 
+.text-muted {
+  margin: auto auto 5px 5px; 
+  color: #6c757d !important;
+
+}
+.small, small {
+
+  font-size: 80%;
+  font-weight: 400;
+
+}

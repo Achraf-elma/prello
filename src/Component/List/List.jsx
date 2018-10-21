@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 //import 'bootswatch/dist/lumen/bootstrap.min.css';
 import '../../style/App.css';
 import '../../style/list.css';
-import{Card , CardBody, CardTitle, Button, CardText} from 'reactstrap';
+import{Card , CardHeader, CardBody, CardTitle, Button, CardText} from 'reactstrap';
 import MyCard from '../MyCard/MyCard';
 
 // Action builder
@@ -25,13 +25,15 @@ const List = ({
 // TODO: Create JSX DOM
   
       <Card className="list">
+        <CardHeader className="list-title">{name}</CardHeader>
       <CardBody>
-          <CardTitle className="list-title">{name}</CardTitle>
-          <hr/>
           <MyCard></MyCard>
           <MyCard></MyCard>
           <MyCard></MyCard>
         </CardBody>
+        <CardText>
+            <small className="text-muted"> > Add a new card</small>
+          </CardText>
       </Card>
   
 );
