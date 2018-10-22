@@ -6,6 +6,8 @@ import CarouselofFeatures from './CarouselofFeatures';
 
 
 const Homepage = () => (
+  <div>
+  <div className="homepage-background"/>
 <div className="headerContent ">
     <div className="container">
         <h1 className="title">Quick, simple and productive</h1>
@@ -16,7 +18,7 @@ const Homepage = () => (
          </p>
       </div>
 </div>
-
+</div>
   );
 
 const mapStateToProps = (state, props) => ({

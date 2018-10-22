@@ -41,15 +41,15 @@ render() {
   setBoardDesc }
  = this.props;
 return (
-  
-
+  <div>
+<div className="board-background"/>
   <div className="container">
-  <div class="row board-info">
-    <div class="col">
-    <h1 className="board-title"><i class="fa fa-tasks"></i> {name}</h1>
+  <div className="row board-info">
+    <div className="col">
+    <h1 className="board-title"><i className="fa fa-tasks"></i> {name}</h1>
     </div>
    
-    <div class="col">
+    <div className="col">
        
     </div>
   </div>
@@ -98,6 +98,7 @@ return (
 
       
 
+</div>
 </div>
 );
 }

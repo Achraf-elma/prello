@@ -16,11 +16,16 @@
 -webkit-filter: drop-shadow(5px 5px 2px rgba(54, 54, 126, 0.281));
 }
 
-.navbar-light .navbar-nav .nav-link {
+.NavBar a{
   text-transform: uppercase;
   font-weight: 700;
   color: #004878;
   margin: 0 10px;
+  text-decoration: none;
+}
+
+.NavBar a:hover{
+ color: #0069da;
   text-decoration: none;
 }
 

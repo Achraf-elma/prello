@@ -1,7 +1,7 @@
 body, html { 
    height: 100%;
   }
-.headerContent::before { /* = background image div */ 
+.homepage-background{ /* = background image div */ 
   content: "";
   top:0;
   left: 0;

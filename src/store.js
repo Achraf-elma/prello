@@ -14,7 +14,7 @@ import organization from './reducer/organization';
 import card from './reducer/card';
 import cards from './reducer/cards';
 
-export default createStore(
+const store = createStore(
   combineReducers({
     lists,
     list,
@@ -28,3 +28,5 @@ export default createStore(
   applyMiddleware(socketDispatch)
   // , require('./bootstrap.json');
 );
+
+export default store;

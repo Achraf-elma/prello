@@ -1,11 +1,11 @@
 // Modules
 import React from 'react';
+import { BrowserRouter as Router, Route, Link, NavLink } from "react-router-dom";
 import {
     Navbar,
     NavbarBrand,
     Nav,
-    NavItem,
-    NavLink} from 'reactstrap';
+    NavItem} from 'reactstrap';
 
 const NavBar = ({
     navBarBrend, 
@@ -19,16 +19,16 @@ const NavBar = ({
         <NavbarBrand href="/"> <img src="./assets/logo1.png"/> </NavbarBrand>
         <Nav className="ml-auto" navbar>
             <NavItem>
-                <NavLink href="#">{currentPage}</NavLink>
+                 <NavLink  to="/board">My Board</NavLink>
             </NavItem>
             <NavItem>
-                <NavLink href="#">{navLink}</NavLink>
+                    <NavLink  to="/board">Boards</NavLink>
             </NavItem>
             <NavItem>
-                <NavLink href="#">{navMyAccount}</NavLink>
+                <NavLink to="#" >{navMyAccount}</NavLink>
             </NavItem>
             <NavItem>
-                <NavLink href="#">{navLogOut}</NavLink>
+                <NavLink to="#" >{navLogOut}</NavLink>
             </NavItem>
         </Nav>
         </Navbar>
