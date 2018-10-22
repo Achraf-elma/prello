@@ -24,13 +24,16 @@ class App extends Component {
   render() {
     return (
       <div>
-        <NavBar navBarBrend="Prello" currentPage="Board 1" navLink= "My Boards" navMyAccount="My Account" navLogOut="Log Out"/>
-        <Provider store={store}>
-        <Switch>
+          <Provider store={store}>
+
+        <Router>
+          <div>
+            <Route component={NavBar}/>
             <Route exact path='/' component={Homepage}/>
             {/* both /roster and /roster/:number begin with /roster */}
             <Route path='/board' component={Board}/>
-          </Switch>
+            </div>
+        </Router>
         </Provider>
       </div>
     );

@@ -2,6 +2,7 @@
 import React from 'react';
 import '../../style/homepage.css';
 import CarouselofFeatures from './CarouselofFeatures';
+import NavBar from './../NavBar/NavBar';
 
 
 

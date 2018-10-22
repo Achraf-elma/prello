@@ -39,11 +39,7 @@ body, html {
   font-size: 2em;
   color: rgb(255, 255, 255);
 }
-.navbar-light{
-  background: transparent;
-  box-shadow: 0px 0px 0px #888888;
-  border: 0px;
-}
+
 .carousel {
   position: relative;
   display: block;

@@ -6,17 +6,24 @@ import {
     NavbarBrand,
     Nav,
     NavItem} from 'reactstrap';
+import Board from './../../Component/Board/Board';
 
-const NavBar = ({
-    navBarBrend, 
+class NavBar extends React.Component{
+    constructor(props) {
+        super(props);
+      }
+
+render() {
+const {navBarBrend, 
     currentPage,
+    current = this.props.location.pathname,
     navLink, 
     navMyAccount,
-    navLogOut
-}) => (
-    <div className="NavBar">
+    navLogOut} = {...this.props};
+return (
+    <div className={current == '/' ? "NavBarHomePage" : "NavBar"}>
         <Navbar light expand="md">
-        <NavbarBrand href="/"> <img src="./assets/logo1.png"/> </NavbarBrand>
+        <NavbarBrand> <Link to="/"> <img src="./assets/logo1.png"/></Link></NavbarBrand>
         <Nav className="ml-auto" navbar>
             <NavItem>
                  <NavLink  to="/board">My Board</NavLink>
@@ -25,14 +32,19 @@ const NavBar = ({
                     <NavLink  to="/board">Boards</NavLink>
             </NavItem>
             <NavItem>
-                <NavLink to="#" >{navMyAccount}</NavLink>
+                <NavLink to="#" > My Account</NavLink>
             </NavItem>
             <NavItem>
-                <NavLink to="#" >{navLogOut}</NavLink>
+                <NavLink to="#" >Log out</NavLink>
             </NavItem>
         </Nav>
+
+           
+        
         </Navbar>
     </div>
-);
 
+    );
+}
+}
 export default NavBar;
