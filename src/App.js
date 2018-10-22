@@ -25,16 +25,14 @@ class App extends Component {
     return (
       <div>
           <Provider store={store}>
-
-        <Router>
-          <div>
-            <Route component={NavBar}/>
-            <Route exact path='/' component={Homepage}/>
-            {/* both /roster and /roster/:number begin with /roster */}
-            <Route path='/board' component={Board}/>
-            </div>
-        </Router>
-        </Provider>
+            <Router>
+              <div>
+                <Route component={NavBar}/>
+                <Route exact path='/' component={Homepage}/>
+                <Route path='/board' component={Board}/>
+              </div>
+            </Router>
+          </Provider>
       </div>
     );
   }

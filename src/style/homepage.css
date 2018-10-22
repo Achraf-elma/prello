@@ -15,7 +15,6 @@ body, html {
    position: fixed;
    background-attachment: scroll;
    -webkit-filter: blur(4px) grayscale(0.2) opacity(0.8);
-
 }
 .headerContent {
     margin-top:9%;
