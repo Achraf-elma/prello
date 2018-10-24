@@ -5,15 +5,20 @@ import React from 'react';
 import InputText from '../Input/InputText';
 
 const CardCreator = ({
-  addCard
+  addCard, 
+  closeToggle
 }) => (
   <span className="ListCreator">
     <InputText
      className="addListInput"
       value=""
-      placeHolder="Add a new card..."
+       placeHolder="Description"
       resetable
-      onChange={(cardName) => addCard(cardName)}
+      onChange={(cardName) => {
+        addCard(cardName)
+        closeToggle() 
+      } 
+    }
     />
   </span>
 );

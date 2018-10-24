@@ -64,4 +64,8 @@
   box-shadow: 2px 2px 4px #190d5250;
 
 }
-
+.listLists{
+  display: block;
+  overflow-x: auto;
+  white-space: nowrap;
+}

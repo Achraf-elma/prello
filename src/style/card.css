@@ -1,10 +1,9 @@
 .mycard{
-  width: 40vh;
-  background-color: rgba(230, 230, 248, 0.822);
-  margin: auto 10px auto 10px;
-  box-shadow: 10px 10px 1px #190d5250;
-  border: 1px;
-  border-color:black;
+  margin: 10px 5% 10px 5%;
+  box-shadow: 8px 8px 1px #190d5250;
+}
+.mycard .card-header{
+  background-color: #c9c9c9be;
 }
 .card-title{
   text-shadow: 1px 1px 1px rgba(2, 2, 66, 0.514);
@@ -26,3 +25,22 @@
   background: lightgreen;
 }
 
+.labels{
+    display : inline-block;
+}
+.label{ 
+
+  width:55px;
+  height:15px;
+  border-radius: 10%;
+  border: 1px solid black;
+  background:whitesmoke;
+  box-shadow: 3px 3px 2px #37249250;
+}
+.red {
+ background:red;
+    
+}
+.blue {
+  background:blue;
+}

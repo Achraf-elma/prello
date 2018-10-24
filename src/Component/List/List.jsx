@@ -12,6 +12,7 @@ import { moveCardInList, addCardToList} from '../../action/actionList';
 
 // Components
 import MyCard from '../MyCard/MyCard';
+import AddCard from './addcard';
 import CardCreator from './../../Component/Creator/CardCreator';
 
 // Style 
@@ -23,30 +24,26 @@ const List = ({
   cards,
   //pos,
   dispatchOnDragEnd,
-    dispatchAddCardToList,
   setListName, 
   setListPosition,
 }) => (
 
         <Card className="list">
       
-        <CardHeader className="list-title">{name}</CardHeader>
+        <CardHeader><span className="list-title">{name}</span></CardHeader>
 
-       
-              <MyCard desc="doing"></MyCard>
-              <MyCard desc="Front"></MyCard>
-               <MyCard desc="back"></MyCard>
-          
-        
-
+         {cards.map((card, index) => (
+           <MyCard name={card.name}></MyCard>
+           ))};
+              
         <CardText>
-        <small className="text-muted"> > Add a new card</small>
+        <AddCard/>
         </CardText>
         </Card>
 );
  
 const mapStateToProps = ( state, props ) => ({
-  cards: state.lists,
+  cards: state.cards,
   //id : state.list.id,
   /*closed : state.list.closed,
   idBoard : state.list.idBoard,
@@ -62,7 +59,6 @@ const mapDispatchToProps = ( dispatch, props ) => {
       dispatch(moveCardInList(source.index, destination.index))
     ),
     setListName: (name) => dispatch(setListName( props.id, name )),
-    dispatchAddCardToList: (cardName) => dispatch(addCardToList(cardName))
   }
 }
 

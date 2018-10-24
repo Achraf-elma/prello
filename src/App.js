@@ -21,7 +21,6 @@ import LoginCard from './Component/Login/LoginCard';
 import SignupCard from './Component/Login/SignupCard';
 //import ConnectedBoard from './Component/Board/ConnectedBoard';
 
-
 class App extends Component {
   render() {
     return (

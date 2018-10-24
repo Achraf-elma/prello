@@ -2,11 +2,10 @@
 import { combineReducers } from 'redux';
 
 // Definitions
-// Definitions
-import { initCard,  SET_CARD_NAME, SET_CHECK_CARD_STATE, CHANGE_CARD_DESC } from "../action/actionCard";
+// TODO: import type, action type & type constants
+//import {initCard, SET_CARD_POSITION,SET_CARD_CLOSED, setCARDClosed, setCARDPosition, SET_CARD_NAME, SET_CARD_LIST, SET_CARD_SUBSCRIBED }from "../action/actionCARD";
+import {initCard, SET_CARD_POSITION,SET_CARD_CLOSED, SET_CARD_NAME, SET_CARD_LIST, SET_CARD_SUBSCRIBED }from "../action/actionCard";
 
-
-// TODO: action type constants
 const id = ( state = initCard.id, action ) => state
 const name = ( state = initCard.name, action ) => {
   switch(action["type"]) {
@@ -16,27 +15,63 @@ const name = ( state = initCard.name, action ) => {
       return state;
   }
 }
-const idBoard = ( state = initCard.idBoard, action ) => state
-const idList = ( state = initCard.idList, action ) => state
-const dueDate = ( state = initCard.dueDate, action ) => state
-
-const done = (state = initCard.done, action ) => {
+const closed = ( state = initCard.closed, action ) => {
   switch(action["type"]) {
-    case SET_CHECK_CARD_STATE:
-      return action.payload.state
+    case SET_CARD_CLOSED:
+      return action.payload.closed
     default:
       return state;
   }
 }
+const idBoard = ( state = initCard.idBoard, action ) => {
+  switch(action["type"]) {
+    case SET_CARD_LIST:
+      return action.payload.idBoard
+    default:
+      return state;
+  }
+}
+const pos = ( state = initCard.pos, action ) => {
+  switch(action["type"]) {
+    case SET_CARD_POSITION:
+      return action.payload.pos
+    default:
+      return state;
+  }
+}
+const subscribed = ( state = initCard.subscribed, action ) => {
+  switch(action["type"]) {
+  case SET_CARD_SUBSCRIBED:
+    return action.payload.subscribed
+  default:
+    return state;
+  }  
+}
 
+const toggle = ( state = [], action ) => {
+  switch(action["type"]) {
+  case "TOGGLE_CLOSE":
+    return action.payload;
+  default:
+    return state;
+  }  
+}
+/*const cards = (
+  // TODO: Add state and default state,
+  // TODO: Add Action
+) => {
+  // TODO: Switch case
+}*/
 
 // Main Reducer
 export default combineReducers({
-  id,
+  // TODO: Add reducers, done
+  id ,
   name,
+  closed,
   idBoard,
-  idList,
-  dueDate,
-  done
-});
-
+  pos ,
+  subscribed,
+  toggle
+  })
+ 

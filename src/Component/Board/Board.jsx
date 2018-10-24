@@ -55,19 +55,17 @@ return (
   </div>
  
   <hr className="separator" />
-  <table>
+  <ListCreator addList={(listName) => dispatchAddListToBoard(listName)} />
+  <table className="listLists">
   <tr>
-     <ListCreator addList={(listName) => dispatchAddListToBoard(listName)} />
+    
      <DragDropContext onDragEnd={( result ) => dispatchOnDragEnd( result )}>
      <Droppable droppableId="droppable" direction="horizontal">
      {(provided, snapshot) => (
             <div
               ref={provided.innerRef}
               className={classNames("board-lists", { "list-dragging-over": snapshot.isDraggingOver })}
-              {...provided.droppableProps}
-            >
-      
-       
+              {...provided.droppableProps}>
           {lists.map((list, index) => ( 
                 <Draggable key={list.id} draggableId={list.id} index={index}>
                 {(provided, snapshot) => (
