@@ -5,9 +5,9 @@ import { MOVE_CARD_IN_LIST, ADD_CARD_IN_LIST } from '../action/actionList';
 export default ( state = [], action) => {
   switch(action.type) {
     case ADD_CARD_IN_LIST:
-      return [...state, action.payload]
+    return [...state, action.payload]
     case MOVE_CARD_IN_LIST:
-      let cardToMove = state[action.payload.listToMovePos];
+      let cardToMove = state[action.payload.cardToMovePos];
       let cards = state.filter((card, index) => index !== action.payload.cardToMovePos);
       return [
         ...cards.slice(0, action.payload.newCardPos),

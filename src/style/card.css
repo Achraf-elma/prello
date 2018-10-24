@@ -12,19 +12,6 @@
   font-size: 1.5em;
   color:#0d3584;
 }
-.card-dragging-over {
-  background: blue;
-}
-.card-item {
-  background: grey;
-  user-select: none;
-  padding: 0px;
-  margin: 0 8px 0 0; 
-}
-.card-dragged {
-  background: lightgreen;
-}
-
 .labels{
     display : inline-block;
 }

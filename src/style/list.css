@@ -17,22 +17,28 @@
   font-size: 1.5em;
   color:   #0d3584;;
 }
-.list-dragging-over {
-  background: blue;
+
+.board-lists {
+  background: none;
+  display: flex;
+  padding: 20px;
+  overflow: auto;
 }
 
-.list-item {
-  background: grey;
+.card-dragging-over {
+  background: none;
+}
+
+.card-item {
+  background: none;
   user-select: none;
   padding: 0px;
   margin: 0 8px 0 0;
-  
 }
-
-.list-dragged {
-  background: lightgreen;
+.card-dragged {
+  background: rgba(144, 158, 238, 0.226);
+  box-shadow: 2px 2px 4px #190d5250;
 }
-
 .add-card-link {
   margin: auto auto 10px 10px; 
   color: #6c757d;
@@ -46,7 +52,6 @@
 }
 .list-cards {
   background: none;
-  display: flex;
   padding: 20px;
   overflow: auto;
 }
