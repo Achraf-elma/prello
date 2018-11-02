@@ -35,7 +35,10 @@ return (
                 <NavLink to="#" > My Account</NavLink>
             </NavItem>
             <NavItem>
-                <NavLink to="#" >Log out</NavLink>
+                    <NavLink to="login" >Login</NavLink>
+                </NavItem>
+                <NavItem>
+                <NavLink to="signup" >Signup</NavLink>
             </NavItem>
         </Nav>
 

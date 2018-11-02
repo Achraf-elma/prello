@@ -1,0 +1,22 @@
+.login, .signup {
+  text-align: center;
+}
+
+.login-form, .signup-form {
+  text-align: inherit;
+}
+
+.login-form > * , .signup-form > * {
+  display: block;
+  margin: 1em auto;
+}
+
+.login-form-submit, .signup-form-submit {
+  background: white;
+  width: 10em;
+}
+
+.login-google, .signup-google {
+  background: skyblue;
+  width: 10em;
+}
