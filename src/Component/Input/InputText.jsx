@@ -24,7 +24,9 @@ export default class InputText extends React.Component {
   * if the user hit escape, the input is reset
   */
   handleOnBlur = (event, input) => {
-    this.props.onChange(input.value);
+    if(this.props.value != input.value){
+      this.props.onChange(input.value);
+    }
   }
 
   handleOnKeyUp = (event, input) => {
