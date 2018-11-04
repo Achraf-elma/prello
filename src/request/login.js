@@ -1,4 +1,8 @@
+import axios from 'axios';
 import client from './client';
+
+// Errors
+const NO_TOKEN = "NO TOKEN";
 
 /**
  * @desc Log in api service and set JWT token
@@ -9,7 +13,14 @@ import client from './client';
  */
 export const logIn = (id, password) => {
   client.post("/oauth", { id, password })
-  .then(response => client.setJWT(response.data.accessToken))
+  .then(response => (
+    client.setJWT(response.data.accessToken) &&
+    // Store the token on the front server cookies
+    axios.post("/login", response.data)
+    .catch( error => console.error( error ))
+    // Its error isn't important
+    // Client.post error will waterfall out of this function
+  ))
 }
 
 /**
@@ -35,7 +46,7 @@ export const googleLogin = (googleResponse) => (
  */
 export const logOut = () => {
   client.removeJWT();
-  return Promise.resolve();
+  return axios.delete("/login");
 }
 
 /**
@@ -44,6 +55,32 @@ export const logOut = () => {
  */
 export const signUp = (fullName, email, password) => (
   client.put("/oauth", {fullName, email, password})
-  .then( response => client.setJWT(response.data.accessToken))
+  .then( response => (
+    client.setJWT(response.data.accessToken) &&
+    // Store the token on the front server cookies
+    axios.post("/login", response.data)
+    .catch(error => console.error(error))
+    // Its error isn't important
+    // Client.post error will waterfall out of this function
+  ))
 )
 
+/**
+ * @desc fetch data about current user
+ * @type {Promise} one or two http request
+ * @returns {Object} or null
+ */
+export const whoAmI = () => (
+  Promise.resolve(client.getJWT() ? client : Promise.reject(NO_TOKEN))
+  // If the client doesn't have a token, fetch it on the rendering server
+  // !! Those data are not to be trusted !!
+  .catch( error => error === NO_TOKEN ? (
+    axios.get("/login")
+    .then( response => client.setJWT(response.data.accessToken))
+  ) : Promise.reject(error))
+  // Once the token exists, fetch log data on api
+  .then( client  => client.get("/oauth"))
+  .then( response => response.data)
+  // On 401, the user isn't logged, remove his JWT;
+  .catch( error => error.response && error.response.status === 401 ? client.removeJWT() && null : Promise.reject(error))
+);

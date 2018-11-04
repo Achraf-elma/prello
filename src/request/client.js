@@ -26,6 +26,17 @@ client.setJWT = (token) => {
 }
 
 /**
+ * @desc Get the Json Web Token
+ * @type {Function} synchronous
+ * @return Json Web Token or undefined
+ */
+client.getJWT = (token) => {
+  const bearerToken = client.defaults.headers.common['Authorization'];
+  return bearerToken && bearerToken.replace(/Bearer /, "");
+}
+
+
+/**
  * @desc remove the authentification to Json Web Token protocol
  * @type {Function} synchronous
  * @return self
