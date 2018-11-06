@@ -6,7 +6,7 @@ import { combineReducers } from 'redux';
 //import {initList, SET_LIST_POSITION,SET_LIST_CLOSED, setListClosed, setListPosition, SET_LIST_NAME, SET_LIST_BOARD, SET_LIST_SUBSCRIBED }from "../action/actionList";
 import {initList, SET_LIST_POSITION,SET_LIST_CLOSED, SET_LIST_NAME, SET_LIST_BOARD, SET_LIST_SUBSCRIBED }from "../action/actionList";
 
-const idlist = ( state = initList.idlist, action ) => state
+const idList = ( state = initList.idList, action ) => state
 const name = ( state = initList.name, action ) => {
   switch(action["type"]) {
     case SET_LIST_NAME:
@@ -59,7 +59,7 @@ const subscribed = ( state = initList.subscribed, action ) => {
 // Main Reducer
 export default combineReducers({
   // TODO: Add reducers, done
-  idlist ,
+  idList ,
   name,
   closed,
   idBoard,

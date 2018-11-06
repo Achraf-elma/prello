@@ -6,7 +6,7 @@ import uuidv4 from "uuidv4";
 
 //default state 
 export const initList = {
-idlist : 0 , //TODO check
+idList : 0 , //TODO check
 name: 'My list',
 closed: 'closed'|'notClosed', 
 idBoard: ' ', //TODO check
@@ -93,29 +93,14 @@ export const moveCardInList = (cardToMovePos, newCardPos) => ({
 })
 
 // Add a new card at the end of the list
-export const addCardToList = (idlist, cardName, dueDate) => ({
+export const addCardToList = (idList, cardName, dueDate) => ({
   type: ADD_CARD_IN_LIST,
   payload: {
     id: uuidv4(),
-    idlist: idlist,
+    idList: idList,
     name: cardName,
-    dueDate :  new Date(dueDate),
-    title: cardName,
-    allDay: true,
-    start : new Date(dueDate),
-    end : new Date(dueDate)
+    dueDate :  new Date(dueDate)
+    
   }
 })
 
-// Add a new card at the end of the list
-export const addCardToCalendar = (idcard, idlist, cardName, dueDate) => ({
-  type: ADD_CARD_IN_CALENDAR,
-  payload: {
-    id: idcard,
-    idlist: idlist,
-    title: cardName,
-    allDay: true,
-    start : new Date(dueDate),
-    end : new Date(dueDate)
-  }
-})

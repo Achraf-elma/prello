@@ -12,6 +12,7 @@ import { setCardPosition, setCardName } from '../../action/actionCard';
 
 // Style
 import '../../style/card.css';
+import CardSettings from './cardSettings';
 
 function formattedDate(dt) {
    let d = new Date(dt);
@@ -25,21 +26,43 @@ function formattedDate(dt) {
   return `${day}/${month}/${year}`;
 }
 
-const MyCard = ({
+class MyCard extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      modal: false
+    };
+
+    this.toggle = this.toggle.bind(this);
+  }
+
+  toggle() {
+    this.setState({
+      modal: !this.state.modal
+    });
+  }
+
+  render() {
+  const{
   id,
-  idlist,
-  card
+  idList,
+  card,
+  toggle }=this.props ;
   // TODO: Put destructured props
   // <input type="checkbox" onChange={setCheckCardState( 1, true)}/>
-}) => (
-   <Card className="mycard" >
+  return (
+   <Card onClick={this.toggle} className="mycard" >
      <CardHeader className="mycard-header">
-    
+       
      </CardHeader>
      <CardBody> {card.name}  <br/> {card.dueDate ?  "Due date : "  + formattedDate(card.dueDate) : ""}  </CardBody>
+     <CardSettings id={card.id} modal={true}/>
     </Card>
-  );
 
+    
+    );
+  }
+}
 const mapStateToProps = (state, props) => ({
   card: state.cards.find(card => card.id == props.id)
 

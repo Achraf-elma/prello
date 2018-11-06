@@ -65,7 +65,7 @@ export const moveListInBoard = (listToMovePos, newListPos) => ({
 export const addListToBoard = (listName) => ({
   type: ADD_LIST_TO_BOARD,
   payload: {
-    idlist: uuidv4(),
+    idList: uuidv4(),
     name: listName,
   }
 })

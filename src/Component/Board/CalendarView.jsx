@@ -84,7 +84,14 @@ class CalendarView extends Component {
   }
 }
 const mapStateToProps = ( state, props ) => ({
-  events : state.cards
+  events : state.cards.map(function(obj) {
+    return {
+        title: obj.name,
+        start: obj.dueDate,
+        end: obj.dueDate,
+        allDay: true
+    }
+})
 
 
 })
