@@ -65,9 +65,10 @@ class CalendarView extends Component {
     return (
       <div className="calendar">
         <header className="calendar-header">
-           Calendar View of yours cards 
+        <i className="fa fa-calendar"></i>   Calendar View of yours cards
+       
         </header>
-        
+      
         <DnDCalendar
           localizer={localizer}
           defaultDate={new Date()}

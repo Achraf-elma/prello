@@ -35,7 +35,7 @@ import { moveCardInList, addCardToList, addCardToCalendar} from '../../action/ac
     return (
       <div>
         <button className="add-card-link" id= {"list" +idlist} onClick={this.toggle}>
-        <span className="fa fa-plus-circle">Add Card</span>  
+        <span className="fa fa-plus-circle"> Add Card</span>  
         </button>
         <Popover placement="left" isOpen={this.state.popoverOpen} target={`list${idlist}`} toggle={this.toggle}>
           <PopoverHeader>Add Card</PopoverHeader>

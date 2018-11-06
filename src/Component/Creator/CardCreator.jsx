@@ -5,7 +5,7 @@ import React from 'react';
 import InputText from '../Input/InputText';
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 
- 
+ import '../../style/list.css';
 const CardCreator = ({
   handleSubmit,  
   closeToggle
@@ -24,7 +24,7 @@ const CardCreator = ({
 
    
   </span>
-   <Button type="submit" >Submit</Button>
+   <Button className="submit" type="submit" >Submit</Button>
 
   </Form>
 );
