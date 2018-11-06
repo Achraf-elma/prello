@@ -96,20 +96,25 @@ export const moveCardInList = (cardToMovePos, newCardPos) => ({
 export const addCardToList = (idlist, cardName, dueDate) => ({
   type: ADD_CARD_IN_LIST,
   payload: {
-    idcard: uuidv4(),
+    id: uuidv4(),
     idlist: idlist,
     name: cardName,
-    dueDate : dueDate
+    dueDate :  new Date(dueDate),
+    title: cardName,
+    allDay: true,
+    start : new Date(dueDate),
+    end : new Date(dueDate)
   }
 })
 
 // Add a new card at the end of the list
-export const addCardToCalendar = (idlist, cardName, dueDate) => ({
+export const addCardToCalendar = (idcard, idlist, cardName, dueDate) => ({
   type: ADD_CARD_IN_CALENDAR,
   payload: {
-    id: uuidv4(),
+    id: idcard,
     idlist: idlist,
     title: cardName,
+    allDay: true,
     start : new Date(dueDate),
     end : new Date(dueDate)
   }

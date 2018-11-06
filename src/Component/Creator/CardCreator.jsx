@@ -5,14 +5,12 @@ import React from 'react';
 import InputText from '../Input/InputText';
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 
-
-
+ 
 const CardCreator = ({
-handleSubmit, 
- onSubmit, 
+  handleSubmit,  
   closeToggle
 }) => (
-  <Form  onSubmit={handleSubmit}>
+  <Form  onSubmit = {handleSubmit}>
   <span className="ListCreator">
   <FormGroup>
           <Label for="cardName">Card Name</Label>
@@ -26,7 +24,7 @@ handleSubmit,
 
    
   </span>
-   <Button type="submit">Submit</Button>
+   <Button type="submit" >Submit</Button>
 
   </Form>
 );

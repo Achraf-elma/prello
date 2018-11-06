@@ -25,21 +25,22 @@ import { moveCardInList, addCardToList, addCardToCalendar} from '../../action/ac
     });
   }
 
+   
   render() {
     const {
       idlist, 
       dispatchAddCardToList,
-      event
+      listName
     } = this.props;
     return (
       <div>
-        <div className="add-card-link" id="Popover1" onClick={this.toggle}>
-        <span class="fa fa-plus-circle">Add Card</span>  
-        </div>
-        <Popover placement="bottom" isOpen={this.state.popoverOpen} target="Popover1" toggle={this.toggle}>
+        <button className="add-card-link" id= {"list" +idlist} onClick={this.toggle}>
+        <span className="fa fa-plus-circle">Add Card</span>  
+        </button>
+        <Popover placement="left" isOpen={this.state.popoverOpen} target={`list${idlist}`} toggle={this.toggle}>
           <PopoverHeader>Add Card</PopoverHeader>
           <PopoverBody>
-             <CardCreator  closeToggle={this.toggle} handleSubmit={dispatchAddCardToList} />
+             <CardCreator closeToggle={this.toggle} handleSubmit={dispatchAddCardToList} />
           </PopoverBody>
         </Popover>
       </div>
@@ -48,8 +49,6 @@ import { moveCardInList, addCardToList, addCardToCalendar} from '../../action/ac
 }
 
 const mapStateToProps = ( state, props ) => ({
- // idlist : state.list.idlist
-  
 })
 
 const mapDispatchToProps = ( dispatch, props ) => ( {
@@ -58,10 +57,8 @@ const mapDispatchToProps = ( dispatch, props ) => ( {
     const data = new FormData(event.target);
     dispatch(
       addCardToCalendar(props.idlist, data.get('cardName'), data.get('dueDate')) )
-   dispatch( 
+    dispatch( 
         addCardToList( props.idlist, data.get('cardName'), data.get('dueDate')) ) 
-  
-    
   }
   
  

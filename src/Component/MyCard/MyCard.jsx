@@ -13,8 +13,20 @@ import { setCardPosition, setCardName } from '../../action/actionCard';
 // Style
 import '../../style/card.css';
 
+function formattedDate(dt) {
+   let d = new Date(dt);
+  let month = String(d.getMonth() + 1);
+  let day = String(d.getDate());
+  const year = String(d.getFullYear());
+
+  if (month.length < 2) month = '0' + month;
+  if (day.length < 2) day = '0' + day;
+
+  return `${day}/${month}/${year}`;
+}
+
 const MyCard = ({
-  idcard,
+  id,
   idlist,
   card
   // TODO: Put destructured props
@@ -22,19 +34,14 @@ const MyCard = ({
 }) => (
    <Card className="mycard" >
      <CardHeader className="mycard-header">
-      <table>
-        <tr>
-          <td><Label color="red"/></td>
-          <td><Label color="blue"/></td>
-        </tr>
-      </table>
+    
      </CardHeader>
-     <CardBody> {card.name} <br/> Due date :  {card.dueDate} </CardBody>
+     <CardBody> {card.name}  <br/> {card.dueDate ?  "Due date : "  + formattedDate(card.dueDate) : ""}  </CardBody>
     </Card>
   );
 
 const mapStateToProps = (state, props) => ({
-  card: state.cards.find(card => card.idcard == props.idcard)
+  card: state.cards.find(card => card.id == props.id)
 
   //desc: state.card.desc,
   //state: state.card.state
@@ -42,7 +49,7 @@ const mapStateToProps = (state, props) => ({
 })
 
 const mapDispatchToProps = (dispatch, props) => ({
-  setCardName: (name) => dispatch(setCardName( props.idcard, name )),
+  setCardName: (name) => dispatch(setCardName( props.id, name )),
 
   //setCheckCardState: (complete) => dispatch(setCheckCardState( props.id, complete ))
   // TODO: Add 

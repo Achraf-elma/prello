@@ -51,14 +51,14 @@ return (
      <DragDropContext onDragEnd={( result ) => dispatchOnDragEnd( result )}>
      <Droppable droppableId="droppable" direction="horizontal">
      {(provided, snapshot) => (
-            <div
+            <span
               ref={provided.innerRef}
               className={classNames("board-lists", { "list-dragging-over": snapshot.isDraggingOver })}
               {...provided.droppableProps}>
           {lists.map((list, index) => ( 
                 <Draggable key={list.idlist} draggableId={list.idlist} index={index}>
                 {(provided, snapshot) => (
-                  <div
+                  <span
                     ref={provided.innerRef}
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
@@ -70,13 +70,13 @@ return (
                      <td>
                      <List idlist={list.idlist} name={list.name}/>  
                      </td>
-                  </div>
+                  </span>
                 )}
               </Draggable>
           ) )} 
      
         
-        </div>
+        </span>
           )}
         </Droppable>
         </DragDropContext>

@@ -8,6 +8,7 @@ import "../../style/calendar.css";
 import "react-big-calendar/lib/addons/dragAndDrop/styles.css";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 //import logo from "./logo.svg";   <img src={logo} className="App-logo" alt="logo" />
+import { setCardDueDate } from '../../action/actionCard';
 
 const localizer = Calendar.momentLocalizer(moment);
 
@@ -29,13 +30,13 @@ class CalendarView extends Component {
     this.setState(state => {
       state.events[0].start = start;
       state.events[0].end = end;
-      return { events: state.events };
+      return { events: state.cards };
     });
   };
 
   moveEvent({ event, start, end, isAllDay: droppedOnAllDaySlot }) {
     const { events } = this.state
-
+    console.log(event);
     const idx = events.indexOf(event)
     let allDay = event.allDay
 
@@ -49,17 +50,18 @@ class CalendarView extends Component {
 
     const nextEvents = [...events]
     nextEvents.splice(idx, 1, updatedEvent)
-
     this.setState({
       events: nextEvents,
     })
+    console.log("MOVE FUNCTION " + event.id)
+     this.props.setCardDueDate(event.id, start, end, allDay)
 
     // alert(`${event.title} was dropped onto ${updatedEvent.start}`)
   }
 
 
   render() {
-    const { events } = this.props
+    const { events, setCardDueDate} = this.props
     return (
       <div className="calendar">
         <header className="calendar-header">
@@ -81,13 +83,17 @@ class CalendarView extends Component {
   }
 }
 const mapStateToProps = ( state, props ) => ({
-  events : state.event
+  events : state.cards
 
 
 })
 
 const mapDispatchToProps = (dispatch, props) => ({
-  
+  setCardDueDate: (id, start, end, allDay) =>{
+    console.log("OUI");
+    console.log(id);
+    dispatch(setCardDueDate(id, start, end, allDay))
+  }
 });
 
 

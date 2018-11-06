@@ -2,7 +2,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import classNames from 'classnames';
-import { Container, Row, Col } from 'reactstrap';
+import { Container, Row, Col , Button, ButtonGroup} from 'reactstrap';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 // Action builder
@@ -40,6 +40,16 @@ class BoardViewHandler extends React.Component{
   })
  }
 
+ onCheckboxBtnClick(selected) {
+  const index = this.state.cSelected.indexOf(selected);
+  if (index < 0) {
+    this.state.cSelected.push(selected);
+  } else {
+    this.state.cSelected.splice(index, 1);
+  }
+  this.setState({ isBoardViewChoosen : [...this.state.cSelected] });
+}
+
 render() { 
   const { viewChoosen = true } = this.props
 return (
@@ -52,12 +62,13 @@ return (
     </div>
    
     <div className="col">
-       <button onClick={() => this.setViewChoosen(!this.state.isBoardViewChoosen)}>Calendar View</button>
+        <Button color="primary" onClick={() => this.setViewChoosen(!this.state.isBoardViewChoosen)} active={this.state.isBoardViewChoosen}>Calendar View</Button>
     </div>
   </div>
  
   <hr className="separator" />
-{this.state.isBoardViewChoosen ? <CalendarView/> : <Board/>}
+
+{this.state.isBoardViewChoosen ?   <Board/> : <CalendarView/>}
 
 </div>
 </div>

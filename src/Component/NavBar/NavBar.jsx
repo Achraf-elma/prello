@@ -23,7 +23,7 @@ const {navBarBrend,
 return (
     <div className={current == '/' ? "NavBarHomePage" : "NavBar"}>
         <Navbar light expand="md">
-        <NavbarBrand> <Link to="/"> <img src="./assets/logo1.png"/></Link></NavbarBrand>
+         <Link to="/"> <img src="./assets/logo1.png"/></Link>
         <Nav className="ml-auto" navbar>
             <NavItem>
                  <NavLink  to="/board">My Board</NavLink>

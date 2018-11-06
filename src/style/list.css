@@ -42,7 +42,9 @@
 .add-card-link {
   margin: auto auto 10px 10px; 
   color: #6c757d;
+  background: transparent;
   cursor: pointer;
+  border: none;
   font-size: 20px ;
   font-weight: 400;
 }
