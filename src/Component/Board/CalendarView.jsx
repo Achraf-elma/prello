@@ -38,14 +38,15 @@ class CalendarView extends Component {
     const { events } = this.state
     console.log(event);
     const idx = events.indexOf(event)
-    let allDay = event.allDay
-
+    let allDay = true;
+/** 
+ *  let allDay = event.allDay
     if (!event.allDay && droppedOnAllDaySlot) {
       allDay = true
     } else if (event.allDay && !droppedOnAllDaySlot) {
       allDay = false
     }
-
+*/
     const updatedEvent = { ...event, start, end, allDay }
 
     const nextEvents = [...events]
@@ -54,7 +55,7 @@ class CalendarView extends Component {
       events: nextEvents,
     })
     console.log("MOVE FUNCTION " + event.id)
-     this.props.setCardDueDate(event.id, start, end, allDay)
+     this.props.setCardDueDate(event.id, end)
 
     // alert(`${event.title} was dropped onto ${updatedEvent.start}`)
   }
@@ -86,6 +87,7 @@ class CalendarView extends Component {
 const mapStateToProps = ( state, props ) => ({
   events : state.cards.map(function(obj) {
     return {
+        id : obj.id,
         title: obj.name,
         start: obj.dueDate,
         end: obj.dueDate,
@@ -97,10 +99,8 @@ const mapStateToProps = ( state, props ) => ({
 })
 
 const mapDispatchToProps = (dispatch, props) => ({
-  setCardDueDate: (id, start, end, allDay) =>{
-    console.log("OUI");
-    console.log(id);
-    dispatch(setCardDueDate(id, start, end, allDay))
+  setCardDueDate: (id, end) =>{
+    dispatch(setCardDueDate(id, end))
   }
 });
 

@@ -61,7 +61,7 @@ return (
               className={classNames("board-lists", { "list-dragging-over": snapshot.isDraggingOver })}
               {...provided.droppableProps}>
           {lists.map((list, index) => ( 
-                <Draggable key={list.idlist} draggableId={list.idlist} index={index}>
+                <Draggable key={list.idList} draggableId={list.idList} index={index}>
                 {(provided, snapshot) => (
                   <span
                     ref={provided.innerRef}
@@ -73,7 +73,7 @@ return (
                     )}
                   >
                      <td>
-                     <List idlist={list.idlist} name={list.name}/>  
+                     <List idList={list.idList} name={list.name}/>  
                      </td>
                   </span>
                 )}
