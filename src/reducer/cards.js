@@ -1,19 +1,29 @@
 // Action types
 import { MOVE_CARD_IN_LIST, ADD_CARD_IN_LIST } from '../action/actionList';
-import { SET_CARD_DUE_DATE } from '../action/actionCard';
+import { SET_CARD_DUE_DATE, SET_CARD_NAME } from '../action/actionCard';
 
 import card from './card'
 export default ( state = [], action) => {
+
+
   switch(action.type) {
   
     case ADD_CARD_IN_LIST:
       return [...state, action.payload];
 
     case SET_CARD_DUE_DATE:
-      let cardToUpdate = state.find(card => card.id === action.payload.id)
-      let idx = state.indexOf(cardToUpdate)
-      let cardUptaded = card(cardToUpdate, action)
-      let nextCards = [...state]
+      var cardToUpdate = state.find(card => card.id === action.payload.id)
+      var idx = state.indexOf(cardToUpdate)
+      var cardUptaded = card(cardToUpdate, action)
+      var nextCards = [...state]
+      nextCards.splice(idx, 1, cardUptaded)
+      return  nextCards;
+
+    case SET_CARD_NAME:
+      var cardToUpdate = state.find(card => card.id === action.payload.id)
+      var idx = state.indexOf(cardToUpdate)
+      var cardUptaded = card(cardToUpdate, action)
+      var nextCards = [...state]
       nextCards.splice(idx, 1, cardUptaded)
       return  nextCards;
 

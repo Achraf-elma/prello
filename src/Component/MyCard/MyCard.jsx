@@ -47,7 +47,7 @@ class MyCard extends React.Component {
   id,
   idList,
   card,
-  toggle }=this.props ;
+  toggle } = this.props ;
   // TODO: Put destructured props
   // <input type="checkbox" onChange={setCheckCardState( 1, true)}/>
   return (
@@ -65,17 +65,10 @@ class MyCard extends React.Component {
 }
 const mapStateToProps = (state, props) => ({
   card: state.cards.find(card => card.id == props.id)
-
-  //desc: state.card.desc,
-  //state: state.card.state
-  // TODO: Add store state to the component props
 })
 
 const mapDispatchToProps = (dispatch, props) => ({
-  setCardName: (name) => dispatch(setCardName( props.id, name )),
-
-  //setCheckCardState: (complete) => dispatch(setCheckCardState( props.id, complete ))
-  // TODO: Add 
+  setCardName: (name) => dispatch(setCardName( props.id, name ))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(MyCard); 

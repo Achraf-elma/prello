@@ -5,7 +5,8 @@ import { connect } from 'react-redux';
 
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import {  Form, FormGroup, Label, Input, FormText } from 'reactstrap';
-
+import { setCardPosition, setCardName } from '../../action/actionCard';
+import InputText from '../Input/InputText';
 
 function formattedDateMDY(dt) {
   let d = new Date(dt);
@@ -37,48 +38,48 @@ class CardSettings extends React.Component {
   }
 
   render() {
-    const {card} = this.props
+    const {card,setCardName } = this.props
     const closeBtn = <button className="close" onClick={this.toggle}>&times;</button>;
 
       return (
       <div>
-    <Form >
+  
         {this.props.modal ? "oui" : "Non"}
         {this.state.modal ? "OUI": "NON"}
         <Modal key={card.id} isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
-          <ModalHeader toggle={this.toggle} close={closeBtn}>{card.name}</ModalHeader>
+          <ModalHeader toggle={this.toggle} close={closeBtn}>
+           <span className="ListCreator">
+              <InputText
+              className="addListInput"
+                value={card.name}
+                placeHolder="Set a Card Name"
+                resetable
+                onChange={(value) => setCardName(card.id,value)}
+              />
+            </span>
+          </ModalHeader>
           <ModalBody>
-             <span className="ListCreator">
-         <FormGroup>
-          <Label for="cardName">Card Name</Label>
-          <Input type="text" name="cardName" defaultValue={card.name} placeholder="deliver logo"/>
-          </FormGroup>
-          <FormGroup>
-          <Label for="dueDate">Due date</Label>
-          <Input type="date" name="dueDate" defaultValue={formattedDateMDY(card.dueDate)} placeholder="2018-01-01" />
-          </FormGroup>
-                </span>
+            
           </ModalBody>
           <ModalFooter>
-            <Button color="primary" type="submit">Do Something</Button>{' '}
-            <Button color="secondary" onClick={this.toggle}>Cancel</Button>
+            stuff
           </ModalFooter>
         </Modal>
-        </Form>
+     
       </div>
     );
   }
 }
 const mapStateToProps = (state, props) => ({
-card : state.cards.find(card => card.id == props.id)
+  card : state.cards.find(card => card.id == props.id)
 
-  //desc: state.card.desc,
-  //state: state.card.state
-  // TODO: Add store state to the component props
 })
 
 const mapDispatchToProps = (dispatch, props) => ({
-  
+  setCardName: (id,name) => {
+   console.log("name" + name ) 
+   dispatch(setCardName(id, name))
+  }
   //setCheckCardState: (complete) => dispatch(setCheckCardState( props.id, complete ))
   // TODO: Add 
 })
