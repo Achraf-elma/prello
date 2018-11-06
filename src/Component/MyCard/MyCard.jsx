@@ -51,12 +51,12 @@ class MyCard extends React.Component {
   // TODO: Put destructured props
   // <input type="checkbox" onChange={setCheckCardState( 1, true)}/>
   return (
-   <Card onClick={this.toggle} className="mycard" >
+   <Card onClick={this.toggle.bind(this)} className="mycard" >
      <CardHeader className="mycard-header">
        
      </CardHeader>
      <CardBody> {card.name}  <br/> {card.dueDate ?  "Due date : "  + formattedDate(card.dueDate) : ""}  </CardBody>
-     <CardSettings id={card.id} modal={true}/>
+     <CardSettings id={card.id} toggle={this.toggle.bind(this)} modal={this.state.modal}/>
     </Card>
 
     

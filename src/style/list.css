@@ -9,6 +9,21 @@
 .list > .card-header {
    border-bottom: 3px solid rgb(99, 120, 165);
    background-color: #b1c4d5c0;
+   cursor: pointer;
+}
+
+.list > .card-header > i{
+  float: right;
+  font-size: 2em;
+  color: black;
+}
+.list > .card-header > i:hover{
+  color: blue;
+  font-weight: bold;
+}
+.list > .card-header > .editmod {
+  color: red;
+  font-weight: bold;
 }
 .list-title{
   text-shadow: 1px 1px 1px rgba(2, 2, 66, 0.514);
@@ -60,3 +75,4 @@
 .Button .submit  {
   background  :#1f425b !important;
 }
+

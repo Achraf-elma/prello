@@ -26,33 +26,23 @@ class CardSettings extends React.Component {
       ...props
     };
 
-    this.toggle = this.toggle.bind(this);
   }
  
-  toggle() {
-    console.log('oui');
-    console.log(this.state.modal);
-    this.setState({
-      modal: !this.state.modal
-    });
-  }
-
   render() {
-    const {card,setCardName } = this.props
-    const closeBtn = <button className="close" onClick={this.toggle}>&times;</button>;
+    const {card,setCardName, toggle } = this.props
+    const closeBtn = <button className="close" onClick={toggle}>&times;</button>;
 
       return (
       <div>
   
-        {this.props.modal ? "oui" : "Non"}
-        {this.state.modal ? "OUI": "NON"}
-        <Modal key={card.id} isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
-          <ModalHeader toggle={this.toggle} close={closeBtn}>
+   
+        <Modal key={card.id} isOpen={this.props.modal} toggle={toggle} className={this.props.className}>
+          <ModalHeader toggle={toggle} close={closeBtn}>
            <span className="ListCreator">
               <InputText
-              className="addListInput"
+              className="changeName"
                 value={card.name}
-                placeHolder="Set a Card Name"
+                placeHolder="Card Name"
                 resetable
                 onChange={(value) => setCardName(card.id,value)}
               />
