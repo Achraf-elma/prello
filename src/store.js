@@ -5,6 +5,7 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { socketDispatch } from "./socket";
 
 // Sub Reducers
+import boards from './reducer/boards';
 import board from './reducer/board';
 import checkItem from './reducer/checkItem';
 import checkList from './reducer/checklist';
@@ -16,6 +17,7 @@ import cards from './reducer/cards';
 import event from './reducer/event';
 const store = createStore(
   combineReducers({
+    boards,
     lists,
     list,
     checkItem,

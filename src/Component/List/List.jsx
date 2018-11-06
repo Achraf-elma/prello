@@ -30,8 +30,14 @@ const List = ({
 }) => (
 
         <Card className="list">
-      
         <CardHeader><span className="list-title">{name}</span></CardHeader>
+        <CardHeader className="list-title">{name}</CardHeader>
+
+       
+              <MyCard desc="doing"></MyCard>
+              <MyCard desc="Front"></MyCard>
+              <MyCard desc="back"></MyCard>
+          
 
          {cards.map((card, index) => (
            <MyCard idlist={card.idlist} id={card.id}></MyCard>

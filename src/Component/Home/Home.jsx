@@ -26,9 +26,18 @@ class Home extends React.Component{
   }
 
     render() { 
+        const {
+            boards, 
+            removeBoardFromBoards,
+            updateBoard,
+            addBoardToBoards
+        }
+         = this.props;
+
         return (
             <div>
             <div className="boards">
+                <Button className="create"> Create a Board</Button>
                 <BoardList boardListName="Recently Opened" boardList={[
                                                                         {
                                                                             id: "5612e4f91b25c15e873722b8",
@@ -67,18 +76,34 @@ class Home extends React.Component{
                                                                         }
                                                                         ]}>
                 </BoardList>
-                <Button> Create a </Button>
+                
             </div>
                 <div className="teams">
                 holé
                 </div>
+                <Button> Create a Team</Button>
             </div>
             
-            
-    
         );
     }
 }
 
 // Export connected Components
-export default (Home); 
+/*const mapStateToProps = ( state, props ) => ({
+    boards: state.boards
+  })
+  
+  const mapDispatchToProps = (dispatch, props) => ({
+    dispatch,
+    dispatchOnDragEnd: ({source, destination}) => (
+      destination &&
+      dispatch(moveListInBoard(source.index, destination.index))
+    ),
+    dispatchAddListToBoard: (listName) => dispatch(addListToBoard(listName))
+  });
+  const mapDispatchToProps = (dispatch, props) => ({
+    setCheckItemState: (complete) => dispatch(setCheckItemState( props.id, complete ))
+  });
+  // Export connected Components
+  export default connect(mapStateToProps, mapDispatchToProps)(Home); */
+  export default (Home);

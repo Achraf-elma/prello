@@ -16,6 +16,10 @@ import NavBar from './Component/NavBar/NavBar';
 
 import Homepage from './Component/Homepage/Homepage';
 import BoardViewHandler from './Component/Board/BoardViewHandler';
+<<<<<<< HEAD
+=======
+import Board from './Component/Board/Board';
+>>>>>>> WIP: Home view boards, link pages boards&board
 import Home from './Component/Home/Home';
 
 import LoginCard from './Component/Login/LoginCard';
@@ -33,7 +37,11 @@ class App extends Component {
                 <Route exact path='/' component={Homepage}/>
                 <Route path='/login' component={LoginCard} />
                 <Route path='/signup' component={SignupCard} />
+<<<<<<< HEAD
                 <Route path='/board' component={BoardViewHandler}/>
+=======
+                <Route path='/board/:boardId' component={BoardViewHandler}/>
+>>>>>>> WIP: Home view boards, link pages boards&board
                 <Route path='/home' component={Home}/>
               </div>
             </Router>

@@ -1,5 +1,5 @@
 // Modules
-import axios from "axios";
+import axios from 'axios';
 
 // config
 import { API_HOST, TIMEOUT} from '../config.json';

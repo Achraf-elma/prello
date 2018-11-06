@@ -27,7 +27,12 @@ class Board extends React.Component{
 
   constructor(props) {
     super(props);
-  
+    //console.log(props.match.params.boardId);
+    //console.log('---------' , props);
+    /*this.state = {
+      boardId : props.match.params.boardId
+    };
+    console.log(props.match.params.boardId);*/
   }
 
 render() { 
@@ -88,7 +93,7 @@ return (
 }
 }
 
-const mapStateToProps = ( state, props ) => ({
+const mapStateToProps = ( state, props, ownProps ) => ({
   name: state.board.name,
   lists: state.lists,
   desc: state.board.desc,

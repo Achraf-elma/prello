@@ -29,7 +29,8 @@ class BoardViewHandler extends React.Component{
   constructor(props) {
     super(props);
     this.state = {
-      isBoardViewChoosen : true
+      isBoardViewChoosen: true,
+      boardId: this.props.match.params.boardId
     }
     this.setViewChoosen = this.setViewChoosen.bind(this)
   }
@@ -49,9 +50,11 @@ class BoardViewHandler extends React.Component{
   }
   this.setState({ isBoardViewChoosen : [...this.state.cSelected] });
 }
-
 render() { 
-  const { viewChoosen = true } = this.props
+  const { 
+    boardId,
+    viewChoosen = true 
+  } = this.props
 return (
   <div>
   <div className="board-background"/>
@@ -62,7 +65,7 @@ return (
     </div>
    
     <div className="col">
-        <Button color="primary" onClick={() => this.setViewChoosen(!this.state.isBoardViewChoosen)} active={this.state.isBoardViewChoosen}>Calendar View</Button>
+        <Button color="primary" onClick={() => this.setViewChoosen(!this.state.isBoardViewChoosen)} active={this.state.isBoardViewChoosen}>Calendar View {this.state.boardId}</Button>
     </div>
   </div>
  
@@ -77,7 +80,6 @@ return (
 }
 
 const mapStateToProps = ( state, props ) => ({
-
 })
 
 const mapDispatchToProps = (dispatch, props) => ({
