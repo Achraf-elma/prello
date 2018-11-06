@@ -3,7 +3,7 @@ import { combineReducers } from 'redux';
 
 // Definitions
 // TODO: action type constants
-import {initOrganization, SET_TEAM_NAME, SET_TEAM_DESC, SET_TEAM_WEBSITE, ADD_NEW_TEAM_MEMBER, ADD_NEW_BOARD_ID, DELETE_TEAM_MEMBER, SET_TEAM_MEMBER_TYPE, REMOVE_BOARD_ID} from "../action/actionOrganization";
+import {initOrganization, SET_TEAM_NAME, SET_TEAM_DISPLAY_NAME, SET_TEAM_DESC, SET_TEAM_WEBSITE, ADD_NEW_TEAM_MEMBER, ADD_NEW_BOARD_ID, DELETE_TEAM_MEMBER, SET_TEAM_MEMBER_TYPE, REMOVE_BOARD_ID} from "../action/actionOrganization";
 
 const id = ( state = initOrganization.id, action ) => state
 const name = ( state = initOrganization.name, action ) => {
@@ -43,7 +43,14 @@ const idBoards = ( state = initOrganization.idBoards, action ) => {
   }
 const invited = ( state = initOrganization.invited, action ) => state
 const invitations = ( state = initOrganization.invitations, action ) => state
-const displayName = ( state = initOrganization.displayName, action ) => state
+const displayName = ( state = initOrganization.displayName, action ) => {
+  switch(action["type"]) {
+    case SET_TEAM_DISPLAY_NAME:
+      return action.payload.displayName
+    default:
+      return state;
+  }
+}
 const memberships = ( state = initOrganization.memberships, action ) => {
     switch(action["type"]) {
       case ADD_NEW_TEAM_MEMBER:

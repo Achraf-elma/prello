@@ -16,6 +16,7 @@ export const initOrganization = {
 
 // Action type constants
 export const SET_TEAM_NAME = "@@organization/SET_TEAM_NAME"
+export const SET_TEAM_DISPLAY_NAME = "@@organization/SET_TEAM_DISPLAY_NAME"
 export const SET_TEAM_DESC = "@@organization/SET_TEAM_DESC"
 export const SET_TEAM_WEBSITE = "@@organization/SET_TEAM_WEBSITE"
 
@@ -32,6 +33,14 @@ export const setTeamName = (id, newName) => ({
     payload: {
         id, 
         name : newName
+    }
+}) 
+
+export const setTeamDisplayName = (id, newDisplayName) => ({
+    type: SET_TEAM_DISPLAY_NAME,
+    payload: {
+        id, 
+        displayName : newDisplayName
     }
 }) 
 

@@ -1,0 +1,72 @@
+.organization-background{
+    /* = background image div */ 
+      content: "";
+      top:0;
+      left: 0;
+      right: 0;
+      z-index: -1;
+      background-image: url("./assets/blueswag.jpeg"); 
+      height:100%;
+       /* Center and scale the image nicely */
+       background-size:cover ;
+       background-repeat: no-repeat;
+       position: fixed;
+       background-attachment: scroll;
+  
+       -webkit-filter: blur(2px) grayscale(0.45) hue-rotate(10deg);
+  
+  }
+  .organization-info{
+    padding-top: 2%;
+  }
+  .organization-title{
+    
+    text-shadow: 2px 2px 5px rgba(84, 84, 143, 0.514);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: 800;
+    font-size: 2em;
+    color: rgba(248, 247, 250, 0.644);
+  
+  }
+  .organization-desc{
+    text-shadow: 2px 2px 5px rgba(188, 188, 192, 0.479);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: 800;
+    font-size: 2em;
+    text-align: right;
+    color: #004878;
+  }
+  .separator{
+    height:1 + 'px';
+    text-shadow: 2px 2px 5px rgba(2, 2, 66, 0.514);
+    background-color: rgba(2, 2, 66, 0.514);
+  }
+  .organization-lists {
+    background: none;
+    display: flex;
+    padding: 20px;
+    overflow: auto;
+  }
+  
+  .list-dragging-over {
+    background: none;
+  }
+  
+  .list-item {
+    background: none;
+    user-select: none;
+    padding: 0px;
+    margin: 0 8px 0 0;
+    
+  }
+  .list-dragged {
+    background: rgba(144, 158, 238, 0.226);
+    box-shadow: 2px 2px 4px #190d5250;
+  
+  }
+  .listLists{
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  
