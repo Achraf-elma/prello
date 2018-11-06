@@ -31,7 +31,8 @@ const website = ( state = initOrganization.website, action ) => {
         return state;
     }
   }
-const idBoards = ( state = initOrganization.idBoards, action ) => {
+  //May need to be changed
+const boards = ( state = initOrganization.boards, action ) => {
     switch(action["type"]) {
       case ADD_NEW_BOARD_ID:
         return [ ...state, action.payload.newBoardId];
@@ -72,7 +73,7 @@ export default combineReducers({
   desc,
   descData,
   website,
-  idBoards,
+  boards,
   invited,
   invitations,
   displayName,

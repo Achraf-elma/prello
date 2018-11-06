@@ -7,11 +7,24 @@ export const initOrganization = {
     desc: null,
     descData: null,
     website: null,
-    idBoards : [],
+    boards : [
+        {}
+    ],
     invited : false,
     invitations : [],
     displayName: 'Team Name',
-    memberships: [] //id, idMember, memberType : "admin" | "normal", unconfirmed (boolean = false if accepted, true if invitation pending)
+    memberships: [{
+        "id": "5612e4fb1b25c15e8737234b",
+        "idMember": "53baf533e697a982248cd73f",
+        "memberType": "admin",
+        "unconfirmed": false
+      },
+      {
+        "id": "5612e4fb1b25c15e8737234b",
+        "idMember": "53baf533e697a982248cd73f",
+        "memberType": "admin",
+        "unconfirmed": false
+      }] //id, idMember, memberType : "admin" | "normal", unconfirmed (boolean = false if accepted, true if invitation pending)
     }
 
 // Action type constants

@@ -50,14 +50,15 @@ class OrganizationViewHandler extends React.Component{
 
 
     render() { 
-      const { viewChosen = 'Boards' } = this.props
+      const { viewChosen = 'Boards', displayName} = this.props
+      
     return (
         <div>
             <div className="organization-background"/>
             <div className="container">
                 <div className="row organization-info">
                     <div className="col">
-                        <h1 className="organization-title">Team name</h1>
+                        <h1 className="organization-title">{displayName}</h1>
                     </div>
 
                     <div className="viewSelection">
@@ -81,7 +82,7 @@ class OrganizationViewHandler extends React.Component{
 }
 
 const mapStateToProps = ( state, props ) => ({
-
+    displayName : state.organization.displayName
 })
 
 const mapDispatchToProps = (dispatch, props) => ({
