@@ -13,7 +13,7 @@ import lists from './reducer/lists';
 import organization from './reducer/organization';
 import card from './reducer/card';
 import cards from './reducer/cards';
-
+import event from './reducer/event';
 const store = createStore(
   combineReducers({
     lists,
@@ -23,7 +23,8 @@ const store = createStore(
     board,
     organization,
     card, 
-    cards
+    cards, 
+    event
   }),
   applyMiddleware(socketDispatch)
   // , require('./bootstrap.json');

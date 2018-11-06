@@ -1,13 +1,14 @@
 // Modules
-
+import uuidv4 from "uuidv4";
 // Action type constants
 // TODO: Action type constant
 // default state
 export const initCard = {
-  id : 0 , //TODO check
+  idcard : 0 , //TODO check
   name: 'My card',
+  dueDate : null,
   closed: 'closed'|'notClosed', 
-  idBoard: ' ', //TODO check
+  idlist: ' ',
   pos : 0,
   subscribed : 'subscribed'|'notSubscribed', 
   }
@@ -24,70 +25,62 @@ export const SET_NEW_CARD= "@@card/SET_NEW_CARD"
   export const CHANGE_CARD_DESC = "CHANGE_CARD_DESC"
 
 
-  export const setCardName= (id, name) => ({
+  export const setCardName= (idcard, name) => ({
     type: SET_CARD_NAME,
     payload:  {
-      id,
+      idcard,
       name
     }
   })
 
-  export const setCardClosed = (id, closed) => ({
+  export const setCardClosed = (idcard, closed) => ({
     type: SET_CARD_CLOSED,
     payload:  {
-      id,
+      idcard,
       closed
     }
   })
 
 
-export const setCardPosition = (id, pos) => ({
+export const setCardPosition = (idcard, pos) => ({
   type: SET_CARD_POSITION,
   payload:  {
-    id,
+    idcard,
     pos
   }
 })
 
-export const setCardSubscribed = (id, subscribed) => ({
+export const setCardSubscribed = (idcard, subscribed) => ({
   type: SET_CARD_SUBSCRIBED,
   payload:  {
-    id,
+    idcard,
     subscribed
   }
 })
 
-export const setCardList = (id, idBoard) => ({
+export const setCardList = (idcard, idlist) => ({
   type: SET_CARD_LIST,
   payload:  {
-    id,
-    idBoard
+    idcard,
+    idlist
   }
 })
 
-export const createCard = (id, name , closed,  idBoard, pos , subscribed ) => ({
+export const createCard = ( name , dueDate, closed,  idList, pos , subscribed ) => ({
   type: SET_NEW_CARD,
   payload:  {
-    id,
-    name ,
-    closed,
-    idBoard,
-    pos ,
-    subscribed   }
+    idcard: uuidv4(),
+    name : name ,
+    dueDate : dueDate,
+    closed : closed,
+    idlist : idList,
+    pos :pos ,
+    subscribed :  subscribed   }
 })
-  export const setCheckCardState = (id, done) => ({
+  export const setCheckCardState = (idcard, done) => ({
     type: SET_CHECK_CARD_STATE,
     payload:  {
-      id,
+      idcard,
       state: done ? "doing" : "done",
-    }
-  })
-
-   // Action builders
-   export const changeCardDesc = (id, newDesc) => ({
-    type: CHANGE_CARD_DESC,
-    payload:  {
-      id,
-      desc: newDesc,
     }
   })

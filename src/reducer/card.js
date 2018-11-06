@@ -6,7 +6,7 @@ import { combineReducers } from 'redux';
 //import {initCard, SET_CARD_POSITION,SET_CARD_CLOSED, setCARDClosed, setCARDPosition, SET_CARD_NAME, SET_CARD_LIST, SET_CARD_SUBSCRIBED }from "../action/actionCARD";
 import {initCard, SET_CARD_POSITION,SET_CARD_CLOSED, SET_CARD_NAME, SET_CARD_LIST, SET_CARD_SUBSCRIBED }from "../action/actionCard";
 
-const id = ( state = initCard.id, action ) => state
+const idcard = ( state = initCard.idcard, action ) => state
 const name = ( state = initCard.name, action ) => {
   switch(action["type"]) {
     case SET_CARD_NAME:
@@ -23,10 +23,10 @@ const closed = ( state = initCard.closed, action ) => {
       return state;
   }
 }
-const idBoard = ( state = initCard.idBoard, action ) => {
+const idlist = ( state = initCard.idlist, action ) => {
   switch(action["type"]) {
     case SET_CARD_LIST:
-      return action.payload.idBoard
+      return action.payload.idlist
     default:
       return state;
   }
@@ -66,10 +66,10 @@ const toggle = ( state = [], action ) => {
 // Main Reducer
 export default combineReducers({
   // TODO: Add reducers, done
-  id ,
+  idcard ,
   name,
   closed,
-  idBoard,
+  idlist,
   pos ,
   subscribed,
   toggle

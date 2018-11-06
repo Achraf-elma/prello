@@ -3,8 +3,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import{Card , CardHeader, CardBody, CardTitle, Button, CardText} from 'reactstrap';
 
-// Action builder
-import { setCheckCardState, changeCardDesc} from '../../action/actionCard';
 
 
 // Components
@@ -16,12 +14,9 @@ import { setCardPosition, setCardName } from '../../action/actionCard';
 import '../../style/card.css';
 
 const MyCard = ({
-  id,
-  desc,
-  name,
-  state,
-  setCheckCardState, 
-  changeCardDesc
+  idcard,
+  idlist,
+  card
   // TODO: Put destructured props
   // <input type="checkbox" onChange={setCheckCardState( 1, true)}/>
 }) => (
@@ -34,21 +29,22 @@ const MyCard = ({
         </tr>
       </table>
      </CardHeader>
-     <CardBody>{name}</CardBody>
+     <CardBody> {card.name} <br/> Due date :  {card.dueDate} </CardBody>
     </Card>
   );
 
 const mapStateToProps = (state, props) => ({
-  desc: state.card.desc,
-  state: state.card.state
+  card: state.cards.find(card => card.idcard == props.idcard)
+
+  //desc: state.card.desc,
+  //state: state.card.state
   // TODO: Add store state to the component props
 })
 
 const mapDispatchToProps = (dispatch, props) => ({
-  setCardName: (name) => dispatch(setCardName( props.id, name )),
+  setCardName: (name) => dispatch(setCardName( props.idcard, name )),
 
   //setCheckCardState: (complete) => dispatch(setCheckCardState( props.id, complete ))
-   changeCardDesc: (event) => dispatch(changeCardDesc(props.id, event.target.value))
   // TODO: Add 
 })
 

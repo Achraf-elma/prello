@@ -6,7 +6,7 @@ import uuidv4 from "uuidv4";
 
 //default state 
 export const initList = {
-id : 0 , //TODO check
+idlist : 0 , //TODO check
 name: 'My list',
 closed: 'closed'|'notClosed', 
 idBoard: ' ', //TODO check
@@ -26,7 +26,7 @@ export const SET_LIST_BOARD = "@@list/SET_LIST_BOARD"
 export const SET_NEW_LIST = "@@list/SET_NEW_LIST"
 export const MOVE_CARD_IN_LIST = "@@list/MOVE_CARD_IN_LIST"
 export const ADD_CARD_IN_LIST = "@@list/ADD_CARD_IN_LIST";
-
+export const ADD_CARD_IN_CALENDAR = "@@list/ADD_CARD_IN_CALENDAR";
 
 // Action Builders
 // TODO: Export Action Builder
@@ -93,10 +93,24 @@ export const moveCardInList = (cardToMovePos, newCardPos) => ({
 })
 
 // Add a new card at the end of the list
-export const addCardToList = (cardName) => ({
+export const addCardToList = (idlist, cardName, dueDate) => ({
   type: ADD_CARD_IN_LIST,
   payload: {
-    id: uuidv4(),
+    idcard: uuidv4(),
+    idlist: idlist,
     name: cardName,
+    dueDate : dueDate
+  }
+})
+
+// Add a new card at the end of the list
+export const addCardToCalendar = (idlist, cardName, dueDate) => ({
+  type: ADD_CARD_IN_CALENDAR,
+  payload: {
+    id: uuidv4(),
+    idlist: idlist,
+    title: cardName,
+    start : new Date(dueDate),
+    end : new Date(dueDate)
   }
 })

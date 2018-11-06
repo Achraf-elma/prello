@@ -18,8 +18,10 @@ import ListWIP from './../../Component/List/ListWIP';
 import ListCreator from '../Creator/ListCreator';
 import WIP from './../../Component/WIP';
 
+
 // Styles
 import '../../style/board.css';
+
 
 class Board extends React.Component{
 
@@ -41,20 +43,7 @@ render() {
   setBoardDesc }
  = this.props;
 return (
-  <div>
-<div className="board-background"/>
-  <div className="container">
-  <div className="row board-info">
-    <div className="col">
-    <h1 className="board-title"><i className="fa fa-tasks"></i> {name}</h1>
-    </div>
-   
-    <div className="col">
-       
-    </div>
-  </div>
- 
-  <hr className="separator" />
+ <div>
   <ListCreator addList={(listName) => dispatchAddListToBoard(listName)} />
   <table className="listLists">
   <tr>
@@ -67,7 +56,7 @@ return (
               className={classNames("board-lists", { "list-dragging-over": snapshot.isDraggingOver })}
               {...provided.droppableProps}>
           {lists.map((list, index) => ( 
-                <Draggable key={list.id} draggableId={list.id} index={index}>
+                <Draggable key={list.idlist} draggableId={list.idlist} index={index}>
                 {(provided, snapshot) => (
                   <div
                     ref={provided.innerRef}
@@ -79,7 +68,7 @@ return (
                     )}
                   >
                      <td>
-                     <List name={list.name}/>  
+                     <List idlist={list.idlist} name={list.name}/>  
                      </td>
                   </div>
                 )}
@@ -94,9 +83,6 @@ return (
         </tr>
         </table>
 
-      
-
-</div>
 </div>
 );
 }

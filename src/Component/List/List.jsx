@@ -20,6 +20,7 @@ import '../../style/App.css';
 import '../../style/list.css';
 
 const List = ({
+  idlist,
   name,
   cards,
   //pos,
@@ -33,17 +34,18 @@ const List = ({
         <CardHeader><span className="list-title">{name}</span></CardHeader>
 
          {cards.map((card, index) => (
-           <MyCard name={card.name}></MyCard>
-           ))};
+           <MyCard idlist={card.idlist} idcard={card.idcard}></MyCard>
+           ))}
               
         <CardText>
-        <AddCard/>
+        <AddCard idlist={idlist}/>
         </CardText>
         </Card>
 );
  
 const mapStateToProps = ( state, props ) => ({
-  cards: state.cards,
+ // idlist: state.list.idlist,
+  cards: state.cards.filter(card => card.idlist == props.idlist)
   //id : state.list.id,
   /*closed : state.list.closed,
   idBoard : state.list.idBoard,
@@ -58,7 +60,7 @@ const mapDispatchToProps = ( dispatch, props ) => {
       destination &&
       dispatch(moveCardInList(source.index, destination.index))
     ),
-    setListName: (name) => dispatch(setListName( props.id, name )),
+    setListName: (name) => dispatch(setListName( name )),
   }
 }
 

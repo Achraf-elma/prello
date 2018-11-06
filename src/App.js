@@ -15,7 +15,7 @@ import WIP from './Component/WIP';
 import NavBar from './Component/NavBar/NavBar';
 
 import Homepage from './Component/Homepage/Homepage';
-import Board from './Component/Board/Board';
+import BoardViewHandler from './Component/Board/BoardViewHandler';
 
 import LoginCard from './Component/Login/LoginCard';
 import SignupCard from './Component/Login/SignupCard';
@@ -30,9 +30,9 @@ class App extends Component {
               <div>
                 <Route component={NavBar}/>
                 <Route exact path='/' component={Homepage}/>
-                <Route path='/board' component={Board}/>
                 <Route path='/login' component={LoginCard} />
                 <Route path='/signup' component={SignupCard} />
+                <Route path='/board' component={BoardViewHandler}/>
               </div>
             </Router>
           </Provider>
