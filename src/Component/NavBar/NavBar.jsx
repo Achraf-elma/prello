@@ -29,7 +29,7 @@ return (
                  <NavLink  to="/board">My Board</NavLink>
             </NavItem>
             <NavItem>
-                    <NavLink  to="/board">Boards</NavLink>
+                    <NavLink  to="/home">Boards</NavLink>
             </NavItem>
             <NavItem>
                 <NavLink to="#" > My Account</NavLink>

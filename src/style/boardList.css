@@ -1,0 +1,14 @@
+.boardlist {
+    background: none;
+    display: flex;
+    padding: 20px;
+    overflow: auto;
+  }
+.namelist{
+    background: none;
+    padding: 20px;
+    overflow: auto;
+}
+.boards{
+    padding: 20px;;
+}
