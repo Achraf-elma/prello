@@ -20,7 +20,7 @@ const CardCreator = ({
 
       <FormGroup>
           <Label for="dueDate">Due date</Label>
-          <Input type="date" name="dueDate" placeholder="01/01/2018" />
+          <Input type="date" name="dueDate" placeholder="" />
     </FormGroup>
 
    

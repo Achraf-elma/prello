@@ -106,7 +106,7 @@ class List extends React.Component {
 }
  
 const mapStateToProps = ( state, props ) => ({
-  cards: state.cards.filter(card => card.idList == props.idList)
+  cards: state.cards.filter(card => card.idList == props.idList && card.closed != true)
 });
 
 const mapDispatchToProps = ( dispatch, props ) => {

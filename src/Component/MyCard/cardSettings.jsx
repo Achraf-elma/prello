@@ -3,8 +3,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-import { setCardName, setCardDesc, setCardDueDate } from '../../action/actionCard';
+import { Modal, ModalHeader, ModalBody, ModalFooter, Container, Row, Col } from 'reactstrap';
+import { setCardName, setCardDesc, setCardDueDate, setCardClosed } from '../../action/actionCard';
 import InputText from '../Input/InputText';
 
 function formattedDateMDY(dt) {
@@ -31,7 +31,7 @@ class CardSettings extends React.Component {
     this.state = {
       ...props
     };
-
+      this.delete = this.delete.bind(this);
   }
  
   setCardDueTime(id,value){
@@ -45,7 +45,11 @@ class CardSettings extends React.Component {
     var combined = new Date(dateString + ' ' + timeString);
     this.props.dispatchSetCardDueDate(id, combined); 
   }
-
+  
+  delete(){
+    this.props.dispatchSetCardClosed(this.props.card.id);
+    this.props.toggleModal();
+  }
   render() {
     const {
       modal,
@@ -53,6 +57,7 @@ class CardSettings extends React.Component {
       dispatchSetCardName,
       dispatchSetCardDueDate,
       dispatchSetCardDesc,
+      dispatchSetCardClosed,
       toggleModal
     } = this.props
     const closeBtn = <button className="close" onClick={toggleModal}>&times;</button>;
@@ -64,7 +69,7 @@ class CardSettings extends React.Component {
           <ModalHeader toggle={toggleModal} close={closeBtn}>
            <span className="ListCreator">
               <InputText
-              className="changeName"
+              className="changeNameInput"
                 value={card.name}
                 placeHolder="Card Name"
                 resetable
@@ -73,39 +78,41 @@ class CardSettings extends React.Component {
             </span>
           </ModalHeader>
           <ModalBody>
-          <span className="ListCreator">
-              Description
-              <InputText
-              className="addNewList"
-               type="text"
-                value={card.desc}
-                placeHolder="Desc Name"
-                resetable
-                toggle={this.props.modal}
-                onChange={(value) => dispatchSetCardDesc(card.id,value)}
-              />
-            </span>
 
-           <span className="ListCreator">
-              Due date
-              <InputText
-              className="addNewList"
-                type="dateTime"
-                value={new Date(card.dueDate)}
-                placeHolder={new Date()}
-                resetable
-                toggle={this.props.modal}
-                onChange={(value) => dispatchSetCardDueDate(card.id,value)}
-              />
+          <Container>
 
-         
-            </span>
-
-
-
+             <Row>
+             <Col className="labelField" xs="6">Description :</Col>
+             <Col  xs="6">
+               <InputText
+                  className="editCardInput"
+                  type="ari"
+                    value={card.desc}
+                    placeHolder="Description of your card"
+                    resetable
+                    toggle={this.props.modal}
+                    onChange={(value) => dispatchSetCardDesc(card.id,value)}
+                  />
+                </Col>
+             </Row>
+              <hr/>
+             <Row>
+              <Col className="labelField" xs="6">Due Date :</Col>
+              <Col  xs="6">
+                <InputText
+                  className="editCardInput"
+                    type="date"
+                    value={formattedDateMDY(card.dueDate)}
+                    resetable
+                    toggle={this.props.modal}
+                    onChange={(value) => dispatchSetCardDueDate(card.id,value)}
+                  />
+              </Col>
+            </Row>
+          </Container>
           </ModalBody>
           <ModalFooter>
-            stuff
+            <button className="deleteCard" onClick={this.delete}>Delete</button>
           </ModalFooter>
         </Modal>
      
@@ -120,7 +127,8 @@ const mapStateToProps = (state, props) => ({
 const mapDispatchToProps = (dispatch, props) => ({
   dispatchSetCardName: (id,name) => dispatch(setCardName(id, name)),
   dispatchSetCardDesc: (id,desc) => dispatch(setCardDesc(id, desc)),
-  dispatchSetCardDueDate: (id,date) => dispatch(setCardDueDate(id, date))
+  dispatchSetCardDueDate: (id,date) => dispatch(setCardDueDate(id, date)),
+  dispatchSetCardClosed: (id) => dispatch(setCardClosed(id, true))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CardSettings); 

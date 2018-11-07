@@ -1,6 +1,6 @@
 // Action types
 import { MOVE_CARD_IN_LIST, ADD_CARD_IN_LIST } from '../action/actionList';
-import { SET_CARD_DUE_DATE, SET_CARD_NAME, SET_CARD_DESC} from '../action/actionCard';
+import { SET_CARD_DUE_DATE, SET_CARD_NAME, SET_CARD_DESC, SET_CARD_CLOSED} from '../action/actionCard';
 
 import card from './card'
 import { SET_CARDS } from '../action/actionCards';
@@ -14,6 +14,7 @@ export default ( state = [], action) => {
       return [...state, action.payload];
       
     case SET_CARD_NAME:
+    case SET_CARD_CLOSED:
     case SET_CARD_DUE_DATE:
     case SET_CARD_DESC:
       var idxCardToUpdate = state.findIndex(card => card.id === action.payload.id)

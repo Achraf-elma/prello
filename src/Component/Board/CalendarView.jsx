@@ -32,17 +32,13 @@ class CalendarView extends Component {
 
 toggle(id) {
   this.setState({
-    events : this.props.events,
+    events : this.state.events,
     modal: !this.state.modal,
     selectedEventID : id
   });
-}
-
-
-handleSelectEvent({ event}) {
-  console.log(event);
 
 }
+
   onEventResize = (type, { event, start, end, allDay }) => {
     this.setState(state => {
       state.events[0].start = start;
@@ -51,7 +47,7 @@ handleSelectEvent({ event}) {
     });
   };
 
-  moveEvent({ event, start, end, isAllDay: droppedOnAllDaySlot }) {
+  moveEvent({ event, start, end, issAllDay: droppedOnAllDaySlot }) {
     const { events } = this.state
     console.log(event);
     const idx = events.indexOf(event)
@@ -76,7 +72,6 @@ handleSelectEvent({ event}) {
 
     // alert(`${event.title} was dropped onto ${updatedEvent.start}`)
   }
-
 
   render() {
     const { events, setCardDueDate} = this.props
@@ -111,14 +106,16 @@ handleSelectEvent({ event}) {
   }
 }
 const mapStateToProps = ( state, props ) => ({
-  events : state.cards.map(function(obj) {
-    return {
-        id : obj.id,
-        title: obj.name,
-        start: obj.dueDate,
-        end: obj.dueDate,
-        allDay: true
-    }
+  events : state.cards.filter(card => card.closed != true).map(function(obj) {
+      return {
+          id : obj.id,
+          title: obj.name,
+          start: obj.dueDate,
+          end: obj.dueDate,
+          allDay: true,
+          closed : obj.closed
+      }
+  
 })
 
 
