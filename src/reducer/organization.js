@@ -57,7 +57,7 @@ const memberships = ( state = initOrganization.memberships, action ) => {
       case ADD_NEW_TEAM_MEMBER:
         return [ ...state, action.payload.newTeamMember]
       case DELETE_TEAM_MEMBER:
-        return state.filter(member => member.id !== action.payload.teamMemberToDelete.id)
+        return state.filter(member => member.idMember !== action.payload.teamMemberToDelete)
       case SET_TEAM_MEMBER_TYPE:
       //TODO
         return state.slice(0);

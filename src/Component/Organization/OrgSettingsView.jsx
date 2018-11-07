@@ -50,7 +50,9 @@ const OrgSettings = ({
       dispatchForm : (event) => {
         event.preventDefault();
         const data = new FormData(event.target);
-        if (data.get('name') !== '') {dispatch(setTeamDisplayName(props.id, data.get('name')))}
+        if (data.get('name') !== '') {
+            dispatch(setTeamDisplayName(props.id, data.get('name')))
+        }
         if (data.get('description') !== '') {dispatch(setTeamDesc(props.id, data.get('description')))}
         if (data.get('name') !== '') {dispatch(setTeamWebsite(props.id, data.get('website')))}
       }
