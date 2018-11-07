@@ -38,43 +38,9 @@ class Home extends React.Component{
             <div>
             <div className="boards">
                 <Button className="create"> Create a Board</Button>
-                <BoardList boardListName="Recently Opened" boardList={[
-                                                                        {
-                                                                            id: "5612e4f91b25c15e873722b8",
-                                                                            name: "Recently Opened Board 1",
-                                                                            desc: " first Board 1",
-                                                                            nbCardsDue: 2,
-                                                                            nbCardsDone: 2,
-                                                                            nbCardsExpired: 4
-                                                                        },
-                                                                        {
-                                                                            id: "5612e4f91b25c15e873722b8",
-                                                                            name: "Recently Opened Board 2",
-                                                                            desc: " first board 2",
-                                                                            nbCardsDue: 2,
-                                                                            nbCardsDone: 2,
-                                                                            nbCardsExpired: 4
-                                                                        }
-                                                                        ]}>
+                <BoardList boardListName="Recently Opened">
                 </BoardList>
-                <BoardList boardListName="All boards" boardList={[
-                                                                        {
-                                                                            id: "5612e4f91b25c15e873722b8",
-                                                                            name: "Recently Opened Board 1",
-                                                                            desc: " first Board 1",
-                                                                            nbCardsDue: 2,
-                                                                            nbCardsDone: 2,
-                                                                            nbCardsExpired: 4
-                                                                        },
-                                                                        {
-                                                                            id: "5612e4f91b25c15e873722b8",
-                                                                            name: "Recently Opened Board 2",
-                                                                            desc: " first board 2",
-                                                                            nbCardsDue: 2,
-                                                                            nbCardsDone: 2,
-                                                                            nbCardsExpired: 4
-                                                                        }
-                                                                        ]}>
+                <BoardList boardListName="All boards">
                 </BoardList>
                 
             </div>

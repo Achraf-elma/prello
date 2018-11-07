@@ -10,5 +10,10 @@
     overflow: auto;
 }
 .boards{
-    padding: 20px;;
+    margin-right: 1em;
+}
+.buttons{
+    display: block;
+    margin-left: auto;
+    margin-right: auto
 }

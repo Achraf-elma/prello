@@ -65,7 +65,7 @@ return (
     </div>
    
     <div className="col">
-        <Button color="primary" onClick={() => this.setViewChoosen(!this.state.isBoardViewChoosen)} active={this.state.isBoardViewChoosen}>Calendar View {this.state.boardId}</Button>
+        <Button color="primary" onClick={() => this.setViewChoosen(!this.state.isBoardViewChoosen)} active={this.state.isBoardViewChoosen}>Calendar View</Button>
     </div>
   </div>
  
