@@ -17,7 +17,9 @@ export default ( state = initBoards.boards, action) => {
         return [...boards, boardToUpdate]
     case SET_BOARD_CLOSE:
         console.log("before: ", state)
+        console.log(action.payload.id)
         let boardToClose = state.find(board => board.id = action.payload.id)
+        console.log("booooooard", boardToClose)
         let indexOfBoardToClose = state.indexOf(boardToClose)
         let boardClosed = board(boardToClose, action)
         var nextBoards = [...state]
@@ -27,6 +29,7 @@ export default ( state = initBoards.boards, action) => {
         console.log("after: " , nextBoards)
         return nextBoards
     default:
+        console.log("default: --- ", state)
       return state;
   }
 }

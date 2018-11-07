@@ -12,8 +12,8 @@ export const UPDATE_BOARD = "@@board/UPDATE_BOARD";
 export const initBoards = {
     boards: [
         {
-      id: "5612e4f91b25c15e873722b8",
-      name: "My Board",
+      id: "ID B1",
+      name: "B1",
       desc: "My first board",
       lists : [
         {}
@@ -51,8 +51,8 @@ export const initBoards = {
       isPrivate: 'true' | 'false',
     },
     {
-        id: "5612e4f91b25c19e873722b8",
-        name: "My Board 2",
+        id: "B2 ID",
+        name: "B2",
         desc: "My first board",
         lists : [
           {}
