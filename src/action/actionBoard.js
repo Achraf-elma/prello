@@ -19,7 +19,7 @@ export const SET_BOARD_PRIVACY = "@@board/SET_BOARD_PRIVACY"
 // default state
 export const initBoard = {
   id: "5612e4f91b25c15e873722b8",
-  name: "My Board",
+  name: "CAAAACAAAAA",
   desc: "My first board",
   lists : [
     {}
@@ -53,7 +53,6 @@ export const initBoard = {
     }
   ],
   closed: false,
-  pos: 0,
   isPrivate: 'true' | 'false',
 }
 

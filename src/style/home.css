@@ -10,3 +10,8 @@
     margin-left: auto;
     margin-right: auto
 }
+.namelist{
+    background: none;
+    padding: 20px;
+    overflow: auto;
+}

@@ -1,5 +1,6 @@
 // Modules
 import { combineReducers } from 'redux';
+import { MOVE_LIST_IN_BOARD, ADD_LIST_TO_BOARD } from '../action/actionBoard';
 
 // Definitions
 import {initBoard, SET_BOARD, SET_BOARD_NAME, SET_BOARD_DESC, SET_BOARD_LIST, SET_BOARD_MEMBERSHIPS, SET_BOARD_OWNERS, SET_BOARD_CLOSE, SET_BOARD_PRIVACY} from "../action/actionBoard";
@@ -56,6 +57,23 @@ const closed = (state = initBoard.closed, action ) => {
   }
 }
 
+const lists = ( state = [], action) => {
+  switch(action.type) {
+    case ADD_LIST_TO_BOARD:
+      return [...state, action.payload]
+    case MOVE_LIST_IN_BOARD:
+      let listToMove = state[action.payload.listToMovePos];
+      let lists = state.filter((list, index) => index !== action.payload.listToMovePos);
+      return [
+        ...lists.slice(0, action.payload.newListPos),
+        listToMove,
+        ...lists.slice(action.payload.newListPos)
+      ];
+    default:
+      return state;
+  }
+}
+
 const isPrivate = (state = initBoard.isPrivate, action ) => {
   switch(action["type"]) {
     case SET_BOARD:
@@ -72,7 +90,8 @@ const isPrivate = (state = initBoard.isPrivate, action ) => {
 export default combineReducers({
   id, 
   name, 
-  desc, 
+  desc,
+  lists, 
   memberships, 
   owners,
   closed, 

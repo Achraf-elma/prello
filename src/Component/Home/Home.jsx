@@ -51,7 +51,8 @@ class Home extends React.Component{
     }
     render() { 
         const {
-            boards, 
+            publicBoards,
+            privateBoards,
             removeBoardFromBoards,
             updateBoard,
             addBoardToBoards,
@@ -68,9 +69,41 @@ class Home extends React.Component{
                             <BoardCreator closeToogle={this.toggleModal}  handleSubmit={this.addingBoard.bind(this)}></BoardCreator>
                         </ModalBody>
                     </Modal>
-                    Recently Opened
-                    <div className="boardlist">
-                        {boards.map((board) => (
+                    <div>
+                    <div className="namelist">
+                    Private Boards
+                        </div>
+                        <div className="boardlist">
+                            {privateBoards.map((board) => (
+                                    <Card key={board.id} className="boards">
+                                        <CardTitle>{board.name}</CardTitle>
+                                        <CardSubtitle>Description</CardSubtitle>
+                                        <CardBody>
+                                            <p>{board.description}</p>
+                                            <ul>
+                                                <li> {board.nbCardsDue} Cards due </li>
+                                                <li> {board.nbCardsDone} Cards done </li>
+                                                <li> {board.nbCardsExpired} Cards expired </li>
+                                            </ul>
+                                        </CardBody> 
+                                        <ButtonGroup className="buttons">
+
+                                            <Link to={`/board/${board.id}`} activeClassName="active">
+                                                <Button>View</Button>
+                                            </Link>
+                                            <Button onClick ={() => dispatchCloseBoardFromBoards(board.id, true)} >Delete</Button>
+                                        </ButtonGroup>
+                                        
+                                    </Card>
+                            ))}
+                        </div>
+                    </div>
+                    <div>
+                        <div className="namelist">
+                        Public Boards
+                        </div>
+                        <div className="boardlist">
+                        {publicBoards.map((board) => (
                                 <Card key={board.id} className="boards">
                                     <CardTitle>{board.name}</CardTitle>
                                     <CardSubtitle>Description</CardSubtitle>
@@ -93,6 +126,8 @@ class Home extends React.Component{
                                 </Card>
                         ))}
                     </div>
+                    </div>
+                    
                 </div>
             
         );
@@ -101,7 +136,8 @@ class Home extends React.Component{
 
 // Export connected Components
 const mapStateToProps = (state, props) => ({
-    boards: state.boards.filter(board => board.closed==false)
+    publicBoards: state.boards.filter(board => (board.closed==false)&&(board.isPrivate==false)),
+    privateBoards: state.boards.filter(board => (board.closed==false)&&(board.isPrivate==true))
   })
   
   const mapDispatchToProps = (dispatch, props) => ({

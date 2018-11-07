@@ -11,26 +11,41 @@ export default ( state = initBoards.boards, action) => {
   switch(action.type) {
     case ADD_BOARD_TO_BOARDS:
       console.log("reducer add_board_to_boards",action.payload)
-      return [...state, action.payload]
+      let boards = [...state, action.payload]
+      console.log("add board to boards", boards)
+      return boards
     case UPDATE_BOARD:
+        console.log("Update board");
         let boardToUpdate = state[action.payload];
-        let boards = state.filter((board, index) => index !== action.payload.idBoardToRemove);
-        return [...boards, boardToUpdate]
+        let boards2 = state.filter((board, index) => index !== action.payload.idBoardToRemove);
+        console.log("After Update board boards", boards2);
+        return [...boards2, boardToUpdate]
     case SET_BOARD_CLOSE:
         console.log("before: ", state)
         console.log(action.payload.id)
+        let boardToClose = state.findIndex(board => board.id = action.payload.id)
+        console.log("booooooard", boardToClose)
+        let indexOfBoardToClose = state.indexOf(boardToClose)
+        let boardClosed = board(state[boardToClose], action)
+        var nextBoards = [...state]
+        nextBoards[boardToClose] = boardClosed
+
+        console.log("after: " , nextBoards)
+        return nextBoards
+
+
+        /*
         let boardToClose = state.find(board => board.id = action.payload.id)
         console.log("booooooard", boardToClose)
         let indexOfBoardToClose = state.indexOf(boardToClose)
         let boardClosed = board(boardToClose, action)
         var nextBoards = [...state]
         nextBoards.splice(indexOfBoardToClose, 1, boardClosed)
-
+        */ 
         //let newState = state.filter(id => id !== action.payload.idBoardToRemove)
-        console.log("after: " , nextBoards)
-        return nextBoards
+        //return nextBoards
     default:
-        console.log("default: --- ", state)
+      console.log("default: --- ", state)
       return state;
   }
 }
