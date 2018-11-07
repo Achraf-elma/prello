@@ -23,6 +23,7 @@ import WIP from '../WIP';
 import '../../style/board.css';
 import CalendarView from './CalendarView';
 import Board from './Board';
+import {fetchBoard} from '../../request/board'
 
 class BoardViewHandler extends React.Component{
 
@@ -35,25 +36,22 @@ class BoardViewHandler extends React.Component{
     this.setViewChoosen = this.setViewChoosen.bind(this)
   }
 
+  componentDidMount(){
+    fetchBoard(this.state.boardId)
+    .then(board => {
+
+    })
+    .catch(err => console.error(err));
+  }
  setViewChoosen = (isBoardViewChoosen) =>  {
   this.setState({
     isBoardViewChoosen: isBoardViewChoosen
   })
  }
 
- onCheckboxBtnClick(selected) {
-  const index = this.state.cSelected.indexOf(selected);
-  if (index < 0) {
-    this.state.cSelected.push(selected);
-  } else {
-    this.state.cSelected.splice(index, 1);
-  }
-  this.setState({ isBoardViewChoosen : [...this.state.cSelected] });
-}
 render() { 
   const { 
     boardId,
-    viewChoosen = true 
   } = this.props
 return (
   <div>

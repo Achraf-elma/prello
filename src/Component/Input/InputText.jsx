@@ -29,6 +29,14 @@ export default class InputText extends React.Component {
     }
   }
 
+  handleOnToggle = (event, input) => {
+  if(this.props.toggle == true){
+      if(this.props.value != input.value){
+        this.props.onChange(input.value);
+      }
+    }
+  }
+
   handleOnKeyUp = (event, input) => {
     if (event.keyCode === 13) {
       this.textfield.current.blur();
@@ -43,16 +51,18 @@ export default class InputText extends React.Component {
     this.textfield = React.createRef();
     const {
       className,
+      type,
       style,
       placeHolder,
       value,
+      toggle,
       disabled,
       required,
     } = this.props;
     return (
       <input
         className={classNames("InputText", className)}
-        type="text"
+        type={type}
         style={style}
         disabled={disabled}
         placeholder={placeHolder}
@@ -60,6 +70,7 @@ export default class InputText extends React.Component {
         defaultValue={value}
 
         ref={this.textfield}
+        onChange = {(event) => this.handleOnToggle(event,this.textfield.current )}
         onKeyUp={(event) => this.handleOnKeyUp(event, this.textfield.current)}
         onBlur={(event) => this.handleOnBlur(event, this.textfield.current)}
       />

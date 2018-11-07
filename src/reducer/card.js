@@ -4,7 +4,7 @@ import { combineReducers } from 'redux';
 // Definitions
 // TODO: import type, action type & type constants
 //import {initCard, SET_CARD_POSITION,SET_CARD_CLOSED, setCARDClosed, setCARDPosition, SET_CARD_NAME, SET_CARD_LIST, SET_CARD_SUBSCRIBED }from "../action/actionCARD";
-import {initCard, SET_CARD_POSITION,SET_CARD_CLOSED, SET_CARD_NAME, SET_CARD_LIST, SET_CARD_DUE_DATE }from "../action/actionCard";
+import {initCard, SET_CARD_POSITION, SET_CARD_DESC,SET_CARD_CLOSED, SET_CARD_NAME, SET_CARD_LIST, SET_CARD_DUE_DATE }from "../action/actionCard";
 
 const id = ( state = initCard.id, action ) => state
 
@@ -17,6 +17,16 @@ const name = ( state = initCard.name, action ) => {
       return state;
   }
 }
+
+const desc = ( state = initCard.desc, action ) => {
+  switch(action["type"]) {
+    case SET_CARD_DESC:
+      return action.payload.desc
+    default:
+      return state;
+  }
+}
+
 
 const dueDate = ( state = initCard.dueDate, action ) => {
   switch(action["type"]) {
@@ -59,6 +69,7 @@ const idList = ( state = initCard.idList, action ) => {
 export default combineReducers({
   id ,
   name,
+  desc,
   dueDate,
   pos ,
   closed,

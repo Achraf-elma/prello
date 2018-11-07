@@ -9,6 +9,7 @@ import "react-big-calendar/lib/addons/dragAndDrop/styles.css";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 //import logo from "./logo.svg";   <img src={logo} className="App-logo" alt="logo" />
 import { setCardDueDate } from '../../action/actionCard';
+import CardSettings from '../MyCard/cardSettings'
 
 const localizer = Calendar.momentLocalizer(moment);
 
@@ -18,14 +19,30 @@ class CalendarView extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      ...props
+      events : this.props.events,
+      selectedEventID : null,
+      modal : false
     }
 
-    this.moveEvent = this.moveEvent.bind(this)
+    this.moveEvent = this.moveEvent.bind(this);
+    this.toggle = this.toggle.bind(this);
+
    // this.newEvent = this.newEvent.bind(this)
 }
 
+toggle(id) {
+  this.setState({
+    events : this.props.events,
+    modal: !this.state.modal,
+    selectedEventID : id
+  });
+}
 
+
+handleSelectEvent({ event}) {
+  console.log(event);
+
+}
   onEventResize = (type, { event, start, end, allDay }) => {
     this.setState(state => {
       state.events[0].start = start;
@@ -75,12 +92,21 @@ class CalendarView extends Component {
           defaultDate={new Date()}
           defaultView="month"
           events={this.state.events}
+          onSelectEvent={event => this.toggle(event.id)}
           onEventDrop={this.moveEvent}
           onEventResize={this.onEventResize}
           resizable
+          selectable
           style={{ height: "100vh" }}
         />
+
+  {this.state.modal ?
+    <CardSettings id={this.state.selectedEventID} toggleModal={this.toggle.bind(this)} modal={this.state.modal}/>
+      : ""
+  }
       </div>
+
+
     );
   }
 }

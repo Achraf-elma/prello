@@ -6,6 +6,7 @@ import uuidv4 from "uuidv4";
 export const initCard = {
   id : 0 , //TODO check
   name: 'My card',
+  desc: null,
   dueDate : '01/10/2018',
   pos : null,
   closed: false,
@@ -15,6 +16,7 @@ export const initCard = {
   // Action type constants
  // export const SET_CARD_ID = "@@card/SET_CARD_ID";
   export const SET_CARD_NAME = "@@card/SET_CARD_NAME";
+  export const SET_CARD_DESC = "@@card/SET_CARD_DESC";
   export const SET_CARD_DUE_DATE = "@@card/SET_CARD_DUE_DATE"
   export const SET_CARD_POSITION = "@@card/SET_CARD_POSITION"
   export const SET_CARD_CLOSED = "@@card/SET_CARD_CLOSED"
@@ -28,6 +30,14 @@ export const initCard = {
     payload:  {
       id : id,
       name : newName
+    }
+  })
+
+  export const setCardDesc= (id, newDesc) => ({
+    type: SET_CARD_DESC,
+    payload:  {
+      id : id,
+      desc : newDesc
     }
   })
 
