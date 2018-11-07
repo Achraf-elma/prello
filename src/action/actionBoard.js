@@ -122,7 +122,7 @@ export const setBoardClose = (id, newClosed) => ({
 
 
 export const setBoardPrivacy = (id, newPrivacy) => ({
-  type: SET_BOARD_CLOSE,
+  type: SET_BOARD_PRIVACY,
   payload: {
     id,
     isPrivate: newPrivacy

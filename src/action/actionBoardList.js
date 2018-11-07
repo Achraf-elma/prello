@@ -112,12 +112,14 @@ export const updateBoard = (id, newBoard) => ({
 })
 
 // Move a list position in the board
-export const addBoardToBoards = (name, desc, members, owners) => ({
+export const addBoardToBoards = (name, desc, privacy, members, owners) => ({
   type: ADD_BOARD_TO_BOARDS,
   payload: {
     id: uuidv4(),
     name: name, 
     desc: desc, 
+    closed: false,
+    privacy: privacy,
     members: members, 
     owners: owners
   }

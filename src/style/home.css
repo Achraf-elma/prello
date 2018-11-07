@@ -1,12 +1,12 @@
-.boards{
-    float: right;
-    width: 80‰;
-
-}
 .teams{
     float: left;
     width: 20‰;
 }
 .create{
     padding: 20px;
+}
+.buttons{
+    display: block;
+    margin-left: auto;
+    margin-right: auto
 }

@@ -42,6 +42,7 @@ class List extends React.Component {
   }
 
   addingCard(event){
+    console.log("addingCard EVENT: ", event);
     this.props.dispatchAddCardToList(event);
     this.togglePopover();
   }

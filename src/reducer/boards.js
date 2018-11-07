@@ -10,6 +10,7 @@ import board from './board';
 export default ( state = initBoards.boards, action) => {
   switch(action.type) {
     case ADD_BOARD_TO_BOARDS:
+      console.log("reducer add_board_to_boards",action.payload)
       return [...state, action.payload]
     case UPDATE_BOARD:
         let boardToUpdate = state[action.payload];
