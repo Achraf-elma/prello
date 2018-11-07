@@ -1,15 +1,16 @@
 /* eslint react/no-multi-comp: 0, react/prop-types: 0 */
+// Modules
 import React from 'react';
 import { connect } from 'react-redux';
+import { Popover, PopoverHeader, PopoverBody } from 'reactstrap';
 
-import { Button, Popover, PopoverHeader, PopoverBody } from 'reactstrap';
-
-
+// Component
 import CardCreator from '../Creator/CardCreator';
-import { moveCardInList, addCardToList, addCardToCalendar} from '../../action/actionList';
 
+// Actions
+import {addCardToList} from '../../action/actionList';
 
- class AddCard extends React.Component {
+class AddCard extends React.Component {
   constructor(props) {
     super(props);
  
@@ -25,12 +26,10 @@ import { moveCardInList, addCardToList, addCardToCalendar} from '../../action/ac
     });
   }
 
-   
   render() {
     const {
       idList, 
-      dispatchAddCardToList,
-      listName
+      dispatchAddCardToList
     } = this.props;
     return (
       <div>
@@ -59,8 +58,6 @@ const mapDispatchToProps = ( dispatch, props ) => ( {
         addCardToList( props.idList, data.get('cardName'), data.get('dueDate')) 
         ) 
   }
-  
- 
 });
 
 export default connect(mapStateToProps,mapDispatchToProps)(AddCard); 

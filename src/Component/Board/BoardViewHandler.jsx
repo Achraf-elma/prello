@@ -1,29 +1,25 @@
 // Modules
 import React from 'react';
 import {connect} from 'react-redux';
-import classNames from 'classnames';
-import { Container, Row, Col , Button, ButtonGroup} from 'reactstrap';
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import {Button} from 'reactstrap';
+
 
 // Action builder
-import { moveListInBoard, addListToBoard} from '../../action/actionBoard';
-import {setBoardClose} from '../../action/actionBoard';
-import {setBoardDesc} from '../../action/actionBoard';
-
+import { setBoard} from '../../action/actionBoard';
+import { setLists } from '../../action/actionLists';
+import { setCards } from '../../action/actionCards';
 
 // Components
+import CalendarView from './CalendarView';
+import Board from './Board';
 
-import List from '../List/List';
-import ListWIP from '../List/ListWIP';
-import ListCreator from '../Creator/ListCreator';
-import WIP from '../WIP';
-
+// Requests
+import {fetchBoard, fetchBoardLists, fetchBoardCards} from '../../request/board'
 
 // Styles
 import '../../style/board.css';
-import CalendarView from './CalendarView';
-import Board from './Board';
-import {fetchBoard} from '../../request/board'
+
+
 
 class BoardViewHandler extends React.Component{
 
@@ -36,52 +32,60 @@ class BoardViewHandler extends React.Component{
     this.setViewChoosen = this.setViewChoosen.bind(this)
   }
 
-  componentDidMount(){
+  componentDidMount() {
     fetchBoard(this.state.boardId)
-    .then(board => {
+      .then(board => {
+        this.props.dispatchSetBoard(board)
+       })
+      .catch(err => console.error(err));
 
-    })
-    .catch(err => console.error(err));
+    fetchBoardLists(this.state.boardId)
+      .then(lists => {
+        this.props.dispatchSetLists(lists)
+      })
+      .catch(err => console.error(err));
+
+    fetchBoardCards(this.state.boardId)
+      .then(cards => {
+        this.props.dispatchSetCards(cards)
+      })
+      .catch(err => console.error(err));
   }
- setViewChoosen = (isBoardViewChoosen) =>  {
-  this.setState({
-    isBoardViewChoosen: isBoardViewChoosen
-  })
- }
 
-render() { 
-  const { 
-    boardId,
-  } = this.props
-return (
-  <div>
-  <div className="board-background"/>
-  <div className="container">
-  <div className="row board-info">
-    <div className="col">
-    <h1 className="board-title"><i className="fa fa-tasks"></i> My board</h1>
-    </div>
-   
-    <div className="col">
-        <Button color="primary" onClick={() => this.setViewChoosen(!this.state.isBoardViewChoosen)} active={this.state.isBoardViewChoosen}>Calendar View</Button>
-    </div>
-  </div>
- 
-  <hr className="separator" />
+  setViewChoosen = (isBoardViewChoosen) =>  {
+    this.setState({
+      isBoardViewChoosen: isBoardViewChoosen
+    })
+  }
 
-{this.state.isBoardViewChoosen ?   <Board/> : <CalendarView/>}
-
-</div>
-</div>
-);
-}
+  render() { 
+  return (
+    <div>
+      <div className="board-background"/>
+        <div className="container">
+          <div className="row board-info">
+            <div className="col">
+              <h1 className="board-title"><i className="fa fa-tasks"></i> My board</h1>
+            </div>
+            <div className="col">
+              <Button color="primary" onClick={() => this.setViewChoosen(!this.state.isBoardViewChoosen)} active={this.state.isBoardViewChoosen}>Calendar View</Button>
+            </div>
+          </div>
+          <hr className="separator" />
+          {this.state.isBoardViewChoosen ?   <Board/> : <CalendarView/>}
+        </div>
+      </div>
+    );
+  }
 }
 
 const mapStateToProps = ( state, props ) => ({
 })
 
 const mapDispatchToProps = (dispatch, props) => ({
-
+  dispatchSetBoard : (board) => dispatch(setBoard(board)),
+  dispatchSetLists : (lists) => dispatch(setLists(lists)),
+  dispatchSetCards : (cards) => dispatch(setCards(cards))
 });
 
 // Export connected Components

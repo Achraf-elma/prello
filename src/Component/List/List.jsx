@@ -1,20 +1,15 @@
 // Modules
 import React from 'react';
 import { connect } from 'react-redux';
-import{Card , CardHeader, CardBody, CardTitle, Button, CardText} from 'reactstrap';
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import classNames from 'classnames';
+import{Card , CardHeader,  CardText, Popover, PopoverHeader, PopoverBody} from 'reactstrap';
+
 
 // Action builder
-import { setListPosition, setListName } from '../../action/actionList';
-import { moveCardInList, addCardToList} from '../../action/actionList';
-import { Popover, PopoverHeader, PopoverBody } from 'reactstrap';
-
+import { setListName, moveCardInList, addCardToList} from '../../action/actionList';
 
 
 // Components
 import MyCard from '../MyCard/MyCard';
-import AddCard from './addcard';
 import CardCreator from './../../Component/Creator/CardCreator';
 import InputText from '../Input/InputText';
 
@@ -40,7 +35,6 @@ class List extends React.Component {
     });
   }
 
-
   togglePopover() {
     this.setState({
       popoverOpen: !this.state.popoverOpen
@@ -52,79 +46,67 @@ class List extends React.Component {
     this.togglePopover();
   }
 
-render() {
- const {
-    idList,
-    name,
-    cards,
-    //pos,
-    dispatchOnDragEnd,
-    dispatchAddCardToList,
-    setListName, 
-    setListPosition,
- } = this.props;
-return (
+  render() {
+  const {
+      idList,
+      name,
+      cards,
+      setListName
+  } = this.props;
+  return (
+    <Card className="list">
+      <CardHeader>
 
-        <Card className="list">
-      
-        <CardHeader   >
-        {this.state.editNameOn === true ? 
+      {this.state.editNameOn === true ? 
          <span className="ListCreator">
-         <InputText
-         className="changeName"
-           value={name}
-           placeHolder="List Name"
-           resetable
-           onChange={(value) => {
-            setListName(value);
-            this.handleEditClick();
-           } 
-          }
-         />
-       </span>
-        :
-          <span onClick={this.handleEditClick} className="list-title">{name}</span>
-        }
+          <InputText
+          className="changeName"
+            value={name}
+            placeHolder="List Name"
+            resetable
+            onChange={(value) => {
+              setListName(value);
+              this.handleEditClick();
+            } 
+            }
+          />
+         </span>
+      :
+        <span onClick={this.handleEditClick} className="list-title">{name}</span>
+      }
 
-        <i onClick = {this.handleEditClick} 
-           class = { this.state.editNameOn === true ? "fa fa-edit editmod" : "fa fa-edit" }
-         />
-        </CardHeader>
+      <i onClick = {this.handleEditClick} 
+        class = { this.state.editNameOn === true ? "fa fa-edit editmod" : "fa fa-edit" }
+      />
+      </CardHeader>
 
-         {cards.map((card, index) => (
-           <MyCard idList={card.idList} id={card.id}></MyCard>
-           ))}
-              
-        <CardText>
+      {cards.map((card, index) => (
+        <MyCard idList={card.idList} id={card.id}></MyCard>
+        ))}
+            
+      <CardText>
 
-         <div>
-            <button className="add-card-link" id= {"list" +idList} onClick={this.togglePopover}>
-                <span className="fa fa-plus-circle"> Add Card</span>  
-            </button>
-            <Popover placement="left" isOpen={this.state.popoverOpen} target={`list${idList}`} toggle={this.togglePopover}>
-              <PopoverHeader>Add Card</PopoverHeader>
-              <PopoverBody>
-                <CardCreator closeToggle={this.togglePopover} handleSubmit={this.addingCard.bind(this)} />
-              </PopoverBody>
-            </Popover>
-          </div>
+      <div>
+          <button className="add-card-link" id= {"list" +idList} onClick={this.togglePopover}>
+              <span className="fa fa-plus-circle"> Add Card</span>  
+          </button>
+          <Popover placement="left" isOpen={this.state.popoverOpen} target={`list${idList}`} toggle={this.togglePopover}>
+            <PopoverHeader>Add Card</PopoverHeader>
+            <PopoverBody>
+              <CardCreator closeToggle={this.togglePopover} handleSubmit={this.addingCard.bind(this)} />
+            </PopoverBody>
+          </Popover>
+        </div>
+      </CardText>
 
-        
-        </CardText>
-        </Card>
+      </Card>
     );
- }
+  }
 }
  
 const mapStateToProps = ( state, props ) => ({
- // idlist: state.list.idlist,
   cards: state.cards.filter(card => card.idList == props.idList)
-  //id : state.list.id,
-  /*closed : state.list.closed,
-  idBoard : state.list.idBoard,
-  pos : state.list.pos,
-  subscribed : state.list.subscribed */
-    })
+});
 
 const mapDispatchToProps = ( dispatch, props ) => {
   return {
@@ -137,10 +119,7 @@ const mapDispatchToProps = ( dispatch, props ) => {
     dispatchAddCardToList: (event) => {
       event.preventDefault();
       const data = new FormData(event.target);
-     
-      dispatch(
-          addCardToList( props.idList, data.get('cardName'), data.get('dueDate')) 
-          ) 
+      dispatch(addCardToList( props.idList, data.get('cardName'), data.get('dueDate'))) 
     }
   }
 }

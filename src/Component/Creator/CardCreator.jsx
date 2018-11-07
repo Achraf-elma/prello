@@ -5,10 +5,11 @@ import React from 'react';
 import InputText from '../Input/InputText';
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 
- import '../../style/list.css';
+// Styles 
+import '../../style/list.css';
+
 const CardCreator = ({
-  handleSubmit,  
-  closeToggle
+  handleSubmit  
 }) => (
   <Form  onSubmit = {handleSubmit}>
   <span className="ListCreator">

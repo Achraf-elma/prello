@@ -3,6 +3,8 @@ import uuidv4 from "uuidv4";
 
 // Action type constants
 // TODO: Action type constant
+export const SET_BOARD= "@@board/SET_BOARD"
+
 export const SET_BOARD_NAME = "@@board/SET_BOARD_NAME"
 export const SET_BOARD_DESC = "@@board/SET_BOARD_DESC"
 export const MOVE_LIST_IN_BOARD = "@@board/MOVE_LIST_IN_BOARD"
@@ -55,7 +57,10 @@ export const initBoard = {
   isPrivate: 'true' | 'false',
 }
 
-
+export const setBoard = (board) => ({
+  type: SET_BOARD,
+  payload: board
+})
 
 export const setBoardName = (id, newName) => ({
   type: SET_BOARD_NAME,

@@ -3,9 +3,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-import {  Form, FormGroup, Label, Input, FormText } from 'reactstrap';
-import { setCardPosition, setCardName, setCardDesc, setCardDueDate } from '../../action/actionCard';
+import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { setCardName, setCardDesc, setCardDueDate } from '../../action/actionCard';
 import InputText from '../Input/InputText';
 
 function formattedDateMDY(dt) {
@@ -25,6 +24,7 @@ function formattedTime(dt) {
  const time = String(d.getTime());
  return time;
 }
+
 class CardSettings extends React.Component {
   constructor(props) {
     super(props);
@@ -38,7 +38,6 @@ class CardSettings extends React.Component {
     let date = this.props.card.dueDate;
     let time = new Date(value);
     let timeString = time.getHours() + ':' + time.getMinutes() + ':00';
-
     var year = date.getFullYear();
     var month = date.getMonth() + 1; // Jan is 0, dec is 11
     var day = date.getDate();
@@ -115,19 +114,13 @@ class CardSettings extends React.Component {
   }
 }
 const mapStateToProps = (state, props) => ({
-  
   card : state.cards.find(card => card.id == props.id)
- 
-
 })
 
 const mapDispatchToProps = (dispatch, props) => ({
   dispatchSetCardName: (id,name) => dispatch(setCardName(id, name)),
   dispatchSetCardDesc: (id,desc) => dispatch(setCardDesc(id, desc)),
   dispatchSetCardDueDate: (id,date) => dispatch(setCardDueDate(id, date))
-   
-  //setCheckCardState: (complete) => dispatch(setCheckCardState( props.id, complete ))
-  // TODO: Add 
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CardSettings); 

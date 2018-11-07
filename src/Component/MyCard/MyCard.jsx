@@ -1,18 +1,14 @@
 // Modules
 import React from 'react';
 import { connect } from 'react-redux';
-import{Card , CardHeader, CardBody, CardTitle, Button, CardText} from 'reactstrap';
-
-import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-
-import InputText from '../Input/InputText';
-
+import{Card , CardHeader, CardBody} from 'reactstrap';
 
 // Components
-import CheckItem from '../CheckList/CheckItem';
-import Label from './Label';
-import { setCardPosition, setCardName } from '../../action/actionCard';
-import CardSettings from './cardSettings'
+import CardSettings from './cardSettings';
+
+// Actions 
+import {  setCardName } from '../../action/actionCard';
+
 // Style
 import '../../style/card.css';
 
@@ -46,49 +42,18 @@ class MyCard extends React.Component {
   }
 
   render() {
-  const{
-  id,
-  idList,
-  card, 
-  setName
-   } = this.props ;
-   const closeBtn = <button className="close" onClick={this.toggle}>&times;</button>;
-
-  // TODO: Put destructured props
-  // <input type="checkbox" onChange={setCheckCardState( 1, true)}/>
+    const{
+      card
+    } = this.props ;
+    const closeBtn = <button className="close" onClick={this.toggle}>&times;</button>;
   return (
    <Card onClick={this.toggle.bind(this)} className="mycard" >
      <CardHeader className="mycard-header">
-       
+       label
      </CardHeader>
      <CardBody> {card.name}  <br/> {card.dueDate ?  "Due date : "  + formattedDate(card.dueDate) : ""}  </CardBody>
      <CardSettings id={card.id} toggleModal={this.toggle.bind(this)} modal={this.state.modal}/>
    </Card>
-    
-/** 
-      <Modal key={card.id} isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>          
-      <ModalHeader toggle={this.toggle} close={closeBtn}>
-           <span className="ListCreator">
-              <InputText
-              className="changeName"
-                value={card.name}
-                placeHolder="Card Name"
-                resetable
-                onChange={(value) => setName(card.id,value)}
-              />
-            </span>
-          </ModalHeader>
-          <ModalBody>
-            
-          </ModalBody>
-          <ModalFooter>
-            stuff
-          </ModalFooter>
-      </Modal>
-      **/
-
-
-    
     );
   }
 }
@@ -98,7 +63,6 @@ const mapStateToProps = (state, props) => ({
 
 const mapDispatchToProps = (dispatch, props) => ({
   setName: (id,name) => {
-   console.log("hey!" + name); 
    dispatch(setCardName(id, name ));
   }
  
