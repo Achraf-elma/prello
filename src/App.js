@@ -15,8 +15,9 @@ import WIP from './Component/WIP';
 
 import NavBar from './Component/NavBar/NavBar';
 import Homepage from './Component/Homepage/Homepage';
-import BoardViewHandler from './Component/Board/BoardViewHandler';
+
 import Home from './Component/Home/Home';
+import BoardViewHandler from './Component/Board/BoardViewHandler';
 
 import LoginCard from './Component/Login/LoginCard';
 import SignupCard from './Component/Login/SignupCard';
