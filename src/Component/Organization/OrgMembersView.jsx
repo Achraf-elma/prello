@@ -17,9 +17,10 @@ const OrgMembers = ({
 
 
     <div className="OrgMembers">
-        <h1>Manage members</h1>
+        <h1 className="organization-title">Members management</h1>
+
         <Form onSubmit = {(event) => dispatchForm(event, memberships)}>
-            <Label for="newMemberEmail">Add member :</Label>
+            <Label className="organization-labels" for="newMemberEmail">Add member :</Label>
             <Input type = "email" name ="email" id="newMemberEmail" placeholder="Enter an email address here"/>
             <Button color="success" className="submit" type="submit" active>Send</Button>
         </Form>
