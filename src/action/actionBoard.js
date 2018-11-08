@@ -53,7 +53,7 @@ export const initBoard = {
     }
   ],
   closed: false,
-  isPrivate: 'true' | 'false',
+  isPublic: true,
 }
 
 export const setBoard = (board) => ({
@@ -111,20 +111,20 @@ export const setBoardOwners = (id, newBoardOwners) => ({
   }
 })
 
-export const setBoardClose = (id, newClosed) => ({
+export const setBoardClose = (id, closed) => ({
   type: SET_BOARD_CLOSE,
   payload: {
-    id: id,
-    closed: newClosed
+    id,
+    closed
   }
 })
 
 
-export const setBoardPrivacy = (id, newPrivacy) => ({
+export const setBoardPrivacy = (id, isPublic) => ({
   type: SET_BOARD_PRIVACY,
   payload: {
     id,
-    isPrivate: newPrivacy
+    isPublic
   }
 })
 

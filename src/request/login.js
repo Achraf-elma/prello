@@ -11,7 +11,7 @@ const NO_TOKEN = "NO TOKEN";
  * @param {String} password, user password
  * @reject 
  */
-export const logIn = (id, password) => {
+export const logIn = (id, password) => (
   client.post("/oauth", { id, password })
   .then(response => (
     client.setJWT(response.data.accessToken) &&
@@ -21,9 +21,9 @@ export const logIn = (id, password) => {
     // Its error isn't important
     // Client.post error will waterfall out of this function
   ))
-}
-
-/**
+);
+  
+  /**
  * @desc Log in with google set JWT token
  * @type {Promise} HTTP(s) request
  * @param {Object} googleResponse

@@ -5,7 +5,7 @@ import uuidv4 from "uuidv4";
 // TODO: Action type constant
 export const CLOSE_BOARD_FROM_BOARDS = "@@board/CLOSE_BOARD_FROM_BOARDS";
 export const SELECT_BOARD = "@@board/SELECT_BOARD";
-export const ADD_BOARD_TO_BOARDS = "@@board/ADD_LIST_TO_BOARD";
+export const ADD_BOARD_TO_BOARDS = "@@board/ADD_BOARD_TO_BOARDS";
 export const UPDATE_BOARD = "@@board/UPDATE_BOARD";
 
 // default state
@@ -47,7 +47,7 @@ export const initBoards = {
         }
       ],
       closed: false,
-      isPrivate: true,
+      isPublic: true,
     },
     {
         id: "PUBLIC",
@@ -85,7 +85,7 @@ export const initBoards = {
           }
         ],
         closed: false,
-        isPrivate: false,
+        isPublic: false,
       },
       {
         id: "IDDDDDD",
@@ -123,7 +123,7 @@ export const initBoards = {
           }
         ],
         closed: false,
-        isPrivate: true,
+        isPublic: true,
       }
     ]
 }
@@ -148,7 +148,7 @@ export const updateBoard = (id, newBoard) => ({
 })
 
 // Move a list position in the board
-export const addBoardToBoards = (name, desc, privacy, members, owners) => ({
+export const addBoardToBoards = (name, desc, isPublic, members, owners) => ({
   type: ADD_BOARD_TO_BOARDS,
   payload: {
     id: uuidv4(),
@@ -156,7 +156,7 @@ export const addBoardToBoards = (name, desc, privacy, members, owners) => ({
     desc: desc, 
     list: {},
     closed: false,
-    privacy: privacy,
+    isPublic,
     memberships: members, 
     owners: owners
   }

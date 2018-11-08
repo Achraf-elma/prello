@@ -23,10 +23,10 @@ const BoardCreator = ({
           <Input type="text" name="desc"/>
         </FormGroup>
         <FormGroup>
-          <Label for="privacy"> Privacy </Label>
-          <Input type="select" name="privacy">
-            <option>Private</option>
-            <option>Public</option>
+          <Label for="isPublic"> Privacy </Label>
+          <Input type="select" name="isPublic">
+            <option value={false}>Private</option>
+            <option value={true}>Public</option>
           </Input>
       </FormGroup>
       <FormGroup>

@@ -74,12 +74,12 @@ const lists = ( state = [], action) => {
   }
 }
 
-const isPrivate = (state = initBoard.isPrivate, action ) => {
+const isPublic = (state = initBoard.isPublic, action ) => {
   switch(action["type"]) {
     case SET_BOARD:
-      return action.payload.isPrivate;
+      return action.payload.isPublic;
     case SET_BOARD_PRIVACY:
-      return action.payload.isPrivate
+      return action.payload.isPublic
     default:
       return state;
   }
@@ -95,5 +95,5 @@ export default combineReducers({
   memberships, 
   owners,
   closed, 
-  isPrivate
+  isPublic
 });

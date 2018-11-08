@@ -62,65 +62,55 @@ class Home extends React.Component{
          = this.props;
 
         return (
-            <div>
-            <div className="boards-background"/>
-                
-    
-                    <Modal isOpen={this.state.modal} toggle={this.toggle}>
-                        <ModalBody>
-                            <BoardCreator closeToogle={this.toggleModal}  handleSubmit={this.addingBoard.bind(this)}></BoardCreator>
-                        </ModalBody>
-                    </Modal>
-
-                 <Container className="boardlistHeader">
-                    <Row>
-                    <Col>
-                         <button class="createBoardButton" onClick={this.toggle}>Create a Board</button>
-                     </Col>
-                     </Row>
-                    <Row>
-                        <Col>
-                      <h1 className="loginTitle"><i className="fa fa-tasks"></i> Recently Opened</h1>
-                        </Col>
-                    </Row>
-                    
-                    <hr className="separator" />
-                    </Container>
-                    <Container className="boardlist">
-                        <Row>
-                       
-                    
-                            {privateBoards.map((board) => (
-                             <Col>
-                                    <Card key={board.id} className="myboard">
-                                    <CardHeader>
-                                        <CardTitle>{board.name}</CardTitle>
-                                        <CardSubtitle>Description</CardSubtitle>
-                                    </CardHeader>
-                                        <CardBody>
-                                            <p>{board.description}</p>
-                                            <ul>
-                                                <li> {board.nbCardsDue} Cards due </li>
-                                                <li> {board.nbCardsDone} Cards done </li>
-                                                <li> {board.nbCardsExpired} Cards expired </li>
-                                            </ul>
-                                        </CardBody> 
-                                        <ButtonGroup className="buttons">
-
-                                            <Link to={`/board/${board.id}`} activeClassName="active">
-                                                <button className="buttonCustom">View</button>
-                                            </Link>
-                                            <button className="delete" onClick ={() => dispatchCloseBoardFromBoards(board.id, true)} >Delete</button>
-                                        </ButtonGroup>
-                                        
-                                    </Card>
-                                </Col>
-                            ))}
-
-                        </Row>
-                    </Container>
-                    
-                </div>
+<div>
+<div className="boards-background"/>
+<Modal isOpen={this.state.modal} toggle={this.toggle}>
+<ModalBody>
+<BoardCreator closeToogle={this.toggleModal}  handleSubmit={this.addingBoard.bind(this)}></BoardCreator>
+</ModalBody>
+</Modal>
+<Container className="boardlistHeader">
+<Row>
+<Col>
+<button class="createBoardButton" onClick={this.toggle}>Create a Board</button>
+</Col>
+</Row>
+<Row>
+<Col>
+<h1 className="loginTitle"><i className="fa fa-tasks"></i> Recently Opened</h1>
+</Col>
+</Row>
+<hr className="separator" />
+</Container>
+<Container className="boardlist">
+<Row>
+{privateBoards.map((board) => (
+    <Col>
+    <Card key={board.id} className="myboard">
+    <CardHeader>
+    <CardTitle>{board.name}</CardTitle>
+    <CardSubtitle>Description</CardSubtitle>
+    </CardHeader>
+    <CardBody>
+    <p>{board.description}</p>
+    <ul>
+    <li> {board.nbCardsDue} Cards due </li>
+    <li> {board.nbCardsDone} Cards done </li>
+    <li> {board.nbCardsExpired} Cards expired </li>
+    </ul>
+    </CardBody> 
+    <ButtonGroup className="buttons">
+    <Link to={`/board/${board.id}`} activeClassName="active">
+    <button className="buttonCustom">View</button>
+    </Link>
+        <button className="delete" onClick ={() => dispatchCloseBoardFromBoards(board.id, true)} >Delete</button>
+    </ButtonGroup>
+    </Card>
+    </Col>
+))}
+</Row>
+</Container>
+</div>
                 
         );
     }
@@ -128,8 +118,8 @@ class Home extends React.Component{
 
 // Export connected Components
 const mapStateToProps = (state, props) => ({
-    publicBoards: state.boards.filter(board => (board.closed==false)&&(board.isPrivate==false)),
-    privateBoards: state.boards.filter(board => (board.closed==false)&&(board.isPrivate==true))
+    publicBoards: state.boards.filter(board => (board.closed === false)&&(board.isPublic === false)),
+    privateBoards: state.boards.filter(board => (board.closed === false)&&(board.isPublic === true))
   })
   
   const mapDispatchToProps = (dispatch, props) => ({
@@ -144,7 +134,7 @@ const mapStateToProps = (state, props) => ({
         const data = new FormData(event.target);
         console.log(data);
         dispatch(
-            addBoardToBoards(data.get('name'), data.get('desc', data.get('privacy', data.get('members'), data.get('owners'))))
+            addBoardToBoards(data.get('name'), data.get('desc'), data.get('isPublic') === "true", data.get('members'), data.get('owners'))
         )
     }
   })

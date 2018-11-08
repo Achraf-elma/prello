@@ -33,7 +33,8 @@ class SignupCard extends React.Component {
 
     if( cleanPassword1 && cleanPassword2 && cleanEmail && cleanFullName){
       if( cleanPassword1 === cleanPassword2 ){
-        signUp(fullName, email, cleanPassword1);
+        signUp(fullName, email, cleanPassword1)
+        .then(ok => this.props.history.push('/home'));
       } else {
         this.passwordInput1.current.value = "";
         this.passwordInput2.current.value = "";
@@ -50,7 +51,9 @@ class SignupCard extends React.Component {
   }
 
   onGoogleSuccessHandler = (response) => {
-    googleLogin(response);
+    googleLogin(response)
+    .then(ok => this.props.history.push('/home'))
+    .catch(error => console.error(error));
   }
 
   onGoogleFailureHandler = (response) => {
