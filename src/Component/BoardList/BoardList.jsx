@@ -1,7 +1,7 @@
 // Modules
 import React from 'react';
 import { connect } from 'react-redux';
-import { Card, CardBody, CardTitle, CardSubtitle, ButtonGroup, Button} from 'reactstrap';
+import { Card, CardBody, CardTitle, CardSubtitle, ButtonGroup, Button, Row, Col, Container} from 'reactstrap';
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 // Action builder
 import { removeBoardFromBoards, updateBoard, addBoardToBoards} from '../../action/actionBoardList';
@@ -38,9 +38,12 @@ class BoardList extends React.Component{
                 <div className="namelist">
                 {this.props.boardListName}
                 </div>
-                <div className="boardlist">
+               
+                <Container>
+                    <Row>
                     {boards.map((board) => (
-                            <Card key={board.id} className="boards">
+                        <Col xs="6">
+                            <Card key={board.id} className="myboard">
                                 <CardTitle>{board.name}</CardTitle>
                                 <CardSubtitle>Description</CardSubtitle>
                                 <CardBody>
@@ -60,9 +63,12 @@ class BoardList extends React.Component{
                                 </ButtonGroup>
                                 
                             </Card>
+                            </Col>
                     ))}
+                        </Row>
+                    </Container>
                 </div>
-            </div>
+            
         );
     }
 

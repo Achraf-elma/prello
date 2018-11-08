@@ -1,6 +1,7 @@
 // Modules
 import React from 'react';
 import GoogleLogin from 'react-google-login';
+import{Card , CardHeader, CardBody, CardTitle, Button, CardText} from 'reactstrap';
 
 // css
 import "../../style/login&signup.css";
@@ -45,7 +46,13 @@ class LoginCard extends React.Component {
     this.passwordInput = React.createRef();
     this.idInput = React.createRef();
     return (
-      <div className="login">
+      <div>
+      <div className="login-background"/>
+      <Card  className="login">
+          <CardHeader className="loginTitle">
+            Login
+         </CardHeader>
+         <CardBody>
         <form className="login-form" onSubmit={this.onSubmitHandler}>
           <input
             ref={this.idInput}
@@ -63,18 +70,21 @@ class LoginCard extends React.Component {
             placeholder="password"
             maxLength={TEXT_INPUT_MAX_LENGTH}
             />
-          <input className="login-form-submit" type="submit" value="Log in"/>
+          <input className="login-form-submit" type="submit" value="Login"/>
           {this.state.error && <span className="login-form-error">{this.state.error}</span>}
         </form>
         <div className="login-form-google">
           <GoogleLogin
             className="login-google"
             clientId={GOOGLE_CLIENT}
-            buttonText="Login with google"
+            buttonText='Login with google'
             onSuccess={this.onGoogleSuccessHandler}
             onFailure={this.onGoogleFailureHandler}
           />
         </div>
+
+      </CardBody>
+      </Card>
       </div>
     );
   }

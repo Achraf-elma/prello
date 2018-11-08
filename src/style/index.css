@@ -21,8 +21,22 @@
   box-sizing: border-box;
 }
 
-
-
+.buttonCustom{
+  background: #0d3584;
+  width: 10em;
+  box-shadow: 5px 5px 4px #190d5250;
+  color: white;
+  font-weight: 700;
+  border: 1px solid black;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 5em;
+  margin: 12px;
+}
+.buttonCustom:hover{
+  color: white;
+  background: #010a1d;
+}
 @media screen and (max-width: 600px) {
   
 }

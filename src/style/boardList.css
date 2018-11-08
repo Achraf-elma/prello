@@ -1,19 +1,84 @@
+.boards-background{
+    /* = background image div */ 
+      content: "";
+      top:0;
+      left: 0;
+      right: 0;
+      z-index: -1;
+      background-image: url("./assets/bluelight.jpg"); 
+      height:100%; 
+       /* Center and scale the image nicely */
+       background-size:cover ;
+       background-repeat: no-repeat;
+       position: fixed;
+       background-attachment: scroll;
+  
+       -webkit-filter: blur(2px) grayscale(0.45) hue-rotate(10deg);
+
+       -moz-transform: scaleY(-1);
+    -o-transform: scaleY(-1);
+    -webkit-transform: scaleY(-1);
+    transform: scaleY(-1);
+  
+  }
+
+
 .boardlist {
     background: none;
-    display: flex;
     padding: 20px;
     overflow: auto;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
   }
-.namelist{
-    background: none;
-    padding: 20px;
-    overflow: auto;
+.boardlist .card-header{
+    border-bottom: 3px solid rgb(99, 120, 165);
+    background-color: #b1c4d5c0;
+    cursor: pointer;
 }
-.boards{
+.myboard {
     margin-right: 1em;
+    box-shadow: 8px 8px 1px #190d5250;
+
 }
+
+.boardlistHeader {
+  margin: 3% 8% auto 2%;
+}
+
 .buttons{
     display: block;
     margin-left: auto;
     margin-right: auto
+}
+.createBoardButton{
+    background: #0d3584;
+    width: 10em;
+    box-shadow: 5px 5px 4px #190d5250;
+    color: white;
+    font-weight: 700;
+    border: 1px solid black;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 10em;
+    margin-bottom: 12px;
+}
+
+.delete{
+    background: rgba(131, 11, 11, 0.836);
+    width: 10em;
+    box-shadow: 5px 5px 4px #190d5250;
+    color: white;
+    font-weight: 700;
+    border: 1px solid black;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 5em;
+    margin: 12px;
+}
+
+.delete:hover {
+    color: white;
+    background: #010a1d;
 }

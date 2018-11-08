@@ -3,8 +3,8 @@ import React from 'react';
 import {connect} from 'react-redux';
 import classNames from 'classnames';
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
-import { Card, CardImg, CardText, CardBody,
-    CardTitle, CardSubtitle, ButtonGroup, Button, Modal, ModalBody } from 'reactstrap';
+import { Card, CardHeader, CardImg, CardText, CardBody,
+    CardTitle, CardSubtitle, ButtonGroup, Button, Modal, ModalBody,  Row, Col, Container} from 'reactstrap';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import BoardCreator from '../Creator/BoardCreator';
 
@@ -62,22 +62,41 @@ class Home extends React.Component{
          = this.props;
 
         return (
-                <div className="boards">
-                    <Button onClick={this.toggle} className="create"> Create a Board</Button>
+            <div>
+            <div className="boards-background"/>
+                
+    
                     <Modal isOpen={this.state.modal} toggle={this.toggle}>
                         <ModalBody>
                             <BoardCreator closeToogle={this.toggleModal}  handleSubmit={this.addingBoard.bind(this)}></BoardCreator>
                         </ModalBody>
                     </Modal>
-                    <div>
-                    <div className="namelist">
-                    Private Boards
-                        </div>
-                        <div className="boardlist">
+
+                 <Container className="boardlistHeader">
+                    <Row>
+                    <Col>
+                         <button class="createBoardButton" onClick={this.toggle}>Create a Board</button>
+                     </Col>
+                     </Row>
+                    <Row>
+                        <Col>
+                      <h1 className="loginTitle"><i className="fa fa-tasks"></i> Recently Opened</h1>
+                        </Col>
+                    </Row>
+                    
+                    <hr className="separator" />
+                    </Container>
+                    <Container className="boardlist">
+                        <Row>
+                       
+                    
                             {privateBoards.map((board) => (
-                                    <Card key={board.id} className="boards">
+                             <Col>
+                                    <Card key={board.id} className="myboard">
+                                    <CardHeader>
                                         <CardTitle>{board.name}</CardTitle>
                                         <CardSubtitle>Description</CardSubtitle>
+                                    </CardHeader>
                                         <CardBody>
                                             <p>{board.description}</p>
                                             <ul>
@@ -89,47 +108,20 @@ class Home extends React.Component{
                                         <ButtonGroup className="buttons">
 
                                             <Link to={`/board/${board.id}`} activeClassName="active">
-                                                <Button>View</Button>
+                                                <button className="buttonCustom">View</button>
                                             </Link>
-                                            <Button onClick ={() => dispatchCloseBoardFromBoards(board.id, true)} >Delete</Button>
+                                            <button className="delete" onClick ={() => dispatchCloseBoardFromBoards(board.id, true)} >Delete</button>
                                         </ButtonGroup>
                                         
                                     </Card>
+                                </Col>
                             ))}
-                        </div>
-                    </div>
-                    <div>
-                        <div className="namelist">
-                        Public Boards
-                        </div>
-                        <div className="boardlist">
-                        {publicBoards.map((board) => (
-                                <Card key={board.id} className="boards">
-                                    <CardTitle>{board.name}</CardTitle>
-                                    <CardSubtitle>Description</CardSubtitle>
-                                    <CardBody>
-                                        <p>{board.description}</p>
-                                        <ul>
-                                            <li> {board.nbCardsDue} Cards due </li>
-                                            <li> {board.nbCardsDone} Cards done </li>
-                                            <li> {board.nbCardsExpired} Cards expired </li>
-                                        </ul>
-                                    </CardBody> 
-                                    <ButtonGroup className="buttons">
 
-                                        <Link to={`/board/${board.id}`} activeClassName="active">
-                                            <Button>View</Button>
-                                        </Link>
-                                        <Button onClick ={() => dispatchCloseBoardFromBoards(board.id, true)} >Delete</Button>
-                                    </ButtonGroup>
-                                    
-                                </Card>
-                        ))}
-                    </div>
-                    </div>
+                        </Row>
+                    </Container>
                     
                 </div>
-            
+                
         );
     }
 }
