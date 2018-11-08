@@ -30,6 +30,9 @@ render() {
                     <NavLink to="#" > My Account</NavLink>
                 </NavItem>
                 <NavItem>
+                    <NavLink to="/organization">Team Management</NavLink>
+                </NavItem>
+                <NavItem>
                         <NavLink to="login" >Login</NavLink>
                     </NavItem>
                     <NavItem>

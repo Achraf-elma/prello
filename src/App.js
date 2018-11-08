@@ -22,9 +22,11 @@ import BoardViewHandler from './Component/Board/BoardViewHandler';
 import LoginCard from './Component/Login/LoginCard';
 import SignupCard from './Component/Login/SignupCard';
 
+import OrgHome from './Component/Organization/OrgHome';
+
 //import ConnectedBoard from './Component/Board/ConnectedBoard';
-
-
+import OrganizationViewHandler from './Component/Organization/OrganizationViewHandler';
+//test
 class App extends Component {
   render() {
     return (
@@ -38,6 +40,7 @@ class App extends Component {
                 <Route path='/signup' component={SignupCard} />
                 <Route path='/board/:boardId' component={BoardViewHandler}/>               
                 <Route path='/home' component={Home}/>
+                <Route path='/organization' component={OrgHome}/>
               </div>
             </Router>
           </Provider>

@@ -12,6 +12,7 @@ import checkList from './reducer/checklist';
 import list from './reducer/list';
 import lists from './reducer/lists';
 import organization from './reducer/organization';
+import organizations from './reducer/organizations';
 import card from './reducer/card';
 import cards from './reducer/cards';
 import labels from './reducer/labels';
@@ -26,6 +27,7 @@ const store = createStore(
     checkList,
     board,
     organization,
+    organizations,
     card, 
     cards
   }),
