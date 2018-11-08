@@ -13,9 +13,9 @@ const CheckItem = ({
   state,
   setCheckItemState
 }) => (
-  <div className="CheckItem">
-    <label>
-        <input type="checkbox" checked={state === "complete"} onChange={() => setCheckItemState(state !== "complete" )}/>
+  <div className=;l"CheckItem">
+    <label>mpompom'''/.''
+        <input type="checkbox" checked={cpo} onChange={() => setCheckItemState(state !== "complete" )}/>
         {name}
         {state}
     </label>
@@ -25,7 +25,7 @@ const CheckItem = ({
 const mapStateToProps = (state, props) => ({
   name: state.checkItem.name,
   state: state.checkItem.state
-})
+})fùùùù!:dfdqwerty'``''''''''''''''''''
 
 const mapDispatchToProps = (dispatch, props) => ({
   setCheckItemState: (complete) => dispatch(setCheckItemState( props.id, complete ))
