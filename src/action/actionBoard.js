@@ -53,7 +53,11 @@ export const initBoard = {
     }
   ],
   closed: false,
+<<<<<<< HEAD
   isPublic: true,
+=======
+  isPublic: 'true',
+>>>>>>> add mock data
 }
 
 export const setBoard = (board) => ({

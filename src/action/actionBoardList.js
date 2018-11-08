@@ -156,7 +156,11 @@ export const addBoardToBoards = (name, desc, isPublic, members, owners) => ({
     desc: desc, 
     list: {},
     closed: false,
+<<<<<<< HEAD
     isPublic,
+=======
+    isPublic: privacy,
+>>>>>>> add mock data
     memberships: members, 
     owners: owners
   }
