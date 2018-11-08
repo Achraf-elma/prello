@@ -1,7 +1,7 @@
 // Modules
 import React from 'react';
 import { connect } from 'react-redux';
-import{Card , CardHeader, CardBody} from 'reactstrap';
+import{Card , CardHeader, CardBody, Badge} from 'reactstrap';
 
 // Components
 import CardSettings from './cardSettings';
@@ -43,13 +43,16 @@ class MyCard extends React.Component {
 
   render() {
     const{
-      card
+      card, 
+      labels
     } = this.props ;
     const closeBtn = <button className="close" onClick={this.toggle}>&times;</button>;
   return (
    <Card onClick={this.toggle.bind(this)} className="mycard" >
      <CardHeader className="mycard-header">
-       label
+     {this.props.labels.map((label) => (
+          <Badge  style={{color : '#fff', background : label.color }} pill>{label.name}</Badge>
+        ))}
      </CardHeader>
      <CardBody> {card.name}  <br/> {card.dueDate ?  "Due date : "  + formattedDate(card.dueDate) : ""}  </CardBody>
      <CardSettings id={card.id} toggleModal={this.toggle.bind(this)} modal={this.state.modal}/>
@@ -58,7 +61,8 @@ class MyCard extends React.Component {
   }
 }
 const mapStateToProps = (state, props) => ({
-  card: state.cards.find(card => card.id == props.id)
+  card: state.cards.find(card => card.id == props.id),
+  labels: state.labels.filter(label => label.idCard == props.id)
 })
 
 const mapDispatchToProps = (dispatch, props) => ({

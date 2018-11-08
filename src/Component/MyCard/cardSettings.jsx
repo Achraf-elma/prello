@@ -2,10 +2,13 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
+import{Card , CardHeader,  CardText, Badge, Popover, PopoverHeader, PopoverBody} from 'reactstrap';
 
 import { Modal, ModalHeader, ModalBody, ModalFooter, Container, Row, Col } from 'reactstrap';
 import { setCardName, setCardDesc, setCardDueDate, setCardClosed } from '../../action/actionCard';
 import InputText from '../Input/InputText';
+import { addLabelInCard } from '../../action/actionLabel';
+import LabelCreator from './../../Component/Creator/LabelCreator';
 
 function formattedDateMDY(dt) {
   let d = new Date(dt);
@@ -32,6 +35,7 @@ class CardSettings extends React.Component {
       ...props
     };
       this.delete = this.delete.bind(this);
+      this.togglePopover = this.togglePopover.bind(this);
   }
  
   setCardDueTime(id,value){
@@ -50,10 +54,23 @@ class CardSettings extends React.Component {
     this.props.dispatchSetCardClosed(this.props.card.id);
     this.props.toggleModal();
   }
+
+  togglePopover() {
+    this.setState({
+      popoverOpen: !this.state.popoverOpen
+    });
+  }
+
+  addingLabel(event){
+    this.props.dispatchAddLabelInCard(this.props.card.id,event);
+    this.togglePopover();
+  }
+
   render() {
     const {
       modal,
       card,
+      labels,
       dispatchSetCardName,
       dispatchSetCardDueDate,
       dispatchSetCardDesc,
@@ -109,6 +126,33 @@ class CardSettings extends React.Component {
                   />
               </Col>
             </Row>
+            <hr/>
+            <Row>
+              <Col className="labelField" xs="6">Label :</Col>
+              {labels.map((label) => (
+                 <Col >
+                  
+          <Badge  style={{color : '#fff', background : label.color }} pill>{label.name}</Badge>
+       
+                 </Col>
+              ))}
+            </Row>
+
+            <Row>
+              <Col className="labelField" xs="6">
+      <div>
+          <button  id= {"card" +card.id} onClick={this.togglePopover}>
+              <span className="fa fa-plus-circle"> Add Label</span>  
+          </button>
+          <Popover placement="left" isOpen={this.state.popoverOpen} target={`card${card.id}`} toggle={this.togglePopover}>
+            <PopoverHeader>Add Label</PopoverHeader>
+            <PopoverBody>
+              <LabelCreator closeToggle={this.togglePopover} handleSubmit={this.addingLabel.bind(this)} />
+            </PopoverBody>
+          </Popover>
+        </div>
+        </Col>
+            </Row>
           </Container>
           </ModalBody>
           <ModalFooter>
@@ -121,14 +165,20 @@ class CardSettings extends React.Component {
   }
 }
 const mapStateToProps = (state, props) => ({
-  card : state.cards.find(card => card.id == props.id)
+  card : state.cards.find(card => card.id == props.id),
+  labels: state.labels.filter(label => label.idCard == props.id)
 })
 
 const mapDispatchToProps = (dispatch, props) => ({
   dispatchSetCardName: (id,name) => dispatch(setCardName(id, name)),
   dispatchSetCardDesc: (id,desc) => dispatch(setCardDesc(id, desc)),
   dispatchSetCardDueDate: (id,date) => dispatch(setCardDueDate(id, date)),
-  dispatchSetCardClosed: (id) => dispatch(setCardClosed(id, true))
+  dispatchSetCardClosed: (id) => dispatch(setCardClosed(id, true)),
+  dispatchAddLabelInCard: (id, event) => {
+    event.preventDefault();
+    const data = new FormData(event.target);
+    dispatch(addLabelInCard( id, data.get('labelName'), data.get('color'))) 
+  }
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CardSettings); 
