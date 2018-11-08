@@ -9,11 +9,11 @@ export const initCheckItem = {
 }
 
 // Action type constants
-export const SET_CHECK_ITEM_STATE = "@@checkitem/SET_CHECK_ITEM_STATE"
+export const SET_CHECK_ITEM_COMPLETED = "@@checkitem/SET_CHECK_ITEM_COMPLETED"
 
 // Action builders
-export const setCheckItemState = (id, newCompleted) => ({
-  type: SET_CHECK_ITEM_STATE,
+export const setCheckItemCompleted = (id, newCompleted) => ({
+  type: SET_CHECK_ITEM_COMPLETED,
   payload:  {
     id,
     completed: newCompleted,
