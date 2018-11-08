@@ -78,7 +78,7 @@
     margin: 12px;
 }
 
-.delete:hover {
+.createBoardButton:hover, .delete:hover {
     color: white;
     background: #010a1d;
 }
