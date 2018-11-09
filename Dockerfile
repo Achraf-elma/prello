@@ -2,14 +2,13 @@ FROM alpine:3.1
 
 FROM node:8
 
-WORKDIR /opt/prello_front_opt1_grp2 
+WORKDIR /app/
 
-COPY package*.json ./
+COPY package*.json /app/
+
+COPY . /app/
 
 RUN npm install
-
-
-COPY . /opt/prello_front_opt1_grp2/
 
 EXPOSE 3000
 
