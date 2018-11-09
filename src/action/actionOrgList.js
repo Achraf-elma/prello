@@ -55,7 +55,26 @@ export const initOrganizations = {
                 "memberType": "normal",
                 "unconfirmed": false
               }] //id, idMember, memberType : "admin" | "normal", unconfirmed (boolean = false if accepted, true if invitation pending)
-    }
+    },{
+      id : 'fghij',
+      name: 'mysecondteam',
+      desc: null,
+      descData: null,
+      website: null,
+      boards : [
+          {}
+      ],
+      invited : false,
+      invitations : [],
+      displayName: 'My Second Team',
+      memberships: [    {
+          "id": "538627f73cbb44d1bfbb58f1",
+          "idMember": "4d5eb12cd76aa113600000c9",
+          "email": "prello1@gmail.com,",
+          "memberType": "admin",
+          "unconfirmed": false
+        }]
+      }
     ]
 }
 

@@ -7,8 +7,14 @@ export const initOrganization = {
     desc: null,
     descData: null,
     website: null,
-    boards : [
-        {}
+    boards : [  {
+        "id" : "abcde",
+        "name": "CAAAACAAAAA",
+        "description" : "no description",
+        "closed": false,
+        "isPublic": true,    
+    
+    }
     ],
     invited : false,
     invitations : [],
@@ -51,6 +57,7 @@ export const initOrganization = {
     }
 
 // Action type constants
+export const SET_TEAM = "@@organization/SET_TEAM"
 export const SET_TEAM_NAME = "@@organization/SET_TEAM_NAME"
 export const SET_TEAM_DISPLAY_NAME = "@@organization/SET_TEAM_DISPLAY_NAME"
 export const SET_TEAM_DESC = "@@organization/SET_TEAM_DESC"
@@ -64,6 +71,12 @@ export const DELETE_TEAM_MEMBER = "@@organization/DELETE_TEAM_MEMBER"
 export const SET_TEAM_MEMBER_TYPE = "@@organization/SET_TEAM_MEMBER_TYPE"
 
 // Action Builders
+
+export const setTeam = (organization) => ({
+    type: SET_TEAM,
+    payload: organization
+  })
+
 export const setTeamName = (id, newName) => ({
     type: SET_TEAM_NAME,
     payload: {

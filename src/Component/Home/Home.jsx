@@ -20,7 +20,7 @@ import BoardList from '../BoardList/BoardList';
 //import TeamList from './../../Component/TeamList';
 //import BoardForm from './../../Component/BoardForm';
 //import TeamForm from './../../Component/TeamForm';
-
+import BoardCard from './BoardCard'
 // Styles
 import '../../style/home.css';
 
@@ -85,28 +85,7 @@ class Home extends React.Component{
 <Container className="boardlist">
 <Row>
 {privateBoards.map((board) => (
-    <Col>
-    <Card key={board.id} className="myboard">
-    <CardHeader>
-    <CardTitle>{board.name}</CardTitle>
-    <CardSubtitle>Description</CardSubtitle>
-    </CardHeader>
-    <CardBody>
-    <p>{board.description}</p>
-    <ul>
-    <li> {board.nbCardsDue} Cards due </li>
-    <li> {board.nbCardsDone} Cards done </li>
-    <li> {board.nbCardsExpired} Cards expired </li>
-    </ul>
-    </CardBody> 
-    <ButtonGroup className="buttons">
-    <Link to={`/board/${board.id}`} activeClassName="active">
-    <button className="buttonCustom">View</button>
-    </Link>
-        <button className="delete" onClick ={() => dispatchCloseBoardFromBoards(board.id, true)} >Delete</button>
-    </ButtonGroup>
-    </Card>
-    </Col>
+    <BoardCard key={board.boardId} closeBoard = {dispatchCloseBoardFromBoards} board = {board}/>
 ))}
 </Row>
 </Container>

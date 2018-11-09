@@ -4,15 +4,21 @@ import {connect} from 'react-redux';
 import { Container, Row, Col , Button, ButtonGroup} from 'reactstrap';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
+// Action builder
+import { setTeam } from '../../action/actionOrganization';
+
 // Components
 
 import Board from '../Board/Board';
 
+// Requests
+import {fetchOrganization, fetchOrganizationBoards, fetchOrganizationMembers} from '../../request/organization'
+
 // Styles
 import '../../style/organization.css';
+
 import Organization from './Organization';
 import OrgSettings from './OrgSettingsView';
-
 import OrgMembers from './OrgMembersView';
 
 
@@ -21,10 +27,19 @@ class OrganizationViewHandler extends React.Component{
     constructor(props) {
       super(props);
       this.state = {
-        ViewChosen : 'Boards'
+        ViewChosen : 'Boards',
+        organizationId: this.props.match.params.organizationId
       }
       this.setViewChosen = this.setViewChosen.bind(this)
     }
+
+    componentDidMount() {
+        fetchOrganization(this.state.organizationId)
+          .then(organization => {
+            this.props.dispatchSetTeam(organization)
+           })
+          .catch(err => console.error(err));
+        }
 
     setViewChosen = (ViewChosen) =>  {
       this.setState({
@@ -36,21 +51,19 @@ class OrganizationViewHandler extends React.Component{
         switch(ViewChosen) {
           case 'Boards':
             return <Organization/>;
-          case 'Calendar':
-            return <Organization/>;//To change when calendar more advanced
           case 'Settings':
             return <OrgSettings/>;
           case 'Members':
             return <OrgMembers/>;
           default:
-            return <Organization/>;
+            return <OrgMembers/>;
         }
       }
       
 
 
     render() { 
-      const { viewChosen = 'Boards', displayName} = this.props
+      const { displayName} = this.props
       
     return (
         <div>
@@ -64,7 +77,6 @@ class OrganizationViewHandler extends React.Component{
                     <div className="viewSelection">
                         <div className="col">
                             <Button color="primary" onClick={() => this.setViewChosen('Boards')} active={this.state.ViewChosen !== 'Boards'}>Boards</Button>
-                            <Button color="primary" onClick={() => this.setViewChosen('Calendar')} active={this.state.ViewChosen !== 'Calendar'}>Calendar</Button>
                             <Button color="primary" onClick={() => this.setViewChosen('Members')} active={this.state.ViewChosen !== 'Members'}>Members</Button>
                             <Button color="primary" onClick={() => this.setViewChosen('Settings')} active={this.state.ViewChosen !== 'Settings'}>Settings</Button>
                         </div>
@@ -86,7 +98,7 @@ const mapStateToProps = ( state, props ) => ({
 })
 
 const mapDispatchToProps = (dispatch, props) => ({
-
+    dispatchSetTeam : (organization) => dispatch(setTeam(organization))
 });
 
 // Export connected Components

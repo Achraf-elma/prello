@@ -41,6 +41,7 @@ class App extends Component {
                 <Route path='/board/:boardId' component={BoardViewHandler}/>               
                 <Route path='/home' component={Home}/>
                 <Route path='/organization' component={OrgHome}/>
+                <Route path='/organization/:organizationId' component={OrganizationViewHandler}/>
               </div>
             </Router>
           </Provider>

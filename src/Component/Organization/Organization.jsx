@@ -1,6 +1,8 @@
 // Modules
 import React from 'react';
 import { connect } from 'react-redux';
+import { Card, CardBody, CardTitle, CardSubtitle, ButtonGroup, Button, Row, Col, Container} from 'reactstrap';
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 
 // Action builder
 import { addNewBoardId, removeBoardId } from '../../action/actionOrganization';
@@ -8,14 +10,23 @@ import { addNewBoardId, removeBoardId } from '../../action/actionOrganization';
 // Components
 //import  from './'
 
+import BoardCard from '../Home/BoardCard'
+import '../../style/home.css';
 
 const Organization = ({
   displayName,
-  boards
+  boards,
+  dispatchRemoveBoardId
 }) => (
   <div className="Organization">
-    <h1>{displayName}</h1>
-    
+    <Container>
+      <Row>
+        {boards.map((board) => (
+          <BoardCard key={board.boardId} closeBoard = {dispatchRemoveBoardId} board = {board}/>
+))}
+  ))}
+      </Row>
+  </Container>
   </div>
 );
 
