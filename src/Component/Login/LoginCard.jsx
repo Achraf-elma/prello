@@ -8,7 +8,8 @@ import "../../style/login&signup.css";
 
 // http
 import { GOOGLE_CLIENT } from '../../config.json';
-import { logIn } from '../../request/login';
+import { logIn, googleLogin } from '../../request/login';
+import { ErrorLogin, ErrorUncomplete } from '../../request/requestErrors';
 
 const TEXT_INPUT_MAX_LENGTH = 150;
 
@@ -26,7 +27,19 @@ class LoginCard extends React.Component {
     const cleanId = id && id.replace(/(^\s*)|(\s*$)/g, "");
 
     if (cleanPassword && cleanId) {
-      logIn(id, password);
+      logIn(id, password)
+      .then(ok => this.props.history.push('/home'))
+      .catch(error => error instanceof ErrorLogin ? this.setState({ error: "Credentials don't match" }) : Promise.reject(error))
+      .catch(error => {
+        if (error instanceof ErrorUncomplete) {
+          this.passwordInput.current.value = cleanPassword;
+          this.idInput.current.value = cleanId;
+          return this.setState({ error: "All fields are required" })
+        } else {
+          return Promise.reject(error);
+        }
+      })
+      .catch(error => console.error(error))
     } else {
       this.passwordInput.current.value = cleanPassword;
       this.idInput.current.value = cleanId;
@@ -35,11 +48,13 @@ class LoginCard extends React.Component {
   }
 
   onGoogleSuccessHandler = (response) => {
-    //JWT = response.hg.id_token
+    googleLogin(response)
+    .then(ok => this.props.history.push('/home'))
   }
 
   onGoogleFailureHandler = (response) => {
-  
+    console.error(JSON.stringify(response, null, 2));
+    this.setState({ error: "Google auth failed" });
   }
 
   render(){

@@ -10,6 +10,7 @@ import "../../style/login&signup.css";
 // http
 import { GOOGLE_CLIENT } from '../../config.json';
 import { signUp, googleLogin } from '../../request/login';
+import { ErrorLogin, ErrorUncomplete } from '../../request/requestErrors';
 
 const TEXT_INPUT_MAX_LENGTH = 150
 
@@ -34,7 +35,19 @@ class SignupCard extends React.Component {
     if( cleanPassword1 && cleanPassword2 && cleanEmail && cleanFullName){
       if( cleanPassword1 === cleanPassword2 ){
         signUp(fullName, email, cleanPassword1)
-        .then(ok => this.props.history.push('/home'));
+        .then(ok => this.props.history.push('/home'))
+        .catch(error => error instanceof ErrorLogin ? this.setState({ error: "Email already used" }) : Promise.reject(error))
+        .catch(error => {
+          if( error instanceof ErrorUncomplete ){
+            this.passwordInput1.current.value = "";
+            this.passwordInput2.current.value = "";
+            this.emailInput.current.value = cleanEmail;
+            return this.setState({ error: "Password fields doesn't match" });
+          } else {
+            return Promise.reject(error);
+          }
+        })
+        .catch(error => console.error(error))
       } else {
         this.passwordInput1.current.value = "";
         this.passwordInput2.current.value = "";
@@ -58,6 +71,7 @@ class SignupCard extends React.Component {
 
   onGoogleFailureHandler = (response) => {
     console.error( JSON.stringify( response, null, 2 ));
+    this.setState({error: "Google auth failed"});
   }
 
   render() {

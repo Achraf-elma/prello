@@ -1,6 +1,8 @@
 import axios from 'axios';
 import client from './client';
 
+import {ErrorForbidden, ErrorLogin, ErrorNotFound, ErrorUncomplete} from './requestErrors';
+
 // Errors
 const NO_TOKEN = "NO TOKEN";
 
@@ -21,6 +23,8 @@ export const logIn = (id, password) => (
     // Its error isn't important
     // Client.post error will waterfall out of this function
   ))
+  .catch(error => Promise.reject(error.response && error.response.status === 400 ? new ErrorUncomplete(error.response.data) : error))
+  .catch(error => Promise.reject(error.response && error.response.status === 401 ? new ErrorLogin(error.response.data) : error))
 );
   
   /**
@@ -63,6 +67,8 @@ export const signUp = (fullName, email, password) => (
     // Its error isn't important
     // Client.post error will waterfall out of this function
   ))
+  .catch(error => Promise.reject(error.response && error.response.status === 400 ? new ErrorUncomplete(error.response.data) : error))
+  .catch(error => Promise.reject(error.response && error.response.status === 401 ? new ErrorLogin(error.response.data) : error))
 )
 
 /**
