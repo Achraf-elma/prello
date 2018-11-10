@@ -3,7 +3,7 @@ FROM alpine:3.1
 FROM node:8
 
 
-COPY package.json /src/package.json
+COPY package*.json /src/
 
 RUN cd src; npm install
 
