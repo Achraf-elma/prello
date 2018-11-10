@@ -1,12 +1,13 @@
+FROM alpine:3.1
+
 FROM node:8
 
-WORKDIR /app
 
-COPY package*.json ./
+COPY package.json /src/package.json
 
-RUN npm install
+RUN cd src; npm install
 
-COPY . ./
+COPY . /src
 
 EXPOSE 8080
 
