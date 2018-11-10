@@ -1,5 +1,5 @@
 {
-  "API_HOST": "https://prello-api-opt1-g2.igpolytech.fr/api",  
+  "API_HOST": "https://prello-api-opt1-g2.igpolytech.fr",  
   "GOOGLE_CLIENT":"753306487494-adgb7k7uikmtfgbkgdaofg28fm9geg3n.apps.googleusercontent.com",
   "TIMEOUT": 2500
 }
