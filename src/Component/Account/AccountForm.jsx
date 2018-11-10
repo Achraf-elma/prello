@@ -90,13 +90,13 @@ class AccountForm extends React.Component{
             )}
             <input className="account-form-submit" type="submit" value="save" />
           </form>
-          {!user.google && (<GoogleLogin
+          <GoogleLogin
             className="login-google"
             clientId={GOOGLE_CLIENT}
-            buttonText='Login with google'
+            buttonText='Link to my google account'
             onSuccess={this.onGoogleSuccessHandler}
             onFailure={this.onGoogleFailureHandler}
-          />)}
+          />
         </CardBody>
       </Card>
     );

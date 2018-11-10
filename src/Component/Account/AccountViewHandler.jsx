@@ -34,20 +34,17 @@ class AccountViewHandler extends React.Component {
     );
   }
   componentDidMount() {
-    // console.warn("AUTHENTICATION NOT REQUIRED");
-    // this.setState({ user: { preferences: { scheduleHour: 12}}});
-    let idMember = this.props.match.params.idMember;
     Promise.all([
-      fetchUser(idMember),
+      fetchUser(null ),
       fetchActionTypes(),
     ])
-    .then(([user, actions]) => this.setState({ user: {...user, preferences:{}}, actions }))
+    .then(([user, actions]) => this.setState({ user, actions }))
     .catch(this.handleError)
     .catch(error => console.error(error));
   }
 
   handleSubmitFullName = (fullName) => (
-    saveUserCredentials({
+    saveUserCredentials( null , {
       fullName
     })
     .then( user => "Saved")
@@ -55,7 +52,7 @@ class AccountViewHandler extends React.Component {
     .catch(error => console.error(error) || "Something went wrong" )
   );
   handleSubmitPassword = (password) => (
-    saveUserCredentials({
+    saveUserCredentials( null , {
       password
     })
       .then(user => "Saved")
@@ -63,7 +60,7 @@ class AccountViewHandler extends React.Component {
       .catch(error => console.error(error) ||  "Something went wrong")
   );
   handleSubmitSchedule = (hour) => (
-    saveUserPreferences({
+    saveUserPreferences(null , {
       scheduleHour: hour
     })
       .then(user => "Saved")
@@ -71,7 +68,7 @@ class AccountViewHandler extends React.Component {
       .catch(error => console.error(error) ||  "Something went wrong")
   );
   handleSubmitNotif = () => (
-    saveUserPreferences(this.state.user.preferences)
+    saveUserPreferences(null , this.state.user.preferences)
       .then(user => "Saved")
       .catch(this.handleError)
       .catch(error => console.error(error) || "Something went wrong")

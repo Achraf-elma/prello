@@ -1,2 +1,6 @@
+import client from './client';
 
-export const fetchActionTypes = () => Promise.resolve([]);
+export const fetchActionTypes = () => (
+  client.get("/actions/types")
+  .then(response => response.data)
+);

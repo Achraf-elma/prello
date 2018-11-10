@@ -16,7 +16,7 @@ const NO_TOKEN = "NO TOKEN";
 export const logIn = (id, password) => (
   client.post("/oauth", { id, password })
   .then(response => (
-    client.setJWT(response.data.accessToken) &&
+    client.setCredentials(response.data) &&
     // Store the token on the front server cookies
     axios.post("/login", response.data)
     .catch( error => console.error( error ))
@@ -36,7 +36,7 @@ export const googleLogin = (googleResponse) => (
   client
   .setJWT(googleResponse.tokenId)
   .post("/oauth/google")
-  .then( response => client.setJWT(response.data.accessToken))
+  .then( response => client.setCredentials(response.data))
   .then( client => client.get("/oauth"))
   .then( response => console.log(response.data))
   // Where should we manage those errors ?
@@ -60,7 +60,7 @@ export const logOut = () => {
 export const signUp = (fullName, email, password) => (
   client.put("/oauth", {fullName, email, password})
   .then( response => (
-    client.setJWT(response.data.accessToken) &&
+    client.setCredentials(response.data) &&
     // Store the token on the front server cookies
     axios.post("/login", response.data)
     .catch(error => console.error(error))
@@ -82,7 +82,7 @@ export const whoAmI = () => (
   // !! Those data are not to be trusted !!
   .catch( error => error === NO_TOKEN ? (
     axios.get("/login")
-    .then( response => client.setJWT(response.data.accessToken))
+    .then( response => client.setCredentials(response.data))
   ) : Promise.reject(error))
   // Once the token exists, fetch log data on api
   .then( client  => client.get("/oauth"))
@@ -90,6 +90,5 @@ export const whoAmI = () => (
   // On 401, the user isn't logged, remove his JWT;
   .catch( error => error.response && error.response.status === 401 ? client.removeJWT() && null : Promise.reject(error))
 );
-
 
 export const googleLink = () => Promise.resolve();

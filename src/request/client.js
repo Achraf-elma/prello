@@ -51,6 +51,12 @@ client.removeJWT = () => {
  * 
  */
 client.getCredentials = () => {
+  return client.credentials;
+}
+
+client.removeCredentials = () => {
+  client.credentials = null;
+  client.removeJWT();
   return client;
 }
 
@@ -58,6 +64,9 @@ client.getCredentials = () => {
  * 
  */
 client.setCredentials = (credentials) => {
+  client.setJWT(credentials.accessToken);
+  client.credentials = credentials;
+  client.me = credentials.idUser;
   return client;
 }
 
