@@ -8,7 +8,7 @@ RUN npm install
 
 COPY . ./
 
-EXPOSE 80
+EXPOSE 8080
 
 #RUN docker compose up
 #RUN docker compose run
