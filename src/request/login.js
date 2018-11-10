@@ -1,7 +1,7 @@
 import axios from 'axios';
 import client from './client';
 
-import {ErrorForbidden, ErrorLogin, ErrorNotFound, ErrorUncomplete} from './requestErrors';
+import {ErrorLogin, ErrorUncomplete} from './requestErrors';
 
 // Errors
 const NO_TOKEN = "NO TOKEN";
@@ -90,3 +90,6 @@ export const whoAmI = () => (
   // On 401, the user isn't logged, remove his JWT;
   .catch( error => error.response && error.response.status === 401 ? client.removeJWT() && null : Promise.reject(error))
 );
+
+
+export const googleLink = () => Promise.resolve();

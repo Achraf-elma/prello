@@ -1,7 +1,7 @@
 // Modules
 import React from 'react';
 import GoogleLogin from 'react-google-login';
-import{Card , CardHeader, CardBody, CardTitle, Button, CardText} from 'reactstrap';
+import{Card , CardHeader, CardBody } from 'reactstrap';
 
 // css
 import "../../style/login&signup.css";

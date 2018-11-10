@@ -34,6 +34,23 @@
   margin-left:20px;
 }
 
+.background {
+  /* = background image div */ 
+  content: "";
+  top:0;
+  left: 0;
+  right: 0;
+  z-index: -1;
+  background-image: url("./assets/blueswag.jpeg"); 
+  height:100%; 
+  /* Center and scale the image nicely */
+  background-size:cover ;
+  background-repeat: no-repeat;
+  position: fixed;
+  background-attachment: scroll;
+  -webkit-filter: blur(2px) grayscale(0.45) hue-rotate(10deg);
+}
+
 /**
 .list {
     height: 80%;

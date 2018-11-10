@@ -22,21 +22,20 @@ render() {
             <Navbar light expand="md">
             <Link to="/"> <img src="./assets/logo1.png"/></Link>
             <Nav className="ml-auto" navbar>
-            
                 <NavItem>
                         <NavLink  to="/home">Boards</NavLink>
                 </NavItem>
                 <NavItem>
-                    <NavLink to="#" > My Account</NavLink>
+                    <NavLink to="/members/me" > My Account</NavLink>
                 </NavItem>
                 <NavItem>
                     <NavLink to="/organization">Team Management</NavLink>
                 </NavItem>
                 <NavItem>
-                        <NavLink to="login" >Login</NavLink>
+                        <NavLink to="/login" >Login</NavLink>
                     </NavItem>
                     <NavItem>
-                    <NavLink to="signup" >Signup</NavLink>
+                    <NavLink to="/signup" >Signup</NavLink>
                 </NavItem>
             </Nav>
             </Navbar>

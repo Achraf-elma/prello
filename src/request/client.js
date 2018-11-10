@@ -10,6 +10,7 @@ import { API_HOST, TIMEOUT} from '../config.json';
 const client = axios.create({
   baseURL: API_HOST,
   timeout: TIMEOUT,
+  maxRedirects:1,
 })
 
 

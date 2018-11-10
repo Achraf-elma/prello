@@ -5,4 +5,4 @@ export class ErrorNotFound extends Error {};
 
 // Test Error matching
 
-const errorMatch = (error, errorType) => error instanceof errorType ;
+// const errorMatch = (error, errorType) => error instanceof errorType ;

@@ -1,17 +1,14 @@
 // Modules
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 // Style
 import './style/App.css';
-
-
 
 // Store
 import store from './store';
 
 // Components
-import WIP from './Component/WIP';
 
 import NavBar from './Component/NavBar/NavBar';
 import Homepage from './Component/Homepage/Homepage';
@@ -23,9 +20,9 @@ import LoginCard from './Component/Login/LoginCard';
 import SignupCard from './Component/Login/SignupCard';
 
 import OrgHome from './Component/Organization/OrgHome';
-
-//import ConnectedBoard from './Component/Board/ConnectedBoard';
 import OrganizationViewHandler from './Component/Organization/OrganizationViewHandler';
+import AccountViewHandler from './Component/Account/AccountViewHandler';
+
 //test
 class App extends Component {
   render() {
@@ -42,6 +39,7 @@ class App extends Component {
                 <Route path='/home' component={Home}/>
                 <Route path='/organization' component={OrgHome}/>
                 <Route path='/organization/:organizationId' component={OrganizationViewHandler}/>
+                <Route path='/members/:idMember' component={AccountViewHandler} />
               </div>
             </Router>
           </Provider>
