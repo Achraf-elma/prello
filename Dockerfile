@@ -1,16 +1,14 @@
-FROM alpine:3.1
-
 FROM node:8
 
-WORKDIR /app/
+WORKDIR /app
 
-COPY package*.json /app/
-
-COPY . /app/
+COPY package*.json ./
 
 RUN npm install
 
-EXPOSE 3000
+COPY . ./
+
+EXPOSE 80
 
 #RUN docker compose up
 #RUN docker compose run
