@@ -1,12 +1,12 @@
 // Modules
 import React from 'react';
 import { connect } from 'react-redux';
-import { Container, Row, Col , Button, ButtonGroup, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
 import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 // Action builder
-import { setTeamName, setTeamDisplayName, setTeamDesc, setTeamWebsite } from '../../action/actionOrganization';
+import { setTeamDisplayName, setTeamDesc, setTeamWebsite } from '../../action/actionOrganization';
 
 
 // Styles

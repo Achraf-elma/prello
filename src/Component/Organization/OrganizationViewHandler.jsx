@@ -1,18 +1,13 @@
 // Modules
 import React from 'react';
 import {connect} from 'react-redux';
-import { Container, Row, Col , Button, ButtonGroup} from 'reactstrap';
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import { Button } from 'reactstrap';
 
 // Action builder
 import { setTeam } from '../../action/actionOrganization';
 
-// Components
-
-import Board from '../Board/Board';
-
 // Requests
-import {fetchOrganization, fetchOrganizationBoards, fetchOrganizationMembers} from '../../request/organization'
+import {fetchOrganization} from '../../request/organization'
 
 // Styles
 import '../../style/organization.css';

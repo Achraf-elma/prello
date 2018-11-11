@@ -1,8 +1,8 @@
 // Modules
-import { combineReducers } from 'redux';
+// import { combineReducers } from 'redux';
 
 // Action types
-import {initOrganizations, SELECT_ORGANIZATION, ADD_ORGANIZATION_TO_ORGANIZATIONS } from '../action/actionOrgList';
+import {initOrganizations, ADD_ORGANIZATION_TO_ORGANIZATIONS } from '../action/actionOrgList';
 
 
 export default ( state = initOrganizations.organizations, action) => {

@@ -66,7 +66,7 @@ class BoardViewHandler extends React.Component{
         <div className="container">
           <div className="row board-info">
             <div className="col">
-              <h1 className="board-title"><i className="fa fa-tasks"></i> {board.id} {board.name}</h1>
+              <h1 className="board-title"><i className="fa fa-tasks"></i>{board.name}</h1>
             </div>
             <div className="col">
               <Button color="primary" onClick={() => this.setViewChoosen(!this.state.isBoardViewChoosen)} active={this.state.isBoardViewChoosen}>Calendar View</Button>
@@ -81,7 +81,7 @@ class BoardViewHandler extends React.Component{
 }
 
 const mapStateToProps = ( state, props ) => ({
-  board : state.boards.find(board => board.id == props.match.params.boardId)
+  board: state.board
 })
 
 const mapDispatchToProps = (dispatch, props) => ({

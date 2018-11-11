@@ -1,8 +1,7 @@
 // Modules
 import React from 'react';
 import { connect } from 'react-redux';
-import { Card, CardBody, CardTitle, CardSubtitle, ButtonGroup, Button, Row, Col, Container} from 'reactstrap';
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import { Container} from 'reactstrap';
 
 // Action builder
 import { addNewBoardId, removeBoardId } from '../../action/actionOrganization';
@@ -10,7 +9,7 @@ import { addNewBoardId, removeBoardId } from '../../action/actionOrganization';
 // Components
 //import  from './'
 
-import BoardCard from '../Home/BoardCard'
+import BoardList from '../BoardList/BoardList';
 import '../../style/home.css';
 
 const Organization = ({
@@ -19,13 +18,11 @@ const Organization = ({
   dispatchRemoveBoardId
 }) => (
   <div className="Organization">
-    <Container>
-      <Row>
-        {boards.map((board) => (
-          <BoardCard key={board.boardId} closeBoard = {dispatchRemoveBoardId} board = {board}/>
-))}
-  ))}
-      </Row>
+  <Container>
+    <BoardList
+    boardListTitle="Organization boards"
+    boardFilter={(a) => a}
+    />
   </Container>
   </div>
 );
@@ -36,7 +33,6 @@ const mapStateToProps = (state, props) => ({
 })
 
 const mapDispatchToProps = (dispatch, props) => ({
-
   dispatchAddNewBoardId: (boardId) => dispatch(addNewBoardId(props.id, boardId)),
   dispatchRemoveBoardId: (boardId) => dispatch(removeBoardId(props.id, boardId)),
 })

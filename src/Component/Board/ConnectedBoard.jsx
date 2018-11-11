@@ -1,42 +1,20 @@
 // Modules
 import React from 'react';
+import {Provider} from 'react-redux';
+
+// Board
+import BoardToConnect from './BoardViewHandler';
+
 // Store
-import store from './store';
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import boardStore from '../../boardStore';
 
 // Socket
-import { socket, socketConnect, socketDispatch } from '../../socket';
-
-// Reducers 
-import board from '../../reducer/board';
-import checkItem from '../../reducer/checkItem';
-import checkList from '../../reducer/checklist';
-import list from '../../reducer/list';
-import lists from '../../reducer/lists';
-import organization from '../../reducer/organization';
-import card from '../../reducer/card';
-
-const store = createStore(
-  combineReducers({
-    lists,
-    list,
-    checkItem,
-    checkList,
-    board,
-    organization,
-    card
-  }),
-  applyMiddleware(socketDispatch)
-  // , require('./bootstrap.json');
-);
-
-
+import { socket, socketConnect } from '../../request/socket';
 
 class ConnectedBoard extends React.Component {
   componentDidMount() {
     let socket = socketConnect();
-    socket.on("dispatch", (action) => store.dispatch(action));
+    socket.on("dispatch", (action) => boardStore.dispatch(action));
   }
 
   componentWillUnmount() {
@@ -45,8 +23,8 @@ class ConnectedBoard extends React.Component {
 
   render(){
     return (
-      <Provider store={store}>
-        <Board {...this.props} />
+      <Provider store={boardStore}>
+        <BoardToConnect {...this.props} />
       </Provider>
     );
   }

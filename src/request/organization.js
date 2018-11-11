@@ -1,7 +1,7 @@
 // Modules
 import client from './client';
  
-import {ErrorForbidden, ErrorNotFound} from './requestErrors.js';
+import {} from './requestErrors.js';
 
 export const fetchOrganization = (idOrganization) =>  {
   return client.get(`/api/organization/${idOrganization}`)

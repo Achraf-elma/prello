@@ -1,39 +1,36 @@
-/* eslint react/no-multi-comp: 0, react/prop-types: 0 */
-
+// Modules
 import React from 'react';
 import { connect } from 'react-redux';
-import{Card , CardHeader,  CardBody, CardText, ListGroupItem, ListGroup, Badge, Popover, PopoverHeader, PopoverBody} from 'reactstrap';
+import {
+  ListGroupItem, ListGroup, Badge,
+  Col, Row, Container,
+  Modal, ModalHeader, ModalBody, ModalFooter,
+  Popover, PopoverHeader, PopoverBody
+} from 'reactstrap';
 
-import { Modal, ModalHeader, ModalBody, ModalFooter, Container, Row, Col } from 'reactstrap';
-import { setCardName, setCardDesc, setCardDueDate, setCardClosed } from '../../action/actionCard';
-import InputText from '../Input/InputText';
-import { addLabelToCard } from '../../action/actionLabel';
-import { addCommentToCard } from '../../action/actionComment';
+// Components
+import InputText from '../../Input/InputText';
+import AddLabel from './AddLabel';
+import CommentCreator from '../CommentCreator';
 
-import CommentCreator from './../../Component/Creator/CommentCreator';
-
-
+// Actions
+import { setCardName, setCardDesc, setCardDueDate, setCardClosed } from '../../../action/actionCard';
+import { addLabelToCard } from '../../../action/actionLabel';
+import { addCommentToCard } from '../../../action/actionComment';
 
 // Style
-import '../../style/cardsettings.css';
-import AddLabel from './addLabel';
+import '../../../style/cardsettings.css';
 
 function formattedDateMDY(dt) {
   let d = new Date(dt);
- let month = String(d.getMonth() + 1);
- let day = String(d.getDate());
- const year = String(d.getFullYear());
+  let month = String(d.getMonth() + 1);
+  let day = String(d.getDate());
+  const year = String(d.getFullYear());
 
- if (month.length < 2) month = '0' + month;
- if (day.length < 2) day = '0' + day;
+  if (month.length < 2) month = '0' + month;
+  if (day.length < 2) day = '0' + day;
 
- return `${year}-${month}-${day}`;
-}
-
-function formattedTime(dt) {
-  let d = new Date(dt);
- const time = String(d.getTime());
- return time;
+  return `${year}-${month}-${day}`;
 }
 
 class CardSettings extends React.Component {
@@ -75,15 +72,12 @@ class CardSettings extends React.Component {
 
   render() {
     const {
-      modal,
       card,
       labels,
       comments,
       dispatchSetCardName,
       dispatchSetCardDueDate,
       dispatchSetCardDesc,
-      dispatchAddCommentInCard,
-      dispatchSetCardClosed,
       toggleModal
     } = this.props
     const closeBtn = <button className="close" onClick={toggleModal}>&times;</button>;
@@ -217,9 +211,9 @@ class CardSettings extends React.Component {
   }
 }
 const mapStateToProps = (state, props) => ({
-  card : state.cards.find(card => card.id == props.id),
-  labels: state.labels.filter(label => label.idCard == props.id),
-  comments: state.comments.filter(comment => comment.idCard ==props.id)
+  card : state.cards.find(card => card.id === props.id),
+  labels: state.labels.filter(label => label.idCard === props.id),
+  comments: state.comments.filter(comment => comment.idCard === props.id)
 })
 
 const mapDispatchToProps = (dispatch, props) => ({

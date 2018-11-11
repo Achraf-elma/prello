@@ -1,6 +1,4 @@
 // Modules
-import uuidv4 from "uuidv4";
-
 
 // default state
 export const initCard = {

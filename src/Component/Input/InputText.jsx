@@ -24,14 +24,14 @@ export default class InputText extends React.Component {
   * if the user hit escape, the input is reset
   */
   handleOnBlur = (event, input) => {
-    if(this.props.value != input.value){
+    if(this.props.value !== input.value){
       this.props.onChange(input.value);
     }
   }
 
   handleOnToggle = (event, input) => {
-  if(this.props.toggle == true){
-      if(this.props.value != input.value){
+  if(this.props.toggle === true){
+      if(this.props.value !== input.value){
         this.props.onChange(input.value);
       }
     }
@@ -55,7 +55,6 @@ export default class InputText extends React.Component {
       style,
       placeHolder,
       value,
-      toggle,
       disabled,
       required,
     } = this.props;

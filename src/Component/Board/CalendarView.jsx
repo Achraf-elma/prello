@@ -9,7 +9,7 @@ import "react-big-calendar/lib/addons/dragAndDrop/styles.css";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 //import logo from "./logo.svg";   <img src={logo} className="App-logo" alt="logo" />
 import { setCardDueDate } from '../../action/actionCard';
-import CardSettings from '../MyCard/cardSettings'
+import CardSettings from './MyCard/CardSettings'
 
 const localizer = Calendar.momentLocalizer(moment);
 
@@ -74,12 +74,10 @@ toggle(id) {
   }
 
   render() {
-    const { events, setCardDueDate} = this.props
     return (
       <div className="calendar">
         <header className="calendar-header">
-        <i className="fa fa-calendar"></i>   Calendar View of yours cards
-       
+          <i className="fa fa-calendar"></i>   Calendar View of yours cards
         </header>
       
         <DnDCalendar
@@ -94,39 +92,35 @@ toggle(id) {
           selectable
           style={{ height: "100vh" }}
         />
-
-  {this.state.modal ?
-    <CardSettings id={this.state.selectedEventID} toggleModal={this.toggle.bind(this)} modal={this.state.modal}/>
-      : ""
-  }
+      {this.state.modal &&
+        <CardSettings id={this.state.selectedEventID} toggleModal={this.toggle.bind(this)} modal={this.state.modal}/>
+      }
       </div>
-
-
     );
   }
 }
 const mapStateToProps = ( state, props ) => ({
-  events : state.cards.filter(card => card.closed != true).map(function(obj) {
-      return {
-          id : obj.id,
-          title: obj.name,
-          start: obj.dueDate,
-          end: obj.dueDate,
-          allDay: true,
-          closed : obj.closed
-      }
-  
-})
-
-
-})
+  events : state.cards.filter(card => card.closed !== true).map( card => ({
+    id : card.id,
+    title: card.name,
+    start: card.dueDate,
+    end: card.dueDate,
+    allDay: true,
+    closed : card.closed
+  }))
+});
 
 const mapDispatchToProps = (dispatch, props) => ({
-  setCardDueDate: (id, end) =>{
-    dispatch(setCardDueDate(id, end))
-  }
+  setCardDueDate: (id, end) => dispatch(setCardDueDate(id, end))
 });
 
 
 // Export connected Components
-export default connect(mapStateToProps, mapDispatchToProps)(CalendarView); 
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+  null,
+  {
+    mapStateToProps:'deepEqual'
+  }
+)(CalendarView); 

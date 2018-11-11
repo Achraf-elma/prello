@@ -4,9 +4,7 @@ import React from 'react';
 // Components
 import InputText from '../Input/InputText';
 
-const ListCreator = ({
-  addList
-}) => (
+const ListCreator = ({ addList }) => (
   <span className="ListCreator">
     <InputText
      className="addNewList"

@@ -53,14 +53,16 @@ class AccountNotif extends React.Component{
             <input className="account-form-submit" type="submit" value="save" />
           </form>
           <form className="account-form-notif" onSubmit={this.handleSubmitNotif}>
-            {actions.map( actionType => (
-              <AccountNotifCheckBox
-                key={actionType}
-                actionType={actionType}
-                checked={preferences[actionType]}
-                handleToggleNotif={(toggle) => handleToggleNotif( actionType, toggle )}
-              />
-            ))}
+            <ul>
+              {actions.map( actionType => (
+                <AccountNotifCheckBox
+                  key={actionType}
+                  actionType={actionType}
+                  checked={preferences[actionType]}
+                  handleToggleNotif={(toggle) => handleToggleNotif( actionType, toggle )}
+                />
+              ))}
+            </ul>
             {this.state.message && this.state.message.notif && (
               <strong className="account-form-message">{this.state.message.notif}</strong>
             )}

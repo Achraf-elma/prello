@@ -5,17 +5,17 @@ import{Card , CardHeader,  CardText, Popover, PopoverHeader, PopoverBody} from '
 
 
 // Action builder
-import { setListName, moveCardInList, addCardToList} from '../../action/actionList';
+import { setListName, moveCardInList, addCardToList} from '../../../action/actionList';
 
 
 // Components
 import MyCard from '../MyCard/MyCard';
-import CardCreator from './../../Component/Creator/CardCreator';
-import InputText from '../Input/InputText';
+import CardCreator from './CardCreator';
+import InputText from '../../Input/InputText';
 
 // Style 
-import '../../style/App.css';
-import '../../style/list.css';
+import '../../../style/App.css';
+import '../../../style/list.css';
 
 
 class List extends React.Component {
@@ -110,7 +110,7 @@ class List extends React.Component {
  
 const mapStateToProps = ( state, props ) => ({
   list : state.lists.find(list => list.idList = props.idList),
-  cards: state.cards.filter(card => card.idList == props.idList && card.closed != true)
+  cards: state.cards.filter(card => card.idList === props.idList && card.closed !== true)
 });
 
 const mapDispatchToProps = ( dispatch, props ) => {

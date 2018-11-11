@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { Popover, PopoverHeader, PopoverBody } from 'reactstrap';
 
 // Component
-import CardCreator from '../Creator/CardCreator';
+import CardCreator from './CardCreator';
 
 // Actions
 import {addCardToList} from '../../action/actionList';

@@ -26,8 +26,12 @@ class AccountNotifCheckBox extends React.Component{
       checked,
     } = this.props;
     return (
-      <span className="account-form-notif-line">
-        <span className="account-form-notif-text">{this.printActionType(actionType)}</span>
+      <li className="account-form-notif-line">
+        <label
+          for={actionType}
+          className="account-form-notif-text">
+          {this.printActionType(actionType)}
+        </label>
         <input
           className="account-form-notif-line"
           type="checkbox"
@@ -35,7 +39,7 @@ class AccountNotifCheckBox extends React.Component{
           name={actionType}
           onChange={this.handleCheckbox}
           />
-      </span>
+      </li>
     );
   }
 }

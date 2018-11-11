@@ -8,19 +8,14 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { moveListInBoard, addListToBoard} from '../../action/actionBoard';
 
 // Components
-import List from './../../Component/List/List';
-import ListCreator from '../Creator/ListCreator';
+import List from './List/List';
+import ListCreator from './ListCreator';
 
 // Styles
 import '../../style/board.css';
 
 
 class Board extends React.Component{
-
-  constructor(props) {
-    super(props);
-  }
-
   render() { 
     const {
       idBoard,
@@ -30,7 +25,6 @@ class Board extends React.Component{
   = this.props;
   return (
   <div>
-    {this.props.idBoard}
     <ListCreator addList={(listName) => dispatchAddListToBoard(idBoard,listName)} />
     <table className="listLists">
     <tr>
@@ -76,7 +70,7 @@ class Board extends React.Component{
 
 const mapStateToProps = ( state, props ) => ({
   name: state.board.name,
-  lists: state.lists.filter(list => list.idBoard == props.idBoard),
+  lists: state.lists.filter(list => list.idBoard === props.idBoard),
   desc: state.board.desc,
   memberships: state.board.memberships,
   closed: state.board.closed,
