@@ -16,10 +16,11 @@ import organizations from './reducer/organizations';
 import card from './reducer/card';
 import cards from './reducer/cards';
 import labels from './reducer/labels';
-
+import comments from './reducer/comments';
 const store = createStore(
   combineReducers({
     boards,
+    comments,
     lists,
     list,
     labels,

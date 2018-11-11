@@ -10,7 +10,10 @@ export const initCard = {
   dueDate : '01/10/2018',
   pos : null,
   closed: false,
-  idList : null
+  idList : null,
+  idMembers : [],
+  idLabels : [],
+  idChecklists : []
   }
   
   // Action type constants
@@ -21,7 +24,9 @@ export const initCard = {
   export const SET_CARD_POSITION = "@@card/SET_CARD_POSITION"
   export const SET_CARD_CLOSED = "@@card/SET_CARD_CLOSED"
   export const SET_CARD_LIST = "@@card/SET_CARD_LIST"
-
+  export const ASSIGN_MEMBER_TO_CARD = "@@card/ASSIGN_MEMBER_TO_CARD ";
+  export const ASSIGN_LABEL_TO_CARD = "@@card/ASSIGN_LABEL_TO_CARD ";
+  export const ASSIGN_CHECKLIST_TO_CARD = "@@card/ASSIGN_CHECKLIST_TO_CARD ";
 
   export const SET_NEW_CARD= "@@card/SET_NEW_CARD"
 
@@ -74,5 +79,27 @@ export const initCard = {
   })
 
 
+  export const assignMemberToCard = (idCard, idMember) => ({
+    type: ASSIGN_MEMBER_TO_CARD,
+    payload: {
+      id: idCard,
+      idMember: idMember  
+    }
+  })
   
-
+  export const assignLabelToCard = (idCard, idLabel) => ({
+    type: ASSIGN_MEMBER_TO_CARD,
+    payload: {
+      id: idCard,
+      idLabel: idLabel 
+    }
+  })
+  
+  export const assignChecklistToCard = (idCard, idChecklist) => ({
+    type: ASSIGN_CHECKLIST_TO_CARD,
+    payload: {
+      id: idCard,
+      idChecklist: idChecklist  
+    }
+  })
+  

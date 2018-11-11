@@ -2,13 +2,21 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-import{Card , CardHeader,  CardText, Badge, Popover, PopoverHeader, PopoverBody} from 'reactstrap';
+import{Card , CardHeader,  CardBody, CardText, ListGroupItem, ListGroup, Badge, Popover, PopoverHeader, PopoverBody} from 'reactstrap';
 
 import { Modal, ModalHeader, ModalBody, ModalFooter, Container, Row, Col } from 'reactstrap';
 import { setCardName, setCardDesc, setCardDueDate, setCardClosed } from '../../action/actionCard';
 import InputText from '../Input/InputText';
-import { addLabelInCard } from '../../action/actionLabel';
+import { addLabelToCard } from '../../action/actionLabel';
+import { addCommentToCard } from '../../action/actionComment';
+
+import CommentCreator from './../../Component/Creator/CommentCreator';
 import LabelCreator from './../../Component/Creator/LabelCreator';
+
+
+
+// Style
+import '../../style/cardsettings.css';
 
 function formattedDateMDY(dt) {
   let d = new Date(dt);
@@ -62,8 +70,15 @@ class CardSettings extends React.Component {
   }
 
   addingLabel(event){
-    this.props.dispatchAddLabelInCard(this.props.card.id,event);
+    event.preventDefault();
+    const data = new FormData(event.target);
+    dispatch(addLabelToCard( id, data.get('labelName'), data.get('color'))) 
+    this.props.dispatchAddLabelToCard(this.props.card.id,event, data.get('labelName'));
     this.togglePopover();
+  }
+
+  addingComment(event){
+    this.props.dispatchAddCommentToCard(this.props.card.id,event);
   }
 
   render() {
@@ -71,9 +86,11 @@ class CardSettings extends React.Component {
       modal,
       card,
       labels,
+      comments,
       dispatchSetCardName,
       dispatchSetCardDueDate,
       dispatchSetCardDesc,
+      dispatchAddCommentInCard,
       dispatchSetCardClosed,
       toggleModal
     } = this.props
@@ -82,7 +99,7 @@ class CardSettings extends React.Component {
       return (
       <div>
        
-        <Modal key={card.id} isOpen={this.props.modal} toggle={toggleModal} className={this.props.className}>
+        <Modal key={card.id} size="lg" isOpen={this.props.modal} toggle={toggleModal} className={this.props.className}>
           <ModalHeader toggle={toggleModal} close={closeBtn}>
            <span className="ListCreator">
               <InputText
@@ -97,10 +114,11 @@ class CardSettings extends React.Component {
           <ModalBody>
 
           <Container>
-
-             <Row>
+          <Row>
+            <Col>
+            <Row>
              <Col className="labelField" xs="6">Description :</Col>
-             <Col  xs="6">
+             <Col   xs="auto">
                <InputText
                   className="editCardInput"
                   type="ari"
@@ -112,8 +130,8 @@ class CardSettings extends React.Component {
                   />
                 </Col>
              </Row>
-              <hr/>
-             <Row>
+            <hr/>
+            <Row>
               <Col className="labelField" xs="6">Due Date :</Col>
               <Col  xs="6">
                 <InputText
@@ -128,7 +146,10 @@ class CardSettings extends React.Component {
             </Row>
             <hr/>
             <Row>
-              <Col className="labelField" xs="6">Label :</Col>
+
+              <Col className="labelField" xs="6">
+              <span  id= {"card" +card.id} onClick={this.togglePopover} className="fa fa-plus-circle"> Label :</span> 
+              </Col>
               {labels.map((label) => (
                  <Col >
                   
@@ -141,9 +162,8 @@ class CardSettings extends React.Component {
             <Row>
               <Col className="labelField" xs="6">
       <div>
-          <button  id= {"card" +card.id} onClick={this.togglePopover}>
-              <span className="fa fa-plus-circle"> Add Label</span>  
-          </button>
+          
+          
           <Popover placement="left" isOpen={this.state.popoverOpen} target={`card${card.id}`} toggle={this.togglePopover}>
             <PopoverHeader>Add Label</PopoverHeader>
             <PopoverBody>
@@ -153,6 +173,40 @@ class CardSettings extends React.Component {
         </div>
         </Col>
             </Row>
+
+             <hr/>
+             <Row className="labelField" xs="6">Comments :</Row>  
+             <Container className="comments" >
+               
+                <Row>
+                <ListGroup className="listComment">
+             {comments.map((comment) => (
+               
+            
+                <ListGroupItem>
+                  <span className="commentMember">> Achraf </span>
+                  <span className="commentDate">({comment.date}) : </span>
+                  <span className="commentText">{comment.text}</span>
+                  </ListGroupItem>
+              
+              ))}
+              </ListGroup>
+                 </Row>
+          </Container>
+          <Row>
+            <Col>
+                <CommentCreator handleSubmit={this.addingComment.bind(this)} />
+            </Col> 
+          </Row>
+          </Col>
+
+          <Col xs="3">
+            Add <br/>
+            <button> Member</button> <br/>
+            <button> Label</button> <br/>
+            <button> Checklist</button> <br/>
+          </Col>
+          </Row>
           </Container>
           </ModalBody>
           <ModalFooter>
@@ -166,7 +220,8 @@ class CardSettings extends React.Component {
 }
 const mapStateToProps = (state, props) => ({
   card : state.cards.find(card => card.id == props.id),
-  labels: state.labels.filter(label => label.idCard == props.id)
+  labels: state.labels.filter(label => label.idCard == props.id),
+  comments: state.comments.filter(comment => comment.idCard ==props.id)
 })
 
 const mapDispatchToProps = (dispatch, props) => ({
@@ -174,10 +229,11 @@ const mapDispatchToProps = (dispatch, props) => ({
   dispatchSetCardDesc: (id,desc) => dispatch(setCardDesc(id, desc)),
   dispatchSetCardDueDate: (id,date) => dispatch(setCardDueDate(id, date)),
   dispatchSetCardClosed: (id) => dispatch(setCardClosed(id, true)),
-  dispatchAddLabelInCard: (id, event) => {
+  dispatchAddLabelToCard: (id, name, color) =>  dispatch(addLabelToCard( id, name, color)),
+  dispatchAddCommentToCard: (id, event) => {
     event.preventDefault();
     const data = new FormData(event.target);
-    dispatch(addLabelInCard( id, data.get('labelName'), data.get('color'))) 
+    dispatch(addCommentToCard( id,  null, data.get('text'))) 
   }
 })
 

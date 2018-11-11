@@ -4,7 +4,7 @@ import { combineReducers } from 'redux';
 // Definitions
 // TODO: import type, action type & type constants
 //import {initCard, SET_CARD_POSITION,SET_CARD_CLOSED, setCARDClosed, setCARDPosition, SET_CARD_NAME, SET_CARD_LIST, SET_CARD_SUBSCRIBED }from "../action/actionCARD";
-import {initCard, SET_CARD_POSITION, SET_CARD_DESC,SET_CARD_CLOSED, SET_CARD_NAME, SET_CARD_LIST, SET_CARD_DUE_DATE }from "../action/actionCard";
+import {initCard, SET_CARD_POSITION,ASSIGN_CHECKLIST_TO_CARD, ASSIGN_LABEL_TO_CARD, SET_CARD_DESC,SET_CARD_CLOSED, SET_CARD_NAME, SET_CARD_LIST, SET_CARD_DUE_DATE, ASSIGN_MEMBER_TO_CARD }from "../action/actionCard";
 
 const id = ( state = initCard.id, action ) => state
 
@@ -63,6 +63,31 @@ const idList = ( state = initCard.idList, action ) => {
   }
 }
 
+const idLabels = ( state = initCard.idLabels, action ) => {
+  switch(action["type"]) {
+    case ASSIGN_LABEL_TO_CARD:
+       return [...state, action.payload.idLabel];
+    default:
+      return state;
+  }
+}
+
+const idChecklists = ( state = initCard.idCheckList, action ) => {
+  switch(action["type"]) {
+    case ASSIGN_CHECKLIST_TO_CARD:
+       return [...state, action.payload.idCheckList];
+    default:
+      return state;
+  }
+}
+const idMembers = ( state = initCard.idMembers, action ) => {
+  switch(action["type"]) {
+    case ASSIGN_MEMBER_TO_CARD:
+       return [...state, action.payload.idMember];
+    default:
+      return state;
+  }
+}
 
 
 // Reducer
@@ -73,6 +98,9 @@ export default combineReducers({
   dueDate,
   pos ,
   closed,
-  idList
+  idList, 
+  idMembers,
+  idLabels,
+  idChecklists
   })
  

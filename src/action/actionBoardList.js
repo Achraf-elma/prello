@@ -155,6 +155,18 @@ export const addBoardToBoards = (name, desc, isPublic, members, owners) => ({
     name: name, 
     desc: desc, 
     list: {},
+    labelName : {
+      "green": "",
+      "yellow": "good to go",
+      "orange": "",
+      "red": "",
+      "purple": "",
+      "blue": "",
+      "sky": "",
+      "lime": "",
+      "pink": "",
+      "black": ""
+    },
     closed: false,
     isPublic,
     memberships: members, 

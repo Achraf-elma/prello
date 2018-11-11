@@ -1,0 +1,49 @@
+.comments{
+  overflow: scroll;
+    max-height: 100px;
+  border: 1px solid #09095f4d;
+  border-radius: 3px;
+  margin-top: 11px;
+}
+
+.addElementButton{
+  background: #0d3584;
+  width: 10em;
+  box-shadow: 5px 5px 4px #190d5250;
+  color: white;
+  font-weight: 700;
+  border: 1px solid black;
+  border-radius: 4px;
+  cursor: pointer;
+  width: auto;
+  margin: 12px;
+}
+.addElementButton:hover{
+  color: white;
+  background: #010a1d;
+}
+
+.commentText{
+  font-style: italic;
+  font-size: 0.9em;
+
+}
+
+.commentMember{
+  font-weight: bold;
+}
+
+.commentDate{
+  font-size: 0.7em;
+  font-weight: bold;
+  color: #5c3d3d;
+}
+
+
+.listComment{
+  width: 100%;
+  background: transparent !important;
+}
+ .ListGroupItem, .commentDate, .commentMember, .commentText {
+  background: transparent ;
+}
