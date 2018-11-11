@@ -50,6 +50,7 @@ class BoardViewHandler extends React.Component{
   )
 
   render() {
+    const { board } = this.props;
     return (
       <div>
         <div className="board-background"/>

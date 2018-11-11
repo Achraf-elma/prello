@@ -41,7 +41,7 @@ class Home extends React.Component{
         <Container className="boardlistHeader">
           <Row>
             <Col>
-              <button class="createBoardButton" onClick={this.toggle}>Create a Board</button>
+              <button className="createBoardButton" onClick={this.toggle}>Create a Board</button>
             </Col>
           </Row>
         </Container>

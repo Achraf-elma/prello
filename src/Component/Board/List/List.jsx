@@ -1,7 +1,7 @@
 // Modules
 import React from 'react';
 import { connect } from 'react-redux';
-import{Card , CardHeader,  CardText, Popover, PopoverHeader, PopoverBody} from 'reactstrap';
+import{Card , CardHeader,  CardBody, Popover, PopoverHeader, PopoverBody} from 'reactstrap';
 
 
 // Action builder
@@ -70,8 +70,7 @@ class List extends React.Component {
             onChange={(value) => {
               setListName(value);
               this.handleEditClick();
-            } 
-            }
+            }}
           />
          </span>
       :
@@ -79,16 +78,15 @@ class List extends React.Component {
       }
 
       <i onClick = {this.handleEditClick} 
-        class = { this.state.editNameOn === true ? "fa fa-edit editmod" : "fa fa-edit" }
+        className= { this.state.editNameOn === true ? "fa fa-edit editmod" : "fa fa-edit" }
       />
       </CardHeader>
 
       {cards.map((card) => (
-         
-        <MyCard key={card.id}  id={card.id}></MyCard>
-        ))}
+        <MyCard key={card.id} idList={card.idList} id={card.id}></MyCard>
+      ))}
             
-      <CardText>
+      <CardBody>
 
       <div>
           <button className="add-card-link" id= {"list" +idList} onClick={this.togglePopover}>
@@ -101,7 +99,7 @@ class List extends React.Component {
             </PopoverBody>
           </Popover>
         </div>
-      </CardText>
+      </CardBody>
 
       </Card>
     );

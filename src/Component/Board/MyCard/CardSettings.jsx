@@ -43,6 +43,8 @@ class CardSettings extends React.Component {
       this.togglePopoverLabel = this.togglePopoverLabel.bind(this);
   }
  
+  closeSettings = () => (this.props.history.goBack());
+
   setCardDueTime(id,value){
     let date = this.props.card.dueDate;
     let time = new Date(value);
@@ -57,7 +59,7 @@ class CardSettings extends React.Component {
   
   delete(){
     this.props.dispatchSetCardClosed(this.props.card.id);
-    this.props.toggleModal();
+    this.props.history.goBack();
   }
 
   togglePopoverLabel() {
@@ -78,15 +80,14 @@ class CardSettings extends React.Component {
       dispatchSetCardName,
       dispatchSetCardDueDate,
       dispatchSetCardDesc,
-      toggleModal
     } = this.props
-    const closeBtn = <button className="close" onClick={toggleModal}>&times;</button>;
+    const closeBtn = <button className="close" onClick={this.closeSettings}>&times;</button>;
 
       return (
       <div>
        
-        <Modal key={card.id} size="lg" isOpen={this.props.modal} toggle={toggleModal} className={this.props.className}>
-          <ModalHeader toggle={toggleModal} close={closeBtn}>
+        <Modal key={card.id} size="lg" isOpen={true} toggle={this.closeSettings} className={this.props.className}>
+          <ModalHeader toggle={this.closeSettings} close={closeBtn}>
            <span className="ListCreator">
               <InputText
               className="changeNameInput"
@@ -111,7 +112,7 @@ class CardSettings extends React.Component {
                     value={card.desc}
                     placeHolder="Description of your card"
                     resetable
-                    toggle={this.props.modal}
+                    toggle={true}
                     onChange={(value) => dispatchSetCardDesc(card.id,value)}
                   />
                 </Col>
@@ -125,7 +126,7 @@ class CardSettings extends React.Component {
                     type="date"
                     value={formattedDateMDY(card.dueDate)}
                     resetable
-                    toggle={this.props.modal}
+                    toggle={true}
                     onChange={(value) => dispatchSetCardDueDate(card.id,value)}
                   />
               </Col>
@@ -211,8 +212,8 @@ class CardSettings extends React.Component {
   }
 }
 const mapStateToProps = (state, props) => ({
-  card : state.cards.find(card => card.id === props.id),
-  labels: state.labels.filter(label => label.idCard === props.id),
+  labels: state.labels.filter(label => label.idCard === props.match.params.idCard),
+  card : state.cards.find(card => card.id === props.match.params.idCard),
   comments: state.comments.filter(comment => comment.idCard === props.id)
 })
 

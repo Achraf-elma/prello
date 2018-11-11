@@ -11,63 +11,43 @@ import { moveListInBoard, addListToBoard} from '../../action/actionBoard';
 // Components
 import List from './List/List';
 import ListCreator from './ListCreator';
+import CardSettings from './MyCard/CardSettings';
 
 // Styles
 import '../../style/board.css';
 
 
-class Board extends React.Component{
-  render() { 
-    const {
-      idBoard,
-      lists,
-      dispatchOnDragEnd,
-      dispatchAddListToBoard }
-  = this.props;
-  return (
+const Board = ({ lists, dispatchOnDragEnd, dispatchAddListToBoard, match }) => (
   <div>
-    <ListCreator addList={(listName) => dispatchAddListToBoard(idBoard,listName)} />
-    <table className="listLists">
-    <tr>
-      <DragDropContext onDragEnd={( result ) => dispatchOnDragEnd( result )}>
-      <Droppable droppableId="droppable" direction="horizontal">
+    <ListCreator addList={(listName) => dispatchAddListToBoard(listName)} />
+    <DragDropContext onDragEnd={( result ) => dispatchOnDragEnd( result )}>
+    <Droppable droppableId="droppable" direction="horizontal">
       {(provided, snapshot) => (
-              <span
-                ref={provided.innerRef}
-                className={classNames("board-lists", { "list-dragging-over": snapshot.isDraggingOver })}
-                {...provided.droppableProps}>
-            {lists.map((list, index) => ( 
-                  <Draggable key={list.idList} draggableId={list.idList} index={index}>
-                  {(provided, snapshot) => (
-                    <span
-                      ref={provided.innerRef}
-                      {...provided.draggableProps}
-                      {...provided.dragHandleProps}
-                      className={classNames(
-                        "list-item",
-                        { "list-dragged": snapshot.isDragging }
-                      )}
-                    >
-                      <td>
-                      <List idList={list.idList}/>  
-                      </td>
-                    </span>
-                  )}
-                </Draggable>
-            ) )} 
-      
-          
-          </span>
-            )}
-          </Droppable>
-          </DragDropContext>
-          </tr>
-          </table>
-
+        <span
+          ref={provided.innerRef}
+          className={classNames("board-lists", { "list-dragging-over": snapshot.isDraggingOver })}
+          {...provided.droppableProps}>
+          {lists.map((list, index) => ( 
+            <Draggable key={list.idList} draggableId={list.idList} index={index}>
+              {(provided, snapshot) => (
+                <span
+                  ref={provided.innerRef}
+                  {...provided.draggableProps}
+                  {...provided.dragHandleProps}
+                  className={classNames( "list-item", { "list-dragged": snapshot.isDragging })}
+                  >
+                  <List idList={list.idList} name={list.name}/>  
+                </span>
+              )}
+            </Draggable>
+          ))}
+        </span>
+      )}
+    </Droppable>
+    </DragDropContext>
+    <Route path={`${match.path}/card/:idCard`} component={CardSettings} />
   </div>
-    );
-  }
-}
+);
 
 const mapStateToProps = ( state, props ) => ({
   name: state.board.name,

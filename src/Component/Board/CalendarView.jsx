@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import {connect} from 'react-redux';
+import { Route } from 'react-router-dom';
 import Calendar from "react-big-calendar";
 import moment from "moment";
 import withDragAndDrop from "react-big-calendar/lib/addons/dragAndDrop";
@@ -23,20 +24,11 @@ class CalendarView extends Component {
       selectedEventID : null,
       modal : false
     }
-
-    this.moveEvent = this.moveEvent.bind(this);
     this.toggle = this.toggle.bind(this);
-
-   // this.newEvent = this.newEvent.bind(this)
 }
 
-toggle(id) {
-  this.setState({
-    events : this.state.events,
-    modal: !this.state.modal,
-    selectedEventID : id
-  });
-
+toggle = (event) => {
+  this.props.history.push(`${this.props.match.url}/card/${event.id}`)
 }
 
   onEventResize = (type, { event, start, end, allDay }) => {
@@ -85,16 +77,14 @@ toggle(id) {
           defaultDate={new Date()}
           defaultView="month"
           events={this.state.events}
-          onSelectEvent={event => this.toggle(event.id)}
+          onSelectEvent={this.toggle}
           onEventDrop={this.moveEvent}
           onEventResize={this.onEventResize}
           resizable
           selectable
           style={{ height: "100vh" }}
         />
-      {this.state.modal &&
-        <CardSettings id={this.state.selectedEventID} toggleModal={this.toggle.bind(this)} modal={this.state.modal}/>
-      }
+        <Route path={`${this.props.match.path}/card/:idCard`} component={CardSettings} />
       </div>
     );
   }
