@@ -109,7 +109,7 @@ class CardSettings extends React.Component {
           <Row>
             <Col>
             <Row>
-             <Col className="labelField" xs="6">Description :</Col>
+             <Col className="labelField" xs="6">Description {card.idBoard}:</Col>
              <Col   xs="auto">
                <InputText
                   className="editCardInput"

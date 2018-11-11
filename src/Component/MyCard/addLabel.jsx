@@ -39,6 +39,7 @@ class AddLabel extends React.Component {
 
   render() {
     const {
+      labelNames,
       idcard,
       board
     } = this.props;
@@ -49,14 +50,14 @@ class AddLabel extends React.Component {
           </Row>
           <Row>
                 <ListGroup className="listComment">
-             {board.labelNames.map((label, index) => (
-               
-                <ListGroupItem>
-                  <Badge onClick={this.addLabelToCard(idcard,index, label[index])} color={index} pill>{label[index]}</Badge>
-                </ListGroupItem>
-              
-              ))}
-              </ListGroup>
+        
+      
+             {labelNames.map((label) => (
+               <ListGroupItem>
+                 <Badge style={{color : '#fff', background : label.color }}> {label.text}</Badge>
+               </ListGroupItem>
+             ))}
+             </ListGroup>
             </Row>
             <hr/>
             <Row>
@@ -76,7 +77,8 @@ class AddLabel extends React.Component {
 }
 
 const mapStateToProps = ( state, props ) => ({
-  board : state.boards.find(board => board.id = props.idBoard)
+  board : state.boards.find(board => board.id == props.idBoard),
+  labelNames : Object.keys( state.boards.find(board => board.id == props.idBoard).labelNames).map( key => ({ color: key, text: state.boards.find(board => board.id == props.idBoard).labelNames[key] })) 
 })
 
 const mapDispatchToProps = ( dispatch, props ) => ( {

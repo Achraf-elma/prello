@@ -23,13 +23,15 @@ class Board extends React.Component{
 
   render() { 
     const {
+      idBoard,
       lists,
       dispatchOnDragEnd,
       dispatchAddListToBoard }
   = this.props;
   return (
   <div>
-    <ListCreator addList={(listName) => dispatchAddListToBoard(listName)} />
+    {this.props.idBoard}
+    <ListCreator addList={(listName) => dispatchAddListToBoard(idBoard,listName)} />
     <table className="listLists">
     <tr>
       <DragDropContext onDragEnd={( result ) => dispatchOnDragEnd( result )}>
@@ -52,7 +54,7 @@ class Board extends React.Component{
                       )}
                     >
                       <td>
-                      <List idList={list.idList} name={list.name}/>  
+                      <List idList={list.idList}/>  
                       </td>
                     </span>
                   )}
@@ -87,7 +89,7 @@ const mapDispatchToProps = (dispatch, props) => ({
     destination &&
     dispatch(moveListInBoard(source.index, destination.index))
   ),
-  dispatchAddListToBoard: (listName) => dispatch(addListToBoard(props.idBoard, listName))
+  dispatchAddListToBoard: (idBoard,listName) => dispatch(addListToBoard(idBoard, listName))
 });
 
 // Export connected Components

@@ -43,6 +43,7 @@ class MyCard extends React.Component {
 
   render() {
     const{
+      idBoard,
       card, 
       labels
     } = this.props ;
@@ -50,6 +51,8 @@ class MyCard extends React.Component {
   return (
    <Card onClick={this.toggle.bind(this)} className="mycard" >
      <CardHeader className="mycard-header">
+     {idBoard}
+     {card.idBoard}
      {this.props.labels.map((label) => (
           <Badge  style={{color : '#fff', background : label.color }} pill>{label.name}</Badge>
         ))}

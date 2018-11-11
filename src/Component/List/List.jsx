@@ -42,14 +42,16 @@ class List extends React.Component {
   }
 
   addingCard(event){
-    console.log("addingCard EVENT: ", event);
-    this.props.dispatchAddCardToList(event);
+    event.preventDefault();
+    const data = new FormData(event.target);
+    this.props.dispatchAddCardToList( this.props.idList, this.props.list.idBoard, data.get('cardName'), data.get('dueDate'));
     this.togglePopover();
   }
 
   render() {
   const {
       idList,
+      list,
       name,
       cards,
       setListName
@@ -73,7 +75,7 @@ class List extends React.Component {
           />
          </span>
       :
-        <span onClick={this.handleEditClick} className="list-title">{name}</span>
+        <span onClick={this.handleEditClick} className="list-title">{list.name}</span>
       }
 
       <i onClick = {this.handleEditClick} 
@@ -81,8 +83,9 @@ class List extends React.Component {
       />
       </CardHeader>
 
-      {cards.map((card, index) => (
-        <MyCard idList={card.idList} id={card.id}></MyCard>
+      {cards.map((card) => (
+         
+        <MyCard key={card.id}  id={card.id}></MyCard>
         ))}
             
       <CardText>
@@ -106,6 +109,7 @@ class List extends React.Component {
 }
  
 const mapStateToProps = ( state, props ) => ({
+  list : state.lists.find(list => list.idList = props.idList),
   cards: state.cards.filter(card => card.idList == props.idList && card.closed != true)
 });
 
@@ -117,12 +121,10 @@ const mapDispatchToProps = ( dispatch, props ) => {
       dispatch(moveCardInList(source.index, destination.index))
     ),
     setListName: (name) => dispatch(setListName( props.idlist, name )),
-    dispatchAddCardToList: (event) => {
-      event.preventDefault();
-      const data = new FormData(event.target);
-      dispatch(addCardToList( props.idList, data.get('cardName'), data.get('dueDate'))) 
-    }
+    dispatchAddCardToList: (idlist, idboard, name, duedate) => dispatch(addCardToList(idlist, idboard, name, duedate)
+    )
   }
 }
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(List); 

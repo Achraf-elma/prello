@@ -18,6 +18,18 @@ export const initBoards = {
       lists : [
         {}
       ],
+      labelNames : {
+        "green": "",
+        "yellow": "good to go",
+        "orange": "",
+        "red": "",
+        "purple": "",
+        "blue": "",
+        "sky": "",
+        "lime": "",
+        "pink": "",
+        "black": ""
+      },
       memberships: [
         {
           "id": "5612e4fb1b25c15e8737234b",
@@ -94,6 +106,18 @@ export const initBoards = {
         lists : [
           {}
         ],
+        labelNames : {
+          "green": "",
+          "yellow": "good to go",
+          "orange": "",
+          "red": "",
+          "purple": "",
+          "blue": "",
+          "sky": "",
+          "lime": "",
+          "pink": "",
+          "black": ""
+        },
         memberships: [
           {
             "id": "5612e4fb1b25c15e8737234b",
