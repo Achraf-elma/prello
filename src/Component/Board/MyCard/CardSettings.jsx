@@ -192,7 +192,7 @@ class CardSettings extends React.Component {
           <Popover placement="left" isOpen={this.state.popoverOpen} target={"card-label"+card.id} toggle={this.togglePopoverLabel}>
             <PopoverHeader>Labels</PopoverHeader>
             <PopoverBody>
-              <AddLabel idBoard={card.idBoard} />
+              <AddLabel idBoard={card.idBoard} idCard={card.id} />
             </PopoverBody>
           </Popover>
           </Col>

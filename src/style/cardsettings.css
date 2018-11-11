@@ -47,3 +47,17 @@
  .ListGroupItem, .commentDate, .commentMember, .commentText {
   background: transparent ;
 }
+
+.labelNamesBadge{
+  height: 130%;
+  width: 100%;
+  cursor: pointer;
+}
+
+.labelNamesList{
+  margin-bottom: 2px !important;
+
+  padding: 0 !important;
+  
+  border: 0 !important;
+}
