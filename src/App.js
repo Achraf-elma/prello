@@ -29,7 +29,7 @@ class App extends Component {
             <Route exact path='/' component={Homepage}/>
             <Route path='/login' component={LoginCard} />
             <Route path='/signup' component={SignupCard} />
-            <Route path='/board/:boardId' component={ConnectedBoard}/>
+            <Route path='/board' component={ConnectedBoard}/>
             <Route path='/home' component={Home}/>
             <Route path='/members/:idMember' component={AccountViewHandler} />
             <Organization />

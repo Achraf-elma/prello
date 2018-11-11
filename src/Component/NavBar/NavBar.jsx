@@ -6,7 +6,7 @@ import { Navbar, Nav, NavItem } from 'reactstrap';
 const NavBar = ({ location }) => (
   <div className={location.pathname === '/' ? "NavBarHomePage" : "NavBar"}>
     <Navbar light expand="md">
-      <Link to="/"> <img alt="Logo Prello" src="./assets/logo1.png"/></Link>
+      <Link to="/"> <img alt="Prello" src="./assets/logo1.png"/></Link>
       <Nav className="ml-auto" navbar>
         <NavItem>
           <NavLink  to="/home">Boards</NavLink>

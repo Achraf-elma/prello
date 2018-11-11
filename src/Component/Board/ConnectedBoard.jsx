@@ -1,6 +1,7 @@
 // Modules
 import React from 'react';
-import {Provider} from 'react-redux';
+import { Provider } from 'react-redux';
+import { Route } from 'react-router-dom';
 
 // Board
 import BoardToConnect from './BoardViewHandler';
@@ -18,13 +19,18 @@ class ConnectedBoard extends React.Component {
   }
 
   componentWillUnmount() {
-    socket().socket.disconnect();
+    // let socket = socket().socket;
+    // socket && socket.disconnect();
   }
 
   render(){
+    const {
+      match
+    } = this.props;
+    console.log(match)
     return (
       <Provider store={boardStore}>
-        <BoardToConnect {...this.props} />
+        <Route path={`${match.path}/:idBoard`} component={BoardToConnect}/>
       </Provider>
     );
   }

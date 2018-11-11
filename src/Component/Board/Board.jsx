@@ -1,6 +1,7 @@
 // Modules
 import React from 'react';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
+import { Route } from 'react-router-dom';
 import classNames from 'classnames';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
