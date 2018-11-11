@@ -2,25 +2,36 @@
 // Modules
 import React from 'react';
 import { connect } from 'react-redux';
-import { Popover, PopoverHeader, PopoverBody, Container, Row, Col } from 'reactstrap';
+import { Popover, PopoverHeader, PopoverBody, Container, Row, Col , ListGroupItem, ListGroup, Badge} from 'reactstrap';
 
 // Component
 import CardCreator from '../Creator/CardCreator';
+import LabelCreator from './../../Component/Creator/LabelCreator';
 
 // Actions
 import { addLabelToCard } from '../../action/actionLabel';
+import { addLabelToBoard } from '../../action/actionBoard';
 
 class AddLabel extends React.Component {
   constructor(props) {
     super(props);
  
-    this.toggle = this.toggle.bind(this);
     this.state = {
       popoverOpen: false
     };
+    this.togglePopover = this.togglePopover.bind(this);
+
   }
 
-  toggle() {
+
+  addingLabel(event){
+    event.preventDefault();
+    const data = new FormData(event.target);
+    this.props.dispatchAddLabelToCard( this.props.idcard,event, data.get('labelName'), data.get('color')); 
+    this.togglePopover();
+  }
+
+  togglePopover() {
     this.setState({
       popoverOpen: !this.state.popoverOpen
     });
@@ -46,7 +57,17 @@ class AddLabel extends React.Component {
               
               ))}
               </ListGroup>
-                 </Row>
+            </Row>
+            <hr/>
+            <Row>
+              <button id= {"card-add-label"+idcard} onClick={this.togglePopover}>Create a new label...</button>
+            <Popover placement="left" isOpen={this.state.popoverOpen} target={`card-add-label${idcard}`} toggle={this.togglePopover}>
+            <PopoverHeader>Create a new label</PopoverHeader>
+              <PopoverBody>
+                <LabelCreator handleSubmit={this.addingLabel} />
+              </PopoverBody>
+          </Popover>
+            </Row>
 
         </Container>
     
@@ -55,11 +76,13 @@ class AddLabel extends React.Component {
 }
 
 const mapStateToProps = ( state, props ) => ({
-  board : state.boards.find(board => board.id = props.id)
+  board : state.boards.find(board => board.id = props.idBoard)
 })
 
 const mapDispatchToProps = ( dispatch, props ) => ( {
-   dispatchAddLabelToCard: (id, name, color) =>  dispatch(addLabelToCard( id, name, color)) 
+   dispatchAddLabelToCard: (id, name, color) =>  dispatch(addLabelToCard( id, name, color)),
+   dispatchAddLabelToBoard: (id, name, color) =>  dispatch(addLabelToBoard( id, name, color)) 
+
 
 });
 

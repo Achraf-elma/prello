@@ -72,9 +72,9 @@ class Board extends React.Component{
   }
 }
 
-const mapStateToProps = ( state, props, ownProps ) => ({
+const mapStateToProps = ( state, props ) => ({
   name: state.board.name,
-  lists: state.lists,
+  lists: state.lists.filter(list => list.idBoard == props.idBoard),
   desc: state.board.desc,
   memberships: state.board.memberships,
   closed: state.board.closed,
@@ -87,7 +87,7 @@ const mapDispatchToProps = (dispatch, props) => ({
     destination &&
     dispatch(moveListInBoard(source.index, destination.index))
   ),
-  dispatchAddListToBoard: (listName) => dispatch(addListToBoard(listName))
+  dispatchAddListToBoard: (listName) => dispatch(addListToBoard(props.idBoard, listName))
 });
 
 // Export connected Components

@@ -9,7 +9,7 @@ export const initList = {
 idList : 0 , //TODO check
 name: 'My list',
 closed: 'closed'|'notClosed', 
-idBoard: ' ', //TODO check
+idBoard: null,
 pos : 0,
 cards :  [
   {}
@@ -93,11 +93,12 @@ export const moveCardInList = (cardToMovePos, newCardPos) => ({
 })
 
 // Add a new card at the end of the list
-export const addCardToList = (idList, cardName, dueDate) => ({
+export const addCardToList = (idList, idBoard, cardName, dueDate) => ({
   type: ADD_CARD_IN_LIST,
   payload: {
     id: uuidv4(),
     idList: idList,
+    idBoard : idBoard,
     name: cardName,
     dueDate :  new Date(dueDate)
     

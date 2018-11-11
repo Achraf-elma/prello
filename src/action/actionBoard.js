@@ -14,6 +14,7 @@ export const SET_BOARD_MEMBERSHIPS = "@@board/SET_BOARD_MEMBERSHIPS"
 export const SET_BOARD_OWNERS = "@@board/SET_BOARD_OWNERS"
 export const SET_BOARD_CLOSE = "@@board/SET_BOARD_CLOSE"
 export const SET_BOARD_PRIVACY = "@@board/SET_BOARD_PRIVACY"
+export const ADD_SET_LABEL_TO_BOARD = "@@board/ADD_SET_LABEL_TO_BOARD"
 
 
 // default state
@@ -24,7 +25,7 @@ export const initBoard = {
   lists : [
     {}
   ],
-  labelName : {
+  labelNames : {
       "green": "",
       "yellow": "good to go",
       "orange": "",
@@ -99,10 +100,11 @@ export const moveListInBoard = (listToMovePos, newListPos) => ({
 })
 
 // Add a new list at the end of the board
-export const addListToBoard = (listName) => ({
+export const addListToBoard = (idBoard,listName) => ({
   type: ADD_LIST_TO_BOARD,
   payload: {
     idList: uuidv4(),
+    idBoard : idBoard,
     name: listName,
   }
 })
@@ -140,5 +142,13 @@ export const setBoardPrivacy = (id, isPublic) => ({
   }
 })
 
+export const addLabelToBoard = (id, name, color) => ({
+  type: ADD_SET_LABEL_TO_BOARD,
+  payload: {
+    id: id,
+    name: name,
+    color : color,
+  }
+})
 
 

@@ -66,14 +66,14 @@ class BoardViewHandler extends React.Component{
         <div className="container">
           <div className="row board-info">
             <div className="col">
-              <h1 className="board-title"><i className="fa fa-tasks"></i> {board.name}</h1>
+              <h1 className="board-title"><i className="fa fa-tasks"></i> {board.id} {board.name}</h1>
             </div>
             <div className="col">
               <Button color="primary" onClick={() => this.setViewChoosen(!this.state.isBoardViewChoosen)} active={this.state.isBoardViewChoosen}>Calendar View</Button>
             </div>
           </div>
           <hr className="separator" />
-          {this.state.isBoardViewChoosen ?   <Board/> : <CalendarView/>}
+          {this.state.isBoardViewChoosen ?   <Board idBoard ={board.id}/> : <CalendarView/>}
         </div>
       </div>
     );

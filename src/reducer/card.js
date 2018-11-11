@@ -72,7 +72,7 @@ const idLabels = ( state = initCard.idLabels, action ) => {
   }
 }
 
-const idChecklists = ( state = initCard.idCheckList, action ) => {
+const idChecklists = ( state = initCard.idChecklists, action ) => {
   switch(action["type"]) {
     case ASSIGN_CHECKLIST_TO_CARD:
        return [...state, action.payload.idCheckList];

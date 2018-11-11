@@ -1,6 +1,6 @@
 // Modules
 import { combineReducers } from 'redux';
-import { MOVE_LIST_IN_BOARD, ADD_LIST_TO_BOARD } from '../action/actionBoard';
+import { MOVE_LIST_IN_BOARD, ADD_LIST_TO_BOARD, ADD_SET_LABEL_TO_BOARD } from '../action/actionBoard';
 
 // Definitions
 import {initBoard, SET_BOARD, SET_BOARD_NAME, SET_BOARD_DESC, SET_BOARD_LIST, SET_BOARD_MEMBERSHIPS, SET_BOARD_OWNERS, SET_BOARD_CLOSE, SET_BOARD_PRIVACY} from "../action/actionBoard";
@@ -85,6 +85,17 @@ const isPublic = (state = initBoard.isPublic, action ) => {
   }
 }
 
+const labelNames = (state = initBoard.labelNames, action ) => {
+  switch(action["type"]) {
+    case SET_BOARD:
+      return action.payload.labelNames;
+    case ADD_SET_LABEL_TO_BOARD:
+       state[action.payload.color] = action.payload.name;
+      return state;
+    default:
+      return state;
+  }
+}
 
 // Main Reducer
 export default combineReducers({
@@ -95,5 +106,6 @@ export default combineReducers({
   memberships, 
   owners,
   closed, 
-  isPublic
+  isPublic,
+  labelNames
 });

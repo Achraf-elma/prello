@@ -11,6 +11,7 @@ export const initCard = {
   pos : null,
   closed: false,
   idList : null,
+  idBoard : null,
   idMembers : [],
   idLabels : [],
   idChecklists : []
@@ -24,6 +25,7 @@ export const initCard = {
   export const SET_CARD_POSITION = "@@card/SET_CARD_POSITION"
   export const SET_CARD_CLOSED = "@@card/SET_CARD_CLOSED"
   export const SET_CARD_LIST = "@@card/SET_CARD_LIST"
+  export const SET_CARD_BOARD = "@@card/SET_CARD_BOARD"
   export const ASSIGN_MEMBER_TO_CARD = "@@card/ASSIGN_MEMBER_TO_CARD ";
   export const ASSIGN_LABEL_TO_CARD = "@@card/ASSIGN_LABEL_TO_CARD ";
   export const ASSIGN_CHECKLIST_TO_CARD = "@@card/ASSIGN_CHECKLIST_TO_CARD ";
@@ -75,6 +77,14 @@ export const initCard = {
     payload:  {
       id : id,
       idList : newIdList
+    }
+  })
+
+  export const setCardBoard = (id, newIdBoard) => ({
+    type: SET_CARD_LIST,
+    payload:  {
+      id : id,
+      idBoard : newIdBoard
     }
   })
 

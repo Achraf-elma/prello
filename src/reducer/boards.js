@@ -3,12 +3,20 @@ import { combineReducers } from 'redux';
 
 // Action types
 import {initBoards, CLOSE_BOARD_FROM_BOARDS, SELECT_BOARD, ADD_BOARD_TO_BOARDS, UPDATE_BOARD } from '../action/actionBoardList';
-import {SET_BOARD_CLOSE} from '../action/actionBoard';
+import {SET_BOARD_CLOSE, ADD_SET_LABEL_TO_BOARD} from '../action/actionBoard';
 import board from './board';
 
 
 export default ( state = initBoards.boards, action) => {
   switch(action.type) {
+
+    case ADD_SET_LABEL_TO_BOARD:
+      var idxBoardToUpdate = state.findIndex(board => board.id === action.payload.id)
+      var boardUptaded = board(state[idxBoardToUpdate], action)
+      var nextBoards = [...state]
+      nextBoards[idxBoardToUpdate] = boardUptaded;
+      return  nextBoards;
+
     case ADD_BOARD_TO_BOARDS:
       console.log("reducer add_board_to_boards",action.payload)
       let boards = [...state, action.payload]

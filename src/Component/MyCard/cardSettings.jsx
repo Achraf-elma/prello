@@ -11,12 +11,12 @@ import { addLabelToCard } from '../../action/actionLabel';
 import { addCommentToCard } from '../../action/actionComment';
 
 import CommentCreator from './../../Component/Creator/CommentCreator';
-import LabelCreator from './../../Component/Creator/LabelCreator';
 
 
 
 // Style
 import '../../style/cardsettings.css';
+import AddLabel from './addLabel';
 
 function formattedDateMDY(dt) {
   let d = new Date(dt);
@@ -43,7 +43,7 @@ class CardSettings extends React.Component {
       ...props
     };
       this.delete = this.delete.bind(this);
-      this.togglePopover = this.togglePopover.bind(this);
+      this.togglePopoverLabel = this.togglePopoverLabel.bind(this);
   }
  
   setCardDueTime(id,value){
@@ -63,18 +63,10 @@ class CardSettings extends React.Component {
     this.props.toggleModal();
   }
 
-  togglePopover() {
+  togglePopoverLabel() {
     this.setState({
       popoverOpen: !this.state.popoverOpen
     });
-  }
-
-  addingLabel(event){
-    event.preventDefault();
-    const data = new FormData(event.target);
-    dispatch(addLabelToCard( id, data.get('labelName'), data.get('color'))) 
-    this.props.dispatchAddLabelToCard(this.props.card.id,event, data.get('labelName'));
-    this.togglePopover();
   }
 
   addingComment(event){
@@ -164,12 +156,7 @@ class CardSettings extends React.Component {
       <div>
           
           
-          <Popover placement="left" isOpen={this.state.popoverOpen} target={`card${card.id}`} toggle={this.togglePopover}>
-            <PopoverHeader>Add Label</PopoverHeader>
-            <PopoverBody>
-              <LabelCreator closeToggle={this.togglePopover} handleSubmit={this.addingLabel.bind(this)} />
-            </PopoverBody>
-          </Popover>
+         
         </div>
         </Col>
             </Row>
@@ -203,8 +190,16 @@ class CardSettings extends React.Component {
           <Col xs="3">
             Add <br/>
             <button> Member</button> <br/>
-            <button> Label</button> <br/>
+            <button id={"card-label"+card.id} onClick={this.togglePopoverLabel}>Label</button> <br/>
             <button> Checklist</button> <br/>
+
+
+          <Popover placement="left" isOpen={this.state.popoverOpen} target={"card-label"+card.id} toggle={this.togglePopoverLabel}>
+            <PopoverHeader>Labels</PopoverHeader>
+            <PopoverBody>
+              <AddLabel idBoard={card.idBoard} />
+            </PopoverBody>
+          </Popover>
           </Col>
           </Row>
           </Container>
@@ -214,6 +209,9 @@ class CardSettings extends React.Component {
           </ModalFooter>
         </Modal>
      
+
+
+
       </div>
     );
   }
