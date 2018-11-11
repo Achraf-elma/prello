@@ -10,17 +10,18 @@ import BoardToConnect from './BoardViewHandler';
 import boardStore from '../../boardStore';
 
 // Socket
-import { socket, socketConnect } from '../../request/socket';
+import { socketConnection } from '../../request/socket';
 
 class ConnectedBoard extends React.Component {
   componentDidMount() {
-    let socket = socketConnect();
+    console.log("before");
+    let socket = socketConnection.instance.connect(() => console.log("done"));
+    console.log("after");
     socket.on("dispatch", (action) => boardStore.dispatch(action));
   }
 
   componentWillUnmount() {
-    // let socket = socket().socket;
-    // socket && socket.disconnect();
+    socketConnection.instance.disconnect();
   }
 
   render(){
@@ -30,7 +31,7 @@ class ConnectedBoard extends React.Component {
     console.log(match)
     return (
       <Provider store={boardStore}>
-        <Route path={`${match.path}/:idBoard`} component={BoardToConnect}/>
+        <Route path={match.path} component={BoardToConnect}/>
       </Provider>
     );
   }

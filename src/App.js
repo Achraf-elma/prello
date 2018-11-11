@@ -1,6 +1,6 @@
 // Modules
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 
 // Style
 import './style/App.css';
@@ -23,18 +23,18 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Router>
+        <Switch>
           <div>
             <Route component={NavBar}/>
             <Route exact path='/' component={Homepage}/>
             <Route path='/login' component={LoginCard} />
             <Route path='/signup' component={SignupCard} />
-            <Route path='/board' component={ConnectedBoard}/>
+            <Route path='/board/:idBoard' component={ConnectedBoard}/>
             <Route path='/home' component={Home}/>
-            <Route path='/members/:idMember' component={AccountViewHandler} />
+            <Route path='/members/me' component={AccountViewHandler} />
             <Organization />
           </div>
-        </Router>
+        </Switch>
       </div>
     );
   }
