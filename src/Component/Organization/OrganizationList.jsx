@@ -1,18 +1,28 @@
 // Modules
 import React from 'react';
 import { connect } from 'react-redux';
-import { Card, CardBody, CardTitle, CardSubtitle, ButtonGroup, Button} from 'reactstrap';
-import { Link } from "react-router-dom";
+import {
+  Card, CardBody, CardTitle, CardSubtitle,
+  ButtonGroup, Button,
+} from 'reactstrap';
+import { Link, Route } from "react-router-dom";
+
+// Component
+import OrganizationModal from './OrganizationModal';
+
 // Action builder
 import { addOrganizationToOrganizations} from '../../action/actionOrgList';
 
 import '../../style/organization.css';
 
-const OrganizationList = ({ organizations, organizationListName, addOrganizationToOrganizations }) => (
+const OrganizationList = ({ organizations, organizationListName, dispatchForm, match }) => (
   <div>
+    <div className="teams">
+    <div className="background"/>
     <div className="namelist">
       {organizationListName}
     </div>
+    <Link className="btn btn-lg" to={`${match.url}/new`}> Create a Team</Link>
     <div className="organizationList">
       {organizations.map((organization) => (
         <Card key={organization.id} className="organizations">
@@ -28,6 +38,12 @@ const OrganizationList = ({ organizations, organizationListName, addOrganization
           </ButtonGroup>
         </Card>
       ))}
+      
+    </div>
+      <Route
+        path={`${match.path}/new`}
+        render={(props)=> console.log("ok") || <OrganizationModal {...props} dispatchForm={dispatchForm}/>}
+        />
     </div>
   </div>
 );
@@ -37,7 +53,13 @@ const mapStateToProps = (state, props) => ({
 })
 
 const mapDispatchToProps = (dispatch, props) => ({
-  dispatchAddOrganizationToOrganizations : (displayName, desc) => (dispatch(addOrganizationToOrganizations(displayName,desc)))
+  dispatchForm: (event) => {
+    event.preventDefault();
+    const data = new FormData(event.target);
+    if (data.get('name') !== '') {
+      dispatch(addOrganizationToOrganizations(data.get('name'), data.get('description')))
+    }
+  },
 })
 
 

@@ -4,7 +4,7 @@ import { Popover, PopoverHeader, PopoverBody, Card, Collapse, CardBody, CardHead
 
 
 
-import { assignChecklistToCard, assignMemberToCard } from '../../action/actionCard';
+import { assignChecklistToCard, assignMemberToCard } from '../../../action/actionCard';
 
 class AddMember extends React.Component {
   constructor(props) {

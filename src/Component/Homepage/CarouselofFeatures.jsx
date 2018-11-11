@@ -4,11 +4,11 @@ import { UncontrolledCarousel } from 'reactstrap';
 const items = [
   {
 
-    caption: 'Manage yours projects with ease',
-    header: 'Create, add and manage your team'
+    caption: 'Manage your projects with ease',
+    header: 'Create, add and manage your teams'
   },
   {
-    caption: 'It maintains you updated on your cards',
+    caption: 'To keep you updated on your cards',
     header: 'Download our mobile app'
   },
   {

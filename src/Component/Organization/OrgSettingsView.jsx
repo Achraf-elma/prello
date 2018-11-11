@@ -1,9 +1,9 @@
 // Modules
 import React from 'react';
 import { connect } from 'react-redux';
-import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { Button, ButtonGroup, Form, FormGroup, Label, Input } from 'reactstrap';
 
-import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Modal, ModalHeader, ModalBody } from 'reactstrap';
 
 // Action builder
 import { setTeamDisplayName, setTeamDesc, setTeamWebsite } from '../../action/actionOrganization';
@@ -63,12 +63,12 @@ class OrgSettings extends React.Component {
               <Label for="newDesc">Description</Label>
               <Input type = "text" name ="description" id ="newDesc" placeholder={desc}/>
             </FormGroup>
-            <Button color="success" className="submit" type="submit" onClick={this.toggle} active>Submit</Button>
+            <ButtonGroup>
+              <Button color="success" className="submit" type="submit" onClick={this.toggle} active>Submit</Button>
+              <Button color="secondary" onClick={this.toggle}>Cancel</Button>
+            </ButtonGroup>
             </Form>
           </ModalBody>
-          <ModalFooter>
-            <Button color="secondary" onClick={this.toggle}>Cancel</Button>
-          </ModalFooter>
         </Modal>
       </div>
       
@@ -97,7 +97,7 @@ class OrgSettings extends React.Component {
             dispatch(setTeamDisplayName(props.id, data.get('name')))
         }
         if (data.get('description') !== '') {dispatch(setTeamDesc(props.id, data.get('description')))}
-        if (data.get('name') !== '') {dispatch(setTeamWebsite(props.id, data.get('website')))}
+        if (data.get('website') !== '') {dispatch(setTeamWebsite(props.id, data.get('website')))}
       }
   })
   

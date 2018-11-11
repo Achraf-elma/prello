@@ -5,12 +5,11 @@ import { connect } from 'react-redux';
 import { Popover, PopoverHeader, PopoverBody, Card, Collapse, CardBody, CardHeader, Container, Row, Col , ListGroupItem, ListGroup, Badge} from 'reactstrap';
 
 // Component
-import CardCreator from '../Creator/CardCreator';
-import LabelCreator from './../../Component/Creator/LabelCreator';
+import LabelCreator from '../LabelCreator';
 
 // Actions
-import { addLabelToCard } from '../../action/actionLabel';
-import { addLabelToBoard } from '../../action/actionBoard';
+import { addLabelToCard } from '../../../action/actionLabel';
+import { addLabelToBoard } from '../../../action/actionBoard';
 
 class AddLabel extends React.Component {
   constructor(props) {

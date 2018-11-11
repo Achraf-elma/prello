@@ -6,12 +6,13 @@ import { Button } from 'reactstrap';
 import OrganizationList from './OrganizationList';
 
 // Styles
-import '../../style/home.css';
+import '../../style/organization.css';
 
 const OrgHome = () => (
   <div>
+    <div className="organization-background"/>
     <div className="teams">
-      <Button className="create"> Create a Team</Button>
+      <Button className="create">+ Create a Team</Button>
       <OrganizationList organizationListName="Manage Teams"/>
     </div>
   </div>

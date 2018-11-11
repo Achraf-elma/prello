@@ -15,7 +15,7 @@ const NavBar = ({ location }) => (
           <NavLink to="/members/me" > My Account</NavLink>
         </NavItem>
         <NavItem>
-          <NavLink to="/organization">Team Management</NavLink>
+          <NavLink to="/organizations">Team Management</NavLink>
         </NavItem>
         <NavItem>
           <NavLink to="/login" >Login</NavLink>
