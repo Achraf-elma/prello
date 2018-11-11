@@ -19,7 +19,9 @@ import { addLabelToCard } from '../../../action/actionLabel';
 import { addCommentToCard } from '../../../action/actionComment';
 
 // Style
-import '../../../style/cardsettings.css';
+import '../../style/cardsettings.css';
+import AddLabel from './addLabel';
+import AddMember from './addMember';
 
 function formattedDateMDY(dt) {
   let d = new Date(dt);
@@ -37,10 +39,10 @@ class CardSettings extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      ...props
+      popoverOpen : [false, false, false]
     };
       this.delete = this.delete.bind(this);
-      this.togglePopoverLabel = this.togglePopoverLabel.bind(this);
+      this.togglePopover = this.togglePopover.bind(this);
   }
  
   closeSettings = () => (this.props.history.goBack());
@@ -62,9 +64,12 @@ class CardSettings extends React.Component {
     this.props.history.goBack();
   }
 
-  togglePopoverLabel() {
+  togglePopover(popoverNumber) {
+     let currentState = this.state.popoverOpen[popoverNumber];
+     let newState = [...this.state.popoverOpen];
+    newState[popoverNumber] = !currentState;
     this.setState({
-      popoverOpen: !this.state.popoverOpen
+      popoverOpen: newState
     });
   }
 
@@ -135,7 +140,7 @@ class CardSettings extends React.Component {
             <Row>
 
               <Col className="labelField" xs="6">
-              <span  id= {"card" +card.id} onClick={this.togglePopover} className="fa fa-plus-circle"> Label :</span> 
+              <span className="fa fa-plus-circle"> Label :</span> 
               </Col>
               {labels.map((label) => (
                  <Col >
@@ -182,19 +187,27 @@ class CardSettings extends React.Component {
           </Row>
           </Col>
 
-          <Col xs="3">
-            Add <br/>
-            <button> Member</button> <br/>
-            <button id={"card-label"+card.id} onClick={this.togglePopoverLabel}>Label</button> <br/>
-            <button> Checklist</button> <br/>
+          <Col className="buttonsSettingCard" xs="3">
+            <h4>Add</h4><hr/>
+            <button className="buttonCustom" id={"card-member"+card.id} onClick={() => this.togglePopover(1)}>Member</button> <br/>
+            <button className="buttonCustom" id={"card-label"+card.id} onClick={() => this.togglePopover(0)}>Label</button> <br/>
+            <button className="buttonCustom"> Checklist</button> <br/>
 
 
-          <Popover placement="left" isOpen={this.state.popoverOpen} target={"card-label"+card.id} toggle={this.togglePopoverLabel}>
+          <Popover placement="right" isOpen={this.state.popoverOpen[0]} target={"card-label"+card.id} toggle={() => this.togglePopover(0)}>
             <PopoverHeader>Labels</PopoverHeader>
             <PopoverBody>
               <AddLabel idBoard={card.idBoard} idCard={card.id} />
             </PopoverBody>
           </Popover>
+
+            <Popover placement="right" isOpen={this.state.popoverOpen[1]} target={"card-member"+card.id} toggle={() => this.togglePopover(1)}>
+            <PopoverHeader>Member</PopoverHeader>
+            <PopoverBody>
+              <AddMember idBoard={card.idBoard} idCard={card.id} />
+            </PopoverBody>
+          </Popover>
+
           </Col>
           </Row>
           </Container>
@@ -222,7 +235,8 @@ const mapDispatchToProps = (dispatch, props) => ({
   dispatchSetCardDesc: (id,desc) => dispatch(setCardDesc(id, desc)),
   dispatchSetCardDueDate: (id,date) => dispatch(setCardDueDate(id, date)),
   dispatchSetCardClosed: (id) => dispatch(setCardClosed(id, true)),
-  dispatchAddLabelToCard: (id, name, color) =>  dispatch(addLabelToCard( id, name, color)),
+
+
   dispatchAddCommentToCard: (id, event) => {
     event.preventDefault();
     const data = new FormData(event.target);

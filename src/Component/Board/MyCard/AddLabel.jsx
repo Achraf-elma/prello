@@ -65,12 +65,12 @@ class AddLabel extends React.Component {
         </Collapse>
       </Row>
       <hr/>
-      <Row> 
-        { (!this.state.popoverOpen) ?
-          <button  onClick={this.togglePopover}>Create a new label...</button> :
-          <button  onClick={this.togglePopover}>Labels of this board.</button>
-        }
-      </Row>
+        <Row className="buttonsSettingCard"> 
+          { (!this.state.popoverOpen) ?
+            <button  className="buttonCustom" onClick={this.togglePopover}>Create a new label...</button>:
+            <button  className="buttonCustom" onClick={this.togglePopover}>Labels of this board.</button>
+          }
+        </Row>
       </Container>
     );  
   }

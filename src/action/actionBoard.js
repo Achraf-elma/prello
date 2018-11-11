@@ -105,7 +105,7 @@ export const addListToBoard = (idBoard,listName) => ({
   payload: {
     idList: uuidv4(),
     idBoard : idBoard,
-    name: listName,
+    name: listName
   }
 })
 

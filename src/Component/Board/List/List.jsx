@@ -74,7 +74,7 @@ class List extends React.Component {
           />
          </span>
       :
-        <span onClick={this.handleEditClick} className="list-title">{list.name}</span>
+        <span onClick={this.handleEditClick} className="list-title">{list.idBoard}{list.name}{idList}</span>
       }
 
       <i onClick = {this.handleEditClick} 

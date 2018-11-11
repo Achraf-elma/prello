@@ -61,3 +61,11 @@
   
   border: 0 !important;
 }
+.buttonsSettingCard {
+  text-align: center;
+
+}
+.buttonsSettingCard > button{
+  width: 100%;
+
+}
