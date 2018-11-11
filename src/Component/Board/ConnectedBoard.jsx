@@ -14,9 +14,10 @@ import { socketConnection } from '../../request/socket';
 
 class ConnectedBoard extends React.Component {
   componentDidMount() {
-    console.log("before");
-    let socket = socketConnection.instance.connect(() => console.log("done"));
-    console.log("after");
+    let socket = socketConnection.instance.connect()
+    socket.on('connect', () => (
+      socket.emit('board', this.props.match.params.idBoard)
+    ));
     socket.on("dispatch", (action) => boardStore.dispatch(action));
   }
 

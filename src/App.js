@@ -1,6 +1,6 @@
 // Modules
 import React, { Component } from 'react';
-import { Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 // Style
 import './style/App.css';
@@ -22,20 +22,20 @@ import AccountViewHandler from './Component/Account/AccountViewHandler';
 class App extends Component {
   render() {
     return (
-      <div>
-        <Switch>
-          <div>
-            <Route component={NavBar}/>
-            <Route exact path='/' component={Homepage}/>
+      <Router>
+        <div>
+          <Route component={NavBar}/>
+          <Switch>
+            <Route path='/' exact component={Homepage}/>
             <Route path='/login' component={LoginCard} />
             <Route path='/signup' component={SignupCard} />
             <Route path='/board/:idBoard' component={ConnectedBoard}/>
             <Route path='/home' component={Home}/>
             <Route path='/members/me' component={AccountViewHandler} />
             <Organization />
-          </div>
-        </Switch>
-      </div>
+          </Switch>
+        </div>
+      </Router>
     );
   }
 }

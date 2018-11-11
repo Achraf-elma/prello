@@ -22,7 +22,7 @@ const OrganizationList = ({ organizations, organizationListName, addOrganization
             <p>{organization.desc}</p>
           </CardBody> 
           <ButtonGroup className="buttons">
-          <Link to={`/organization/${organization.id}`} activeClassName="active">
+          <Link to={`/organization/${organization.id}`}>
             <Button>View</Button>
           </Link>
           </ButtonGroup>

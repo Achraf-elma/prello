@@ -52,14 +52,16 @@ client.removeJWT = () => {
  */
 client.setCredentials = (credentials) => {
   client.me = credentials;
-  return client;
 }
 
-/**
- * 
- */
-client.removeCredentials = (credentials) => {
-  client.me = null
+client.getCredentials = () => {
+  return client.credentials;
+}
+
+client.removeCredentials = () => {
+  client.credentials = null;
+  client.me = null;
+  client.removeJWT();
   return client;
 }
 

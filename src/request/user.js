@@ -11,7 +11,7 @@ const rematchError = (error) => (
 export const fetchUser = (idMember) => {
   idMember = idMember && idMember !== "me" ? idMember : client.me;
   return (
-    client.get(`/members/${idMember}`)
+    client.get(`/api/members/${idMember}`)
     .then( response => response.data)
     .catch(rematchError)
   );
@@ -20,7 +20,7 @@ export const fetchUser = (idMember) => {
 export const saveUserCredentials = (idMember, credentials) => {
   idMember = idMember && idMember !== "me" ? idMember : client.me;
   return (
-    client.put(`/members/${idMember}/`, {...credentials})
+    client.put(`/api/members/${idMember}/`, {...credentials})
     .then(response => response.data)
     .catch(rematchError)
   );
@@ -29,7 +29,7 @@ export const saveUserCredentials = (idMember, credentials) => {
 export const saveUserPreferences = (idMember, preferences) => {
   idMember = idMember && idMember !== "me" ? idMember : client.me;
   return (
-    client.put(`/members/${idMember}/`, {preferences})
+    client.put(`/api/members/${idMember}/`, {preferences})
       .then(response => response.data)
       .catch(rematchError)
   );

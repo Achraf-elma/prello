@@ -24,7 +24,7 @@ const BoardCard = ({ board, closeBoard }) => (
         </ul>
       </CardBody> 
       <ButtonGroup className="buttons">
-        <Link to={`/board/${board.id}/board`} activeClassName="active">
+        <Link to={`/board/${board.id}/board`}>
         <button className="buttonCustom">View</button>
         </Link>
         <button className="delete" onClick ={() => closeBoard(board.id, true)} >Delete</button>
