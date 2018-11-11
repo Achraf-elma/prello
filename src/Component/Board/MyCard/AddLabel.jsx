@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { Popover, PopoverHeader, PopoverBody, Card, Collapse, CardBody, CardHeader, Container, Row, Col , ListGroupItem, ListGroup, Badge} from 'reactstrap';
 
 // Component
-import LabelCreator from '../LabelCreator';
+import LabelCreator from './../LabelCreator';
 
 // Actions
 import { addLabelToCard } from '../../../action/actionLabel';

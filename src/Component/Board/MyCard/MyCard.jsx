@@ -5,7 +5,7 @@ import { withRouter } from 'react-router-dom';
 import{Card , CardHeader, CardBody, Badge} from 'reactstrap';
 
 // Actions 
-import {  setCardName } from '../../../action/actionCard';
+import {  setCardName } from './../../../action/actionCard';
 
 // Style
 import '../../../style/card.css';

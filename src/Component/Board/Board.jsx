@@ -19,6 +19,7 @@ import '../../style/board.css';
 
 const Board = ({ lists, dispatchOnDragEnd, dispatchAddListToBoard, match }) => (
   <div>
+   
     <ListCreator addList={(listName) => dispatchAddListToBoard(listName)} />
     <DragDropContext onDragEnd={( result ) => dispatchOnDragEnd( result )}>
     <Droppable droppableId="droppable" direction="horizontal">

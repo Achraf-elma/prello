@@ -84,7 +84,6 @@ toggle = (event) => {
           selectable
           style={{ height: "100vh" }}
         />
-        <Route path={`${this.props.match.path}/card/:idCard`} component={CardSettings} />
       </div>
     );
   }

@@ -10,7 +10,7 @@ import {
 
 // Components
 import InputText from '../../Input/InputText';
-import AddLabel from './AddLabel';
+
 import CommentCreator from '../CommentCreator';
 import AddMember from './AddMember';
 
@@ -21,6 +21,8 @@ import { addCommentToCard } from '../../../action/actionComment';
 
 // Style
 import '../../../style/cardsettings.css';
+import AddLabel from './AddLabel';
+import addMember from '../../MyCard/addMember';
 
 function formattedDateMDY(dt) {
   let d = new Date(dt);
@@ -203,7 +205,7 @@ class CardSettings extends React.Component {
             <Popover placement="right" isOpen={this.state.popoverOpen[1]} target={"card-member"+card.id} toggle={() => this.togglePopover(1)}>
             <PopoverHeader>Member</PopoverHeader>
             <PopoverBody>
-              <AddMember idBoard={card.idBoard} idCard={card.id} />
+              <addMember idBoard={card.idBoard} idCard={card.id} />
             </PopoverBody>
           </Popover>
 
