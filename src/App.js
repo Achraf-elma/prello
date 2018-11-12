@@ -39,7 +39,7 @@ class App extends Component {
           </Switch>
         </div>
       </Router>
-       <CookieConsent     buttonStyle={{ color: "#4e503b", fontSize: "13px", cursor: "pointer" }}>
+       <CookieConsent  buttonStyle={{ color: "#4e503b", fontSize: "13px", cursor: "pointer" }}>
         This website uses cookies to enhance the user experience.
        </CookieConsent>
       </div>
