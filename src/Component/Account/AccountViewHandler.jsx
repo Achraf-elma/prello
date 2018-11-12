@@ -35,12 +35,12 @@ class AccountViewHandler extends React.Component {
   }
   componentDidMount() {
     Promise.all([
-      fetchUser(null ),
+      fetchUser(null),
       fetchActionTypes(),
     ])
     .then(([user, actions]) => this.setState({ user, actions }))
     .catch(this.handleError)
-    .catch(error => console.error(error));
+    .catch(error => console.error(error) ||  this.setState({ redirect: "/" }));
   }
 
   handleSubmitFullName = (fullName) => (
