@@ -1,7 +1,6 @@
 // Modules
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-
 // Style
 import './style/App.css';
 
@@ -17,11 +16,15 @@ import SignupCard from './Component/Login/SignupCard';
 
 import Organization from './Component/Organization/ConnectedOrganization';
 import AccountViewHandler from './Component/Account/AccountViewHandler';
+import CookieConsent from "react-cookie-consent";
+
+
 
 //test
 class App extends Component {
   render() {
     return (
+      <div>
       <Router>
         <div>
           <Route component={NavBar}/>
@@ -36,6 +39,10 @@ class App extends Component {
           </Switch>
         </div>
       </Router>
+       <CookieConsent     buttonStyle={{ color: "#4e503b", fontSize: "13px", cursor: "pointer" }}>
+        This website uses cookies to enhance the user experience.
+       </CookieConsent>
+      </div>
     );
   }
 }
