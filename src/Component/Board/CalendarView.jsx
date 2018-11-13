@@ -37,14 +37,15 @@ class CalendarView extends Component {
   componentDidMount(){
    let events = this.state.events.map( event => ({
     title: event.title,
-    description: event.description,
-    start: event.dueDate,
-    end: event.dueDate
+    start: event.start,
+    end: event.end
   }));
+  console.log(events);
     ics.createEvents(events, (error, value) => {
       if (error) {
         console.log(error)
       }
+      console.log("event" + value)
       this.setState({
         calendarICS: value
       })

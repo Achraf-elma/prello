@@ -52,7 +52,7 @@ const Board = ({ lists, dispatchOnDragEnd, dispatchAddListToBoard, match }) => (
 
 const mapStateToProps = ( state, props ) => ({
   name: state.board.name,
-  lists: state.lists.filter(list => list.idBoard === props.idBoard),
+  lists: state.lists,
   desc: state.board.desc,
   memberships: state.board.memberships,
   closed: state.board.closed,

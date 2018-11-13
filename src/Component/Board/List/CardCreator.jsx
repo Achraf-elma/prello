@@ -1,6 +1,6 @@
 // Modules
 import React from 'react';
-
+import moment from 'moment';
 // Components
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
@@ -16,7 +16,7 @@ const CardCreator = ({ handleSubmit }) => (
       </FormGroup>
       <FormGroup>
         <Label for="dueDate">Due date</Label>
-        <Input type="date" name="dueDate" placeholder="" />
+        <Input type="date" name="dueDate" placeholder={moment().format('l')} />
       </FormGroup>
     </span>
     <Button className="submit" type="submit" >Submit</Button>

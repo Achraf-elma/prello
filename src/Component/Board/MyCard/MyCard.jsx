@@ -3,22 +3,13 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import{Card , CardHeader, CardBody, Badge} from 'reactstrap';
-
+import moment from 'moment';
 // Actions 
 import {  setCardName } from './../../../action/actionCard';
 
 // Style
 import '../../../style/card.css';
 
-function formattedDate(dt) {
-  let d = new Date(dt);
-  let month = String(d.getMonth() + 1);
-  let day = String(d.getDate());
-  const year = String(d.getFullYear());
-  if (month.length < 2) month = '0' + month;
-  if (day.length < 2) day = '0' + day;
-  return `${day}/${month}/${year}`;
-}
 
 const MyCard = ({ card, labels, history, match }) => (
   <Card onClick={() => history.push(`${match.url}/card/${card.id}`)} className="mycard" >
@@ -27,7 +18,7 @@ const MyCard = ({ card, labels, history, match }) => (
       <Badge  style={{color : '#fff', background : label.color }} pill>{label.name}</Badge>
     ))}
     </CardHeader>
-    <CardBody> {card.name}  <br/> {card.dueDate ?  "Due date : "  + formattedDate(card.dueDate) : ""}  </CardBody>
+    <CardBody> {card.name}  <br/> {card.dueDate ?  "Due date : "  + moment(card.dueDate).fromNow() : ""}  </CardBody>
   </Card>
 );
 
