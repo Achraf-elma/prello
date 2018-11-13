@@ -1,10 +1,19 @@
 // Modules
 import React from 'react';
+import Select from 'react-select';
 
 // Components
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
 import '../../style/home.css';
+const members = [
+  { value: 'idAchraf', label: 'Achraf' },
+  { value: 'idAssil', label: 'Assil' },
+  { value: 'idClement', label: 'Clement' },
+  { value: 'idJulia', label: 'Julia' },
+  { value: 'idHugo', label: 'Hugo' }
+];
+
 const BoardCreator = ({ handleSubmit }) => (
   <Form  onSubmit = {handleSubmit}>
     <span className="ListCreator">
@@ -25,12 +34,15 @@ const BoardCreator = ({ handleSubmit }) => (
       </FormGroup>
       <FormGroup>
         <Label for="boarddName">Members</Label>
-        <Input type="text" name="members"/>
+        <Select 
+        closeMenuOnSelect={false}
+        defaultValue={[]}
+        isMulti
+        options={members}
+        name="members" /> 
+
       </FormGroup>
-        <FormGroup>
-        <Label for="boarddName">Owners</Label>
-        <Input type="text" name="owners"/>
-      </FormGroup>
+        
     </span>
     <div className="buttons">
       <Button className="submit" type="submit" >Create</Button>

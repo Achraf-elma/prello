@@ -49,6 +49,14 @@ class Home extends React.Component{
           boardListTitle="Recently Opened"
           boardFilter={this.filterRecent}
         />
+        <BoardList
+          boardListTitle="All boards"
+          boardFilter={this.filterRecent}
+        />
+        <BoardList
+          boardListTitle="My boards"
+          boardFilter={this.filterRecent}
+        />
       </div>
     );
   }
@@ -62,13 +70,15 @@ const mapDispatchToProps = (dispatch, props) => ({
   dispatchCloseBoardFromBoards: (idBoardToRemove, closed) => dispatch(setBoardClose(idBoardToRemove, closed)),
   dispatchAddBoardToBoards: (event) => {
     event.preventDefault();
+    console.log(event.preventDefault());
     const data = new FormData(event.target);
+    console.log(data.getAll);
+    console.log(data.get('members'));
     dispatch( addBoardToBoards(
       data.get('name'),
       data.get('desc'),
       data.get('isPublic') === "true",
-      data.get('members'),
-      data.get('owners'))
+      data.get('members'))
     );
   }
 });

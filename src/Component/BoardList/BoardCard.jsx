@@ -13,7 +13,7 @@ const BoardCard = ({ board, closeBoard }) => (
     <Card key={board.id} className="myboard">
       <CardHeader>
         <CardTitle>{board.name}</CardTitle>
-        <CardSubtitle>Description</CardSubtitle>
+        <CardSubtitle>{board.desc}</CardSubtitle>
       </CardHeader>
       <CardBody>
         <p>{board.description}</p>
@@ -27,6 +27,7 @@ const BoardCard = ({ board, closeBoard }) => (
         <Link to={`/board/${board.id}/board`}>
         <button className="buttonCustom">View</button>
         </Link>
+        <button className="buttonCustom">Update</button>
         <button className="delete" onClick ={() => closeBoard(board.id, true)} >Delete</button>
       </ButtonGroup>
     </Card>
