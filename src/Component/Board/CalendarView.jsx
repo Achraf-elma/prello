@@ -1,30 +1,54 @@
 import React, { Component } from "react";
 import {connect} from 'react-redux';
+import Download from '@axetroy/react-download';
 import { Route } from 'react-router-dom';
 import Calendar from "react-big-calendar";
 import moment from "moment";
 import withDragAndDrop from "react-big-calendar/lib/addons/dragAndDrop";
-//import events from '../events';
+import events from '../events';
 import "../../style/calendar.css";
 import "react-big-calendar/lib/addons/dragAndDrop/styles.css";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 //import logo from "./logo.svg";   <img src={logo} className="App-logo" alt="logo" />
 import { setCardDueDate } from '../../action/actionCard';
 import CardSettings from './MyCard/CardSettings'
+//import ics from 'ics';
+import { writeFileSync } from "fs";
 
+const ics = require('ics')
 const localizer = Calendar.momentLocalizer(moment);
 
 const DnDCalendar = withDragAndDrop(Calendar);
+
+
 
 class CalendarView extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      events : this.props.events,
+      events : props.events,
       selectedEventID : null,
-      modal : false
+      modal : false,
+      calendarICS : null
     }
     this.toggle = this.toggle.bind(this);
+}
+
+  componentDidMount(){
+   let events = this.state.events.map( event => ({
+    title: event.title,
+    description: event.description,
+    start: event.dueDate,
+    end: event.dueDate
+  }));
+    ics.createEvents(events, (error, value) => {
+      if (error) {
+        console.log(error)
+      }
+      this.setState({
+        calendarICS: value
+      })
+    })
 }
 
 toggle = (event) => {
@@ -68,6 +92,9 @@ toggle = (event) => {
   render() {
     return (
       <div className="calendar">
+        <Download file="test.ics" content={this.state.calendarICS}>
+          <button type="button">Click and Download file</button>
+        </Download>
         <header className="calendar-header">
           <i className="fa fa-calendar"></i>   Calendar View of yours cards
         </header>
@@ -95,7 +122,9 @@ const mapStateToProps = ( state, props ) => ({
     start: card.dueDate,
     end: card.dueDate,
     allDay: true,
-    closed : card.closed
+    closed : card.closed,
+    description : card.desc
+
   }))
 });
 

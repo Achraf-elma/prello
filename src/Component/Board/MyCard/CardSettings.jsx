@@ -12,6 +12,7 @@ import {
 import InputText from '../../Input/InputText';
 
 import CommentCreator from '../CommentCreator';
+import AddLabel from './AddLabel';
 import AddMember from './AddMember';
 
 // Actions
@@ -21,8 +22,7 @@ import { addCommentToCard } from '../../../action/actionComment';
 
 // Style
 import '../../../style/cardsettings.css';
-import AddLabel from './AddLabel';
-import addMember from '../../MyCard/addMember';
+
 
 function formattedDateMDY(dt) {
   let d = new Date(dt);
