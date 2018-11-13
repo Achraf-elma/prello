@@ -37,7 +37,7 @@ const Board = ({ lists, dispatchOnDragEnd, dispatchAddListToBoard, match }) => (
                   {...provided.dragHandleProps}
                   className={classNames( "list-item", { "list-dragged": snapshot.isDragging })}
                   >
-                  <List idList={list.idList} name={list.name}/>  
+                  <List idList={list.idList}/>  
                 </span>
               )}
             </Draggable>
@@ -50,13 +50,8 @@ const Board = ({ lists, dispatchOnDragEnd, dispatchAddListToBoard, match }) => (
   </div>
 );
 
-const mapStateToProps = ( state, props ) => ({
-  name: state.board.name,
-  lists: state.lists,
-  desc: state.board.desc,
-  memberships: state.board.memberships,
-  closed: state.board.closed,
-  pos: state.board.pos,
+const mapStateToProps = ( state, props ) => console.log(props.match) || ({
+  lists: state.lists.filter( list => list.idBoard === props.match.params.idBoard ),
 })
 
 const mapDispatchToProps = (dispatch, props) => ({
@@ -65,7 +60,7 @@ const mapDispatchToProps = (dispatch, props) => ({
     destination &&
     dispatch(moveListInBoard(source.index, destination.index))
   ),
-  dispatchAddListToBoard: (idBoard,listName) => dispatch(addListToBoard(idBoard, listName))
+  dispatchAddListToBoard: (listName) => dispatch(addListToBoard(props.match.params.idBoard, listName))
 });
 
 // Export connected Components

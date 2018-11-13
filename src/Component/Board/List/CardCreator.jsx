@@ -12,7 +12,7 @@ const CardCreator = ({ handleSubmit }) => (
     <span className="ListCreator">
       <FormGroup>
         <Label for="cardName">Card Name</Label>
-        <Input type="text" name="cardName" placeholder="deliver logo" />
+        <Input autoFocus type="text" name="cardName" placeholder="deliver logo" />
       </FormGroup>
       <FormGroup>
         <Label for="dueDate">Due date</Label>

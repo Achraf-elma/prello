@@ -76,8 +76,8 @@ class AddLabel extends React.Component {
 }
 
 const mapStateToProps = ( state, props ) => ({
-  board : state.boards.find(board => board.id == props.idBoard),
-  labelNames : Object.keys( state.boards.find(board => board.id == props.idBoard).labelNames).map( key => ({ color: key, text: state.boards.find(board => board.id == props.idBoard).labelNames[key] })) 
+  idBoard : state.board.idBoard,
+  labelNames : Object.keys( state.board.labelNames ).map( key => ({ color: key, text: state.board.labelNames[key] })),
 })
 
 const mapDispatchToProps = ( dispatch, props ) => ( {

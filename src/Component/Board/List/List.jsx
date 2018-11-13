@@ -25,17 +25,15 @@ class List extends React.Component {
       editNameOn : false,
       popoverOpen: false
     };
-    this.handleEditClick = this.handleEditClick.bind(this);
-    this.togglePopover = this.togglePopover.bind(this);
 }
 
-  handleEditClick() {
+  handleEditClick = () => {
     this.setState({
       editNameOn: !this.state.editNameOn
     });
   }
 
-  togglePopover() {
+  togglePopover = () => {
     this.setState({
       popoverOpen: !this.state.popoverOpen
     });
@@ -44,7 +42,12 @@ class List extends React.Component {
   addingCard(event){
     event.preventDefault();
     const data = new FormData(event.target);
-    this.props.dispatchAddCardToList( this.props.idList, this.props.list.idBoard, data.get('cardName'), data.get('dueDate'));
+    this.props.dispatchAddCardToList(
+      this.props.idList,
+      this.props.list.idBoard,
+      data.get('cardName'),
+      data.get('dueDate')
+    );
     this.togglePopover();
   }
 
@@ -107,13 +110,12 @@ class List extends React.Component {
 }
  
 const mapStateToProps = ( state, props ) => ({
-  list : state.lists.find(list => list.idList = props.idList),
+  list : state.lists.find(list => list.idList === props.idList),
   cards: state.cards.filter(card => card.idList === props.idList && card.closed !== true)
 });
 
 const mapDispatchToProps = ( dispatch, props ) => {
   return {
-    dispatch,
     dispatchOnDragEnd: ({source, destination}) => (
       destination &&
       dispatch(moveCardInList(source.index, destination.index))
