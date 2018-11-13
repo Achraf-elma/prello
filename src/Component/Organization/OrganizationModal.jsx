@@ -11,17 +11,17 @@ const OrganizationModal = ({dispatchForm , history}) => (
   <Modal isOpen={true} toggle={(e) => history.goBack()} >
     <ModalHeader toggle={(e) => history.goBack()}>New team settings</ModalHeader>
     <ModalBody>
-      <Form onSubmit={dispatchForm}>
+      <Form onSubmit={(e) => { dispatchForm(e); history.goBack(); }} >
         <FormGroup>
           <Label for="newDisplayName">Name</Label>
-          <Input type="text" name="name" id="newDisplayName" placeholder={"enter your team name"} />
+          <Input type="text" name="name" id="newDisplayName" placeholder={"Enter your team name"} />
         </FormGroup>
         <FormGroup>
           <Label for="newDesc">Description</Label>
-          <Input type="text" name="description" id="newDesc" placeholder={"enter your team description"} />
+          <Input type="text" name="description" id="newDesc" placeholder={"Enter your team description"} />
         </FormGroup>
         <ButtonGroup>
-          <Button color="success" className="submit" type="submit" onClick={(e) => history.goBack()} active>Create Team</Button>
+          <Button color="success" className="submit" type="submit" active>Create Team</Button>
           <Button color="secondary" onClick={(e) => history.goBack()}>Cancel</Button>
         </ButtonGroup>
       </Form>
