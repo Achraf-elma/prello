@@ -1,0 +1,68 @@
+// Modules
+import React from 'react';
+import { connect } from 'react-redux';
+import {Row,Col, ListGroup, ListGroupItem, Container} from 'reactstrap';
+
+
+import AddLabel from './AddLabel';
+import AddMember from './AddMember';
+
+
+class CardAddParam extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      popoverOpen : [false, false, false]
+    };
+      this.togglePopover = this.togglePopover.bind(this);
+  }
+
+  togglePopover(popoverNumber) {
+    let currentState = this.state.popoverOpen[popoverNumber];
+    let newState = [...this.state.popoverOpen];
+    newState[popoverNumber] = !currentState;
+    this.setState({
+      popoverOpen: newState
+    });
+  }
+
+render() {
+  const {
+    card
+  } = this.prop;
+  return (
+    <div>
+      <h4>Add</h4><hr/>
+
+        <button className="buttonCustom" id={"card-member"+card.id} onClick={() => this.togglePopover(1)}>Member</button> <br/>
+        <button className="buttonCustom" id={"card-label"+card.id} onClick={() => this.togglePopover(0)}>Label</button> <br/>
+        <button className="buttonCustom">Checklist</button><br/>
+
+        <Popover placement="right" isOpen={this.state.popoverOpen[0]} target={"card-label"+card.id} toggle={() => this.togglePopover(0)}>
+          <PopoverHeader>Labels</PopoverHeader>
+          <PopoverBody>
+            <AddLabel idCard={card.id} />
+          </PopoverBody>
+        </Popover>
+
+        <Popover placement="right" isOpen={this.state.popoverOpen[1]} target={"card-member"+card.id} toggle={() => this.togglePopover(1)}>
+        <PopoverHeader>Member</PopoverHeader>
+        <PopoverBody>
+          <AddMember idCard={card.id} />
+        </PopoverBody>
+      </Popover>
+    </div>
+    );
+  }
+}
+const mapStateToProps = (state, props) => ({
+  labels: state.labels.filter(label => label.idCard === props.match.params.idCard),
+  card : state.cards.find(card => card.id === props.match.params.idCard),
+  comments: state.comments.filter(comment => comment.idCard === props.match.params.idCard)
+})
+
+const mapDispatchToProps = (dispatch, props) => ({
+
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(CardAddParam); 

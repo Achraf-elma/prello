@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Popover, PopoverHeader, PopoverBody, Card, Collapse, CardBody, CardHeader, Container, Row, Col , ListGroupItem, ListGroup, Badge} from 'reactstrap';
+import {  Container, Row, Col , ListGroupItem, ListGroup} from 'reactstrap';
 
 
 
-import { assignChecklistToCard, assignMemberToCard } from '../../../action/actionCard';
+import {  assignMemberToCard } from '../../../action/actionCard';
 
 class AddMember extends React.Component {
   constructor(props) {
@@ -42,18 +42,19 @@ class AddMember extends React.Component {
   }
 }
 
-const mapStateToProps = ( state, props ) => ({
-  board : state.boards.find(board => board.id == props.idBoard),
-})
+const mapStateToProps = ( state, props ) => {
+let card = state.cards.find(card => card.id == props.idCard)
+return({
+  card : card,
+  board : state.boards.find(board => board.id == card.idBoard),
+  })
+}
 
 const mapDispatchToProps = ( dispatch, props ) => ( {
-   dispatchAssignMemberToCard: (id, idmember) =>{
-     console.log(id, idmember);
-     dispatch(assignMemberToCard( id, idmember))
+   dispatchAssignMemberToCard: (idMember) =>{
+     console.log(props.idCard, idMember);
+     dispatch(assignMemberToCard( props.idCard, idMember))
    } 
-
-
-
 });
 
 export default connect(mapStateToProps,mapDispatchToProps)(AddMember); 

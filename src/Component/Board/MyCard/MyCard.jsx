@@ -28,7 +28,7 @@ const mapStateToProps = (state, props) => ({
 });
 
 const mapDispatchToProps = (dispatch, props) => ({
-    setName: (id,name) => dispatch(setCardName(id, name )),
+  setName: (id,name) => dispatch(setCardName(id, name )),
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(MyCard)); 

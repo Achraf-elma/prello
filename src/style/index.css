@@ -37,6 +37,10 @@
   color: white;
   background: #010a1d;
 }
+
+.creator{
+  display: flex
+}
 @media screen and (max-width: 600px) {
   
 }
