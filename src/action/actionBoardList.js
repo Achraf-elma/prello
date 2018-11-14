@@ -12,7 +12,7 @@ export const UPDATE_BOARD = "@@board/UPDATE_BOARD";
 export const initBoards = {
     boards: [
         {
-      id: "Private1",
+      id: "b1b1b0b1b1b0b1b1b0b1b1b0",
       name: "My private board",
       desc: "My first board",
       lists : [
