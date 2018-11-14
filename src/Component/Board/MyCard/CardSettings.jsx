@@ -64,7 +64,7 @@ class CardSettings extends React.Component {
             <CardComments idCard={card.id}/>
           </Col>
           <Col className="buttonsSettingCard" xs="3">
-            <CardAddParam/>
+            <CardAddParam idCard={card.id}/>
           </Col>
         </Row>
       </Container>
