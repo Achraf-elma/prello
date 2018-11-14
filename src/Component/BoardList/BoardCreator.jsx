@@ -1,7 +1,7 @@
 // Modules
 import React from 'react';
 import Select from 'react-select';
-
+import makeAnimated from 'react-select/lib/animated';
 // Components
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
@@ -36,6 +36,7 @@ const BoardCreator = ({ handleSubmit }) => (
         <Label for="boarddName">Members</Label>
         <Select 
         closeMenuOnSelect={false}
+        components={makeAnimated()}
         defaultValue={[]}
         isMulti
         options={members}
