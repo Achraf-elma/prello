@@ -125,12 +125,11 @@ export const deleteTeamMember = (id, teamMemberToDelete) => ({
     }
 }) 
 
-export const setTeamMemberType = (id, teamMemberToSetType, type) => ({
+export const setTeamMemberType = (id, teamMemberToSetType) => ({
     type: SET_TEAM_MEMBER_TYPE,
     payload: {
         id, 
-        teamMemberToSetType,
-        type
+        teamMemberToSetType
     }
 }) 
 

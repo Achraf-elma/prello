@@ -2,7 +2,6 @@
 import { combineReducers } from 'redux';
 
 // Definitions
-// TODO: action type constants
 import {initOrganization, SET_TEAM_NAME, SET_TEAM_DISPLAY_NAME, SET_TEAM_DESC, SET_TEAM_WEBSITE, ADD_NEW_TEAM_MEMBER, ADD_NEW_BOARD_ID, DELETE_TEAM_MEMBER, SET_TEAM_MEMBER_TYPE, REMOVE_BOARD_ID} from "../action/actionOrganization";
 
 const id = ( state = initOrganization.id, action ) => state
@@ -59,8 +58,9 @@ const memberships = ( state = initOrganization.memberships, action ) => {
       case DELETE_TEAM_MEMBER:
         return state.filter(member => member.idMember !== action.payload.teamMemberToDelete)
       case SET_TEAM_MEMBER_TYPE:
-      //TODO
-        return state.slice(0);
+        var index = state.findIndex(e => e.idMember === action.payload.teamMemberToSetType.idMember )
+        state[index].memberType === "normal" ? state[index].memberType = "admin" : state[index].memberType = "normal"
+        return [...state.slice(0, index), state[index], ...state.slice(index+1)]
       default:
         return state;
     }

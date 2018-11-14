@@ -10,7 +10,8 @@ import {addNewTeamMember, deleteTeamMember, setTeamMemberType} from '../../actio
 const OrgMembers = ({
   memberships,
   dispatchForm,
-  dispatchdeleteTeamMember
+  dispatchdeleteTeamMember,
+  dispatchSetTeamMemberType
 }) => (
   <div className="OrgMembers">
     <h1 className="organization-title">Members management</h1>
@@ -25,6 +26,8 @@ const OrgMembers = ({
           <ListGroupItem>
             {member.email} 
             <Button color="danger" onClick={() => (dispatchdeleteTeamMember(member.idMember))}> X </Button>
+            <Button color="warning" onClick={() => (dispatchSetTeamMemberType(member))}> Give rights</Button>
+            {member.memberType}
           </ListGroupItem>
         </span>
       ))}
@@ -56,7 +59,7 @@ dispatch(addNewTeamMember(props.id, newTeamMember))
 }
 },
 dispatchdeleteTeamMember: (teamMemberToDelete) => dispatch(deleteTeamMember(props.id, teamMemberToDelete)),
-dispatchSetTeamMemberType: (teamMemberToSetType, newType) => dispatch(setTeamMemberType(props.id, teamMemberToSetType, newType)),
+dispatchSetTeamMemberType: (teamMemberToSetType) => dispatch(setTeamMemberType(props.id, teamMemberToSetType)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(OrgMembers); 
