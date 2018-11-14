@@ -1,11 +1,11 @@
 // Modules
 import React from 'react';
 import { connect } from 'react-redux';
-import {Row,Col, ListGroup, ListGroupItem, Container} from 'reactstrap';
+import {Row,Col, ListGroup, ListGroupItem, Container, Popover, PopoverBody, PopoverHeader} from 'reactstrap';
 
 
-import AddLabel from './AddLabel';
-import AddMember from './AddMember';
+import AddLabel from '../AddLabel';
+import AddMember from '../AddMember';
 
 
 class CardAddParam extends React.Component {
@@ -29,7 +29,7 @@ class CardAddParam extends React.Component {
 render() {
   const {
     card
-  } = this.prop;
+  } = this.props;
   return (
     <div>
       <h4>Add</h4><hr/>
@@ -56,9 +56,9 @@ render() {
   }
 }
 const mapStateToProps = (state, props) => ({
-  labels: state.labels.filter(label => label.idCard === props.match.params.idCard),
-  card : state.cards.find(card => card.id === props.match.params.idCard),
-  comments: state.comments.filter(comment => comment.idCard === props.match.params.idCard)
+  labels: state.labels.filter(label => label.idCard === props.idCard),
+  card : state.cards.find(card => card.id === props.idCard),
+  comments: state.comments.filter(comment => comment.idCard === props.idCard)
 })
 
 const mapDispatchToProps = (dispatch, props) => ({

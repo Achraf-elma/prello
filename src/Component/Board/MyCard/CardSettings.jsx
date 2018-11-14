@@ -14,6 +14,7 @@ import CardDescription from './CardSettings/CardDescription';
 import CardLabels from './CardSettings/CardLabels';
 import CardComments from './CardSettings/CardComments';
 import CardDuedate from './CardSettings/CardDuedate';
+import CardAddParam from './CardSettings/CardAddParam';
 
 class CardSettings extends React.Component {
   constructor(props) {

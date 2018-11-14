@@ -90,21 +90,21 @@ class List extends React.Component {
       ))}
             
       <CardBody>
-
-      <div>
-          <button className="add-card-link" id= {"list" +idList} onClick={this.togglePopover}>
-              <span className="fa fa-plus-circle"> Add Card</span>  
-          </button>
-          <Popover placement="left" isOpen={this.state.popoverOpen} target={`list${idList}`} toggle={this.togglePopover}>
-            <PopoverHeader>Add Card</PopoverHeader>
-            <PopoverBody>
-              <CardCreator closeToggle={this.togglePopover} handleSubmit={this.addingCard.bind(this)} />
-            </PopoverBody>
-          </Popover>
+        <div>
+            <button className="add-card-link" id= {"list" +idList} onClick={this.togglePopover}>
+                <span className="fa fa-plus-circle"> Add Card</span>  
+            </button>
+            <Popover placement="bottom" isOpen={this.state.popoverOpen} target={`list${idList}`} toggle={this.togglePopover}>
+              <PopoverHeader>Add Card</PopoverHeader>
+              <PopoverBody>
+                <CardCreator closeToggle={this.togglePopover} handleSubmit={this.addingCard.bind(this)} />
+              </PopoverBody>
+            </Popover>
         </div>
       </CardBody>
 
       </Card>
+    
     );
   }
 }

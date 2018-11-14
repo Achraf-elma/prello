@@ -36,7 +36,7 @@ class AddCard extends React.Component {
         <button className="add-card-link" id= {"list" +idList} onClick={this.toggle}>
         <span className="fa fa-plus-circle"> Add Card</span>  
         </button>
-        <Popover placement="left" isOpen={this.state.popoverOpen} target={`list${idList}`} toggle={this.toggle}>
+        <Popover placement="bottom" isOpen={this.state.popoverOpen} target={`list${idList}`} toggle={this.toggle}>
           <PopoverHeader>Add Card</PopoverHeader>
           <PopoverBody>
              <CardCreator closeToggle={this.toggle} handleSubmit={dispatchAddCardToList} />
