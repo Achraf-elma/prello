@@ -57,6 +57,7 @@ export default class InputText extends React.Component {
       value,
       disabled,
       required,
+      name
     } = this.props;
     return (
       <input
@@ -67,7 +68,7 @@ export default class InputText extends React.Component {
         placeholder={placeHolder}
         required={required}
         defaultValue={value}
-
+        name={name}
         ref={this.textfield}
         onChange = {(event) => this.handleOnToggle(event,this.textfield.current )}
         onKeyUp={(event) => this.handleOnKeyUp(event, this.textfield.current)}

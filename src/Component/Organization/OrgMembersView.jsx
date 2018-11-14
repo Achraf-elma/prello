@@ -1,4 +1,6 @@
 // Modules
+
+import uuidv4 from "uuidv4";
 import React from 'react';
 import { connect } from 'react-redux';
 
@@ -6,6 +8,8 @@ import { Button, Form, Label, Input, ListGroup, ListGroupItem } from 'reactstrap
 
 // Action builder
 import {addNewTeamMember, deleteTeamMember, setTeamMemberType} from '../../action/actionOrganization';
+
+import InputText from '../Input/InputText';
 
 const OrgMembers = ({
   memberships,
@@ -17,7 +21,16 @@ const OrgMembers = ({
     <h1 className="organization-title">Members management</h1>
     <Form onSubmit = {(event) => dispatchForm(event, memberships)}>
       <Label className="organization-labels" for="newMemberEmail">Add member :</Label>
-      <Input type = "email" name ="email" id="newMemberEmail" placeholder="Enter an email address here"/>
+      <InputText
+        className="addEmail"
+        type = "email" 
+        id="newMemberEmail"
+        placeHolder="Enter an email address here"
+        resetable
+        name="email"
+        onChange={() => dispatchForm}
+        
+      />
       <Button color="success" className="submit" type="submit" active>Send</Button>
     </Form>
     <ListGroup>
@@ -27,7 +40,7 @@ const OrgMembers = ({
             {member.email} 
             <Button color="danger" onClick={() => (dispatchdeleteTeamMember(member.idMember))}> X </Button>
             <Button color="warning" onClick={() => (dispatchSetTeamMemberType(member))}> Give rights</Button>
-            {member.memberType}
+            {member.idMember}
           </ListGroupItem>
         </span>
       ))}
@@ -50,7 +63,7 @@ const data = new FormData(event.target);
 if (data.get('email') !== '' && !memberships.some(e => e.email === data.get('email'))) {
 const newTeamMember = {
 id : props.id,
-idMember : null,
+idMember : uuidv4(),
 email: data.get('email'),
 memberType: "normal",
 unconfirmed: true
