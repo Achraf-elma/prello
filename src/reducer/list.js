@@ -15,7 +15,7 @@ const name = ( state = initList.name, action ) => {
       return state;
   }
 }
-const closed = ( state = initList.closed, action ) => {
+const isClosed = ( state = initList.isClosed, action ) => {
   switch(action["type"]) {
     case SET_LIST_CLOSED:
       return action.payload.closed
@@ -61,7 +61,7 @@ export default combineReducers({
   // TODO: Add reducers, done
   idList ,
   name,
-  closed,
+  isClosed,
   idBoard,
   pos ,
   subscribed,

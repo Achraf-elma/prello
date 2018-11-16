@@ -70,6 +70,7 @@ export const initBoard = {
 }
 
 export const setBoard = (board) => ({
+  socketAction:true,
   type: SET_BOARD,
   payload: board
 })

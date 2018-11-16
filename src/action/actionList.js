@@ -8,7 +8,7 @@ import uuidv4 from "uuidv4";
 export const initList = {
 idList : 0 , //TODO check
 name: 'My list',
-closed: 'closed'|'notClosed', 
+isClosed: false, 
 idBoard: null,
 pos : 0,
 cards :  [
@@ -31,11 +31,11 @@ export const ADD_CARD_IN_CALENDAR = "@@list/ADD_CARD_IN_CALENDAR";
 // Action Builders
 // TODO: Export Action Builder
 
-export const setListClosed = (id, closed) => ({
+export const setListClosed = (id, isClosed) => ({
     type: SET_LIST_CLOSED,
     payload:  {
       id,
-      closed
+      isClosed
     }
   })
 
@@ -72,12 +72,12 @@ export const setListBoard = (id, idBoard) => ({
   }
 })
 
-export const createList = (id, name , closed,  idBoard, pos , subscribed ) => ({
+export const createList = (id, name , isClosed,  idBoard, pos , subscribed ) => ({
   type: SET_NEW_LIST,
   payload:  {
     id,
     name ,
-    closed,
+    isClosed,
     idBoard,
     pos ,
     subscribed   }
@@ -101,7 +101,6 @@ export const addCardToList = (idList, idBoard, cardName, dueDate) => ({
     idBoard : idBoard,
     name: cardName,
     dueDate :  new Date(dueDate)
-    
   }
 })
 
