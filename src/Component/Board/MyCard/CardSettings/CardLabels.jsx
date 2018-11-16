@@ -10,8 +10,7 @@ const CardLabels = ({labels}) => (
   <Row>
      
      <Col className="labelField" xs="6"> 
-     <i class="fa fa-tags" aria-hidden="true"></i>
-    Label : </Col>
+     <i class="fa fa-tags" aria-hidden="true"></i>&nbsp; Label : </Col>
     
     <Col>
     

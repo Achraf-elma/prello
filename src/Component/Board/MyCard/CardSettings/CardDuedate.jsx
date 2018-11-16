@@ -9,20 +9,16 @@ import InputText from '../../../Input/InputText';
 // Actions
 import { setCardDueDate } from '../../../../action/actionCard';
 
-
+import DatetimePicker from '../../List/DatetimePicker';
 
 
 const CardDuedate = ({card, dispatchSetCardDueDate}) => (
   <Row>
-    <Col className="labelField" xs="6">Due Date :</Col>
+    <Col className="labelField" xs="6"> <i class="fa fa-calendar-times-o" aria-hidden="true"></i>&nbsp;Due Date :</Col>
     <Col  xs="6">
-      <InputText
-        className="editCardInput"
-          type="date"
-          value={moment(card.dueDate)}
-          resetable
-          toggle={true}
-          onChange={(value) => dispatchSetCardDueDate(card.id,value)}
+     <input type="text" value={moment(card.dueDate).format('llll')} readOnly />
+      <DatetimePicker
+          handleSave={(value) => dispatchSetCardDueDate(card.id,value)}
         />
     </Col>
   </Row>

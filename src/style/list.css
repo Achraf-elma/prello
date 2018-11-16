@@ -76,3 +76,10 @@
   background  :#1f425b !important;
 }
 
+.m-input-moment .btn-save{
+  display: none !important;
+  }
+
+  .dueDateOutput{
+    cursor:pointer;
+  }

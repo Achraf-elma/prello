@@ -10,7 +10,7 @@ import { setCardDesc } from '../../../../action/actionCard';
 
 const CardDescription = ({card, dispatchSetCardDesc}) => (
   <Row>
-   <Col className="labelField" xs="6">Description {card.idBoard}:</Col>
+   <Col className="labelField" xs="6"> <i class="fa fa-address-card" aria-hidden="true"></i> 	&nbsp;Description :</Col>
    <Col xs="auto">
     <InputText
         className="editCardInput"

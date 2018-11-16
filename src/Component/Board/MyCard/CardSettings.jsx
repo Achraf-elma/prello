@@ -59,7 +59,7 @@ class CardSettings extends React.Component {
             <hr/>
             <CardDuedate idCard={card.id}/>
             <hr/>
-            {labels ? <CardLabels idCard={card.id}/>  : null}
+            <CardLabels idCard={card.id}/>  
             <hr/>
             <CardComments idCard={card.id}/>
           </Col>

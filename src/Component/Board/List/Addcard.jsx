@@ -36,10 +36,15 @@ class AddCard extends React.Component {
         <button className="add-card-link" id= {"list" +idList} onClick={this.toggle}>
         <span className="fa fa-plus-circle"> Add Card</span>  
         </button>
-        <Popover placement="bottom" isOpen={this.state.popoverOpen} target={`list${idList}`} toggle={this.toggle}>
-          <PopoverHeader>Add Card</PopoverHeader>
+        <Modal isOpen={this.state.popoverOpen} toggle={this.toggle} className={this.props.className}>
+          <ModalHeader toggle={this.toggle} close={closeBtn}>Add Card</ModalHeader>
+          <ModalBody>
+          <CardCreator closeToggle={this.toggle} handleSubmit={dispatchAddCardToList} />
+          </ModalBody>
+        </Modal>
+        <Popover placement="bottom"  target={`list${idList}`} toggle={this.toggle}>
+          <PopoverHeader></PopoverHeader>
           <PopoverBody>
-             <CardCreator closeToggle={this.toggle} handleSubmit={dispatchAddCardToList} />
           </PopoverBody>
         </Popover>
       </div>

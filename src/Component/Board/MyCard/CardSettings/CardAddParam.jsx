@@ -32,11 +32,11 @@ render() {
   } = this.props;
   return (
     <div>
-      <h4>Add</h4><hr/>
+      <h4><i class="fa fa-plus" aria-hidden="true"></i> &nbsp;Add</h4><hr/>
 
-        <button className="buttonCustom" id={"card-member"+card.id} onClick={() => this.togglePopover(1)}>Member</button> <br/>
-        <button className="buttonCustom" id={"card-label"+card.id} onClick={() => this.togglePopover(0)}>Label</button> <br/>
-        <button className="buttonCustom">Checklist</button><br/>
+        <button className="addElementButton" id={"card-member"+card.id} onClick={() => this.togglePopover(1)}>  <i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp; Member</button> <br/>
+        <button className="addElementButton" id={"card-label"+card.id} onClick={() => this.togglePopover(0)}><i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp;Label</button> <br/>
+        <button className="addElementButton"><i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp; Checklist</button><br/>
 
         <Popover placement="right" isOpen={this.state.popoverOpen[0]} target={"card-label"+card.id} toggle={() => this.togglePopover(0)}>
           <PopoverHeader>Labels</PopoverHeader>

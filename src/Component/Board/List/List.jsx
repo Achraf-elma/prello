@@ -1,7 +1,7 @@
 // Modules
 import React from 'react';
 import { connect } from 'react-redux';
-import{Card , CardHeader,  CardBody, Popover, PopoverHeader, PopoverBody} from 'reactstrap';
+import{Card , CardHeader,  CardBody, Modal, ModalHeader, ModalBody, Popover, PopoverHeader, PopoverBody} from 'reactstrap';
 
 
 // Action builder
@@ -39,14 +39,20 @@ class List extends React.Component {
     });
   }
 
-  addingCard(event){
+  addingCard = (event) => {
+    console.log("on est y")
     event.preventDefault();
     const data = new FormData(event.target);
+    var cardName = data.get('cardName');
+    var dueDate = data.get('dueDate');
+    if( dueDate === "No due date"){
+        dueDate = null;
+    }
     this.props.dispatchAddCardToList(
       this.props.idList,
       this.props.list.idBoard,
-      data.get('cardName'),
-      data.get('dueDate')
+      cardName,
+      dueDate
     );
     this.togglePopover();
   }
@@ -91,15 +97,10 @@ class List extends React.Component {
             
       <CardBody>
         <div>
-            <button className="add-card-link" id= {"list" +idList} onClick={this.togglePopover}>
-                <span className="fa fa-plus-circle"> Add Card</span>  
+            <button className="add-card-link" onClick={this.togglePopover}>
+                <span className="fa fa-plus-circle">Add Card</span>  
             </button>
-            <Popover placement="bottom" isOpen={this.state.popoverOpen} target={`list${idList}`} toggle={this.togglePopover}>
-              <PopoverHeader>Add Card</PopoverHeader>
-              <PopoverBody>
-                <CardCreator closeToggle={this.togglePopover} handleSubmit={this.addingCard.bind(this)} />
-              </PopoverBody>
-            </Popover>
+          <CardCreator isOpen={this.state.popoverOpen} toggle={this.togglePopover} handleSubmit={this.addingCard} />
         </div>
       </CardBody>
 
