@@ -37,8 +37,7 @@ export const googleLogin = (googleResponse) => (
   .setJWT(googleResponse.tokenId)
   .post("/api/oauth/google")
   .then( response => client.setCredentials(response.data))
-  .then(client => client.get("/api/oauth"))
-  .then( response => console.log(response.data))
+  // .then(client => client.get("/api/oauth"))
   // Where should we manage those errors ?
   // .catch( error => error.response && error.response.state === 401 || Promise.reject(error))
   // .catch( error => console.error(error))
