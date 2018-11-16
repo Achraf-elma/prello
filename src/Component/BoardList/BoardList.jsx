@@ -13,9 +13,9 @@ import BoardCard from './BoardCard';
 const BoardList = ({
   boardListTitle,
   boards,
-  boardFilter,
+  boardFilter = (b)=> b,
   dispatchCloseBoardFromBoards,
-}) => (
+}) => console.log(boards, boardFilter) || (
   <div>
     <Container>
       <Row>
@@ -38,7 +38,7 @@ const BoardList = ({
 );
 
 const mapStateToProps = (state, props) => ({
-  boards: state.boards.filter(board => board.closed === false),
+  boards: state.boards.filter(board => !board.isClosed),
   owners: state.boardListName,
 });
 

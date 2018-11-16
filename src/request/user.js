@@ -34,3 +34,9 @@ export const saveUserPreferences = (idMember, preferences) => {
       .catch(rematchError)
   );
 }
+
+export const fetchUserBoards = (idMember = client.me) => (
+  client.get(`api/members/${idMember}/boards`)
+    .then(response => response.data)
+    .catch(rematchError)
+)

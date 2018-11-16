@@ -1,9 +1,7 @@
-// Modules
-import uuidv4 from "uuidv4";
-
 // Action type constants
 // TODO: Action type constant
 export const CLOSE_BOARD_FROM_BOARDS = "@@board/CLOSE_BOARD_FROM_BOARDS";
+export const SET_BOARD_LIST = "@@board/SET_BOARD_LIST";
 export const SELECT_BOARD = "@@board/SELECT_BOARD";
 export const ADD_BOARD_TO_BOARDS = "@@board/ADD_BOARD_TO_BOARDS";
 export const UPDATE_BOARD = "@@board/UPDATE_BOARD";
@@ -153,7 +151,10 @@ export const initBoards = {
 }
     
 
-
+export const setBoardList = (boardList) => ({
+  type: SET_BOARD_LIST,
+  payload: boardList,
+})
 
 export const removeBoardFromBoards = (idBoardToClose, closed) => ({
   type: CLOSE_BOARD_FROM_BOARDS,
@@ -172,13 +173,10 @@ export const updateBoard = (id, newBoard) => ({
 })
 
 // Move a list position in the board
-export const addBoardToBoards = (name, desc, isPublic, members, owners) => ({
+export const addBoardToBoards = (board) => ({
   type: ADD_BOARD_TO_BOARDS,
   payload: {
-    id: uuidv4(),
-    name: name, 
-    desc: desc, 
-    list: {},
+    ...board,
     labelName : {
       "green": "",
       "yellow": "good to go",
@@ -191,9 +189,5 @@ export const addBoardToBoards = (name, desc, isPublic, members, owners) => ({
       "pink": "",
       "black": ""
     },
-    closed: false,
-    isPublic,
-    memberships: members, 
-    owners: owners
   }
 })
