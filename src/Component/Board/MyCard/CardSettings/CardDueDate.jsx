@@ -24,7 +24,7 @@ class CardDuedate extends React.Component {
   }
 
   handleChange = m => {
-    this.setState({ m });
+    this.setState({ m : m });
   };
 
   handleCollapse = () => {
