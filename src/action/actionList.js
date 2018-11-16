@@ -100,7 +100,8 @@ export const addCardToList = (idList, idBoard, cardName, dueDate) => ({
     idList: idList,
     idBoard : idBoard,
     name: cardName,
-    dueDate :  new Date(dueDate)
+    dueDate :  dueDate
+    
   }
 })
 

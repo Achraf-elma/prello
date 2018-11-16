@@ -39,23 +39,7 @@ class List extends React.Component {
     });
   }
 
-  addingCard = (event) => {
-    console.log("on est y")
-    event.preventDefault();
-    const data = new FormData(event.target);
-    var cardName = data.get('cardName');
-    var dueDate = data.get('dueDate');
-    if( dueDate === "No due date"){
-        dueDate = null;
-    }
-    this.props.dispatchAddCardToList(
-      this.props.idList,
-      this.props.list.idBoard,
-      cardName,
-      dueDate
-    );
-    this.togglePopover();
-  }
+
 
   render() {
   const {
@@ -100,7 +84,7 @@ class List extends React.Component {
             <button className="add-card-link" onClick={this.togglePopover}>
                 <span className="fa fa-plus-circle">Add Card</span>  
             </button>
-          <CardCreator isOpen={this.state.popoverOpen} toggle={this.togglePopover} handleSubmit={this.addingCard} />
+          <CardCreator isOpen={this.state.popoverOpen} toggle={this.togglePopover} handleSubmit={this.addingCard} idList={list.idList} idBoard={list.idBoard}/>
         </div>
       </CardBody>
 

@@ -3,8 +3,11 @@ import React from 'react';
 import moment from 'moment';
 import Datetime from 'react-datetime';
 import InputMoment from 'input-moment';
+import { connect } from 'react-redux';
+
 // Components
 import { Modal,ModalHeader, ModalBody, Button, Form, FormGroup, Label, Input, Collapse, CardHeader, Col, Row ,CardColumns, Card, CardGroup,CardBody, Container} from 'reactstrap';
+import { addCardToList} from '../../../action/actionList';
 
 // Styles 
 import '../../../style/list.css';
@@ -27,11 +30,23 @@ class CardCreator extends React.Component {
     this.setState({ m : m, dueDateOK : true});
   };
   handleUndo = () => {
-    this.setState({ dueDateOK : false });
+    this.setState({  isCollapse : false, dueDateOK : false });
   }
-  handleSave = () => {
-    console.log('saved', this.state.m.format('llll'));
-  };
+
+  handleSave = (event) => {
+    event.preventDefault();
+    const data = new FormData(event.target);
+    var cardName = data.get('cardName');
+    var dueDate = this.state.dueDateOK === true ?  this.state.m :  null;
+    this.props.dispatchAddCardToList(
+      this.props.idList,
+      this.props.idBoard,
+      cardName,
+      dueDate
+    );
+    this.toggleModal();
+  }
+
   toggleModal = () => {
     this.setState({ 
       isCollapse : false,
@@ -43,7 +58,8 @@ class CardCreator extends React.Component {
     const {
       handleSubmit,
       isOpen,
-      toggle
+      toggle,
+       dispatchAddCardToList
     } = this.props;
     const closeBtn = <button className="close" onClick={this.togglePopover}>&times;</button>;
     const undoDate = <button type="button"  className="close" onClick={this.handleUndo}>&times;</button>;
@@ -54,7 +70,7 @@ class CardCreator extends React.Component {
 
   return (
     <Modal isOpen={isOpen} toggle={this.toggleModal}>
-      <form id="card-creator" onSubmit = {handleSubmit}>
+      <form id="card-creator" onSubmit = {this.handleSave}>
 
     <ModalHeader toggle={this.toggleModal} close={submitBtn}>Add card</ModalHeader>
     <ModalBody>
@@ -62,9 +78,8 @@ class CardCreator extends React.Component {
     <Container>
     <FormGroup>
         <Row>
-          
-            <Col  xs="6"> <Label className="labelField" for="cardName">Card Name</Label> </Col>
-            <Col  xs="6"> <Input autoFocus type="text" name="cardName" placeholder="deliver logo" /> </Col>
+          <Col  xs="6"> <Label className="labelField" for="cardName">Card Name</Label> </Col>
+          <Col  xs="6"> <Input autoFocus type="text" name="cardName" placeholder="deliver logo" /> </Col>
         </Row>
         </FormGroup>
         <FormGroup>
@@ -73,7 +88,7 @@ class CardCreator extends React.Component {
             <Col> <Label className="labelField" for="dueDate">
             <i className="fa fa-calendar-times-o" aria-hidden="true">
             </i>&nbsp;Due date</Label> </Col>
-            <Col> <input className="dueDateOutput" onClick={this.handleCollapse} type="text" name="dueDate" value={ this.state.dueDateOK ?  this.state.m.format('llll') : "No due date"} readOnly /> </Col>
+            <Col> <input className="dueDateOutput" onClick={this.handleCollapse} type="text" name="dueDate"  placeholder={ this.state.dueDateOK ?  this.state.m.format('llll') : "No due date"} readOnly /> </Col>
              {undoDate}
         </Row>
         </FormGroup>
@@ -103,4 +118,15 @@ class CardCreator extends React.Component {
   }
   }
 
-export default CardCreator; 
+  const mapStateToProps = ( state, props ) => ({
+   
+  });
+  
+  const mapDispatchToProps = ( dispatch, props ) => ({
+  
+      dispatchAddCardToList: (idlist, idboard, name, duedate) => dispatch(addCardToList(idlist, idboard, name, duedate))
+
+  });
+  
+
+export default connect(mapStateToProps, mapDispatchToProps)(CardCreator); 

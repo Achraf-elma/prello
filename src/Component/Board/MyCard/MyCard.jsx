@@ -18,7 +18,7 @@ const MyCard = ({ card, labels, history, match }) => (
       <Badge style={{color : '#fff', background : label.color }} pill>{label.name}</Badge>
     ))}
     </CardHeader>
-    <CardBody> {card.name} <br/> {card.dueDate ?  "Due date : "  + moment(card.dueDate).fromNow() : ""}  </CardBody>
+    <CardBody> {card.name} <br/>{ card.dueDate === null ? "" : moment(card.dueDate).fromNow() }  </CardBody>
   </Card>
 );
 
