@@ -1,5 +1,5 @@
 // Action types
-import { MOVE_CARD_IN_LIST, ADD_CARD_IN_LIST } from '../action/actionList';
+import { MOVE_CARD_IN_LIST, ADD_CARD_TO_LIST } from '../action/actionList';
 import { SET_CARD_DUE_DATE, SET_CARD_NAME, ASSIGN_LABEL_TO_CARD, ASSIGN_CHECKLIST_TO_CARD, SET_CARD_DESC, ASSIGN_MEMBER_TO_CARD, SET_CARD_CLOSED} from '../action/actionCard';
 
 import card from './card'
@@ -8,9 +8,13 @@ import { SET_CARDS } from '../action/actionCards';
 
 export default ( state = [], action) => {
   switch(action.type) {
+
     case SET_CARDS:
-      return action.payload;
-    case ADD_CARD_IN_LIST:
+    return action.payload.map(card=> ({
+      id : card._id , 
+      ...card
+    }))
+    case ADD_CARD_TO_LIST:
       return [...state, action.payload];
       
     case SET_CARD_NAME:

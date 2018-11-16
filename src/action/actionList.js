@@ -25,7 +25,7 @@ export const SET_LIST_NAME = "@@list/SET_LIST_NAME"
 export const SET_LIST_BOARD = "@@list/SET_LIST_BOARD"
 export const SET_NEW_LIST = "@@list/SET_NEW_LIST"
 export const MOVE_CARD_IN_LIST = "@@list/MOVE_CARD_IN_LIST"
-export const ADD_CARD_IN_LIST = "@@list/ADD_CARD_IN_LIST";
+export const ADD_CARD_TO_LIST = "@@list/ADD_CARD_TO_LIST";
 export const ADD_CARD_IN_CALENDAR = "@@list/ADD_CARD_IN_CALENDAR";
 
 // Action Builders
@@ -93,14 +93,14 @@ export const moveCardInList = (cardToMovePos, newCardPos) => ({
 })
 
 // Add a new card at the end of the list
-export const addCardToList = (idList, idBoard, cardName, dueDate) => ({
-  type: ADD_CARD_IN_LIST,
+export const addCardToList = (idList, idBoard, cardName, dueDate, dueComplete) => ({
+  type: ADD_CARD_TO_LIST,
   payload: {
-    id: uuidv4(),
     idList: idList,
     idBoard : idBoard,
     name: cardName,
-    dueDate :  dueDate
+    dueDate :  new Date(dueDate), 
+    dueComplete : dueComplete,
     
   }
 })
