@@ -6,7 +6,10 @@ import { SET_LISTS } from '../action/actionLists';
 export default ( state = [], action) => {
   switch(action.type) {
     case SET_LISTS:
-      return action.payload;
+      return action.payload.map(list=> ({
+        idList : list._id , 
+        ...list
+      }))
     case ADD_LIST_TO_BOARD:
       return [...state, action.payload]
     case MOVE_LIST_IN_BOARD:

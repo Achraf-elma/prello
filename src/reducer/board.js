@@ -5,7 +5,7 @@ import { MOVE_LIST_IN_BOARD, ADD_LIST_TO_BOARD, ADD_SET_LABEL_TO_BOARD } from '.
 // Definitions
 import {initBoard, SET_BOARD, SET_BOARD_NAME, SET_BOARD_DESC, SET_BOARD_MEMBERSHIPS, SET_BOARD_OWNERS, SET_BOARD_CLOSE, SET_BOARD_PRIVACY} from "../action/actionBoard";
 
-const id = ( state = initBoard.id, action ) => action.type === SET_BOARD ? action.payload.id : state ;
+const id = ( state = initBoard.id, action ) => action.type === SET_BOARD ? action.payload._id : state ;
 const name = (state = initBoard.name, action ) => {
   switch(action["type"]) {
     case SET_BOARD:
@@ -19,7 +19,7 @@ const name = (state = initBoard.name, action ) => {
 const desc = (state = initBoard.desc, action ) => {
   switch(action["type"]) {
     case SET_BOARD:
-      return action.payload.desc;
+      return action.payload.description;
     case SET_BOARD_DESC:
       return action.payload.desc
     default:
@@ -29,7 +29,7 @@ const desc = (state = initBoard.desc, action ) => {
 const memberships = (state = initBoard.memberships, action ) => {
   switch(action["type"]) {
     case SET_BOARD:
-      return action.payload.name;
+      return action.payload.idMembers;
     case SET_BOARD_MEMBERSHIPS:
       return action.payload.memberships
     default:
@@ -39,7 +39,7 @@ const memberships = (state = initBoard.memberships, action ) => {
 const owners = (state = initBoard.owners, action ) => {
   switch(action["type"]) {
     case SET_BOARD:
-      return action.payload.owners;
+      return action.payload.idOwner;
     case SET_BOARD_OWNERS:
       return action.payload.owners
     default:
@@ -49,7 +49,7 @@ const owners = (state = initBoard.owners, action ) => {
 const closed = (state = initBoard.closed, action ) => {
   switch(action["type"]) {
     case SET_BOARD:
-      return action.payload.closed;
+      return action.payload.isClosed;
     case SET_BOARD_CLOSE:
       return action.payload.closed
     default:
@@ -88,9 +88,9 @@ const isPublic = (state = initBoard.isPublic, action ) => {
 const labelNames = (state = initBoard.labelNames, action ) => {
   switch(action["type"]) {
     case SET_BOARD:
-      return action.payload.labelNames;
+      return 0;//action.payload.labelNames;
     case ADD_SET_LABEL_TO_BOARD:
-       state[action.payload.color] = action.payload.name;
+      state[action.payload.color] = action.payload.name;
       return state;
     default:
       return state;

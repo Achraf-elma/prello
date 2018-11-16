@@ -1,3 +1,16 @@
+
+html
+{
+	height:100%;
+	width:100%;
+}
+ 
+body
+{
+	height:100%;
+	width:100%;
+}
+
 .InputText{
  width:100%;
 }
@@ -36,6 +49,10 @@
 .buttonCustom:hover{
   color: white;
   background: #010a1d;
+}
+
+.creator{
+  display: flex
 }
 @media screen and (max-width: 600px) {
   

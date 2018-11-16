@@ -22,7 +22,6 @@ export const socketConnection = {
 }
 
 export const socketDispatch = param => next => action => {
-  console.log(param, next, action);
   if (!action.socketAction) {
     let socketAction = ({
       socketAction: true,

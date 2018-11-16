@@ -70,6 +70,7 @@ export const initBoard = {
 }
 
 export const setBoard = (board) => ({
+  socketAction:true,
   type: SET_BOARD,
   payload: board
 })
@@ -103,7 +104,6 @@ export const moveListInBoard = (listToMovePos, newListPos) => ({
 export const addListToBoard = (idBoard,listName) => ({
   type: ADD_LIST_TO_BOARD,
   payload: {
-    idList: uuidv4(),
     idBoard : idBoard,
     name: listName
   }

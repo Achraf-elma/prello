@@ -15,6 +15,7 @@ import Board from './Board';
 
 // Requests
 import {fetchBoard, fetchBoardLists, fetchBoardCards} from '../../request/board'
+import { ErrorLogin, ErrorForbidden, ErrorNotFound } from '../../request/requestErrors';
 
 // Styles
 import '../../style/board.css';
@@ -39,7 +40,10 @@ class BoardViewHandler extends React.Component{
       this.props.dispatchSetLists(lists),
       this.props.dispatchSetCards(cards),
     ])
-    .catch(err => console.error(err));
+    .catch(error => error instanceof ErrorLogin ? this.props.history.push('/login') : Promise.reject(error))
+    .catch(error => error instanceof ErrorForbidden ? this.props.history.push('/home') : Promise.reject(error))
+    .catch(error => error instanceof ErrorNotFound ? this.props.history.push('/home') : Promise.reject(error))
+    .catch(err => this.props.history.push('/login'));
   }
 
   LinkToCalendar = () => (

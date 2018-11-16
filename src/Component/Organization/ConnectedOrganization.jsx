@@ -14,7 +14,7 @@ const ConnectedOrganization = (props) => (
   <Provider store={store}>
     <div>
       <Route path='/organizations' component={OrganizationList} />
-      <Route path='/organization/:organizationId' component={OrganizationViewHandler} />
+      <Route path='/organizations/:idOrganization([0-9a-fA-F]{24})' component={OrganizationViewHandler} />
     </div>
   </Provider>
 );
