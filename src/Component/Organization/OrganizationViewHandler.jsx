@@ -1,7 +1,7 @@
 // Modules
 import React from 'react';
 import {connect} from 'react-redux';
-import { Button } from 'reactstrap';
+import { Route, NavLink } from 'react-router-dom';
 
 // Action builder
 import { setTeam } from '../../action/actionOrganization';
@@ -19,81 +19,48 @@ import OrgMembers from './OrgMembersView';
 
 class OrganizationViewHandler extends React.Component{
 
-    constructor(props) {
-      super(props);
-      this.state = {
-        ViewChosen : 'Boards',
-        organizationId: this.props.match.params.organizationId
-      }
-      this.setViewChosen = this.setViewChosen.bind(this)
-    }
-
-    componentDidMount() {
-        fetchOrganization(this.state.organizationId)
-          .then(organization => {
-            this.props.dispatchSetTeam(organization)
-           })
-          .catch(err => console.error(err));
-        }
-
-    setViewChosen = (ViewChosen) =>  {
-      this.setState({
-          ViewChosen: ViewChosen
-      })
-    }
-
-    renderSwitch(ViewChosen) {
-        switch(ViewChosen) {
-          case 'Boards':
-            return <Organization/>;
-          case 'Settings':
-            return <OrgSettings/>;
-          case 'Members':
-            return <OrgMembers/>;
-          default:
-            return <OrgMembers/>;
-        }
-      }
-      
+  componentDidMount() {
+    fetchOrganization(this.props.match.params.organizationId)
+    .then(organization => this.props.dispatchSetTeam(organization))
+    .catch(err => console.error(err));
+  }
 
 
-    render() { 
-      const { displayName} = this.props
-      
+  render() { 
+    const { displayName, match, history } = this.props
     return (
-        <div>
-            <div className="organization-background"/>
-            <div className="container">
-                <div className="row organization-info">
-                    <div className="col">
-                        <h1 className="organization-title">{displayName}</h1>
-                    </div>
-
-                    <div className="viewSelection">
-                        <div className="col">
-                            <Button color="primary" onClick={() => this.setViewChosen('Boards')} active={this.state.ViewChosen !== 'Boards'}>Boards</Button>
-                            <Button color="primary" onClick={() => this.setViewChosen('Members')} active={this.state.ViewChosen !== 'Members'}>Members</Button>
-                            <Button color="primary" onClick={() => this.setViewChosen('Settings')} active={this.state.ViewChosen !== 'Settings'}>Settings</Button>
-                        </div>
-                    </div>
-                </div>
-                <hr className="separator" />
-
-                {this.renderSwitch(this.state.ViewChosen)}
+      <div>
+        <div className="organization-background" />
+        <div className="container">
+          <div className="row organization-info">
+            <div className="col">
+              <h1 className="organization-title">{displayName}</h1>
             </div>
+
+            <div className="viewSelection">
+              <div className="col">
+                <NavLink className="btn btn-primary" to={`${match.url}/boards`} >Boards</NavLink>
+                <NavLink className="btn btn-primary" to={`${match.url}/settings`} >Members</NavLink>
+                <NavLink className="btn btn-primary" to={`${match.url}/members`} >Settings</NavLink>
+              </div>
+            </div>
+          </div>
+          <hr className="separator" />
+          <Route path={`${match.path}/boards`} component={Organization} />
+          <Route path={`${match.path}/settings`} component={OrgSettings} />
+          <Route path={`${match.path}/members`} component={OrgMembers} />
         </div>
-      );
-    }
-
-
+      </div>
+    );
+  }
 }
 
 const mapStateToProps = ( state, props ) => ({
-    displayName : state.organization.displayName
+  displayName : state.organization.displayName
 })
 
 const mapDispatchToProps = (dispatch, props) => ({
-    dispatchSetTeam : (organization) => dispatch(setTeam(organization))
+  dispatchSetTeam : (organization) => dispatch(setTeam(organization))
 });
 
 // Export connected Components

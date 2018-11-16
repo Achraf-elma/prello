@@ -32,7 +32,7 @@ const OrganizationList = ({ organizations, organizationListName, dispatchForm, m
             <p>{organization.desc}</p>
           </CardBody> 
           <ButtonGroup className="buttons">
-          <Link to={`/organization/${organization.id}`}>
+          <Link to={`/organizations/${organization.id}/boards`}>
             <Button>View</Button>
           </Link>
           </ButtonGroup>
