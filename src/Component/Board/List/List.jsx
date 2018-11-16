@@ -106,7 +106,7 @@ const mapDispatchToProps = ( dispatch, props ) => {
       dispatch(moveCardInList(source.index, destination.index))
     ),
     setListName: (name) => dispatch(setListName( props.idlist, name )),
-    dispatchAddCardToList: (idlist, idboard, name, duedate) => dispatch(addCardToList(idlist, idboard, name, duedate)
+    dispatchAddCardToList: (idlist, idboard, name, duedate) => dispatch(addCardToList(idlist, idboard, name, duedate, false)
     )
   }
 }

@@ -11,6 +11,7 @@ const id = ( state = initCard.id, action ) => state
 
 const name = ( state = initCard.name, action ) => {
   switch(action["type"]) {
+    
     case SET_CARD_NAME:
       return action.payload.name
     default:
