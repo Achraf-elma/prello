@@ -42,10 +42,10 @@ class AddMember extends React.Component {
   }
 }
 
-const mapStateToProps = ( state, props ) => {
-   card = state.cards.find(card => card.id == props.idCard),
-   board = state.board
-}
+const mapStateToProps = ( state, props ) => ({
+   card : state.cards.find(card => card.id == props.idCard),
+   board : state.board
+})
 
 const mapDispatchToProps = ( dispatch, props ) => ( {
    dispatchAssignMemberToCard: (idMember) =>{
