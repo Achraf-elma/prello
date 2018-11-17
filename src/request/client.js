@@ -63,7 +63,7 @@ client.setCredentials({
   "expires": 1542431203163, 
   "idUser": "e1e1e0e1e1e0e1e1e0e1e1e0", 
   "memberType": "admin"
-
+})
 client.getCredentials = () => {
   return client.credentials;
 }
