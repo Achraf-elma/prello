@@ -19,7 +19,7 @@ const name = (state = initBoard.name, action ) => {
 const desc = (state = initBoard.desc, action ) => {
   switch(action["type"]) {
     case SET_BOARD:
-      return action.payload.description;
+      return action.payload.desc;
     case SET_BOARD_DESC:
       return action.payload.desc
     default:

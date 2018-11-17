@@ -96,7 +96,6 @@ export const moveCardInList = (cardToMovePos, newCardPos) => ({
 export const addCardToList = (idList, idBoard, cardName, dueDate, allDay, dueComplete) => ({
   type: ADD_CARD_TO_LIST,
   payload: {
-    id: uuidv4(),
     idList: idList,
     idBoard : idBoard,
     name: cardName,

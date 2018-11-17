@@ -4,6 +4,7 @@ import moment from 'moment';
 import Datetime from 'react-datetime';
 import InputMoment from 'input-moment';
 import { connect } from 'react-redux';
+import {fetchBoardCards} from '../../../request/board'
 
 // Components
 import { Modal,ModalHeader, ModalBody, Button, Form, FormGroup, Label, Input, Collapse, CardHeader, Col, Row ,CardColumns, Card, CardGroup,CardBody, Container} from 'reactstrap';
@@ -11,6 +12,7 @@ import { addCardToList} from '../../../action/actionList';
 
 // Styles 
 import '../../../style/list.css';
+import { setCards } from '../../../action/actionCards';
 require('input-moment/dist/input-moment.css');
 
 class CardCreator extends React.Component {
@@ -44,6 +46,9 @@ class CardCreator extends React.Component {
       cardName,
       dueDate
     );
+    fetchBoardCards(this.props.idBoard)
+      .then(lists=> this.props.dispatchSetLists(lists),)
+      .catch(err => console.error(err));
     this.toggleModal();
   }
 
@@ -125,7 +130,8 @@ class CardCreator extends React.Component {
   
   const mapDispatchToProps = ( dispatch, props ) => ({
   
-      dispatchAddCardToList: (idlist, idboard, name, duedate) => dispatch(addCardToList(idlist, idboard, name, duedate))
+      dispatchAddCardToList: (idlist, idboard, name, duedate) => dispatch(addCardToList(idlist, idboard, name, duedate)),
+      dispatchSetCards : (cards) => dispatch(setCards(cards))
 
   });
   

@@ -17,10 +17,22 @@ export default ( state = [], action) => {
     case ADD_CARD_TO_LIST:
       return [...state, action.payload];
       
+    
+    //  action.payload = action.payload.map(card=> ({
+    //   desc : card.description , 
+    //   ...card
+    // }));
+    
+    // var idxCardToUpdate = state.findIndex(card => card.id === n.id)
+    // var cardUptaded = card(state[idxCardToUpdate], action)
+    // var nextCards = [...state]
+    // nextCards[idxCardToUpdate] = cardUptaded;
+    // return  nextCards;
+
+    case SET_CARD_DESC:
     case SET_CARD_NAME:
     case SET_CARD_CLOSED:
     case SET_CARD_DUE_DATE:
-    case SET_CARD_DESC:
     case ASSIGN_MEMBER_TO_CARD:
     case ASSIGN_LABEL_TO_CARD:
     case ASSIGN_CHECKLIST_TO_CARD:
