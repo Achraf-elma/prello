@@ -77,7 +77,7 @@ class CalendarView extends Component {
     console.log("MOVE FUNCTION " + event.id)
      this.props.setCardDueDate(event.id, end, allDay)
 
-    alert(`${event.title} was dropped onto ${updatedEvent.start}`)
+    alert(`${event.title} was dropped into ${updatedEvent.start}`)
   }
 
   render() {

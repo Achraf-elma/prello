@@ -60,7 +60,7 @@ const closed = (state = initBoard.closed, action ) => {
 const lists = ( state = [], action) => {
   switch(action.type) {
     case SET_BOARD:
-    return action.payload.lists;
+    return action.payload.lists|| "";
     case MOVE_LIST_IN_BOARD:
       let listToMove = state[action.payload.listToMovePos];
       let lists = state.filter((list, index) => index !== action.payload.listToMovePos);
