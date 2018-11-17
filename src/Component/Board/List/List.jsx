@@ -67,11 +67,11 @@ class List extends React.Component {
           />
          </span>
       :
-        <span onClick={this.handleEditClick} className="list-title">{list.idBoard}{list.name}{idList}</span>
+        <span onClick={this.handleEditClick} className="list-title">{list.name}</span>
       }
 
       <i onClick = {this.handleEditClick} 
-        className= { this.state.editNameOn === true ? "fa fa-edit editmod" : "fa fa-edit" }
+        className= { this.state.editNameOn === true ? "fa fa-ellipsis-v editmod" : "fa fa-ellipsis-v" }
       />
       </CardHeader>
 

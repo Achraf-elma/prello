@@ -33,10 +33,11 @@ export const createBoard = (board, owner = client.me) => (
   client.put(`/api/boards/${board.id}`, {
     _id: board.id,
     name: board.name,
-    description: board.desc,
+    desc: board.desc,
     idMembers: [], //board.members || [],
     idOwner: owner,
     isPublic: board.isPublic,
+    
   })
   .then( response => response.data)
   .catch(rematchError)
