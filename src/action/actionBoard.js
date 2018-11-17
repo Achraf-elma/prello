@@ -119,7 +119,7 @@ export const addLabelToBoard = (idBoard, name, color) => ({
   type: ADD_SET_LABEL_TO_BOARD,
   payload: {
     idBoard: idBoard,
-    name: name,
+    name: name || "myLabel",
     color : color,
   }
 })

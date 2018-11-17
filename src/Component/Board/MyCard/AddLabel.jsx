@@ -10,7 +10,7 @@ import LabelCreator from './../LabelCreator';
 // Actions
 import { addLabelToCard, setLabels } from '../../../action/actionLabel';
 import { addLabelToBoard } from '../../../action/actionBoard';
-import { fetchCardLabels } from '../../../request/board';
+import { fetchBoardLabels } from '../../../request/board';
 
 class AddLabel extends React.Component {
   constructor(props) {
@@ -24,9 +24,9 @@ class AddLabel extends React.Component {
   addingLabel(event){
     event.preventDefault();
     const data = new FormData(event.target);
-    this.props.dispatchAddLabelToCard( this.props.idCard, data.get('labelName'), data.get('color')); 
+    this.props.dispatchAddLabelToCard( data.get('labelName'), data.get('color')); 
     this.props.dispatchAddLabelToBoard(  data.get('labelName'), data.get('color'));  
-    fetchCardLabels(this.props.idCard,this.props.idBoard)
+    fetchBoardLabels(this.props.idBoard)
       .then(labels=> this.props.dispatchSetLabels(labels))
       .catch(err => console.error(err));
    
@@ -54,7 +54,7 @@ class AddLabel extends React.Component {
             <ListGroup>
               {labelNames.map((label) => (
                 <ListGroupItem key={label.color} className="labelNamesList">
-                  <Badge onClick={  () => dispatchAddLabelToCard(idCard,label.text || " ", label.color)} className="labelNamesBadge" style={{color : '#fff', background : label.color }} pill> {label.text}</Badge>
+                  <Badge onClick={  () => dispatchAddLabelToCard(label.text || " ", label.color)} className="labelNamesBadge" style={{color : '#fff', background : label.color }} pill> {label.text}</Badge>
                 </ListGroupItem>
               ))}
             </ListGroup>
@@ -81,17 +81,18 @@ class AddLabel extends React.Component {
 }
 
 const mapStateToProps = ( state, props ) => ({
+
   idBoard : state.board.idBoard,
   labelNames : Object.keys( state.board.labelNames ).map( key => ({ color: key, text: state.board.labelNames[key] })),
 })
 
 const mapDispatchToProps = ( dispatch, props ) => ( {
-  dispatchAddLabelToCard: (id, name, color) =>{
-    console.log(id, name,color);
+  dispatchAddLabelToCard: (name, color) =>{
+    console.log(props.idBoard, name,color);
     dispatch(addLabelToCard( props.idCard,props.idBoard, name, color))
   } ,
-dispatchAddLabelToBoard: (id, name, color) => {
-  console.log(id, name,color);
+dispatchAddLabelToBoard: (name, color) => {
+  console.log("DANS ADD LABEL TO BOARD ",props.idBoard, name,color);
     dispatch(addLabelToBoard( props.idBoard, name, color)) 
   },
   dispatchSetLabels : (labels) => dispatch(setLabels(labels)),

@@ -1,5 +1,5 @@
 // Modules
-import uuidv4 from "uuidv4";
+import {ObjectId} from 'bson';
 
 // Action type constants
 export const ADD_LABEL_TO_CARD = "@@label/ADD_LABEL_TO_CARD";
@@ -8,10 +8,10 @@ export const SET_LABELS = "@@labels/SET_LABELS";
 export const addLabelToCard = (idCard, idBoard, name, color) => ({
   type: ADD_LABEL_TO_CARD,
   payload: {
-    id: uuidv4(),
+    id : new  ObjectId(),
     idCard: idCard,
-    idBoard : idBoard,
-    name: name,
+    idBoard : idBoard ,
+    name: name || "myLabel",
     color: color 
   }
 })

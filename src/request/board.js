@@ -23,8 +23,8 @@ export const fetchBoardCards = (idBoard) =>  {
   .then(response => response.data)
 }
 
-export const fetchCardLabels = (idCard,idBoard ) =>  {
-  return client.get(`/api/boards/${idBoard}/card/${idCard}/labels`)
+export const fetchBoardLabels = (idBoard ) =>  {
+  return client.get(`/api/boards/${idBoard}/labels`)
   .then(response => response.data)
 }
 

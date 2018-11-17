@@ -41,7 +41,7 @@ render() {
         <Popover placement="right" isOpen={this.state.popoverOpen[0]} target={"card-label"+card.id} toggle={() => this.togglePopover(0)}>
           <PopoverHeader>Labels</PopoverHeader>
           <PopoverBody>
-            <AddLabel idCard={card.id} />
+            <AddLabel idCard={card.id}  idBoard= {card.idBoard} />
           </PopoverBody>
         </Popover>
 
