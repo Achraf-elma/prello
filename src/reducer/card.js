@@ -112,7 +112,6 @@ export default combineReducers({
   isClosed,
   idList, 
   idMembers,
-  idLabels,
   idChecklists
   })
  

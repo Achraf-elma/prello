@@ -1,5 +1,5 @@
 // Action types
-import {  ADD_LABEL_IN_CARD , SET_LABELS} from '../action/actionLabel';
+import {  ADD_LABEL_TO_CARD , SET_LABELS} from '../action/actionLabel';
 
 
 
@@ -10,7 +10,7 @@ export default ( state = [], action) => {
         id : labelNames._id , 
         ...labelNames
       }))
-    case ADD_LABEL_IN_CARD:
+    case ADD_LABEL_TO_CARD:
       return [...state, action.payload];
     default:
       return state;

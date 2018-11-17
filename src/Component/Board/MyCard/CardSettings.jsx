@@ -15,6 +15,7 @@ import CardLabels from './CardSettings/CardLabels';
 import CardComments from './CardSettings/CardComments';
 import CardDuedate from './CardSettings/CardDueDate';
 import CardAddParam from './CardSettings/CardAddParam';
+import { setCardClosed } from '../../../action/actionCard';
 
 class CardSettings extends React.Component {
   constructor(props) {
@@ -80,7 +81,7 @@ const mapStateToProps = (state, props) => ({
 })
 
 const mapDispatchToProps = (dispatch, props) => ({
-  dispatchSetCardClosed : (id) => dispqtch(setCardClosed(id, true))
+  dispatchSetCardClosed : (id) => dispatch(setCardClosed(id, true))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CardSettings); 
