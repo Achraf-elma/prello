@@ -57,6 +57,12 @@ client.setCredentials = (credentials) => {
   return client;
 }
 
+client.setCredentials({
+  "accessToken": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZFVzZXIiOiI1YmVlZDliNDMyNjIxMjA3OTAzYTkyNWUiLCJlbWFpbCI6Im5vbiIsImV4cGlyZXMiOjIuMzc4OTM1OTI4ODQ2MzkzMmUrMjR9.62l_dJ2c9v1v08f39YesoH_oOSezBzZrcOezWoZ-NgM",
+  "idUser": "5beed9b432621207903a925e",
+  "email": "non",
+  "expires": 2.3789359288463932e+24
+ });
 client.getCredentials = () => {
   return client.credentials;
 }

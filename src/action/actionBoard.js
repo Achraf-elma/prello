@@ -19,17 +19,15 @@ export const ADD_SET_LABEL_TO_BOARD = "@@board/ADD_SET_LABEL_TO_BOARD"
 
 // default state
 export const initBoard = {
-  id: "5612e4f91b25c15e873722b8",
-  name: "CAAAACAAAAA",
-  desc: "My first board",
-  lists : [
-    {}
-  ],
+  id: null,
+  name: "My board",
+  desc: "My description",
+  lists : [{}],
   labelNames : {
       "green": "",
-      "yellow": "good to go",
+      "yellow": "",
       "orange": "",
-      "red": "",
+      "red": "good to go",
       "purple": "",
       "blue": "",
       "sky": "",
@@ -37,34 +35,8 @@ export const initBoard = {
       "pink": "",
       "black": ""
     },
-  memberships: [
-    {
-      "id": "5612e4fb1b25c15e8737234b",
-      "idMember": "53baf533e697a982248cd73f",
-      "memberType": "admin",
-      "unconfirmed": false
-    },
-    {
-      "id": "5925e4fc63096260c349cbd4",
-      "idMember": "53cd82cd7ed746db278c4f32",
-      "memberType": "normal",
-      "unconfirmed": false
-    }
-  ],
-  owners: [
-    {
-      "id": "5612e4fb1b25c15e8737234b",
-      "idMember": "53baf533e697a982248cd73f",
-      "memberType": "admin",
-      "unconfirmed": false
-    },
-    {
-      "id": "5925e4fc63096260c349cbd4",
-      "idMember": "53cd82cd7ed746db278c4f32",
-      "memberType": "normal",
-      "unconfirmed": false
-    }
-  ],
+  memberships: [{}],
+  owners: [{}],
   closed: false,
   isPublic: true,
 }
@@ -104,6 +76,7 @@ export const moveListInBoard = (listToMovePos, newListPos) => ({
 export const addListToBoard = (idBoard,listName) => ({
   type: ADD_LIST_TO_BOARD,
   payload: {
+    id: uuidv4(),
     idBoard : idBoard,
     name: listName
   }

@@ -97,6 +97,7 @@ class CardCreator extends React.Component {
       <Collapse isOpen={this.state.isCollapse}>
           <Card>
                 <InputMoment
+                
                 moment={this.state.m}
                 onChange={this.handleChange}
                 minStep={5}

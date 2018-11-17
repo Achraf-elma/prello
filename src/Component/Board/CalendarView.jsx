@@ -5,22 +5,17 @@ import { Route } from 'react-router-dom';
 import Calendar from "react-big-calendar";
 import moment from "moment";
 import withDragAndDrop from "react-big-calendar/lib/addons/dragAndDrop";
-import events from '../events';
 import "../../style/calendar.css";
 import "react-big-calendar/lib/addons/dragAndDrop/styles.css";
 import "react-big-calendar/lib/css/react-big-calendar.css";
-//import logo from "./logo.svg";   <img src={logo} className="App-logo" alt="logo" />
 import { setCardDueDate } from '../../action/actionCard';
 import CardSettings from './MyCard/CardSettings'
-//import ics from 'ics';
-import { writeFileSync } from "fs";
+
 
 const ics = require('ics')
 const localizer = Calendar.momentLocalizer(moment);
 
 const DnDCalendar = withDragAndDrop(Calendar);
-
-
 
 class CalendarView extends Component {
   constructor(props) {
@@ -32,6 +27,7 @@ class CalendarView extends Component {
       calendarICS : null
     }
     this.toggle = this.toggle.bind(this);
+    this.moveEvent = this.moveEvent.bind(this);
 }
 
   componentDidMount(){
@@ -40,43 +36,37 @@ class CalendarView extends Component {
     start: event.start,
     end: event.end
   }));
-  console.log(events);
     ics.createEvents(events, (error, value) => {
       if (error) {
         console.log(error)
-      }
+      } else {
       console.log("event" + value)
       this.setState({
         calendarICS: value
       })
+      }
     })
 }
 
-toggle = (event) => {
-  this.props.history.push(`${this.props.match.url}/card/${event.id}`)
-}
+  toggle = (event) => {
+    console.log(event)
+    this.props.history.push(`${this.props.match.url}/card/${event.id}`)
+  }
 
-  onEventResize = (type, { event, start, end, allDay }) => {
-    this.setState(state => {
-      state.events[0].start = start;
-      state.events[0].end = end;
-      return { events: state.cards };
-    });
-  };
+ 
 
-  moveEvent({ event, start, end, issAllDay: droppedOnAllDaySlot }) {
-    const { events } = this.state
-    console.log(event);
+  moveEvent({ event, start, end, isAllDay: droppedOnAllDaySlot }) {
+    let events = this.state.events
     const idx = events.indexOf(event)
-    let allDay = true;
-/** 
- *  let allDay = event.allDay
+  
+
+   let allDay = event.allDay
     if (!event.allDay && droppedOnAllDaySlot) {
       allDay = true
     } else if (event.allDay && !droppedOnAllDaySlot) {
       allDay = false
     }
-*/
+
     const updatedEvent = { ...event, start, end, allDay }
 
     const nextEvents = [...events]
@@ -85,19 +75,20 @@ toggle = (event) => {
       events: nextEvents,
     })
     console.log("MOVE FUNCTION " + event.id)
-     this.props.setCardDueDate(event.id, end)
+     this.props.setCardDueDate(event.id, end, allDay)
 
-    // alert(`${event.title} was dropped onto ${updatedEvent.start}`)
+    alert(`${event.title} was dropped onto ${updatedEvent.start}`)
   }
 
   render() {
+    const { match } = this.props;
     return (
       <div className="calendar">
         <Download file="test.ics" content={this.state.calendarICS}>
           <button type="button">Click and Download file</button>
         </Download>
         <header className="calendar-header">
-          <i className="fa fa-calendar"></i>   Calendar View of yours cards
+          <i className="fa fa-calendar"></i> Calendar View of yours cards
         </header>
       
         <DnDCalendar
@@ -107,11 +98,11 @@ toggle = (event) => {
           events={this.state.events}
           onSelectEvent={this.toggle}
           onEventDrop={this.moveEvent}
-          onEventResize={this.onEventResize}
-          resizable
           selectable
           style={{ height: "100vh" }}
         />
+        <Route path={`${match.path}/card/:idCard`} component={CardSettings} />
+
       </div>
     );
   }
@@ -120,17 +111,16 @@ const mapStateToProps = ( state, props ) => ({
   events : state.cards.filter(card => card.closed !== true).map( card => ({
     id : card.id,
     title: card.name,
-    start: card.dueDate,
-    end: card.dueDate,
-    allDay: true,
+    start: moment(card.dueDate).subtract(1, 'hours').toDate(),
+    end: moment(card.dueDate).toDate(),
+    allDay: card.allDay || false,
     closed : card.closed,
     description : card.desc
-
   }))
 });
 
 const mapDispatchToProps = (dispatch, props) => ({
-  setCardDueDate: (id, end) => dispatch(setCardDueDate(id, end))
+  setCardDueDate: (id, end, allDay) => dispatch(setCardDueDate(id, end, allDay))
 });
 
 

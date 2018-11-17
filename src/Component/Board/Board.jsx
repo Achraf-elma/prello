@@ -12,11 +12,12 @@ import { setLists } from '../../action/actionLists';
 import List from './List/List';
 import ListCreator from './ListCreator';
 import CardSettings from './MyCard/CardSettings';
+import CardCreator from './List/CardCreator';
 
 // Styles
 import '../../style/board.css';
-import { fetchBoard, fetchBoardLists } from '../../request/board';
 
+import {  fetchBoardLists } from '../../request/board';
 
 
 class Board extends React.Component{
@@ -33,7 +34,7 @@ class Board extends React.Component{
   }
   render(){
     const {
-      lists, dispatchOnDragEnd, dispatchAddListToBoard, match 
+      lists, dispatchOnDragEnd, match 
     } = this.props;
     return (
       <div>
@@ -55,7 +56,9 @@ class Board extends React.Component{
             {...provided.dragHandleProps}
             className={classNames( "list-item", { "list-dragged": snapshot.isDragging })}
             >
-            <List idList={list.idList}/>  
+            <List
+              idList={list.idList}
+              />  
             </span>
             )}
             </Draggable>
@@ -64,6 +67,7 @@ class Board extends React.Component{
             )}
             </Droppable>
             </DragDropContext>
+            <Route path={`${match.path}/list/:idList/addCard`} component={CardCreator} />
             <Route path={`${match.path}/card/:idCard`} component={CardSettings} />
             </div>
             )
