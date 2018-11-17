@@ -28,9 +28,6 @@ class Board extends React.Component {
 
   addList(listName) {
     this.props.dispatchAddListToBoard(listName)
-    fetchBoardLists(this.props.match.params.idBoard)
-      .then(lists => this.props.dispatchSetLists(lists))
-      .catch(err => console.error(err));
   }
   render() {
     const {

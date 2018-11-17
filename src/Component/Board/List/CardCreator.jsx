@@ -46,10 +46,7 @@ class CardCreator extends React.Component {
       cardName,
       dueDate
     );
-    fetchBoardCards(this.props.idBoard)
-      .then(cards=> this.props.dispatchSetCards(cards))
-      .then(card => console.log("on est dans les fetchBoardCards"))
-      .catch(err => console.error(err));
+
     this.toggleModal();
   }
 

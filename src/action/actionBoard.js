@@ -1,5 +1,6 @@
 // Modules
-import uuidv4 from "uuidv4";
+import {ObjectId} from 'bson';
+
 
 // Action type constants
 // TODO: Action type constant
@@ -76,7 +77,7 @@ export const moveListInBoard = (listToMovePos, newListPos) => ({
 export const addListToBoard = (idBoard,listName) => ({
   type: ADD_LIST_TO_BOARD,
   payload: {
-
+    id : new  ObjectId(),
     idBoard : idBoard,
     name: listName
   }

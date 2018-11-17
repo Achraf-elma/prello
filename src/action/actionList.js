@@ -1,5 +1,6 @@
 // Modules
-import uuidv4 from "uuidv4";
+import {ObjectId} from 'bson';
+
 
 // Action Builders
 // TODO: Export Action Builder
@@ -56,11 +57,11 @@ export const setListSubscribed = (id, subscribed) => ({
   }
 })
 
-export const setListName = (id, name) => ({
+export const setListName = (id, newName) => ({
   type: SET_LIST_NAME,
   payload:  {
-    id,
-    name
+    id : id,
+    name : newName
   }
 })
 
@@ -96,6 +97,7 @@ export const moveCardInList = (cardToMovePos, newCardPos) => ({
 export const addCardToList = (idList, idBoard, cardName, dueDate, allDay, dueComplete) => ({
   type: ADD_CARD_TO_LIST,
   payload: {
+    id : new  ObjectId(),
     idList: idList,
     idBoard : idBoard,
     name: cardName,

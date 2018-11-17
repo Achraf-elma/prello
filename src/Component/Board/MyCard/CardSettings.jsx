@@ -77,7 +77,7 @@ class CardSettings extends React.Component {
 }
 const mapStateToProps = (state, props) => ({
   labels: state.labels.filter(label => label.idCard === props.match.params.idCard),
-  card : state.cards.find(card => card.id === props.match.params.idCard),
+  card : state.cards.find(card => card.id.toString()=== props.match.params.idCard),
   comments: state.comments.filter(comment => comment.idCard === props.match.params.idCard)
 })
 

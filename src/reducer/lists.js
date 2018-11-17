@@ -12,11 +12,12 @@ export default ( state = [], action) => {
         idList : list._id , 
         ...list
       }));
-      case SET_CARD_DESC:
+    
 
     case SET_LIST_NAME:
     case SET_LIST_CLOSED:
-      var idxListToUpdate = state.findIndex(list => list.id === action.payload.id)
+      console.log(action)
+      var idxListToUpdate = state.findIndex(list => list.id.toString() === action.payload.id.toString())
       var listUptaded = list(state[idxListToUpdate], action)
       var nextLists = [...state]
       nextLists[idxListToUpdate] = listUptaded;
