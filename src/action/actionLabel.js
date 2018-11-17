@@ -15,7 +15,7 @@ export const addLabelToCard = (idCard, name, color) => ({
   }
 })
 
-export const setCards = (labels) => ({
+export const setLabels = (labels) => ({
   socketAction: true,
   type: SET_LABELS,
   payload: labels

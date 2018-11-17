@@ -8,8 +8,9 @@ import { Popover, PopoverHeader, PopoverBody, Card, Collapse, CardBody, CardHead
 import LabelCreator from './../LabelCreator';
 
 // Actions
-import { addLabelToCard } from '../../../action/actionLabel';
+import { addLabelToCard, setLabels } from '../../../action/actionLabel';
 import { addLabelToBoard } from '../../../action/actionBoard';
+import { fetchCardLabels } from '../../../request/board';
 
 class AddLabel extends React.Component {
   constructor(props) {
@@ -24,7 +25,11 @@ class AddLabel extends React.Component {
     event.preventDefault();
     const data = new FormData(event.target);
     this.props.dispatchAddLabelToCard( this.props.idCard, data.get('labelName'), data.get('color')); 
-    this.props.dispatchAddLabelToBoard( this.props.idBoard, data.get('labelName'), data.get('color')); 
+    this.props.dispatchAddLabelToBoard( this.props.idBoard, data.get('labelName'), data.get('color'));  
+    fetchCardLabels(this.props.idCard,this.props.idBoard)
+      .then(labels=> this.props.dispatchSetLabels(labels))
+      .catch(err => console.error(err));
+   
     this.togglePopover();
   }
   togglePopover() {
@@ -88,7 +93,9 @@ const mapDispatchToProps = ( dispatch, props ) => ( {
 dispatchAddLabelToBoard: (id, name, color) => {
   console.log(id, name,color);
     dispatch(addLabelToBoard( id, name, color)) 
-  }
+  },
+  dispatchSetLabels : (labels) => dispatch(setLabels(labels)),
+
 });
 
 export default connect(mapStateToProps,mapDispatchToProps)(AddLabel); 
