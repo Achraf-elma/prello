@@ -4,7 +4,7 @@ import { combineReducers } from 'redux';
 // Definitions
 // TODO: import type, action type & type constants
 //import {initCard, SET_CARD_POSITION,SET_CARD_CLOSED, setCARDClosed, setCARDPosition, SET_CARD_NAME, SET_CARD_LIST, SET_CARD_SUBSCRIBED }from "../action/actionCARD";
-import {initCard, SET_CARD_POSITION,ASSIGN_CHECKLIST_TO_CARD,  SET_CARD_DESC,SET_CARD_CLOSED, SET_CARD_NAME, SET_CARD_LIST, SET_CARD_DUE_DATE, ASSIGN_MEMBER_TO_CARD, SET_CARD_DUE_COMPLETE }from "../action/actionCard";
+import {initCard, SET_CARD_POSITION,ASSIGN_CHECKLIST_TO_CARD,  SET_CARD_DESC,SET_CARD_CLOSED, SET_CARD_NAME, SET_CARD_LIST, SET_CARD_DUE_DATE, ASSIGN_MEMBER_TO_CARD, SET_CARD_DUE_COMPLETE, SET_CARD_ALL_DAY }from "../action/actionCard";
 
 const id = ( state = initCard.id, action ) => state
 
@@ -40,7 +40,7 @@ const dueDate = ( state = initCard.dueDate, action ) => {
 
 const allDay = ( state = initCard.allDay, action ) => {
   switch(action["type"]) {
-    case SET_CARD_DUE_DATE:
+    case SET_CARD_ALL_DAY:
       return action.payload.allDay
     default:
       return state;
@@ -68,6 +68,7 @@ const position = ( state = initCard.position, action ) => {
 const isClosed = ( state = initCard.isClosed, action ) => {
   switch(action["type"]) {
     case SET_CARD_CLOSED:
+    console.log(action)
       return action.payload.isClosed
     default:
       return state;

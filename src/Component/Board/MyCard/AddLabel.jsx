@@ -53,7 +53,7 @@ class AddLabel extends React.Component {
           <Collapse  className="listComment" isOpen={!this.state.popoverOpen}>
             <ListGroup>
               {labelNames.map((label) => (
-                <ListGroupItem className="labelNamesList">
+                <ListGroupItem key={label.color} className="labelNamesList">
                   <Badge onClick={  () => dispatchAddLabelToCard(idCard,label.text || " ", label.color)} className="labelNamesBadge" style={{color : '#fff', background : label.color }} pill> {label.text}</Badge>
                 </ListGroupItem>
               ))}

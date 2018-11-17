@@ -30,6 +30,7 @@ class CardSettings extends React.Component {
   
   delete(){
     this.props.dispatchSetCardClosed(this.props.card.id);
+    console.log(this.props.card.id);
     this.props.history.goBack();
   }
 

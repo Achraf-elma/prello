@@ -31,9 +31,9 @@ export const initCard = {
   export const ASSIGN_MEMBER_TO_CARD = "@@card/ASSIGN_MEMBER_TO_CARD ";
   export const ASSIGN_CHECKLIST_TO_CARD = "@@card/ASSIGN_CHECKLIST_TO_CARD ";
 
-  export const SET_NEW_CARD= "@@card/SET_NEW_CARD"
+  export const SET_NEW_CARD = "@@card/SET_NEW_CARD";
 
-  export const setCardName= (id, newName) => ({
+  export const setCardName = (id, newName) => ({
     type: SET_CARD_NAME,
     payload:  {
       id : id,
@@ -41,7 +41,7 @@ export const initCard = {
     }
   })
 
-  export const setCardDesc= (id, newDesc) => ({
+  export const setCardDesc = (id, newDesc) => ({
     type: SET_CARD_DESC,
     payload:  {
       id : id,
@@ -49,7 +49,7 @@ export const initCard = {
     }
   })
 
-  export const setCardDueDate= (id, newDueDate) => ({
+  export const setCardDueDate = (id, newDueDate) => ({
     type: SET_CARD_DUE_DATE,
     payload:  {
       id: id,

@@ -43,12 +43,8 @@ class AddMember extends React.Component {
 }
 
 const mapStateToProps = ( state, props ) => {
-let card = state.cards.find(card => card.id == props.idCard)
-let board = state.boards
-return({
-  card : card,
-  board : board.find(board => board.id == card.idBoard),
-  })
+   card = state.cards.find(card => card.id == props.idCard),
+   board = state.board
 }
 
 const mapDispatchToProps = ( dispatch, props ) => ( {
