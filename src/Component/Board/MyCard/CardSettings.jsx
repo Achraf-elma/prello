@@ -34,12 +34,7 @@ class CardSettings extends React.Component {
 
   render() {
     const {
-      card,
-      labels,
-      comments,
-      dispatchSetCardName,
-      dispatchSetCardDueDate,
-      dispatchSetCardDesc,
+      card
     } = this.props
     const closeBtn = <button className="close" onClick={this.closeSettings}>&times;</button>;
 

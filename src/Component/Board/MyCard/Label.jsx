@@ -13,7 +13,6 @@ import CheckItem from '../CheckList/CheckItem';
 
 
 
-
 // Style
 import '../../style/card.css';
 

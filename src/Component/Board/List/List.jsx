@@ -81,9 +81,10 @@ class List extends React.Component {
             
       <CardBody>
         <div>
-            <button className="add-card-link" onClick={this.togglePopover}>
-                <span className="fa fa-plus-circle">Add Card</span>  
-            </button>
+           {/* <Link to={`${url}/list/`{$idList}`/add`} className="add-card-link" ></div>  */}
+                {/* <span className="fa fa-plus-circle">Add Card</span>  
+            </Link> */}
+            <button onClick={this.togglePopover} className="add-card-link"> <span className="fa fa-plus-circle">Add Card</span> </button>
           <CardCreator isOpen={this.state.popoverOpen} toggle={this.togglePopover} handleSubmit={this.addingCard} idList={list.idList} idBoard={list.idBoard}/>
         </div>
       </CardBody>
@@ -106,7 +107,7 @@ const mapDispatchToProps = ( dispatch, props ) => {
       dispatch(moveCardInList(source.index, destination.index))
     ),
     setListName: (name) => dispatch(setListName( props.idlist, name )),
-    dispatchAddCardToList: (idlist, idboard, name, duedate) => dispatch(addCardToList(idlist, idboard, name, duedate, false)
+    dispatchAddCardToList: (idlist, idboard, name, duedate) => dispatch(addCardToList(idlist, idboard, name, duedate, false,false)
     )
   }
 }

@@ -80,3 +80,4 @@ yarn-error.log*
 # next.js build output
 .next
 
+src/config.json

@@ -93,13 +93,15 @@ export const moveCardInList = (cardToMovePos, newCardPos) => ({
 })
 
 // Add a new card at the end of the list
-export const addCardToList = (idList, idBoard, cardName, dueDate, dueComplete) => ({
+export const addCardToList = (idList, idBoard, cardName, dueDate, allDay, dueComplete) => ({
   type: ADD_CARD_TO_LIST,
   payload: {
+    id: uuidv4(),
     idList: idList,
     idBoard : idBoard,
     name: cardName,
-    dueDate :  new Date(dueDate), 
+    dueDate : dueDate, 
+    allDay : allDay,
     dueComplete : dueComplete,
     
   }

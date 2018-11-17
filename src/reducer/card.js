@@ -38,6 +38,15 @@ const dueDate = ( state = initCard.dueDate, action ) => {
   }
 }
 
+const allDay = ( state = initCard.allDay, action ) => {
+  switch(action["type"]) {
+    case SET_CARD_DUE_DATE:
+      return action.payload.allDay
+    default:
+      return state;
+  }
+}
+
 const pos = ( state = initCard.pos, action ) => {
   switch(action["type"]) {
     case SET_CARD_POSITION:
@@ -97,6 +106,7 @@ export default combineReducers({
   name,
   desc,
   dueDate,
+  allDay,
   pos ,
   closed,
   idList, 

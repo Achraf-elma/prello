@@ -6,6 +6,7 @@ export const initCard = {
   name: 'My card',
   desc: null,
   dueDate : '01/10/2018',
+  allDay : false,
   pos : null,
   closed: false,
   idList : null,
@@ -46,11 +47,12 @@ export const initCard = {
     }
   })
 
-  export const setCardDueDate= (id, newDueDate) => ({
+  export const setCardDueDate= (id, newDueDate, newAllday) => ({
     type: SET_CARD_DUE_DATE,
     payload:  {
       id: id,
-      dueDate : newDueDate
+      dueDate : newDueDate,
+      allDay : newAllday
     }
   })
 

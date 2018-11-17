@@ -8,146 +8,30 @@ export const UPDATE_BOARD = "@@board/UPDATE_BOARD";
 
 // default state
 export const initBoards = {
-    boards: [
+   boards: [
         {
-      id: "b1b1b0b1b1b0b1b1b0b1b1b0",
-      name: "My private board",
-      desc: "My first board",
-      lists : [
-        {}
-      ],
-      labelNames : {
-        "green": "",
-        "yellow": "good to go",
-        "orange": "",
-        "red": "",
-        "purple": "",
-        "blue": "",
-        "sky": "",
-        "lime": "",
-        "pink": "",
-        "black": ""
-      },
-      memberships: [
-        {
-          "id": "5612e4fb1b25c15e8737234b",
-          "idMember": "53baf533e697a982248cd73f",
-          "memberType": "admin",
-          "unconfirmed": false
-        },
-        {
-          "id": "5925e4fc63096260c349cbd4",
-          "idMember": "53cd82cd7ed746db278c4f32",
-          "memberType": "normal",
-          "unconfirmed": false
-        }
-      ],
-      owners: [
-        {
-          "id": "5612e4fb1b25c15e8737234b",
-          "idMember": "53baf533e697a982248cd73f",
-          "memberType": "admin",
-          "unconfirmed": false
-        },
-        {
-          "id": "5925e4fc63096260c349cbd4",
-          "idMember": "53cd82cd7ed746db278c4f32",
-          "memberType": "normal",
-          "unconfirmed": false
-        }
-      ],
+          id: null,
+          name: "My board",
+          desc: "My first board",
+          lists : [{}],
+          labelNames : {
+            "green": "",
+            "yellow": "good to go",
+            "orange": "",
+            "red": "",
+            "purple": "",
+            "blue": "",
+            "sky": "",
+            "lime": "",
+            "pink": "",
+            "black": ""
+           },
+      memberships: [],
+      owners: [ {}],
       closed: false,
       isPublic: true,
     },
-    {
-        id: "PUBLIC",
-        name: "Public Board",
-        desc: "My first board",
-        lists : [
-          {}
-        ],
-        memberships: [
-          {
-            "id": "5612e4fb1b25c15e8737234b",
-            "idMember": "53baf533e697a982248cd73f",
-            "memberType": "admin",
-            "unconfirmed": false
-          },
-          {
-            "id": "5925e4fc63096260c349cbd4",
-            "idMember": "53cd82cd7ed746db278c4f32",
-            "memberType": "normal",
-            "unconfirmed": false
-          }
-        ],
-        owners: [
-          {
-            "id": "5612e4fb1b25c15e8737234b",
-            "idMember": "53baf533e697a982248cd73f",
-            "memberType": "admin",
-            "unconfirmed": false
-          },
-          {
-            "id": "5925e4fc63096260c349cbd4",
-            "idMember": "53cd82cd7ed746db278c4f32",
-            "memberType": "normal",
-            "unconfirmed": false
-          }
-        ],
-        closed: false,
-        isPublic: false,
-      },
-      {
-        id: "IDDDDDD",
-        name: "Private Board",
-        desc: "My private board 2",
-        lists : [
-          {}
-        ],
-        labelNames : {
-          "green": "",
-          "yellow": "good to go",
-          "orange": "",
-          "red": "",
-          "purple": "",
-          "blue": "",
-          "sky": "",
-          "lime": "",
-          "pink": "",
-          "black": ""
-        },
-        memberships: [
-          {
-            "id": "5612e4fb1b25c15e8737234b",
-            "idMember": "53baf533e697a982248cd73f",
-            "memberType": "admin",
-            "unconfirmed": false
-          },
-          {
-            "id": "5925e4fc63096260c349cbd4",
-            "idMember": "53cd82cd7ed746db278c4f32",
-            "memberType": "normal",
-            "unconfirmed": false
-          }
-        ],
-        owners: [
-          {
-            "id": "5612e4fb1b25c15e8737234b",
-            "idMember": "53baf533e697a982248cd73f",
-            "memberType": "admin",
-            "unconfirmed": false
-          },
-          {
-            "id": "5925e4fc63096260c349cbd4",
-            "idMember": "53cd82cd7ed746db278c4f32",
-            "memberType": "normal",
-            "unconfirmed": false
-          }
-        ],
-        closed: false,
-        isPublic: true,
-      }
-    ]
+   ]
 }
     
 
