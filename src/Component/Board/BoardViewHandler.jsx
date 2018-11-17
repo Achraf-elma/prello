@@ -43,7 +43,7 @@ class BoardViewHandler extends React.Component{
     .catch(error => error instanceof ErrorLogin ? this.props.history.push('/login') : Promise.reject(error))
     .catch(error => error instanceof ErrorForbidden ? this.props.history.push('/home') : Promise.reject(error))
     .catch(error => error instanceof ErrorNotFound ? this.props.history.push('/home') : Promise.reject(error))
-    .catch(err => this.props.history.push('/login'));
+    .catch(error => console.error(error) || this.props.history.push('/login'));
   }
 
   LinkToCalendar = () => (

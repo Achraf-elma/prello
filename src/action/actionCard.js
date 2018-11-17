@@ -6,6 +6,7 @@ export const initCard = {
   name: 'My card',
   desc: null,
   dueDate : '01/10/2018',
+  dueComplete: true,
   allDay : false,
   position : null,
   isClosed: false,

@@ -19,9 +19,9 @@ const name = (state = initBoard.name, action ) => {
 const desc = (state = initBoard.desc, action ) => {
   switch(action["type"]) {
     case SET_BOARD:
-      return action.payload.desc;
+      return action.payload.desc || "";
     case SET_BOARD_DESC:
-      return action.payload.desc
+      return action.payload.desc;
     default:
       return state;
   }
@@ -88,7 +88,7 @@ const isPublic = (state = initBoard.isPublic, action ) => {
 const labelNames = (state = initBoard.labelNames, action ) => {
   switch(action["type"]) {
     case SET_BOARD:
-      return action.payload.labelNames;
+      return action.payload.labelNames || {};
     case ADD_SET_LABEL_TO_BOARD:
       state[action.payload.color] = action.payload.name;
       return state;

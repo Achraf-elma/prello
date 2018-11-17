@@ -69,7 +69,7 @@ class CardCreator extends React.Component {
     const closeBtn = <button className="close" onClick={this.togglePopover}>&times;</button>;
     const undoDate = <button type="button"  className="close" onClick={this.handleUndo}>&times;</button>;
     const submitBtn = <div> 
-                        <button form="card-creator" className="buttonCustom"  for="card-creator" type="submit">Done</button> 
+                        <button form="card-creator" className="buttonCustom"  htmlFor="card-creator" type="submit">Done</button> 
                         <button type="button" className="close" onClick={this.toggleModal}>&times;</button>
                       </div>;
 
