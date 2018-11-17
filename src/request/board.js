@@ -37,7 +37,18 @@ export const createBoard = (board, owner = client.me) => (
     idMembers: [], //board.members || [],
     idOwner: owner,
     isPublic: board.isPublic,
-    
+    labelNames: {
+      "green": "todo",
+      "yellow": "",
+      "orange": "",
+      "red": "",
+      "purple": "",
+      "blue": "",
+      "sky": "",
+      "lime": "",
+      "pink": "",
+      "black": ""
+    }
   })
   .then( response => response.data)
   .catch(rematchError)
