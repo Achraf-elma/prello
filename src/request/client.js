@@ -58,9 +58,9 @@ client.setCredentials = (credentials) => {
 }
 
 client.setCredentials({
-  "accessToken": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZFVzZXIiOiJlMWUxZTBlMWUxZTBlMWUxZTBlMWUxZTAiLCJlbWFpbCI6ImgiLCJtZW1iZXJUeXBlIjoiVXNlciIsImV4cGlyZXMiOjE1NDI0NjAxNjA0NzR9.FAbJ48gDoGAq2vb3xkCuBc8Llvp-9Ula2Vbkio0oKz4", 
+  "accessToken": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZFVzZXIiOiJlMWUxZTBlMWUxZTBlMWUxZTBlMWUxZTAiLCJlbWFpbCI6ImgiLCJtZW1iZXJUeXBlIjoiVXNlciIsImV4cGlyZXMiOjE1NDI0NjYyODA4MTV9.rhJDoejZcnMBxnI1F3L52uqhSmRHpcMcDL_gReYtYqE", 
   "email": "h", 
-  "expires": 1542460160474, 
+  "expires": 1542466280815, 
   "idUser": "e1e1e0e1e1e0e1e1e0e1e1e0", 
   "memberType": "User"
 })
