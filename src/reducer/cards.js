@@ -34,7 +34,6 @@ export default ( state = [], action) => {
     case SET_CARD_CLOSED:
     case SET_CARD_DUE_DATE:
     case ASSIGN_MEMBER_TO_CARD:
-    case ASSIGN_LABEL_TO_CARD:
     case ASSIGN_CHECKLIST_TO_CARD:
       var idxCardToUpdate = state.findIndex(card => card.id === action.payload.id)
       var cardUptaded = card(state[idxCardToUpdate], action)

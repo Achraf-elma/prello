@@ -4,7 +4,7 @@ import { combineReducers } from 'redux';
 // Definitions
 // TODO: import type, action type & type constants
 //import {initCard, SET_CARD_POSITION,SET_CARD_CLOSED, setCARDClosed, setCARDPosition, SET_CARD_NAME, SET_CARD_LIST, SET_CARD_SUBSCRIBED }from "../action/actionCARD";
-import {initCard, SET_CARD_POSITION,ASSIGN_CHECKLIST_TO_CARD, ASSIGN_LABEL_TO_CARD, SET_CARD_DESC,SET_CARD_CLOSED, SET_CARD_NAME, SET_CARD_LIST, SET_CARD_DUE_DATE, ASSIGN_MEMBER_TO_CARD, SET_CARD_DUE_COMPLETE }from "../action/actionCard";
+import {initCard, SET_CARD_POSITION,ASSIGN_CHECKLIST_TO_CARD,  SET_CARD_DESC,SET_CARD_CLOSED, SET_CARD_NAME, SET_CARD_LIST, SET_CARD_DUE_DATE, ASSIGN_MEMBER_TO_CARD, SET_CARD_DUE_COMPLETE }from "../action/actionCard";
 
 const id = ( state = initCard.id, action ) => state
 
