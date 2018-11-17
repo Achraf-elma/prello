@@ -12,29 +12,37 @@ import {fetchOrganization} from '../../request/organization'
 // Styles
 import '../../style/organization.css';
 
-import Organization from './Organization';
-import OrgSettings from './OrgSettingsView';
-import OrgMembers from './OrgMembersView';
+import OrganizationBoards from './OrganizationBoards';
+import OrganizationSettings from './OrganizationSettings';
+import OrganizationMembers from './OrganizationMembers';
 
 
 class OrganizationViewHandler extends React.Component{
 
+  componentDidUpdate(previousProps) {
+    if( previousProps.match.params.idOrganization !== this.props.match.params.idOrganization ){
+      fetchOrganization(this.props.match.params.idOrganization)
+        .then(organization => this.props.dispatchSetTeam(organization))
+        .catch(err => console.error(err));
+    }
+  }
+
   componentDidMount() {
-    fetchOrganization(this.props.match.params.organizationId)
+    fetchOrganization(this.props.match.params.idOrganization)
     .then(organization => this.props.dispatchSetTeam(organization))
     .catch(err => console.error(err));
   }
 
 
   render() { 
-    const { displayName, match, history } = this.props
+    const { name, match } = this.props
     return (
       <div>
         <div className="organization-background" />
         <div className="container">
           <div className="row organization-info">
             <div className="col">
-              <h1 className="organization-title">{displayName}</h1>
+              <h1 className="organization-title">{name}</h1>
             </div>
 
             <div className="viewSelection">
@@ -46,9 +54,10 @@ class OrganizationViewHandler extends React.Component{
             </div>
           </div>
           <hr className="separator" />
-          <Route path={`${match.path}/boards`} component={Organization} />
-          <Route path={`${match.path}/settings`} component={OrgSettings} />
-          <Route path={`${match.path}/members`} component={OrgMembers} />
+          <Route path={`${match.path}/(board|)`} component={OrganizationBoards} />
+          <Route path={`${match.path}/boards`} component={OrganizationBoards} />
+          <Route path={`${match.path}/settings`} component={OrganizationSettings} />
+          <Route path={`${match.path}/members`} component={OrganizationMembers} />
         </div>
       </div>
     );
@@ -56,7 +65,7 @@ class OrganizationViewHandler extends React.Component{
 }
 
 const mapStateToProps = ( state, props ) => ({
-  displayName : state.organization.displayName
+  name : state.organization.name
 })
 
 const mapDispatchToProps = (dispatch, props) => ({

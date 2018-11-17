@@ -12,7 +12,7 @@ import { setTeamDisplayName, setTeamDesc, setTeamWebsite } from '../../action/ac
 // Styles
 import '../../style/organization.css';
 
-class OrgSettings extends React.Component {
+class OrganizationSettings extends React.Component {
 
   constructor(props) {
     super(props);
@@ -37,7 +37,7 @@ class OrgSettings extends React.Component {
       dispatchForm
     } = this.props;
   return (
-    <div className="OrgSettings">
+    <div className="OrganizationSettings">
       <div className="organization-labels">
       <Label for="newDisplayName">Name</Label>
       <Input type = "text" name ="name" id="newDisplayName" value={displayName} disabled/>
@@ -101,4 +101,4 @@ class OrgSettings extends React.Component {
       }
   })
   
-  export default connect(mapStateToProps, mapDispatchToProps)(OrgSettings); 
+  export default connect(mapStateToProps, mapDispatchToProps)(OrganizationSettings); 

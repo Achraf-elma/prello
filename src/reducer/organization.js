@@ -2,7 +2,16 @@
 import { combineReducers } from 'redux';
 
 // Definitions
-import {initOrganization, SET_TEAM_NAME, SET_TEAM_DISPLAY_NAME, SET_TEAM_DESC, SET_TEAM_WEBSITE, ADD_NEW_TEAM_MEMBER, ADD_NEW_BOARD_ID, DELETE_TEAM_MEMBER, SET_TEAM_MEMBER_TYPE, REMOVE_BOARD_ID} from "../action/actionOrganization";
+import {
+  initOrganization,
+  SET_TEAM_NAME, SET_TEAM_DISPLAY_NAME,
+  SET_TEAM_DESC, SET_TEAM_WEBSITE,
+  ADD_NEW_TEAM_MEMBER,
+  ADD_NEW_BOARD_ID,
+  DELETE_TEAM_MEMBER,
+  SET_TEAM_MEMBER_TYPE,
+  REMOVE_BOARD_ID
+} from "../action/actionOrganization";
 
 const id = ( state = initOrganization.id, action ) => state
 const name = ( state = initOrganization.name, action ) => {

@@ -41,3 +41,9 @@ export const createBoard = (board, owner = client.me) => (
   .then( response => response.data)
   .catch(rematchError)
 )
+
+export const addOrganizationToBoard = (idBoard, idOrganization) => (
+  client.put(`/api/boards/${idBoard}/organizations/${idOrganization}`)
+  .then(response => response.data)
+  .catch(rematchError)
+)

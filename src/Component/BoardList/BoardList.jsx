@@ -15,7 +15,7 @@ const BoardList = ({
   boards,
   boardFilter = (b)=> b,
   dispatchCloseBoardFromBoards,
-}) => console.log(boards, boardFilter) || (
+}) => (
   <div>
     <Container>
       <Row>

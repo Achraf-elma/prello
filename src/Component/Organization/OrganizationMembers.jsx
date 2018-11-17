@@ -11,13 +11,13 @@ import {addNewTeamMember, deleteTeamMember, setTeamMemberType} from '../../actio
 
 import InputText from '../Input/InputText';
 
-const OrgMembers = ({
+const OrganizationMembers = ({
   memberships,
   dispatchForm,
   dispatchdeleteTeamMember,
   dispatchSetTeamMemberType
 }) => (
-  <div className="OrgMembers">
+  <div className="OrganizationMembers">
     <h1 className="organization-title">Members management</h1>
     <Form onSubmit = {(event) => dispatchForm(event, memberships)}>
       <Label className="organization-labels" for="newMemberEmail">Add member :</Label>
@@ -75,4 +75,4 @@ dispatchdeleteTeamMember: (teamMemberToDelete) => dispatch(deleteTeamMember(prop
 dispatchSetTeamMemberType: (teamMemberToSetType) => dispatch(setTeamMemberType(props.id, teamMemberToSetType)),
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(OrgMembers); 
+export default connect(mapStateToProps, mapDispatchToProps)(OrganizationMembers); 
