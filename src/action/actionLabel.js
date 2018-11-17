@@ -5,11 +5,12 @@ import uuidv4 from "uuidv4";
 export const ADD_LABEL_TO_CARD = "@@label/ADD_LABEL_TO_CARD";
 export const SET_LABELS = "@@labels/SET_LABELS";
 
-export const addLabelToCard = (idCard, name, color) => ({
+export const addLabelToCard = (idCard, idBoard, name, color) => ({
   type: ADD_LABEL_TO_CARD,
   payload: {
     id: uuidv4(),
     idCard: idCard,
+    idBoard : idBoard,
     name: name,
     color: color 
   }

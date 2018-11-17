@@ -25,7 +25,7 @@ class AddLabel extends React.Component {
     event.preventDefault();
     const data = new FormData(event.target);
     this.props.dispatchAddLabelToCard( this.props.idCard, data.get('labelName'), data.get('color')); 
-    this.props.dispatchAddLabelToBoard( this.props.idBoard, data.get('labelName'), data.get('color'));  
+    this.props.dispatchAddLabelToBoard(  data.get('labelName'), data.get('color'));  
     fetchCardLabels(this.props.idCard,this.props.idBoard)
       .then(labels=> this.props.dispatchSetLabels(labels))
       .catch(err => console.error(err));
@@ -88,11 +88,11 @@ const mapStateToProps = ( state, props ) => ({
 const mapDispatchToProps = ( dispatch, props ) => ( {
   dispatchAddLabelToCard: (id, name, color) =>{
     console.log(id, name,color);
-    dispatch(addLabelToCard( id, name, color))
+    dispatch(addLabelToCard( props.idCard,props.idBoard, name, color))
   } ,
 dispatchAddLabelToBoard: (id, name, color) => {
   console.log(id, name,color);
-    dispatch(addLabelToBoard( id, name, color)) 
+    dispatch(addLabelToBoard( props.idBoard, name, color)) 
   },
   dispatchSetLabels : (labels) => dispatch(setLabels(labels)),
 

@@ -115,10 +115,10 @@ export const setBoardPrivacy = (id, isPublic) => ({
   }
 })
 
-export const addLabelToBoard = (id, name, color) => ({
+export const addLabelToBoard = (idBoard, name, color) => ({
   type: ADD_SET_LABEL_TO_BOARD,
   payload: {
-    id: id,
+    idBoard: idBoard,
     name: name,
     color : color,
   }
