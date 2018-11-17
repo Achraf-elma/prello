@@ -61,7 +61,7 @@ export const addBoardToBoards = (board) => ({
   type: ADD_BOARD_TO_BOARDS,
   payload: {
     ...board,
-    labelName : {
+    labelNames : {
       "green": "",
       "yellow": "good to go",
       "orange": "",

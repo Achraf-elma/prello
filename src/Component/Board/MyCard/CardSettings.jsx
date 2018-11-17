@@ -80,7 +80,7 @@ const mapStateToProps = (state, props) => ({
 })
 
 const mapDispatchToProps = (dispatch, props) => ({
-
+  dispatchSetCardClosed : (id) => dispqtch(setCardClosed(id, true))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CardSettings); 

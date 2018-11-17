@@ -7,8 +7,8 @@ export const initCard = {
   desc: null,
   dueDate : '01/10/2018',
   allDay : false,
-  pos : null,
-  closed: false,
+  position : null,
+  isClosed: false,
   idList : null,
   idBoard : null,
   idMembers : [],
@@ -21,6 +21,8 @@ export const initCard = {
   export const SET_CARD_NAME = "@@card/SET_CARD_NAME";
   export const SET_CARD_DESC = "@@card/SET_CARD_DESC";
   export const SET_CARD_DUE_DATE = "@@card/SET_CARD_DUE_DATE"
+  export const SET_CARD_ALL_DAY = "@@card/SET_CARD_ALL_DAY"
+  export const SET_CARD_DUE_COMPLETE = "@@card/SET_CARD_DUE_COMPLETE"
   export const SET_CARD_POSITION = "@@card/SET_CARD_POSITION"
   export const SET_CARD_CLOSED = "@@card/SET_CARD_CLOSED"
   export const SET_CARD_LIST = "@@card/SET_CARD_LIST"
@@ -56,11 +58,28 @@ export const initCard = {
     }
   })
 
+  export const setCardAllDay= (id, newAllday) => ({
+    type: SET_CARD_ALL_DAY,
+    payload:  {
+      id: id,
+      allDay : newAllday
+    }
+  })
+
+  export const setCardDueComplete = (id, newCompleted) => ({
+    type: SET_CARD_ALL_DAY,
+    payload:  {
+      id: id,
+      isCompleted : newCompleted
+    }
+  })
+
+
   export const setCardPosition = (id, newPos) => ({
     type: SET_CARD_POSITION,
     payload:  {
       id : id,
-      pos : newPos
+      position : newPos
     }
   })
 
@@ -68,7 +87,7 @@ export const initCard = {
     type: SET_CARD_CLOSED,
     payload:  {
       id: id,
-      closed : newClosed
+      isClosed : newClosed
     }
   })
 

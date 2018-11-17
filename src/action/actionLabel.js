@@ -1,19 +1,24 @@
 // Modules
 import uuidv4 from "uuidv4";
 
+// Action type constants
+export const ADD_LABEL_TO_CARD = "@@label/ADD_LABEL_TO_CARD";
+export const SET_LABELS = "@@labels/SET_LABELS";
 
-  // Action type constants
-  export const ADD_LABEL_IN_CARD = "@@label/ADD_LABEL_IN_CARD";
-
-// Add a new card at the end of the list
 export const addLabelToCard = (idCard, name, color) => ({
-  type: ADD_LABEL_IN_CARD,
+  type: ADD_LABEL_TO_CARD,
   payload: {
     id: uuidv4(),
     idCard: idCard,
     name: name,
-    color: color
-    
+    color: color 
   }
 })
+
+export const setCards = (labels) => ({
+  socketAction: true,
+  type: SET_LABELS,
+  payload: labels
+})
+
 

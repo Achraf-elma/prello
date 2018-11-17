@@ -88,7 +88,7 @@ const isPublic = (state = initBoard.isPublic, action ) => {
 const labelNames = (state = initBoard.labelNames, action ) => {
   switch(action["type"]) {
     case SET_BOARD:
-      return 0;//action.payload.labelNames;
+      return action.payload.labelNames;
     case ADD_SET_LABEL_TO_BOARD:
       state[action.payload.color] = action.payload.name;
       return state;
