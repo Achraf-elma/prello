@@ -1,6 +1,6 @@
 // Action types
 import { MOVE_CARD_IN_LIST, ADD_CARD_TO_LIST } from '../action/actionList';
-import { SET_CARD_DUE_DATE, SET_CARD_NAME, ASSIGN_LABEL_TO_CARD, ASSIGN_CHECKLIST_TO_CARD, SET_CARD_DESC, ASSIGN_MEMBER_TO_CARD, SET_CARD_CLOSED} from '../action/actionCard';
+import { SET_CARD_DUE_DATE, SET_CARD_NAME,  ASSIGN_CHECKLIST_TO_CARD, SET_CARD_DESC, ASSIGN_MEMBER_TO_CARD, SET_CARD_CLOSED} from '../action/actionCard';
 
 import card from './card'
 import { SET_CARDS } from '../action/actionCards';

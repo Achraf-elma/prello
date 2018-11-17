@@ -29,7 +29,6 @@ export const initCard = {
   export const SET_CARD_LIST = "@@card/SET_CARD_LIST"
   export const SET_CARD_BOARD = "@@card/SET_CARD_BOARD"
   export const ASSIGN_MEMBER_TO_CARD = "@@card/ASSIGN_MEMBER_TO_CARD ";
-  export const ASSIGN_LABEL_TO_CARD = "@@card/ASSIGN_LABEL_TO_CARD ";
   export const ASSIGN_CHECKLIST_TO_CARD = "@@card/ASSIGN_CHECKLIST_TO_CARD ";
 
   export const SET_NEW_CARD= "@@card/SET_NEW_CARD"
@@ -116,13 +115,7 @@ export const initCard = {
     }
   })
   
-  export const assignLabelToCard = (idCard, idLabel) => ({
-    type: ASSIGN_MEMBER_TO_CARD,
-    payload: {
-      id: idCard,
-      idLabel: idLabel 
-    }
-  })
+
   
   export const assignChecklistToCard = (idCard, idChecklist) => ({
     type: ASSIGN_CHECKLIST_TO_CARD,

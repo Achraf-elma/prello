@@ -42,7 +42,7 @@ class CardDuedate extends React.Component {
     <Row>
     <Col className="labelField" xs="6"> <i class="fa fa-calendar-times-o" aria-hidden="true"></i>&nbsp;Due Date :</Col>
     <Col  xs="6">
-     <input onClick={this.handleCollapse} type="text" value={moment(card.dueDate).format('llll')} readOnly />
+     <input onClick={this.handleCollapse} type="text" value={this.state.m.format('llll')} readOnly />
 
    
       <Collapse isOpen={this.state.isCollapse}>
