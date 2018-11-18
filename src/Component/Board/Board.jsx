@@ -33,6 +33,11 @@ class Board extends React.Component {
     const {
       lists, dispatchOnDragEnd, match
     } = this.props;
+    if(!lists){
+      return (
+        "loading"
+      )
+    }
     return (
       <div>
 

@@ -17,11 +17,7 @@ export const initCOMMENT = {
  export const ADD_MEMBER_IN_CARD= "@@MEMBER/ADD_MEMBER_IN_CARD";
  export const ASSIGN_MEMBER_TO_CARD = "@@MEMBER/ASSIGN_MEMBER_TO_CARD ";
 
-
-
-
-
-  export const setMemberFullname= (id, newName) => ({
+export const setMemberFullname= (id, newName) => ({
     type: SET_MEMBER_FULLNAME,
     payload:  {
       id : id,
