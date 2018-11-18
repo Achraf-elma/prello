@@ -9,7 +9,7 @@ const CheckListCreator = ({ handleSubmit }) => (
     <span className="ListCreator">
       <FormGroup>
         <Label for="labelName">New toDo-List</Label>
-        <Input type="text" name="checkListName" placeholder="deliver logo" />
+        <Input type="text" name="checkListName" placeholder="My task for the week" />
       </FormGroup>
     </span>
     <button className="addElementButton" type="submit" >Add toDo-List</button>

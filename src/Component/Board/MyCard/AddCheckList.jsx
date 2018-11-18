@@ -25,11 +25,13 @@ class AddCheckList extends React.Component {
   addingCheckList(event){
     event.preventDefault();
     const data = new FormData(event.target);
-    this.props.dispatchAddCheckListToBoard( data.get('checkListName')); 
+        console.log(data.get('checkListName'));
+    this.props.dispatchAddCheckListToBoard( this.props.idBoard, data.get('checkListName')); 
+
    // this.props.dispatchAddLabelToBoard(  data.get('labelName'), data.get('color'));  
-   /**fetchBoardLabels(this.props.idBoard)
-      .then(labels=> this.props.dispatchSetLabels(labels))
-      .catch(err => console.error(err));  */ 
+   // fetchBoardLabels(this.props.idBoard)
+     // .then(labels=> this.props.dispatchSetLabels(labels))
+      // .catch(err => console.error(err));  **/ 
    
     this.togglePopover();
   }
@@ -43,56 +45,33 @@ class AddCheckList extends React.Component {
   render() {
     const {
       checkLists,
-      dispatchAssignCheckListToCard
+      dispatchAddCheckListToBoard,
+      idBoard
     } = this.props;
     return (
       <Container>
-        <Row> toDo! </Row>
-        <Row>
-          <Collapse  className="listComment" isOpen={!this.state.popoverOpen}>
-            <ListGroup>
-              {checkLists.map((checkList) => (
-                <ListGroupItem key={checkLists.id} className="labelNamesList">
-                  <Badge onClick={  () => dispatchAssignCheckListToCard(checkList.id)}> {checkList.name}</Badge>
-                </ListGroupItem>
-              ))}
-            </ListGroup>
-          </Collapse>
-          <Collapse  isOpen={this.state.popoverOpen}>
-          <Card>
-          <CardHeader> Create a new toDo-List</CardHeader> 
-            <CardBody>
-              <CheckListCreator handleSubmit={this.addingLabel} />
-            </CardBody>
-          </Card>
-        </Collapse>
-      </Row>
+        
+         <Row> <CheckListCreator handleSubmit={this.addingCheckList} /> </Row>
+           
       <hr/>
-        <Row className="buttonsSettingCard"> 
-          { (!this.state.popoverOpen) ?
-            <button  className="buttonCustom" onClick={this.togglePopover}>Create a new toDo-List...</button>:
-            <button  className="buttonCustom" onClick={this.togglePopover}>toDo-List existings</button>
-          }
-        </Row>
+        
       </Container>
     );  
   }
 }
 
 const mapStateToProps = ( state, props ) => {
-  let idBoard =  state.board.idBoard;
+  let idboard =  state.board.idBoard;
   return ({
-    checkLists : state.checkLists.filter(checkList => checkList.idBoard === idBoard),
-    idBoard :idBoard
+    checkLists : state.checkLists.filter(checkList => checkList.idBoard === idboard),
+    idBoard : idboard
     })
 }
+
 const mapDispatchToProps = ( dispatch, props ) => ( {
-  dispatchAssignCheckListToCard: (idCheckList) =>{
-    dispatch(assignChecklistToCard( props.idCard,idCheckList))
-  } ,
-  dispatchAddCheckListToBoard: (name) => {
-   // console.log("DANS ADD LABEL TO BOARD ",props.idBoard, name,color);
-    dispatch(addCheckListToBoard( props.idBoard, props.idCard, name)) 
+  dispatchAddCheckListToBoard: (idBoard, name) => {
+   console.log("DANS ADD LABEL TO BOARD ", name);
+    dispatch(addCheckListToBoard( idBoard, props.idCard, name)) 
   },
   dispatchSetCheckLists : (check) => dispatch(setCheckLists(check)),
 

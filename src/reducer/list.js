@@ -18,7 +18,7 @@ const name = ( state = initList.name, action ) => {
 const isClosed = ( state = initList.isClosed, action ) => {
   switch(action["type"]) {
     case SET_LIST_CLOSED:
-      return action.payload.closed
+      return action.payload.isClosed
     default:
       return state;
   }

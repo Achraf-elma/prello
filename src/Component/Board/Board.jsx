@@ -79,7 +79,7 @@ class Board extends React.Component {
 }
 
 const mapStateToProps = (state, props) => ({
-  lists: state.lists.filter(list => list.idBoard === props.match.params.idBoard),
+  lists: state.lists.filter(list => list.idBoard === props.match.params.idBoard && list.isClosed !== true),
 })
 
 const mapDispatchToProps = (dispatch, props) => ({

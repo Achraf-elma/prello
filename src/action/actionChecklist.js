@@ -17,11 +17,12 @@ export const DELETE_CHECKLIST_ITEM = "@@checklist/DELETE_CHECKLIST_ITEM"
 export const SET_CHECKS = "@@checklist/SET_CHECKS"
 export const ADD_CHECK_LIST = "@@checklist/ADD_CHECK_LIST,"
 
-export const addCheckListToBoard = (idBoard, name) => ({
+export const addCheckListToBoard = (idBoard, idCard, name) => ({
     type: ADD_CHECK_LIST,
     payload: {
       id : new ObjectId(),
       idBoard: idBoard,
+      idCard: idCard,
       name: name || "my list"
     }
   })

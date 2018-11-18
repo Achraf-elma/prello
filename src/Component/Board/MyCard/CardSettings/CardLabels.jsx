@@ -15,8 +15,8 @@ const CardLabels = ({labels}) => (
     <Col>
     
     {labels.map((label) => (
-    <Col>
-        <Badge key={label.id} style={{color : '#fff', background : label.color, width: '100%', minHeight: '20px'}} pill>{label.name}</Badge>
+    <Col  key={label.id} >
+        <Badge style={{color : '#fff', background : label.color, width: '100%', minHeight: '20px'}} pill>{label.name}</Badge>
     </Col>
     ))}
     </Col>

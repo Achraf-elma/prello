@@ -37,7 +37,7 @@ render() {
 
         <button className="addElementButton" id={"card-member"+card.id} onClick={() => this.togglePopover(1)}>  <i className="fa fa-plus-circle" aria-hidden="true"></i>&nbsp; Member</button> <br/>
         <button className="addElementButton" id={"card-label"+card.id} onClick={() => this.togglePopover(0)}><i className="fa fa-plus-circle" aria-hidden="true"></i>&nbsp;Label</button> <br/>
-        <button className="addElementButton"><i className="fa fa-plus-circle" aria-hidden="true"></i>&nbsp; Checklist</button><br/>
+        <button id={"card-check"+card.id} onClick={() => this.togglePopover(2)} className="addElementButton"><i className="fa fa-plus-circle" aria-hidden="true"></i>&nbsp; Checklist</button><br/>
 
         <Popover placement="right" isOpen={this.state.popoverOpen[0]} target={"card-label"+card.id} toggle={() => this.togglePopover(0)}>
           <PopoverHeader>Labels</PopoverHeader>
@@ -53,7 +53,7 @@ render() {
         </PopoverBody>
       </Popover>
 
-       <Popover placement="right" isOpen={this.state.popoverOpen[2]} target={"card-member"+card.id} toggle={() => this.togglePopover(2)}>
+       <Popover placement="right" isOpen={this.state.popoverOpen[2]} target={"card-check"+card.id} toggle={() => this.togglePopover(2)}>
         <PopoverHeader>Check List</PopoverHeader>
         <PopoverBody>
           <AddCheckList idCard={card.id} />

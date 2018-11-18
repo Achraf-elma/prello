@@ -10,7 +10,7 @@ const CardCheckList = ({checkLists}) => (
   <Row>
      
      <Col className="labelField" xs="6"> 
-     <i class="fa fa-tags" aria-hidden="true"></i>&nbsp; To do list : </Col>
+     <i className="fa fa-tags" aria-hidden="true"></i>&nbsp; To do list : </Col>
     
     <Col>
     

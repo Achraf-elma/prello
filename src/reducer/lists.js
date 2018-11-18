@@ -16,12 +16,13 @@ export default ( state = [], action) => {
 
     case SET_LIST_NAME:
     case SET_LIST_CLOSED:
-      console.log(action)
-      var idxListToUpdate = state.findIndex(list => list.id === action.payload.id)
-      var listUptaded = list(state[idxListToUpdate], action)
-      var nextLists = [...state]
-      nextLists[idxListToUpdate] = listUptaded;
-      return  nextLists;
+    
+        var idxListToUpdate = state.findIndex(list =>  list.idList === action.payload.id)
+        var listUptaded = list(state[idxListToUpdate], action)
+        var nextLists = [...state]
+        nextLists[idxListToUpdate] = listUptaded;
+        return  nextLists;
+     
 
     case ADD_LIST_TO_BOARD:
       return [...state, action.payload]

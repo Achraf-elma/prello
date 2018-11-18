@@ -35,8 +35,8 @@ export const ADD_CARD_IN_CALENDAR = "@@list/ADD_CARD_IN_CALENDAR";
 export const setListClosed = (id, isClosed) => ({
     type: SET_LIST_CLOSED,
     payload:  {
-      id,
-      isClosed
+      id : id,
+      isClosed : isClosed
     }
   })
 
