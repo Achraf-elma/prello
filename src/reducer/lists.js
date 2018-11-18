@@ -1,7 +1,7 @@
 // Action types
 import { MOVE_LIST_IN_BOARD, ADD_LIST_TO_BOARD } from '../action/actionBoard';
 import { SET_LISTS } from '../action/actionLists';
-import { SET_LIST_NAME, SET_LIST_CLOSED } from '../action/actionList';
+import { SET_LIST_NAME, SET_LIST_CLOSED, SET_LIST_POSITION } from '../action/actionList';
 import list from './list';
 
 
@@ -12,8 +12,7 @@ export default (state = [], action) => {
         idList: list._id,
         ...list
       }));
-
-
+    case SET_LIST_POSITION:
     case SET_LIST_NAME:
     case SET_LIST_CLOSED:
       var idxListToUpdate = state.findIndex(list => list.idList === action.payload.id)

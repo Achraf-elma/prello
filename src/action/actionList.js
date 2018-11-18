@@ -11,7 +11,7 @@ idList : 0 , //TODO check
 name: 'My list',
 isClosed: false, 
 idBoard: null,
-pos : 0,
+position : 0,
 cards :  [
   {}
 ],
@@ -41,11 +41,11 @@ export const setListClosed = (id, isClosed) => ({
   })
 
 
-export const setListPosition = (id, pos) => ({
+export const setListPosition = (id, position) => ({
   type: SET_LIST_POSITION,
   payload:  {
     id,
-    pos
+    position
   }
 })
 
@@ -73,14 +73,14 @@ export const setListBoard = (id, idBoard) => ({
   }
 })
 
-export const createList = (id, name , isClosed,  idBoard, pos , subscribed ) => ({
+export const createList = (id, name , isClosed,  idBoard, position , subscribed ) => ({
   type: SET_NEW_LIST,
   payload:  {
     id,
     name ,
     isClosed,
     idBoard,
-    pos ,
+    position ,
     subscribed   }
 })
 

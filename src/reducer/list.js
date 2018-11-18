@@ -31,11 +31,11 @@ const idBoard = ( state = initList.idBoard, action ) => {
       return state;
   }
 }
-const pos = ( state = initList.pos, action ) => {
+const position = (state = initList.position, action ) => {
   switch(action["type"]) {
     case SET_LIST_POSITION:
     case MOVE_LIST_IN_BOARD:
-      return action.payload.pos
+      return action.payload.position
     default:
       return state;
   }
@@ -64,7 +64,7 @@ export default combineReducers({
   name,
   isClosed,
   idBoard,
-  pos ,
+  position ,
   subscribed,
   })
  

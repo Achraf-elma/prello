@@ -6,8 +6,9 @@ import classNames from 'classnames';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 // Action builder
-import { moveListInBoard, addListToBoard } from '../../action/actionBoard';
+import { addListToBoard } from '../../action/actionBoard';
 import { setLists } from '../../action/actionLists';
+import { setListPosition } from '../../action/actionList';
 // Components
 import List from './List/List';
 import ListCreator from './ListCreator';
@@ -27,7 +28,7 @@ class Board extends React.Component {
   }
 
   addList(listName) {
-    this.props.dispatchAddListToBoard(listName)
+    this.props.dispatchAddListToBoard(listName, this.props.lists);
   }
   render() {
     const {
@@ -38,11 +39,12 @@ class Board extends React.Component {
         "loading"
       )
     }
+    console.log(lists)
     return (
       <div>
 
         <ListCreator addList={(listName) => this.addList(listName)} />
-        <DragDropContext onDragEnd={(result) => dispatchOnDragEnd(result)}>
+        <DragDropContext onDragEnd={(result) => dispatchOnDragEnd(result, lists)}>
           <Droppable droppableId="droppable" direction="horizontal">
             {(provided, snapshot) => (
               <span
@@ -79,18 +81,31 @@ class Board extends React.Component {
 }
 
 const mapStateToProps = (state, props) => ({
-  lists: state.lists.filter(list => list.idBoard === props.match.params.idBoard && list.isClosed !== true),
-})
+  lists: state.lists
+    .filter(list => list.idBoard === props.match.params.idBoard && list.isClosed !== true)
+    .sort((list1, list2) => list1.position - list2.position),
+});
+
+const calculNewPosition = (indexBefore, indexAfter, items) => {
+  let filteredIitems = items.filter((item, index) => index !== indexBefore);
+  let littlerList = filteredIitems[indexAfter - 1];
+  let biggerList = filteredIitems[indexAfter];
+  let littlerPos = (littlerList && littlerList.position) * 1 || 0;
+  let biggerPos = (biggerList && biggerList.position) * 1 || Number.MAX_SAFE_INTEGER;
+  console.log(littlerPos, biggerPos);
+  return (littlerPos + biggerPos) / 2;
+}
 
 const mapDispatchToProps = (dispatch, props) => ({
-  dispatch,
-  dispatchOnDragEnd: ({ source, destination }) => (
+  dispatchOnDragEnd: ({ source, destination }, lists) => (
     destination &&
-    dispatch(moveListInBoard(source.index, destination.index))
+    dispatch(setListPosition(
+      lists[source.index].idList,
+      calculNewPosition(source.index, destination.index, lists)
+    ))
   ),
-  dispatchAddListToBoard: (listName) => dispatch(addListToBoard(props.match.params.idBoard, listName)),
+  dispatchAddListToBoard: (listName, lists) => dispatch(addListToBoard(props.match.params.idBoard, listName, calculNewPosition(lists.length, lists.length, lists))),
   dispatchSetLists: (lists) => dispatch(setLists(lists)),
-
 });
 
 // Export connected Components

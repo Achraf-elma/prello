@@ -73,13 +73,13 @@ export const moveListInBoard = (id, pos) => ({
 })
 
 // Add a new list at the end of the board
-export const addListToBoard = (idBoard,listName,listPos) => ({
+export const addListToBoard = (idBoard, listName, position) => ({
   type: ADD_LIST_TO_BOARD,
   payload: {
     idList : new  ObjectId(),
     idBoard : idBoard,
     name: listName,
-    pos:listPos
+    position: position
   }
 })
 
