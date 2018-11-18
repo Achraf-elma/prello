@@ -5,18 +5,16 @@ import { combineReducers } from 'redux';
 import {
   initOrganization,
   SET_ORGANIZATION,
-  SET_TEAM_DESC,
-  SET_TEAM_NAME,
-  SET_TEAM_WEBSITE,
+  SET_ORGANIZATION_SETTINGS,
+  SET_ORGANIZATION_OWNER,
   ADD_MEMBER_TO_ORGANIZATION,
   REMOVE_MEMBER_FROM_ORGANIZATION,
-  SET_ORGANIZATION_OWNER,
 } from "../action/actionOrganization";
 
 const name = (state = initOrganization.name, action) => {
   switch (action["type"]) {
     case SET_ORGANIZATION:
-    case SET_TEAM_NAME:
+    case SET_ORGANIZATION_SETTINGS:
       return action.payload.name;
     default:
       return state;
@@ -26,7 +24,7 @@ const name = (state = initOrganization.name, action) => {
 const desc = (state = initOrganization.desc, action) => {
   switch (action["type"]) {
     case SET_ORGANIZATION:
-    case SET_TEAM_DESC:
+    case SET_ORGANIZATION_SETTINGS:
       return action.payload.desc || "";
     default:
       return state;
@@ -36,7 +34,7 @@ const desc = (state = initOrganization.desc, action) => {
 const website = (state = initOrganization.website, action) => {
   switch (action["type"]) {
     case SET_ORGANIZATION:
-    case SET_TEAM_WEBSITE:
+    case SET_ORGANIZATION_SETTINGS:
       return action.payload.website ||  "";
     default:
       return state;

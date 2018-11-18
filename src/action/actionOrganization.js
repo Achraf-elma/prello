@@ -11,9 +11,7 @@ export const initOrganization = {
 
 // Action type constants
 export const SET_ORGANIZATION = "@@organization/SET_ORGANIZATION";
-export const SET_TEAM_NAME = "@@organization/SET_TEAM_NAME"
-export const SET_TEAM_DESC = "@@organization/SET_TEAM_DESC"
-export const SET_TEAM_WEBSITE = "@@organization/SET_TEAM_WEBSITE"
+export const SET_ORGANIZATION_SETTINGS = "@@organization/SET_ORGANIZATION_SETTINGS";
 
 export const SET_ORGANIZATION_OWNER = "@@organization/SET_ORGANIZATION_OWNER";
 export const ADD_MEMBER_TO_ORGANIZATION = "@@organization/ADD_MEMBER_TO_ORGANIZATION"
@@ -26,27 +24,10 @@ export const setOrganization = (organization) => ({
   payload: organization
 })
 
-export const setTeamName = (id, newName) => ({
-  type: SET_TEAM_NAME,
-  payload: {
-    id,
-    name: newName
-  }
+export const setOrganizationSettings = (name, website, desc) => ({
+  type: SET_ORGANIZATION_SETTINGS,
+  payload: { name, website, desc },
 })
-
-export const setTeamDesc = (id, newDesc) => ({
-  type: SET_TEAM_DESC,
-  payload: {
-    id,
-    desc: newDesc
-  }
-})
-
-export const setTeamWebsite = (id, website) => ({
-  type: SET_TEAM_WEBSITE,
-  payload: website
-})
-
 
 export const addMemberToOrganization = (member) => ({
   type: ADD_MEMBER_TO_ORGANIZATION,
