@@ -1,5 +1,5 @@
 // Action type constants
-export const SET_ORGANIZATION_LIST = "@@organization/SET_ORGANIZATION";
+export const SET_ORGANIZATION_LIST = "@@organization/SET_ORGANIZATION_LIST";
 export const ADD_ORGANIZATION_TO_ORGANIZATIONS = "@@organization/ADD_ORGANIZATION_TO_ORGANIZATIONS";
 
 // default state

@@ -71,8 +71,6 @@ class OrganizationSettings extends React.Component {
           </ModalBody>
         </Modal>
       </div>
-      
-      
     </div>
   );
   }
@@ -91,13 +89,13 @@ class OrganizationSettings extends React.Component {
   
   const mapDispatchToProps = (dispatch, props) => ({
       dispatchForm : (event) => {
-        event.preventDefault();
-        const data = new FormData(event.target);
-        if (data.get('name') !== '') {
-            dispatch(setTeamDisplayName(props.id, data.get('name')))
-        }
-        if (data.get('description') !== '') {dispatch(setTeamDesc(props.id, data.get('description')))}
-        if (data.get('website') !== '') {dispatch(setTeamWebsite(props.id, data.get('website')))}
+        // event.preventDefault();
+        // const data = new FormData(event.target);
+        // if (data.get('name') !== '') {
+        //     dispatch(setTeamDisplayName(props.id, data.get('name')))
+        // }
+        // if (data.get('description') !== '') {dispatch(setTeamDesc(props.id, data.get('description')))}
+        // if (data.get('website') !== '') {dispatch(setTeamWebsite(props.id, data.get('website')))}
       }
   })
   

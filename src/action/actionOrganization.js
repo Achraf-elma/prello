@@ -2,36 +2,27 @@
 
 //Default State
 export const initOrganization = {
-  id: null,
-  name: null,
-  desc: null,
-  descData: null,
-  website: null,
-  invited: null,
-  displayName: null,
-  invitations: [],
-  boards: [],
-  memberships: []
+  name:"",
+  desc:"",
+  website: "",
+  isOwner: false,
+  members: []
 }
 
 // Action type constants
-export const SET_TEAM = "@@organization/SET_TEAM"
+export const SET_ORGANIZATION = "@@organization/SET_ORGANIZATION";
 export const SET_TEAM_NAME = "@@organization/SET_TEAM_NAME"
-export const SET_TEAM_DISPLAY_NAME = "@@organization/SET_TEAM_DISPLAY_NAME"
 export const SET_TEAM_DESC = "@@organization/SET_TEAM_DESC"
 export const SET_TEAM_WEBSITE = "@@organization/SET_TEAM_WEBSITE"
 
-export const ADD_NEW_BOARD_ID = "@@organization/ADD_NEW_BOARD_ID"
-export const REMOVE_BOARD_ID = "@@organization/REMOVE_BOARD_ID"
+export const SET_ORGANIZATION_OWNER = "@@organization/SET_ORGANIZATION_OWNER";
+export const ADD_MEMBER_TO_ORGANIZATION = "@@organization/ADD_MEMBER_TO_ORGANIZATION"
+export const REMOVE_MEMBER_FROM_ORGANIZATION = "@@organization/REMOVE_MEMBER_FROM_ORGANIZATION"
 
-export const ADD_NEW_TEAM_MEMBER = "@@organization/ADD_NEW_TEAM_MEMBER"
-export const DELETE_TEAM_MEMBER = "@@organization/DELETE_TEAM_MEMBER"
-export const SET_TEAM_MEMBER_TYPE = "@@organization/SET_TEAM_MEMBER_TYPE"
+// // Action Builders
 
-// Action Builders
-
-export const setTeam = (organization) => ({
-  type: SET_TEAM,
+export const setOrganization = (organization) => ({
+  type: SET_ORGANIZATION,
   payload: organization
 })
 
@@ -43,14 +34,6 @@ export const setTeamName = (id, newName) => ({
   }
 })
 
-export const setTeamDisplayName = (id, newDisplayName) => ({
-  type: SET_TEAM_DISPLAY_NAME,
-  payload: {
-    id,
-    displayName: newDisplayName
-  }
-})
-
 export const setTeamDesc = (id, newDesc) => ({
   type: SET_TEAM_DESC,
   payload: {
@@ -59,51 +42,26 @@ export const setTeamDesc = (id, newDesc) => ({
   }
 })
 
-export const setTeamWebsite = (id, newWebsite) => ({
+export const setTeamWebsite = (id, website) => ({
   type: SET_TEAM_WEBSITE,
-  payload: {
-    id,
-    website: newWebsite
-  }
-})
-
-export const addNewTeamMember = (id, newTeamMember) => ({
-  type: ADD_NEW_TEAM_MEMBER,
-  payload: {
-    id,
-    newTeamMember
-  }
-})
-
-export const deleteTeamMember = (id, teamMemberToDelete) => ({
-  type: DELETE_TEAM_MEMBER,
-  payload: {
-    id,
-    teamMemberToDelete
-  }
-})
-
-export const setTeamMemberType = (id, teamMemberToSetType) => ({
-  type: SET_TEAM_MEMBER_TYPE,
-  payload: {
-    id,
-    teamMemberToSetType
-  }
+  payload: website
 })
 
 
-export const addNewBoardId = (id, newBoardId) => ({
-  type: ADD_NEW_BOARD_ID,
-  payload: {
-    id,
-    newBoardId
-  }
-})
+export const addMemberToOrganization = (member) => ({
+  type: ADD_MEMBER_TO_ORGANIZATION,
+  payload: member,
+});
 
-export const removeBoardId = (id, boardIdToRemove) => ({
-  type: REMOVE_BOARD_ID,
+export const removeMemberFromOrganization = (idMember) => ({
+  type: REMOVE_MEMBER_FROM_ORGANIZATION,
+  payload: idMember
+});
+
+export const setOrganizationOwner = (idMember, exOwner) => ({
+  type: SET_ORGANIZATION_OWNER,
   payload: {
-    id,
-    boardIdToRemove
-  }
-}) 
+    idOwner: idMember,
+    member: exOwner,
+  },
+})
