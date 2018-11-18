@@ -9,7 +9,7 @@ export default ( state = [], action) => {
       return [...state, action.payload];
     
      case SET_COMMENTS:
-     return [...state, action.payload];
+     return action.payload;
     
     default:
       return state;

@@ -5,10 +5,11 @@ import {ObjectId} from 'bson';
 // default state
 export const initCOMMENT = {
   id : null ,
-  date : Date, 
+  date : moment(), 
   text: null,
   idCard: null,
   idMember : null,
+  fullName :'o',
   pos : null,
   isClosed: null
   }
@@ -78,12 +79,13 @@ export const initCOMMENT = {
   })
 
 // Add a new card at the end of the list
-export const addCommentToCard = (idCard, idMember, text) => ({
+export const addCommentToCard = (idCard, idMember, name, text) => ({
   type: ADD_COMMENT_TO_CARD,
   payload: {
     id : new  ObjectId(),
     idCard: idCard,
     idMember: idMember,
+    fullName : name,  
     date : moment(),
     text: text,   
   }

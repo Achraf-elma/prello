@@ -20,10 +20,10 @@ const CardComments = ({comments, dispatchAddCommentToCard}) => (
   {comments.map((comment) => (
     
 
-     <ListGroupItem key={comment.id}>
+     <ListGroupItem>
 
        <span className="commentMember">> {comment.fullName}</span>
-       <span className="commentDate">({comment.date}) : </span>
+       <span className="commentDate">({comment.date.toString()}) : </span>
        <span className="commentText">{comment.text}</span>
        </ListGroupItem>
    
@@ -41,8 +41,8 @@ const CardComments = ({comments, dispatchAddCommentToCard}) => (
 </div>
   );
 
-const mapStateToProps = (state, props) =>  ({
-  comments: state.comments.filter(comment => comment.idCard === props.idCard),
+const mapStateToProps = (state, props) => console.log(state.comments) || ({
+ comments: state.comments.filter(comment => comment.idCard === props.idCard) || [],
   card : state.cards.find(card => card.id === props.idCard),
 })
 
@@ -50,7 +50,7 @@ const mapDispatchToProps = (dispatch, props) => ({
   dispatchAddCommentToCard: (event) => {
     event.preventDefault();
     const data = new FormData(event.target);
-    dispatch(addCommentToCard( props.idCard,  client.getCredentials().idUser, data.get('text'))) 
+    dispatch(addCommentToCard( props.idCard,  client.getCredentials().idUser, client.getCredentials().fullName, data.get('text'))) 
   }
 })
 
