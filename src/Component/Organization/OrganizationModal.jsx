@@ -7,14 +7,14 @@ import {
 } from 'reactstrap';
 
 
-const OrganizationModal = ({dispatchForm , history}) => (
+const OrganizationModal = ({newOrganization , history}) => (
   <Modal isOpen={true} toggle={(e) => history.goBack()} >
     <ModalHeader toggle={(e) => history.goBack()}>New team settings</ModalHeader>
     <ModalBody>
-      <Form onSubmit={(e) => { dispatchForm(e); history.goBack(); }} >
+      <Form onSubmit={(e) => { newOrganization(e); history.goBack(); }} >
         <FormGroup>
           <Label for="newDisplayName">Name</Label>
-          <Input type="text" name="name" id="newDisplayName" placeholder={"Enter your team name"} />
+          <Input autoFocus type="text" name="name" id="newDisplayName" placeholder={"Enter your team name"} />
         </FormGroup>
         <FormGroup>
           <Label for="newDesc">Description</Label>

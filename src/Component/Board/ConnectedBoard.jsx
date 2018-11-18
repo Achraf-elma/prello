@@ -29,7 +29,6 @@ class ConnectedBoard extends React.Component {
     const {
       match
     } = this.props;
-    console.log(match)
     return (
       <Provider store={boardStore}>
         <Route path={match.path} component={BoardToConnect}/>

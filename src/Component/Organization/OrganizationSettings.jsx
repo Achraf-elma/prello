@@ -12,7 +12,7 @@ import { setTeamDisplayName, setTeamDesc, setTeamWebsite } from '../../action/ac
 // Styles
 import '../../style/organization.css';
 
-class OrgSettings extends React.Component {
+class OrganizationSettings extends React.Component {
 
   constructor(props) {
     super(props);
@@ -37,7 +37,7 @@ class OrgSettings extends React.Component {
       dispatchForm
     } = this.props;
   return (
-    <div className="OrgSettings">
+    <div className="OrganizationSettings">
       <div className="organization-labels">
       <Label for="newDisplayName">Name</Label>
       <Input type = "text" name ="name" id="newDisplayName" value={displayName} disabled/>
@@ -71,8 +71,6 @@ class OrgSettings extends React.Component {
           </ModalBody>
         </Modal>
       </div>
-      
-      
     </div>
   );
   }
@@ -91,14 +89,14 @@ class OrgSettings extends React.Component {
   
   const mapDispatchToProps = (dispatch, props) => ({
       dispatchForm : (event) => {
-        event.preventDefault();
-        const data = new FormData(event.target);
-        if (data.get('name') !== '') {
-            dispatch(setTeamDisplayName(props.id, data.get('name')))
-        }
-        if (data.get('description') !== '') {dispatch(setTeamDesc(props.id, data.get('description')))}
-        if (data.get('website') !== '') {dispatch(setTeamWebsite(props.id, data.get('website')))}
+        // event.preventDefault();
+        // const data = new FormData(event.target);
+        // if (data.get('name') !== '') {
+        //     dispatch(setTeamDisplayName(props.id, data.get('name')))
+        // }
+        // if (data.get('description') !== '') {dispatch(setTeamDesc(props.id, data.get('description')))}
+        // if (data.get('website') !== '') {dispatch(setTeamWebsite(props.id, data.get('website')))}
       }
   })
   
-  export default connect(mapStateToProps, mapDispatchToProps)(OrgSettings); 
+  export default connect(mapStateToProps, mapDispatchToProps)(OrganizationSettings); 

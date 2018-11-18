@@ -8,7 +8,7 @@ import withDragAndDrop from "react-big-calendar/lib/addons/dragAndDrop";
 import "../../style/calendar.css";
 import "react-big-calendar/lib/addons/dragAndDrop/styles.css";
 import "react-big-calendar/lib/css/react-big-calendar.css";
-import { setCardDueDate } from '../../action/actionCard';
+import { setCardDueDate, setCardAllDay } from '../../action/actionCard';
 import CardSettings from './MyCard/CardSettings'
 
 
@@ -77,7 +77,7 @@ class CalendarView extends Component {
     console.log("MOVE FUNCTION " + event.id)
      this.props.setCardDueDate(event.id, end, allDay)
 
-    alert(`${event.title} was dropped onto ${updatedEvent.start}`)
+    alert(`${event.title} was dropped into ${updatedEvent.start}`)
   }
 
   render() {
@@ -120,7 +120,10 @@ const mapStateToProps = ( state, props ) => ({
 });
 
 const mapDispatchToProps = (dispatch, props) => ({
-  setCardDueDate: (id, end, allDay) => dispatch(setCardDueDate(id, end, allDay))
+  setCardDueDate: (id, end, allDay) => {
+    dispatch(setCardDueDate(id, end));
+    dispatch(setCardAllDay(id, allDay))
+  }
 });
 
 

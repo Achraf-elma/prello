@@ -7,7 +7,7 @@ import {SET_BOARD_CLOSE, ADD_SET_LABEL_TO_BOARD} from '../action/actionBoard';
 import board from './board';
 
 
-export default ( state = initBoards.boards, action) => {
+export default ( state = initBoards, action) => {
   switch(action.type) {
     case SET_BOARD_LIST:
       return action.payload;

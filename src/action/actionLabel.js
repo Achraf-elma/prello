@@ -1,19 +1,25 @@
 // Modules
-import uuidv4 from "uuidv4";
+import {ObjectId} from 'bson';
 
+// Action type constants
+export const ADD_LABEL_TO_CARD = "@@label/ADD_LABEL_TO_CARD";
+export const SET_LABELS = "@@labels/SET_LABELS";
 
-  // Action type constants
-  export const ADD_LABEL_IN_CARD = "@@label/ADD_LABEL_IN_CARD";
-
-// Add a new card at the end of the list
-export const addLabelToCard = (idCard, name, color) => ({
-  type: ADD_LABEL_IN_CARD,
+export const addLabelToCard = (idCard, idBoard, name, color) => ({
+  type: ADD_LABEL_TO_CARD,
   payload: {
-    id: uuidv4(),
+    id : new  ObjectId(),
     idCard: idCard,
-    name: name,
-    color: color
-    
+    idBoard : idBoard ,
+    name: name || "myLabel",
+    color: color 
   }
 })
+
+export const setLabels = (labels) => ({
+  socketAction: true,
+  type: SET_LABELS,
+  payload: labels
+})
+
 

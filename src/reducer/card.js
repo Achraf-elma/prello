@@ -4,7 +4,7 @@ import { combineReducers } from 'redux';
 // Definitions
 // TODO: import type, action type & type constants
 //import {initCard, SET_CARD_POSITION,SET_CARD_CLOSED, setCARDClosed, setCARDPosition, SET_CARD_NAME, SET_CARD_LIST, SET_CARD_SUBSCRIBED }from "../action/actionCARD";
-import {initCard, SET_CARD_POSITION,ASSIGN_CHECKLIST_TO_CARD, ASSIGN_LABEL_TO_CARD, SET_CARD_DESC,SET_CARD_CLOSED, SET_CARD_NAME, SET_CARD_LIST, SET_CARD_DUE_DATE, ASSIGN_MEMBER_TO_CARD }from "../action/actionCard";
+import {initCard, SET_CARD_POSITION,ASSIGN_CHECKLIST_TO_CARD,  SET_CARD_DESC,SET_CARD_CLOSED, SET_CARD_NAME, SET_CARD_LIST, SET_CARD_DUE_DATE, ASSIGN_MEMBER_TO_CARD, SET_CARD_DUE_COMPLETE, SET_CARD_ALL_DAY }from "../action/actionCard";
 
 const id = ( state = initCard.id, action ) => state
 
@@ -40,26 +40,36 @@ const dueDate = ( state = initCard.dueDate, action ) => {
 
 const allDay = ( state = initCard.allDay, action ) => {
   switch(action["type"]) {
-    case SET_CARD_DUE_DATE:
+    case SET_CARD_ALL_DAY:
       return action.payload.allDay
     default:
       return state;
   }
 }
 
-const pos = ( state = initCard.pos, action ) => {
+const dueComplete = ( state = initCard.dueComplete, action ) => {
   switch(action["type"]) {
-    case SET_CARD_POSITION:
-      return action.payload.pos
+    case SET_CARD_DUE_COMPLETE:
+      return action.payload.dueComplete
     default:
       return state;
   }
 }
 
-const closed = ( state = initCard.closed, action ) => {
+const position = ( state = initCard.position, action ) => {
+  switch(action["type"]) {
+    case SET_CARD_POSITION:
+      return action.payload.position
+    default:
+      return state;
+  }
+}
+
+const isClosed = ( state = initCard.isClosed, action ) => {
   switch(action["type"]) {
     case SET_CARD_CLOSED:
-      return action.payload.closed
+    console.log(action)
+      return action.payload.isClosed
     default:
       return state;
   }
@@ -68,15 +78,6 @@ const idList = ( state = initCard.idList, action ) => {
   switch(action["type"]) {
     case SET_CARD_LIST:
       return action.payload.idList
-    default:
-      return state;
-  }
-}
-
-const idLabels = ( state = initCard.idLabels, action ) => {
-  switch(action["type"]) {
-    case ASSIGN_LABEL_TO_CARD:
-       return [...state, action.payload.idLabel];
     default:
       return state;
   }
@@ -107,11 +108,11 @@ export default combineReducers({
   desc,
   dueDate,
   allDay,
-  pos ,
-  closed,
+  dueComplete,
+  position ,
+  isClosed,
   idList, 
   idMembers,
-  idLabels,
   idChecklists
   })
  

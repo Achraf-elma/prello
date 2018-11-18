@@ -23,15 +23,39 @@ export const fetchBoardCards = (idBoard) =>  {
   .then(response => response.data)
 }
 
+export const fetchBoardLabels = (idBoard ) =>  {
+  return client.get(`/api/boards/${idBoard}/labels`)
+  .then(response => response.data)
+}
+
+
 export const createBoard = (board, owner = client.me) => (
   client.put(`/api/boards/${board.id}`, {
     _id: board.id,
     name: board.name,
-    description: board.desc,
+    desc: board.desc,
     idMembers: [], //board.members || [],
     idOwner: owner,
     isPublic: board.isPublic,
+    labelNames: {
+      "green": "todo",
+      "yellow": "",
+      "orange": "",
+      "red": "",
+      "purple": "",
+      "blue": "",
+      "sky": "",
+      "lime": "",
+      "pink": "",
+      "black": ""
+    }
   })
   .then( response => response.data)
+  .catch(rematchError)
+)
+
+export const addOrganizationToBoard = (idBoard, idOrganization) => (
+  client.put(`/api/boards/${idBoard}/organizations/${idOrganization}`)
+  .then(response => response.data)
   .catch(rematchError)
 )

@@ -15,7 +15,7 @@ const MyCard = ({ card, labels, history, match }) => (
   <Card onClick={() => history.push(`${match.url}/card/${card.id}`)} className="mycard" >
     <CardHeader className="mycard-header">
     {labels.map((label) => (
-      <Badge style={{color : '#fff', background : label.color }} pill>{label.name}</Badge>
+      <Badge key={label.id} style={{color : '#fff', background : label.color }} pill>{label.name}</Badge>
     ))}
     </CardHeader>
     <CardBody> {card.name} <br/>{ card.dueDate === null ? "" : moment(card.dueDate).fromNow() }  </CardBody>
@@ -23,7 +23,7 @@ const MyCard = ({ card, labels, history, match }) => (
 );
 
 const mapStateToProps = (state, props) => ({
-  card: state.cards.find(card => card.id === props.id),
+  card: state.cards.find(card => card.id.toString() === props.id.toString()),
   labels: state.labels.filter(label => label.idCard === props.id)
 });
 

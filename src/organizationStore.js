@@ -1,8 +1,5 @@
 // Modules
-import { createStore, combineReducers, applyMiddleware } from 'redux';
-
-// Socket middleWare
-import { socketDispatch } from "./request/socket";
+import { createStore, combineReducers } from 'redux';
 
 // Sub Reducers
 import boards from './reducer/boards';
@@ -14,8 +11,7 @@ const store = createStore(
     boards,
     organization,
     organizations
-  }),
-  applyMiddleware(socketDispatch)
+  })
   // , require('./bootstrap.json');
 );
 

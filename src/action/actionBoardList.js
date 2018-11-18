@@ -7,32 +7,7 @@ export const ADD_BOARD_TO_BOARDS = "@@board/ADD_BOARD_TO_BOARDS";
 export const UPDATE_BOARD = "@@board/UPDATE_BOARD";
 
 // default state
-export const initBoards = {
-   boards: [
-        {
-          id: null,
-          name: "My board",
-          desc: "My first board",
-          lists : [{}],
-          labelNames : {
-            "green": "",
-            "yellow": "good to go",
-            "orange": "",
-            "red": "",
-            "purple": "",
-            "blue": "",
-            "sky": "",
-            "lime": "",
-            "pink": "",
-            "black": ""
-           },
-      memberships: [],
-      owners: [ {}],
-      closed: false,
-      isPublic: true,
-    },
-   ]
-}
+export const initBoards = [];
     
 
 export const setBoardList = (boardList) => ({
@@ -61,7 +36,7 @@ export const addBoardToBoards = (board) => ({
   type: ADD_BOARD_TO_BOARDS,
   payload: {
     ...board,
-    labelName : {
+    labelNames : {
       "green": "",
       "yellow": "good to go",
       "orange": "",

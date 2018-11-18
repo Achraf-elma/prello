@@ -6,9 +6,10 @@ export const initCard = {
   name: 'My card',
   desc: null,
   dueDate : '01/10/2018',
+  dueComplete : false,
   allDay : false,
-  pos : null,
-  closed: false,
+  position : null,
+  isClosed: false,
   idList : null,
   idBoard : null,
   idMembers : [],
@@ -21,17 +22,18 @@ export const initCard = {
   export const SET_CARD_NAME = "@@card/SET_CARD_NAME";
   export const SET_CARD_DESC = "@@card/SET_CARD_DESC";
   export const SET_CARD_DUE_DATE = "@@card/SET_CARD_DUE_DATE"
+  export const SET_CARD_ALL_DAY = "@@card/SET_CARD_ALL_DAY"
+  export const SET_CARD_DUE_COMPLETE = "@@card/SET_CARD_DUE_COMPLETE"
   export const SET_CARD_POSITION = "@@card/SET_CARD_POSITION"
   export const SET_CARD_CLOSED = "@@card/SET_CARD_CLOSED"
   export const SET_CARD_LIST = "@@card/SET_CARD_LIST"
   export const SET_CARD_BOARD = "@@card/SET_CARD_BOARD"
   export const ASSIGN_MEMBER_TO_CARD = "@@card/ASSIGN_MEMBER_TO_CARD ";
-  export const ASSIGN_LABEL_TO_CARD = "@@card/ASSIGN_LABEL_TO_CARD ";
   export const ASSIGN_CHECKLIST_TO_CARD = "@@card/ASSIGN_CHECKLIST_TO_CARD ";
 
-  export const SET_NEW_CARD= "@@card/SET_NEW_CARD"
+  export const SET_NEW_CARD = "@@card/SET_NEW_CARD";
 
-  export const setCardName= (id, newName) => ({
+  export const setCardName = (id, newName) => ({
     type: SET_CARD_NAME,
     payload:  {
       id : id,
@@ -39,7 +41,7 @@ export const initCard = {
     }
   })
 
-  export const setCardDesc= (id, newDesc) => ({
+  export const setCardDesc = (id, newDesc) => ({
     type: SET_CARD_DESC,
     payload:  {
       id : id,
@@ -47,20 +49,36 @@ export const initCard = {
     }
   })
 
-  export const setCardDueDate= (id, newDueDate, newAllday) => ({
+  export const setCardDueDate = (id, newDueDate) => ({
     type: SET_CARD_DUE_DATE,
     payload:  {
       id: id,
-      dueDate : newDueDate,
+      dueDate : newDueDate
+    }
+  })
+
+  export const setCardAllDay= (id, newAllday) => ({
+    type: SET_CARD_ALL_DAY,
+    payload:  {
+      id: id,
       allDay : newAllday
     }
   })
+
+  export const setCardDueComplete = (id, newCompleted) => ({
+    type: SET_CARD_ALL_DAY,
+    payload:  {
+      id: id,
+      isCompleted : newCompleted
+    }
+  })
+
 
   export const setCardPosition = (id, newPos) => ({
     type: SET_CARD_POSITION,
     payload:  {
       id : id,
-      pos : newPos
+      position : newPos
     }
   })
 
@@ -68,7 +86,7 @@ export const initCard = {
     type: SET_CARD_CLOSED,
     payload:  {
       id: id,
-      closed : newClosed
+      isClosed : newClosed
     }
   })
 
@@ -97,13 +115,7 @@ export const initCard = {
     }
   })
   
-  export const assignLabelToCard = (idCard, idLabel) => ({
-    type: ASSIGN_MEMBER_TO_CARD,
-    payload: {
-      id: idCard,
-      idLabel: idLabel 
-    }
-  })
+
   
   export const assignChecklistToCard = (idCard, idChecklist) => ({
     type: ASSIGN_CHECKLIST_TO_CARD,

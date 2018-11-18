@@ -25,10 +25,13 @@ class CardDuedate extends React.Component {
 
   handleChange = m => {
     this.setState({ m : m });
+    this.props.dispatchSetCardDueDate(this.state.m)
   };
 
   handleCollapse = () => {
     this.setState({ isCollapse : !this.state.isCollapse });
+    this.props.dispatchSetCardDueDate(this.state.m)
+
   };
 
 
@@ -42,7 +45,7 @@ class CardDuedate extends React.Component {
     <Row>
     <Col className="labelField" xs="6"> <i class="fa fa-calendar-times-o" aria-hidden="true"></i>&nbsp;Due Date :</Col>
     <Col  xs="6">
-     <input onClick={this.handleCollapse} type="text" value={moment(card.dueDate).format('llll')} readOnly />
+     <input onClick={this.handleCollapse} type="text" value={card.dueDate ? moment(card.dueDate).format('llll') : "No due date"} readOnly />
 
    
       <Collapse isOpen={this.state.isCollapse}>
@@ -51,7 +54,7 @@ class CardDuedate extends React.Component {
             moment={this.state.m}
             onChange={this.handleChange}
             minStep={5}
-            onSave={(value) => dispatchSetCardDueDate(card.id,value)}
+            onSave={(value) => dispatchSetCardDueDate(value)}
           />
             </Card>
       </Collapse>
@@ -69,7 +72,7 @@ class CardDuedate extends React.Component {
   })
   
   const mapDispatchToProps = (dispatch, props) => ({
-    dispatchSetCardDueDate: (id,duedate) => dispatch(setCardDueDate(id, duedate))
+    dispatchSetCardDueDate: (duedate) => dispatch(setCardDueDate(props.idCard, duedate))
   })
   
   export default connect(mapStateToProps, mapDispatchToProps)(CardDuedate); 

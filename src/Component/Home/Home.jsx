@@ -1,8 +1,8 @@
 // Modules
 import React from 'react';
 import {connect} from 'react-redux';
-import { Modal, ModalBody,  Row, Col, Container} from 'reactstrap';
-import BoardCreator from '../BoardList/BoardCreator';
+import { Row, Col, Container} from 'reactstrap';
+import { Route, Link } from 'react-router-dom';
 import { ObjectId } from 'bson';
 
 // Action builder
@@ -15,6 +15,7 @@ import { fetchUserBoards } from '../../request/user';
 import { createBoard } from '../../request/board';
 
 // Components
+import BoardCreator from '../BoardList/BoardCreator';
 import BoardList from '../BoardList/BoardList';
 
 // Styles
@@ -22,13 +23,6 @@ import '../../style/App.css';
 import '../../style/home.css';
 
 class Home extends React.Component{
-  constructor(props) {
-    super(props);
-    this.state = {
-      modal: false
-    };
-  }
-
   componentDidMount(){
     // Fetch boards from database
     fetchUserBoards()
@@ -37,37 +31,35 @@ class Home extends React.Component{
   }
 
   filterRecent = (boards) => boards.slice(0,3);
-  filterMyboard = (boards) => boards.filter(({idOwner}) => idOwner === client.me)
-  toggle = () => this.setState({ modal: !this.state.modal });
-  toggleModal = () => this.setState({ modal: !this.state.modal });
-  addingBoard(event){
+  filterMyboard = (boards) => boards.filter(({idOwner}) => idOwner === client.me);
+  addingBoard = (event) => {
     event.preventDefault();
     const data = new FormData(event.target);
-    let newBoard = {
-      id: new ObjectId(),
-      name: data.get('name'),
-      desc: data.get('desc'),
-      isPublic: data.get('isPublic') === "true",
-      members: data.get('members'),
-    };;
-    createBoard(newBoard)
-      .then(board => this.props.dispatchAddBoardToBoards( board ))
-      .catch( error => console.error(error))
-    this.toggleModal();
+    if( data.get("name")){
+      let newBoard = {
+        id: new ObjectId(),
+        name: data.get('name'),
+        desc: data.get('desc'),
+        isPublic: data.get('isPublic') === "true",
+        members: data.get('members'),
+      };
+      createBoard(newBoard)
+        .then(board => this.props.dispatchAddBoardToBoards( board ))
+        .catch( error => console.error(error))
+    }
   }
   render() {
+    const { match } = this.props;
     return (
       <div>
         <div className="background"/>
-        <Modal isOpen={this.state.modal} toggle={this.toggle}>
-          <ModalBody>
-            <BoardCreator closeToogle={this.toggleModal}  handleSubmit={this.addingBoard.bind(this)}></BoardCreator>
-          </ModalBody>
-        </Modal>
+        <Route path={`${match.path}/addBoard`}
+          render={(props) => (<BoardCreator {...props} handleSubmit={this.addingBoard} />)}
+        />
         <Container className="boardlistHeader">
           <Row>
             <Col>
-              <button className="createBoardButton" onClick={this.toggle}>Create a Board</button>
+              <Link className="createBoardButton" to={`${match.url}/addBoard`}>Create a Board</Link>
             </Col>
           </Row>
         </Container>

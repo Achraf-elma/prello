@@ -47,7 +47,7 @@ class List extends React.Component {
       list,
       name,
       cards,
-      setListName
+      dispatchSetListName
   } = this.props;
   return (
     <Card className="list">
@@ -61,17 +61,18 @@ class List extends React.Component {
             placeHolder="List Name"
             resetable
             onChange={(value) => {
-              setListName(value);
-              this.handleEditClick();
+              dispatchSetListName(value);
+              this.handleEditClick(); 
+              
             }}
           />
          </span>
       :
-        <span onClick={this.handleEditClick} className="list-title">{list.idBoard}{list.name}{idList}</span>
+        <span onClick={this.handleEditClick} className="list-title">{list.name}</span>
       }
 
       <i onClick = {this.handleEditClick} 
-        className= { this.state.editNameOn === true ? "fa fa-edit editmod" : "fa fa-edit" }
+        className= { this.state.editNameOn === true ? "fa fa-ellipsis-v editmod" : "fa fa-ellipsis-v" }
       />
       </CardHeader>
 
@@ -106,7 +107,7 @@ const mapDispatchToProps = ( dispatch, props ) => {
       destination &&
       dispatch(moveCardInList(source.index, destination.index))
     ),
-    setListName: (name) => dispatch(setListName( props.idlist, name )),
+    dispatchSetListName: (name) => dispatch(setListName( props.idList, name )),
     dispatchAddCardToList: (idlist, idboard, name, duedate) => dispatch(addCardToList(idlist, idboard, name, duedate, false,false)
     )
   }

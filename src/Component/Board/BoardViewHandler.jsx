@@ -8,13 +8,15 @@ import { Route, Link } from 'react-router-dom';
 import { setBoard } from '../../action/actionBoard';
 import { setLists } from '../../action/actionLists';
 import { setCards } from '../../action/actionCards';
+import { setLabels } from '../../action/actionLabel';
+
 
 // Components
 import CalendarView from './CalendarView';
 import Board from './Board';
 
 // Requests
-import {fetchBoard, fetchBoardLists, fetchBoardCards} from '../../request/board'
+import {fetchBoard, fetchBoardLists, fetchBoardCards, fetchBoardLabels} from '../../request/board'
 import { ErrorLogin, ErrorForbidden, ErrorNotFound } from '../../request/requestErrors';
 
 // Styles
@@ -34,16 +36,20 @@ class BoardViewHandler extends React.Component{
       fetchBoard(idBoard),
       fetchBoardLists(idBoard),
       fetchBoardCards(idBoard),
+      fetchBoardLabels(idBoard),
+
     ])
-    .then(([board, lists, cards]) => [
+    .then(([board, lists, cards, labels]) => [
       this.props.dispatchSetBoard(board),
       this.props.dispatchSetLists(lists),
       this.props.dispatchSetCards(cards),
+      this.props.dispatchSetLabels(labels),
+
     ])
     .catch(error => error instanceof ErrorLogin ? this.props.history.push('/login') : Promise.reject(error))
     .catch(error => error instanceof ErrorForbidden ? this.props.history.push('/home') : Promise.reject(error))
     .catch(error => error instanceof ErrorNotFound ? this.props.history.push('/home') : Promise.reject(error))
-    .catch(err => this.props.history.push('/login'));
+    .catch(error => console.error(error) || this.props.history.push('/login'));
   }
 
   LinkToCalendar = () => (
@@ -84,7 +90,9 @@ const mapStateToProps = ( state, props ) => ({
 const mapDispatchToProps = (dispatch, props) => ({
   dispatchSetBoard : (board) => dispatch(setBoard(board)),
   dispatchSetLists : (lists) => dispatch(setLists(lists)),
-  dispatchSetCards : (cards) => dispatch(setCards(cards))
+  dispatchSetCards : (cards) => dispatch(setCards(cards)), 
+  dispatchSetLabels : (labels) => dispatch(setLabels(labels))
+
 });
 
 // Export connected Components

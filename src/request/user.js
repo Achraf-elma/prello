@@ -40,3 +40,9 @@ export const fetchUserBoards = (idMember = client.me) => (
     .then(response => response.data)
     .catch(rematchError)
 )
+
+export const fetchUserOrganizations = (idMember = client.me) => (
+  client.get(`api/members/${idMember}/organizations`)
+    .then(response => response.data)
+    .catch(rematchError)
+)

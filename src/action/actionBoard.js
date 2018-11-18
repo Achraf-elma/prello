@@ -1,5 +1,6 @@
 // Modules
-import uuidv4 from "uuidv4";
+import {ObjectId} from 'bson';
+
 
 // Action type constants
 // TODO: Action type constant
@@ -76,7 +77,7 @@ export const moveListInBoard = (listToMovePos, newListPos) => ({
 export const addListToBoard = (idBoard,listName) => ({
   type: ADD_LIST_TO_BOARD,
   payload: {
-    id: uuidv4(),
+    id : new  ObjectId(),
     idBoard : idBoard,
     name: listName
   }
@@ -115,13 +116,11 @@ export const setBoardPrivacy = (id, isPublic) => ({
   }
 })
 
-export const addLabelToBoard = (id, name, color) => ({
+export const addLabelToBoard = (idBoard, name, color) => ({
   type: ADD_SET_LABEL_TO_BOARD,
   payload: {
-    id: id,
-    name: name,
+    idBoard: idBoard,
+    name: name || "myLabel",
     color : color,
   }
 })
-
-

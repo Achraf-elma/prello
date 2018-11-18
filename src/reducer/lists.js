@@ -1,6 +1,8 @@
 // Action types
 import { MOVE_LIST_IN_BOARD, ADD_LIST_TO_BOARD } from '../action/actionBoard';
 import { SET_LISTS } from '../action/actionLists';
+import { SET_LIST_NAME, SET_LIST_CLOSED } from '../action/actionList';
+import list from './list';
 
 
 export default ( state = [], action) => {
@@ -9,7 +11,18 @@ export default ( state = [], action) => {
       return action.payload.map(list=> ({
         idList : list._id , 
         ...list
-      }))
+      }));
+    
+
+    case SET_LIST_NAME:
+    case SET_LIST_CLOSED:
+      console.log(action)
+      var idxListToUpdate = state.findIndex(list => list.id.toString() === action.payload.id.toString())
+      var listUptaded = list(state[idxListToUpdate], action)
+      var nextLists = [...state]
+      nextLists[idxListToUpdate] = listUptaded;
+      return  nextLists;
+
     case ADD_LIST_TO_BOARD:
       return [...state, action.payload]
     case MOVE_LIST_IN_BOARD:
