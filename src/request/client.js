@@ -13,7 +13,6 @@ const client = axios.create({
   maxRedirects:1,
 })
 
-
 // https://github.com/axios/axios#creating-an-instance
 /**
  * @desc Set the authorization header to Json Web Token protocol
@@ -51,12 +50,14 @@ client.removeJWT = () => {
  * 
  */
 client.setCredentials = (credentials) => {
+  localStorage && localStorage.setItem("prello", JSON.stringify(credentials));
   client.me = credentials.idUser;
   client.credentials = credentials;
   client.setJWT(credentials.accessToken);
   return client;
 }
 
+<<<<<<< HEAD
 client.setCredentials({
   "accessToken": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZFVzZXIiOiJlMWUxZTBlMWUxZTBlMWUxZTBlMWUxZTAiLCJlbWFpbCI6ImgiLCJtZW1iZXJUeXBlIjoiVXNlciIsImV4cGlyZXMiOjE1NDI0OTEwODkxMTl9.rhJDoejZcnMBxnI1F3L52uqhSmRHpcMcDL_gReYtYqE", 
   "email": "h", 
@@ -66,15 +67,23 @@ client.setCredentials({
   "memberType": "User"
 
 })
+=======
+>>>>>>> [CONNEXION] Storage used to keep session alive
 client.getCredentials = () => {
   return client.credentials;
 }
 
 client.removeCredentials = () => {
+  localStorage && localStorage.removeItem("prello");
   client.credentials = null;
   client.me = null;
   client.removeJWT();
   return client;
 }
+
+let creds = localStorage && JSON.parse(localStorage.getItem("prello"));
+console.log(creds)
+creds && client.setCredentials(creds);
+
 
 export default client;
