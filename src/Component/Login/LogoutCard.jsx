@@ -1,43 +1,26 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import {  Container} from 'reactstrap';
-import client from '../../request/client'
-import { Link } from 'react-router-dom';
+import { logOut } from '../../request/login'
+import { Redirect } from 'react-router-dom';
 
 class LogoutCard extends React.Component {
-  constructor(props) {
-    super(props);
-    
-    this.state = {
-       disconnected : false
-    }
-   
+  constructor(){
+    super();
+    this.state = { disconnected: false}
   }
-
-
   componentDidMount(){ 
-      client.removeCredentials()
+      logOut()
+      .catch(done => done)
+      .then(done => this.setState({disconnected: true}))
    }
   
 
   render() {
-    const {
-       
-    } = this.props;
-    return (
-          <Container>
-              You are now disconnected. 
-              <Link to={"/homepage"} > Go to home page </Link>
-          </Container>
-      )
+    if( this.state.disconnected ) {
+      return <Redirect to="/" />
+    } else {
+      return <div className="background" />
+    }
   }
 }
-const mapStateToProps = ( state, props ) => ({
-  
-})
 
-const mapDispatchToProps = ( dispatch, props ) => ( {
-  
-});
-
-export default connect(mapStateToProps,mapDispatchToProps)(LogoutCard); 
+export default LogoutCard;
