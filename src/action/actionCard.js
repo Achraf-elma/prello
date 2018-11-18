@@ -66,10 +66,10 @@ export const initCard = {
   })
 
   export const setCardDueComplete = (id, newCompleted) => ({
-    type: SET_CARD_ALL_DAY,
+    type: SET_CARD_DUE_COMPLETE,
     payload:  {
       id: id,
-      isCompleted : newCompleted
+      dueComplete : newCompleted
     }
   })
 

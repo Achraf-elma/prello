@@ -8,6 +8,7 @@ import AddLabel from '../AddLabel';
 import AddMember from '../AddMember';
 import AddCheckList from '../AddCheckList';
 
+import { setCardDueComplete } from '../../../../action/actionCard';
 
 class CardAddParam extends React.Component {
   constructor(props) {
@@ -29,7 +30,7 @@ class CardAddParam extends React.Component {
 
 render() {
   const {
-    card
+    card, dispatchSetCardDueComplete
   } = this.props;
   return (
     <div>
@@ -39,6 +40,12 @@ render() {
         <button className="addElementButton" id={"card-label"+card.id} onClick={() => this.togglePopover(0)}><i className="fa fa-plus-circle" aria-hidden="true"></i>&nbsp;Label</button> <br/>
         <button id={"card-check"+card.id} onClick={() => this.togglePopover(2)} className="addElementButton"><i className="fa fa-plus-circle" aria-hidden="true"></i>&nbsp; Checklist</button><br/>
 
+      <div>
+      
+        <Col className="labelField" xs="6"> <i className="fa fa-calendar-times-o" aria-hidden="true"></i>&nbsp;Card Done :</Col>
+       <Col> <input type="checkbox" checked={card.dueComplete} onChange={() => dispatchSetCardDueComplete(!(card.dueComplete))}/> </Col>
+      </div>
+      
         <Popover placement="right" isOpen={this.state.popoverOpen[0]} target={"card-label"+card.id} toggle={() => this.togglePopover(0)}>
           <PopoverHeader>Labels</PopoverHeader>
           <PopoverBody>
@@ -59,6 +66,8 @@ render() {
           <AddCheckList idCard={card.id} />
         </PopoverBody>
       </Popover>
+
+
     </div>
     );
   }
@@ -70,7 +79,7 @@ const mapStateToProps = (state, props) => ({
 })
 
 const mapDispatchToProps = (dispatch, props) => ({
-
+  dispatchSetCardDueComplete : (value) => dispatch(setCardDueComplete(props.idCard, value))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CardAddParam); 

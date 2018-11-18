@@ -45,12 +45,12 @@ class CardSettings extends React.Component {
 
   //     return userName;
   // }
-/** 
-componentDidMount(){
+ 
+componentWillUpdate(){
   fetchComments(this.props.match.params.idCard)
   .then(comment => this.props.dispatchComments(comment))
   .catch(error => console.error(error))
-} **/
+} 
 
 
   render() {
