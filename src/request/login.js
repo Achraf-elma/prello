@@ -18,7 +18,7 @@ export const logIn = (id, password) => (
   .then(response => (
     client.setCredentials(response.data) &&
     // Store the token on the front server cookies
-    axios.post("/api/login", response.data)
+    axios.post("/login", response.data)
     .catch( error => console.error( error ))
     // Its error isn't important
     // Client.post error will waterfall out of this function
@@ -61,7 +61,7 @@ export const signUp = (fullName, email, password) => (
   .then( response => (
     client.setCredentials(response.data) &&
     // Store the token on the front server cookies
-    axios.post("/api/login", response.data)
+    axios.post("/login", response.data)
     .catch(error => console.error(error))
     // Its error isn't important
     // Client.post error will waterfall out of this function
@@ -80,7 +80,7 @@ export const whoAmI = () => (
   // If the client doesn't have a token, fetch it on the rendering server
   // !! Those data are not to be trusted !!
   .catch( error => error === NO_TOKEN ? (
-    axios.get("/api/login")
+    axios.get("/login")
     .then( response => client.setCredentials(response.data))
   ) : Promise.reject(error))
   // Once the token exists, fetch log data on api

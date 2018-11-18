@@ -1,7 +1,7 @@
 // Modules
 import React from 'react';
 import { connect } from 'react-redux';
-import { Route, Link } from 'react-router-dom';
+import { Route, NavLink } from 'react-router-dom';
 
 
 // Action builder
@@ -14,6 +14,7 @@ import { setLabels } from '../../action/actionLabel';
 // Components
 import CalendarView from './CalendarView';
 import Board from './Board';
+import MembersView from './MembersView';
 
 // Requests
 import {fetchBoard, fetchBoardLists, fetchBoardCards, fetchBoardLabels} from '../../request/board'
@@ -52,31 +53,26 @@ class BoardViewHandler extends React.Component{
     .catch(error => console.error(error) || this.props.history.push('/login'));
   }
 
-  LinkToCalendar = () => (
-    <Link className="btn btn-primary" to={`${this.props.match.url}/calendar`}>Calendar View</Link>
-  )
-  LinkToBoard = () => (
-    <Link className="btn btn-primary" to={`${this.props.match.url}/board`}>Board View</Link>
-  )
-
   render() {
     const { board } = this.props;
     return (
       <div>
         <div className="board-background"/>
-        <div className="container">
+        <div className="container full-width">
           <div className="row board-info">
             <div className="col">
               <h1 className="board-title"><i className="fa fa-tasks"></i>{board.name}</h1>
             </div>
             <div className="col">
-              <Route path={`${this.props.match.path}/board`} component={this.LinkToCalendar} />
-              <Route path={`${this.props.match.path}/calendar`} component={this.LinkToBoard} />
+              <NavLink className="btn btn-primary" to={`${this.props.match.url}/board`}>Board View</NavLink>
+              <NavLink className="btn btn-primary" to={`${this.props.match.url}/calendar`}>Calendar View</NavLink>
+              <NavLink className="btn btn-primary" to={`${this.props.match.url}/members`}>Members View</NavLink>
             </div>
           </div>
           <hr className="separator" />
           <Route path={`${this.props.match.path}/board`} component={Board}/>
           <Route path={`${this.props.match.path}/calendar`} component={CalendarView}/>
+          <Route path={`${this.props.match.path}/members`} component={MembersView} />
         </div>
       </div>
     );

@@ -85,3 +85,10 @@
 .m-input-moment {
   width: auto !important;
 }
+
+.board-member-blocks {
+  display: inline-block;
+  margin: 3em;
+  width: 35%;
+  vertical-align: top;
+}

@@ -14,9 +14,6 @@ const path = require('path');
 
 const app = express();
 
-// Project Modules
-const socketServer = require("./redis-sockets");
-
 // Env variables
 const PORT = process.env.PORT;
 /**
@@ -40,5 +37,5 @@ app.get("/", (req, res) => res.sendFile(path.join(__dirname, '../', 'build')));
 app.use(express.static(path.join(__dirname, '../','build')));
 
 const httpServer = http.createServer(app);
-const io = socketServer(httpServer)
+
 httpServer.listen( PORT, () => console.log( "App is running on", PORT ));
