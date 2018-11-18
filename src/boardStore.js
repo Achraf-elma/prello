@@ -8,6 +8,7 @@ import { socketDispatch } from "./request/socket";
 import board from './reducer/board';
 import checkItem from './reducer/checkItem';
 import checkList from './reducer/checklist';
+import checkLists from './reducer/checklists';
 import list from './reducer/list';
 import lists from './reducer/lists';
 import card from './reducer/card';
@@ -22,6 +23,7 @@ const store = createStore(
     labels,
     checkItem,
     checkList,
+    checkLists,
     board,
     card, 
     cards

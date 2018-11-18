@@ -15,6 +15,8 @@ import CardLabels from './CardSettings/CardLabels';
 import CardComments from './CardSettings/CardComments';
 import CardDuedate from './CardSettings/CardDueDate';
 import CardAddParam from './CardSettings/CardAddParam';
+import CardCheckList from './CardSettings/CardCheckList';
+
 import { setCardClosed } from '../../../action/actionCard';
 import {fetchComments} from '../../../request/card'
 import { setComments } from '../../../action/actionComment';
@@ -43,17 +45,17 @@ class CardSettings extends React.Component {
 
   //     return userName;
   // }
-
+/** 
 componentDidMount(){
   fetchComments(this.props.match.params.idCard)
   .then(comment => this.props.dispatchComments(comment))
   .catch(error => console.error(error))
-}
+} **/
 
 
   render() {
     const {
-      card
+      card, labels, checkLists
     } = this.props
     const closeBtn = <button className="close" onClick={this.closeSettings}>&times;</button>;
     if(!card){
@@ -79,9 +81,12 @@ componentDidMount(){
             <hr/>
             <CardDuedate idCard={card.id}/>
             <hr/>
-            <CardLabels idCard={card.id}/>  
+             <CardLabels idCard={card.id}/> 
             <hr/>
-            <CardComments idCard={card.id} />
+             <CardCheckList idCard={card.id}/> 
+            <hr/>
+            <CardComments idCard={card.id}/>
+            
           </Col>
           <Col className="buttonsSettingCard" xs="3">
             <CardAddParam idCard={card.id}/>
@@ -100,6 +105,7 @@ componentDidMount(){
 }
 const mapStateToProps = (state, props) => console.log(state.comments) || ({
   labels: state.labels.filter(label => label.idCard === props.match.params.idCard),
+  checkLists: state.checkLists.filter(checkList => checkList.idCard === props.idCard),
   card : state.cards.find(card => card.id.toString()=== props.match.params.idCard),
   comments: state.comments.filter(comment => comment.idCard === props.match.params.idCard)
 })

@@ -11,8 +11,6 @@ export const SET_BOARD_DESC = "@@board/SET_BOARD_DESC"
 export const MOVE_LIST_IN_BOARD = "@@board/MOVE_LIST_IN_BOARD"
 export const ADD_LIST_TO_BOARD = "@@board/ADD_LIST_TO_BOARD"
 export const SET_BOARD_LIST = "@@board/SET_BOARD_LIST"
-export const SET_BOARD_MEMBERSHIPS = "@@board/SET_BOARD_MEMBERSHIPS"
-export const SET_BOARD_OWNERS = "@@board/SET_BOARD_OWNERS"
 export const SET_BOARD_CLOSE = "@@board/SET_BOARD_CLOSE"
 export const SET_BOARD_PRIVACY = "@@board/SET_BOARD_PRIVACY"
 export const ADD_SET_LABEL_TO_BOARD = "@@board/ADD_SET_LABEL_TO_BOARD"
@@ -36,8 +34,9 @@ export const initBoard = {
       "pink": "",
       "black": ""
     },
-  memberships: [{}],
-  owners: [{}],
+  members:[],
+  idOwner:null,
+  organizations:[],
   closed: false,
   isPublic: true,
 }
@@ -65,37 +64,22 @@ export const setBoardDesc = (id, newDesc) => ({
 })
 
 // Move a list position in the board
-export const moveListInBoard = (listToMovePos, newListPos) => ({
+export const moveListInBoard = (id, pos) => ({
   type: MOVE_LIST_IN_BOARD,
   payload: {
-    listToMovePos,
-    newListPos,
+    id,
+    pos,
   }
 })
 
 // Add a new list at the end of the board
-export const addListToBoard = (idBoard,listName) => ({
+export const addListToBoard = (idBoard,listName,listPos) => ({
   type: ADD_LIST_TO_BOARD,
   payload: {
     idList : new  ObjectId(),
     idBoard : idBoard,
-    name: listName
-  }
-})
-
-export const setBoardMemberships = (id, newMemberships) => ({
-  type: SET_BOARD_MEMBERSHIPS,
-  payload: {
-    id,
-    memberships: newMemberships
-  }
-})
-
-export const setBoardOwners = (id, newBoardOwners) => ({
-  type: SET_BOARD_OWNERS,
-  payload: {
-    id,
-    owners: newBoardOwners
+    name: listName,
+    pos:listPos
   }
 })
 
@@ -124,3 +108,5 @@ export const addLabelToBoard = (idBoard, name, color) => ({
     color : color,
   }
 })
+
+

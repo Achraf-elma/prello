@@ -12,16 +12,12 @@
    cursor: pointer;
 }
 
-.list > .card-header > i{
-  float: right;
-  font-size: 2em;
-  color: black;
-}
-.list > .card-header > i:hover{
+
+.list  .card-header .btn .btn-secondary  i:hover{
   color: blue;
   font-weight: bold;
 }
-.list > .card-header > .editmod {
+.list  .card-header .btn .btn-secondary  .editmod {
   color: red;
   font-weight: bold;
 }
@@ -83,3 +79,14 @@
   .dueDateOutput{
     cursor:pointer;
   }
+  .btn-group{
+    display: inline;
+  }
+
+  .dropdw {
+background: transparent !important;
+float: right !important;
+font-size: 2em !important;
+color: black !important;
+border: 0 !important;
+}

@@ -1,21 +1,21 @@
 // default state
 export const initCheckItem = {
-  id: 'string',
-  idChecklist: 'string',
-  name: 'string',
+  id: null,
+  idChecklist: null,
+  name: null,
   completed: false,
-  pos: 0,
-  nameData: 'string',
 }
 
 // Action type constants
-export const SET_CHECK_ITEM_COMPLETED = "@@checkitem/SET_CHECK_ITEM_COMPLETED"
+export const SET_CHECK_ITEM_COMPLETED = "@@checkitem/SET_CHECK_ITEM_COMPLETED";
 
 // Action builders
-export const setCheckItemCompleted = (id, newCompleted) => ({
+export const setCheckItemCompleted = (id, idChecklist,newCompleted, newName) => ({
   type: SET_CHECK_ITEM_COMPLETED,
   payload:  {
-    id,
+    id : id,
+    idChecklist : idChecklist,
     completed: newCompleted,
+    name : newName
   }
 })

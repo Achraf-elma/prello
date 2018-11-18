@@ -51,6 +51,10 @@
   -webkit-filter: blur(2px) grayscale(0.45) hue-rotate(10deg);
 }
 
+.full-width {
+  min-width: 100%;
+}
+
 /**
 .list {
     height: 80%;

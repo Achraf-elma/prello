@@ -25,12 +25,12 @@ class AddMember extends React.Component {
           <Row>Members</Row>
           <Row>
              <ListGroup>
-             {board.memberships.map((member) => (
+             {board.members.map((member) => (
                <ListGroupItem 
                key={member.id}
                className="membersOnCard"
                  onClick={  () => dispatchAssignMemberToCard(idCard, member.id)} > 
-                 {member.id}
+                 {member.fullName}
                </ListGroupItem>
              ))}
              </ListGroup>
@@ -42,7 +42,7 @@ class AddMember extends React.Component {
   }
 }
 
-const mapStateToProps = ( state, props ) => ({
+const mapStateToProps = ( state, props ) => console.log(state.board) || ({
    card : state.cards.find(card => card.id == props.idCard),
    board : state.board
 })

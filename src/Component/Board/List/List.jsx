@@ -1,11 +1,11 @@
 // Modules
 import React from 'react';
 import { connect } from 'react-redux';
-import{Card , CardHeader,  CardBody, Modal, ModalHeader, ModalBody, Popover, PopoverHeader, PopoverBody} from 'reactstrap';
+import{Card , CardHeader,  CardBody, Modal, ModalHeader, ModalBody, Popover, PopoverHeader, PopoverBody, ButtonDropdown,DropdownMenu,DropdownItem, DropdownToggle} from 'reactstrap';
 
 
 // Action builder
-import { setListName, moveCardInList, addCardToList} from '../../../action/actionList';
+import { setListName, setListClosed, moveCardInList, addCardToList} from '../../../action/actionList';
 
 
 // Components
@@ -23,7 +23,8 @@ class List extends React.Component {
     super(props);
     this.state = {
       editNameOn : false,
-      popoverOpen: false
+      popoverOpen: false,
+      dropdownOpen : false
     };
 }
 
@@ -39,7 +40,20 @@ class List extends React.Component {
     });
   }
 
+  togglePopoverEdit = () => {
+    this.setState({
+      dropdownOpen: !this.state.dropdownOpen
+    });
+  }
 
+   handleDeleteList = () => {
+    var r = window.confirm("Archive this list ?");
+    if (r === true) {
+        this.props.dispatchSetListClosed();
+    } 
+  }
+
+ 
 
   render() {
   const {
@@ -52,6 +66,7 @@ class List extends React.Component {
   return (
     <Card className="list">
       <CardHeader>
+              
 
       {this.state.editNameOn === true ? 
          <span className="ListCreator">
@@ -70,10 +85,18 @@ class List extends React.Component {
       :
         <span onClick={this.handleEditClick} className="list-title">{list.name}</span>
       }
-
-      <i onClick = {this.handleEditClick} 
-        className= { this.state.editNameOn === true ? "fa fa-ellipsis-v editmod" : "fa fa-ellipsis-v" }
-      />
+      
+      <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.togglePopoverEdit}>
+                  <DropdownToggle className="dropdw">  <i  className= { this.state.editNameOn === true ? "fa fa-ellipsis-v editmod" : "fa fa-ellipsis-v" } >
+                  </i>
+                  </DropdownToggle>
+                  <DropdownMenu>
+                    <DropdownItem onClick = {this.handleEditClick} >Name</DropdownItem>
+                    <DropdownItem divider />
+                    <DropdownItem  onClick = {this.handleDeleteList} >Delete</DropdownItem>
+                  </DropdownMenu>
+            </ButtonDropdown>
+    
       </CardHeader>
 
       {cards.map((card) => (
@@ -98,7 +121,7 @@ class List extends React.Component {
  
 const mapStateToProps = ( state, props ) => ({
   list : state.lists.find(list => list.idList === props.idList),
-  cards: state.cards.filter(card => card.idList === props.idList && card.closed !== true)
+  cards: state.cards.filter(card => card.idList === props.idList && card.isClosed !== true)
 });
 
 const mapDispatchToProps = ( dispatch, props ) => {
@@ -108,6 +131,7 @@ const mapDispatchToProps = ( dispatch, props ) => {
       dispatch(moveCardInList(source.index, destination.index))
     ),
     dispatchSetListName: (name) => dispatch(setListName( props.idList, name )),
+    dispatchSetListClosed: () => dispatch(setListClosed( props.idList, true )),
     dispatchAddCardToList: (idlist, idboard, name, duedate) => dispatch(addCardToList(idlist, idboard, name, duedate, false,false)
     )
   }
