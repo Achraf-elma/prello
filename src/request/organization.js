@@ -15,10 +15,12 @@ export const fetchOrganizationBoards = (idOrganization) =>  {
   .then(response => response.data)
 }
 
-export const updateOrganization = (Organization) =>  {
-  return client.put(`/api/organizations/${Organization.idOrganization}`, Organization)
+export const updateOrganizationSettings = (idOrganization, name, website, desc) =>  (
+  client.put(`/api/organizations/${idOrganization}`, {
+    name, website, desc
+  })
   .then(response => response.data)
-}
+);
 
 export const createOrganization = (organization) =>  {
   let id = new ObjectId();
@@ -38,7 +40,7 @@ export const inviteMemberToOrganization = (idOrganization, emailMember) => (
   .then(response => response.data)
 );
 
-export const fireMemberFromOrganization = (idOrganization, idMember) => (
+export const fireMemberFromOrganization = (idOrganization, idMember = client.me) => (
   client.delete(`/api/organizations/${idOrganization}/members/${idMember}`)
     .then(response => response.data)
 );
@@ -46,4 +48,9 @@ export const fireMemberFromOrganization = (idOrganization, idMember) => (
 export const transfertOrganizationOwnership = (idOrganization, idMember) => (
   client.post(`/api/organizations/${idOrganization}/members/${idMember}/owner`)
   .then(response => response.data)
+)
+
+export const removeOrganization = (idOrganization) => (
+  client.delete(`/api/organizations/${idOrganization}`)
+  .then( response => response.data)
 )

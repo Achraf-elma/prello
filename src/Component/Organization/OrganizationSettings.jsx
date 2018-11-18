@@ -1,102 +1,92 @@
 // Modules
 import React from 'react';
 import { connect } from 'react-redux';
-import { Button, ButtonGroup, Form, FormGroup, Label, Input } from 'reactstrap';
-
-import { Modal, ModalHeader, ModalBody } from 'reactstrap';
+import { Label, Input } from 'reactstrap';
 
 // Action builder
-import { setTeamDisplayName, setTeamDesc, setTeamWebsite } from '../../action/actionOrganization';
+import { setOrganizationSettings } from '../../action/actionOrganization';
+import { quitOrganization } from '../../action/actionOrgList';
 
 
 // Styles
 import '../../style/organization.css';
+import { updateOrganizationSettings, removeOrganization, fireMemberFromOrganization } from '../../request/organization';
 
 class OrganizationSettings extends React.Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      modal: false
-    };
-
-    this.toggle = this.toggle.bind(this);
+  
+  saveSettings = (event) => {
+    event.preventDefault();
+    let name = this.nameInput.current.value && this.nameInput.current.value.replace(/(^\s*)|(\s*$)/g, "");
+    let website = this.websiteInput.current.value && this.websiteInput.current.value.replace(/(^\s*)|(\s*$)/g, "");
+    let desc = this.descInput.current.value && this.descInput.current.value.replace(/(^\s*)|(\s*$)/g, "");
+    console.log("coucou",name);
+    if( name && (
+      name !== this.props.name ||
+      website !== this.props.website ||
+      desc !== this.props.desc
+    )) {
+      updateOrganizationSettings(this.props.match.params.idOrganization, name, website, desc)
+        .then(ok => this.props.dispatchSetOrganizationSettings(name, website, desc))
+        .catch( error => console.error(error));
+    }
   }
 
-  toggle() {
-    this.setState({
-      modal: !this.state.modal
-    });
+  disbandOrganization = () => {
+    removeOrganization(this.props.match.params.idOrganization)
+      .then(ok => {
+        this.props.dispatchQuitOrganization();
+        this.props.history.push('/organizations');
+      })
+      .catch(error => console.error(error));
+  }
+
+  quitOrganization = () => {
+    fireMemberFromOrganization(this.props.match.params.idOrganization)
+      .then(ok => {
+        this.props.dispatchQuitOrganization();
+        this.props.history.push('/organizations');
+      })
+      .catch(error => console.error(error));
   }
 
   render() {
+    this.nameInput = React.createRef();
+    this.websiteInput = React.createRef();
+    this.descInput = React.createRef();
     const {
-      displayName,
-      website,
+      name,
+      isOwner,
       desc,
-      dispatchForm
+      website,
     } = this.props;
-  return (
-    <div className="OrganizationSettings">
-      <div className="organization-labels">
-      <Label for="newDisplayName">Name</Label>
-      <Input type = "text" name ="name" id="newDisplayName" value={displayName} disabled/>
-      <Label for="newWebsite">Website</Label>
-      <Input type = "text" name ="website" id="newWebsite" value={website} disabled/>
-      <Label for="newDesc">Description</Label>
-      <Input type = "text" name ="description" id ="newDesc" value={desc} disabled/>
-
-      <Button color="success" onClick ={this.toggle} active>Change settings</Button>
-      <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
-          <ModalHeader toggle={this.toggle}>Change team settings</ModalHeader>
-          <ModalBody>
-            <Form onSubmit = {dispatchForm}>
-            <FormGroup>
-              <Label for="newDisplayName">Name</Label>
-              <Input type = "text" name ="name" id="newDisplayName" placeholder={displayName}/>
-            </FormGroup>
-            <FormGroup>
-              <Label for="newWebsite">Website</Label>
-              <Input type = "text" name ="website" id="newWebsite" placeholder={website}/>
-            </FormGroup>
-            <FormGroup>
-              <Label for="newDesc">Description</Label>
-              <Input type = "text" name ="description" id ="newDesc" placeholder={desc}/>
-            </FormGroup>
-            <ButtonGroup>
-              <Button color="success" className="submit" type="submit" onClick={this.toggle} active>Submit</Button>
-              <Button color="secondary" onClick={this.toggle}>Cancel</Button>
-            </ButtonGroup>
-            </Form>
-          </ModalBody>
-        </Modal>
+    return (
+      <div className="OrganizationSettings">
+        <form className="organization-labels" onSubmit={this.saveSettings}>
+          <Label for="newDisplayName">Name</Label>
+          <input className="form-control" ref={this.nameInput} type="text" name="name" defaultValue={name} readOnly={!isOwner} required/>
+          <Label for="newWebsite">Website</Label>
+          <input className="form-control" ref={this.websiteInput} type="text" name="website" defaultValue={website} readOnly={!isOwner} />
+          <Label for="newDesc">Description</Label>
+          <input className="form-control" ref={this.descInput} type="textarea" name="description" defaultValue={desc} readOnly={!isOwner} />
+          { isOwner && (<input type="submit" className="btn btn-lg btn-success" value="Save Changes" />)}
+          { isOwner && (<input type="button" className="btn btn-lg btn-danger" onClick={this.disbandOrganization} value="Disband organization" />)}
+          { isOwner || (<input type="button" className="btn btn-lg btn-danger" onClick={this.quitOrganization} value="Quit organization" />)}
+        </form>
       </div>
-    </div>
-  );
+    );
   }
 }
 
+const mapStateToProps = (state, props) => ({
+  name: state.organization.name,
+  website: state.organization.website,
+  desc: state.organization.desc,
+  isOwner: state.organization.isOwner,
+})
 
+const mapDispatchToProps = (dispatch, props) => ({
+  dispatchQuitOrganization: () => dispatch(quitOrganization(props.match.params.idOrganization)),
+  dispatchSetOrganizationSettings: (name, website, desc) => dispatch(setOrganizationSettings(name, website, desc))
+});
 
-
-  
-  const mapStateToProps = (state, props) => ({
-    name: state.organization.name,
-    displayName: state.organization.displayName,
-    website: state.organization.website,
-    desc: state.organization.desc
-  })
-  
-  const mapDispatchToProps = (dispatch, props) => ({
-      dispatchForm : (event) => {
-        // event.preventDefault();
-        // const data = new FormData(event.target);
-        // if (data.get('name') !== '') {
-        //     dispatch(setTeamDisplayName(props.id, data.get('name')))
-        // }
-        // if (data.get('description') !== '') {dispatch(setTeamDesc(props.id, data.get('description')))}
-        // if (data.get('website') !== '') {dispatch(setTeamWebsite(props.id, data.get('website')))}
-      }
-  })
-  
-  export default connect(mapStateToProps, mapDispatchToProps)(OrganizationSettings); 
+export default connect(mapStateToProps, mapDispatchToProps)(OrganizationSettings); 
