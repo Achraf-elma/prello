@@ -1,5 +1,5 @@
 // Action types
-import { ADD_CHECK_LIST, ADD_CHECKLIST_ITEM } from '../action/actionChecklist';
+import { ADD_CHECK_LIST, ADD_CHECKLIST_ITEM, DELETE_CHECKLIST_ITEM } from '../action/actionChecklist';
 import {SET_CHECK_ITEM_COMPLETED } from "../action/actionCheckItem";
 
 import checklist from './checklist';
@@ -16,8 +16,17 @@ export default ( state = [], action) => {
       nextChecks[idxCheckToUpdate] = CheckUptaded;
       console.log("CHECKLISTS: " + nextChecks);
       return  nextChecks;
+
       case ADD_CHECKLIST_ITEM:
       var idxCheckToUpdate = state.findIndex(Check => Check.id === action.payload.id)
+      var CheckUptaded = checklist(state[idxCheckToUpdate], action)
+      var nextChecks = [...state]
+      nextChecks[idxCheckToUpdate] = CheckUptaded;
+      console.log("CHECKLISTS: " + nextChecks);
+      return  nextChecks;
+
+     case DELETE_CHECKLIST_ITEM:
+      var idxCheckToUpdate = state.findIndex(Check => Check.id === action.payload.idCheckList)
       var CheckUptaded = checklist(state[idxCheckToUpdate], action)
       var nextChecks = [...state]
       nextChecks[idxCheckToUpdate] = CheckUptaded;

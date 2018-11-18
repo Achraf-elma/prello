@@ -21,7 +21,7 @@ export const addCheckListToBoard = (idCard, name) => ({
       id : new ObjectId(),
       idCard: idCard,
       name: name || "my list",
-      checklistItems: [{}]
+      checklistItems: []
     }
   })
 
@@ -38,11 +38,11 @@ export const addNewChecklistItem = (id, newItem) => ({
     }
 }) 
 
-export const deleteChecklistItem = (id, itemToDelete) => ({
+export const deleteChecklistItem = (idCheckList, idItemToDelete) => ({
     type: DELETE_CHECKLIST_ITEM,
     payload: {
-        id, 
-        itemToDelete
+        idCheckList, 
+        idItemToDelete
     }
 }) 
 
