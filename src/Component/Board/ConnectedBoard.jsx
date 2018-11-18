@@ -14,14 +14,18 @@ import { socketConnection } from '../../request/socket';
 
 class ConnectedBoard extends React.Component {
   componentDidMount() {
+    socketConnection.instance.removeAllListeners('connect')
+    socketConnection.instance.removeAllListeners('dispatch')
     let socket = socketConnection.instance.connect()
     socket.on('connect', () => (
       socket.emit('board', this.props.match.params.idBoard)
-    ));
+      ));
     socket.on("dispatch", (action) => boardStore.dispatch(action));
   }
 
   componentWillUnmount() {
+    socketConnection.instance.removeAllListeners('connect')
+    socketConnection.instance.removeAllListeners('dispatch')
     socketConnection.instance.disconnect();
   }
 
