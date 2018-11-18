@@ -48,8 +48,7 @@ export const googleLogin = (googleResponse) => (
  * @type {Promise} HTTP(s) request
  */
 export const logOut = () => {
-  client.removeJWT();
-  return axios.delete("/api/login");
+  return Promise.resolve(client.removeCredentials())
 }
 
 /**

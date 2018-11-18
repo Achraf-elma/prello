@@ -27,16 +27,13 @@ const NavBar = ({ location }) => (
           <NavLink to="/signup" >Signup</NavLink>
         </NavItem>
         </div>
-      
-      :
-          <div>
+        :
+        <div>
           <NavItem>
-              <NavLink to="logout" >Log out</NavLink>
-           </NavItem>
-            </div>
-      }}
-       
-          
+            <NavLink to="/logout" >Log out</NavLink>
+          </NavItem>
+        </div>
+        }  
       </Nav>
     </Navbar>
   </div>
