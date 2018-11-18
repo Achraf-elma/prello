@@ -13,19 +13,27 @@ import boardStore from '../../boardStore';
 import { socketConnection } from '../../request/socket';
 
 class ConnectedBoard extends React.Component {
+  joinBoard = () => (
+    socketConnection.instance.emit('board', this.props.match.params.idBoard)
+  )
+  dispatch = (action) => boardStore.dispatch(action);
   componentDidMount() {
-    socketConnection.instance.removeAllListeners('connect')
-    socketConnection.instance.removeAllListeners('dispatch')
+
     let socket = socketConnection.instance.connect()
-    socket.on('connect', () => (
-      socket.emit('board', this.props.match.params.idBoard)
-      ));
-    socket.on("dispatch", (action) => boardStore.dispatch(action));
+    socket.on('connect', this.joinBoard);
+    socket.on("dispatch", this.dispatch);
+  }
+
+  componentDidUpdate() {
+    socketConnection.instance.removeListener('connect', this.joinBoard)
+    socketConnection.instance.removeListener('dispatch', this.dispatch)
+    socketConnection.instance.on('connect', this.joinBoard);
+    socketConnection.instance.on("dispatch", this.dispatch);
   }
 
   componentWillUnmount() {
-    socketConnection.instance.removeAllListeners('connect')
-    socketConnection.instance.removeAllListeners('dispatch')
+    socketConnection.instance.removeListener('connect', this.joinBoard)
+    socketConnection.instance.removeListener('dispatch', this.dispatch)
     socketConnection.instance.disconnect();
   }
 
