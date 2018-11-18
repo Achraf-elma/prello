@@ -17,7 +17,7 @@ export default ( state = [], action) => {
     case SET_LIST_NAME:
     case SET_LIST_CLOSED:
       console.log(action)
-      var idxListToUpdate = state.findIndex(list => list.id.toString() === action.payload.id.toString())
+      var idxListToUpdate = state.findIndex(list => list.id === action.payload.id)
       var listUptaded = list(state[idxListToUpdate], action)
       var nextLists = [...state]
       nextLists[idxListToUpdate] = listUptaded;

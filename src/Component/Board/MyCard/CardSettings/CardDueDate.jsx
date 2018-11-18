@@ -43,7 +43,7 @@ class CardDuedate extends React.Component {
     } = this.props;
   return (
     <Row>
-    <Col className="labelField" xs="6"> <i class="fa fa-calendar-times-o" aria-hidden="true"></i>&nbsp;Due Date :</Col>
+    <Col className="labelField" xs="6"> <i className="fa fa-calendar-times-o" aria-hidden="true"></i>&nbsp;Due Date :</Col>
     <Col  xs="6">
      <input onClick={this.handleCollapse} type="text" value={card.dueDate ? moment(card.dueDate).format('llll') : "No due date"} readOnly />
 

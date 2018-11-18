@@ -10,7 +10,7 @@ import { setCardName } from '../../../../action/actionCard';
 
 const CardTitle = ({card, dispatchSetCardName}) => (
   <span className="creator">
-    <i class="fa fa-cog" aria-hidden="true"></i>
+    <i className="fa fa-cog" aria-hidden="true"></i>
     <InputText
     className="changeNameInput"
       value={card.name}

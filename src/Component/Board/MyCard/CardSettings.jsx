@@ -16,12 +16,16 @@ import CardComments from './CardSettings/CardComments';
 import CardDuedate from './CardSettings/CardDueDate';
 import CardAddParam from './CardSettings/CardAddParam';
 import { setCardClosed } from '../../../action/actionCard';
+import {fetchComments} from '../../../request/card'
+import { setComments } from '../../../action/actionComment';
+//import {fetchUser} from '../../../request/user'; 
 
 class CardSettings extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      popoverOpen : [false, false, false]
+      popoverOpen : [false, false, false],
+      members :[]
     };
       this.delete = this.delete.bind(this);
   }
@@ -33,16 +37,35 @@ class CardSettings extends React.Component {
     console.log(this.props.card.id);
     this.props.history.goBack();
   }
+  // getUserNameById=(idMember) => {
+  //   var userName = fetchUser(idMember)
+  //     .then(member => member.fullName )
+
+  //     return userName;
+  // }
+
+componentDidMount(){
+  fetchComments(this.props.match.params.idCard)
+  .then(comment => this.props.dispatchComments(comment))
+  .catch(error => console.error(error))
+}
+
 
   render() {
     const {
       card
     } = this.props
     const closeBtn = <button className="close" onClick={this.closeSettings}>&times;</button>;
-
+    if(!card){
+      return (
+        <Modal size="lg" isOpen={true} toggle={this.closeSettings} className={this.props.className}>
+        loading
+        </Modal>
+      )
+    }
   return (
   <div>
-  <Modal key={card.id} size="lg" isOpen={true} toggle={this.closeSettings} className={this.props.className}>
+  <Modal size="lg" isOpen={true} toggle={this.closeSettings} className={this.props.className}>
      
     <ModalHeader className="card-settings-header" toggle={this.closeSettings} close={closeBtn}>
       <CardTitle idCard={card.id}/>
@@ -52,13 +75,13 @@ class CardSettings extends React.Component {
       <Container>
         <Row>
           <Col>
-            <CardDescription idCard={card.id}/>
+            <CardDescription idCard={card.id} />
             <hr/>
             <CardDuedate idCard={card.id}/>
             <hr/>
             <CardLabels idCard={card.id}/>  
             <hr/>
-            <CardComments idCard={card.id}/>
+            <CardComments idCard={card.id} />
           </Col>
           <Col className="buttonsSettingCard" xs="3">
             <CardAddParam idCard={card.id}/>
@@ -75,14 +98,15 @@ class CardSettings extends React.Component {
     );
   }
 }
-const mapStateToProps = (state, props) => ({
+const mapStateToProps = (state, props) => console.log(state.comments) || ({
   labels: state.labels.filter(label => label.idCard === props.match.params.idCard),
   card : state.cards.find(card => card.id.toString()=== props.match.params.idCard),
   comments: state.comments.filter(comment => comment.idCard === props.match.params.idCard)
 })
 
 const mapDispatchToProps = (dispatch, props) => ({
-  dispatchSetCardClosed : (id) => dispatch(setCardClosed(id, true))
+  dispatchSetCardClosed : (id) => dispatch(setCardClosed(id, true)),
+  dispatchComments : (comments) => dispatch(setComments(comments))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CardSettings); 
