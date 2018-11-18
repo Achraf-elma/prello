@@ -6,6 +6,7 @@ import {Row,Col, ListGroup, ListGroupItem, Container, Popover, PopoverBody, Popo
 
 import AddLabel from '../AddLabel';
 import AddMember from '../AddMember';
+import AddCheckList from '../AddCheckList';
 
 
 class CardAddParam extends React.Component {
@@ -49,6 +50,13 @@ render() {
         <PopoverHeader>Member</PopoverHeader>
         <PopoverBody>
           <AddMember idCard={card.id} />
+        </PopoverBody>
+      </Popover>
+
+       <Popover placement="right" isOpen={this.state.popoverOpen[2]} target={"card-member"+card.id} toggle={() => this.togglePopover(2)}>
+        <PopoverHeader>Check List</PopoverHeader>
+        <PopoverBody>
+          <AddCheckList idCard={card.id} />
         </PopoverBody>
       </Popover>
     </div>

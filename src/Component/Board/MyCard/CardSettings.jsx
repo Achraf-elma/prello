@@ -15,6 +15,8 @@ import CardLabels from './CardSettings/CardLabels';
 import CardComments from './CardSettings/CardComments';
 import CardDuedate from './CardSettings/CardDueDate';
 import CardAddParam from './CardSettings/CardAddParam';
+import CardCheckList from './CardSettings/CardCheckList';
+
 import { setCardClosed } from '../../../action/actionCard';
 import {fetchComments} from '../../../request/card'
 import { setComments } from '../../../action/actionComment';
@@ -81,7 +83,9 @@ componentDidMount(){
             <hr/>
             <CardLabels idCard={card.id}/>  
             <hr/>
-            <CardComments idCard={card.id} />
+            <CardComments idCard={card.id}/>
+            <hr/>
+            <CardCheckList idCard={card.id}/>
           </Col>
           <Col className="buttonsSettingCard" xs="3">
             <CardAddParam idCard={card.id}/>

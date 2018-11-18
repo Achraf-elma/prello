@@ -124,3 +124,5 @@ export const addLabelToBoard = (idBoard, name, color) => ({
     color : color,
   }
 })
+
+

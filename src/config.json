@@ -1,5 +1,5 @@
 {
-  "API_HOST": "http://localhost:3000",  
+  "API_HOST": "http://prello_api_opt1_grp2.igpolytech.fr",  
   "GOOGLE_CLIENT":"753306487494-adgb7k7uikmtfgbkgdaofg28fm9geg3n.apps.googleusercontent.com",
   "TIMEOUT": 2500
 }

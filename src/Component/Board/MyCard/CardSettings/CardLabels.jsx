@@ -16,7 +16,7 @@ const CardLabels = ({labels}) => (
     
     {labels.map((label) => (
     <Col>
-        <Badge style={{color : '#fff', background : label.color, width: '100%', minHeight: '20px'}} pill>{label.name}</Badge>
+        <Badge key={label.id} style={{color : '#fff', background : label.color, width: '100%', minHeight: '20px'}} pill>{label.name}</Badge>
     </Col>
     ))}
     </Col>
@@ -29,7 +29,6 @@ const mapStateToProps = (state, props) => ({
 })
 
 const mapDispatchToProps = (dispatch, props) => ({
-  dispatchSetCardDesc: (id,desc) => dispatch(setCardDesc(id, desc))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CardLabels); 

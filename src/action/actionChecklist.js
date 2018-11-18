@@ -1,4 +1,5 @@
 // Modules
+import {ObjectId} from 'bson';
 
 //Default State
 export const initCheckList = {
@@ -13,6 +14,17 @@ export const initCheckList = {
 // Action type constants
 export const ADD_NEW_CHECKLIST_ITEM = "@@checklist/ADD_NEW_CHECKLIST_ITEM"
 export const DELETE_CHECKLIST_ITEM = "@@checklist/DELETE_CHECKLIST_ITEM"
+export const SET_CHECKS = "@@checklist/SET_CHECKS"
+export const ADD_CHECK_LIST = "@@checklist/ADD_CHECK_LIST,"
+
+export const addCheckListToBoard = (idBoard, name) => ({
+    type: ADD_CHECK_LIST,
+    payload: {
+      id : new ObjectId(),
+      idBoard: idBoard,
+      name: name || "my list"
+    }
+  })
 
 // Action Builders
 export const addNewChecklistItem = (id, newItem) => ({
@@ -30,3 +42,11 @@ export const deleteChecklistItem = (id, itemToDelete) => ({
         itemToDelete
     }
 }) 
+
+export const setCheckLists = (checks) => ({
+    socketAction: true,
+    type: SET_CHECKS,
+    payload: checks
+  })
+  
+  

@@ -39,7 +39,7 @@ class List extends React.Component {
     });
   }
 
-
+ 
 
   render() {
   const {
@@ -70,7 +70,7 @@ class List extends React.Component {
       :
         <span onClick={this.handleEditClick} className="list-title">{list.name}</span>
       }
-
+      
       <i onClick = {this.handleEditClick} 
         className= { this.state.editNameOn === true ? "fa fa-ellipsis-v editmod" : "fa fa-ellipsis-v" }
       />

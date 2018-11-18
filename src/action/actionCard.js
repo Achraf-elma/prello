@@ -115,8 +115,6 @@ export const initCard = {
     }
   })
   
-
-  
   export const assignChecklistToCard = (idCard, idChecklist) => ({
     type: ASSIGN_CHECKLIST_TO_CARD,
     payload: {

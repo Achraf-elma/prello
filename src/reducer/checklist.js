@@ -2,11 +2,12 @@
 import { combineReducers } from 'redux';
 
 // Definitions
-import { initCheckList, ADD_NEW_CHECKLIST_ITEM, DELETE_CHECKLIST_ITEM } from "../action/actionChecklist";
+import { initCheckList, ADD_NEW_CHECKLIST_ITEM, DELETE_CHECKLIST_ITEM, SET_CHECKS } from "../action/actionChecklist";
 
 const id = ( state = initCheckList.id, action ) => state
 const checklistItems = (state = initCheckList.checklistItems, action ) => {
   switch(action["type"]) {
+    case SET_CHECKS:
     case ADD_NEW_CHECKLIST_ITEM:
       return [ ...state, action.payload.newItem]
     case DELETE_CHECKLIST_ITEM:
