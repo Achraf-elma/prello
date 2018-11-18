@@ -25,6 +25,7 @@ class CheckList extends React.Component {
       checkList,
       dispatchAddNewChecklistItem,
       dispatchSetCheckItemCompleted,
+      dispatchDeleteChecklistItem,
       checklistItems
     } = this.props
   return (
@@ -34,9 +35,9 @@ class CheckList extends React.Component {
     </h1>
 
        <Row>
-          
-            <Col> <InputText onChange={(value) =>  dispatchAddNewChecklistItem( value)}/>  </Col>
-            <Col className="buttonX"> X </Col>
+
+           
+            <Col> <InputText placeHolder="Add a new task" onChange={(value) =>  dispatchAddNewChecklistItem( value)}/>  </Col>
             <hr/>
           </Row>
    
@@ -44,7 +45,7 @@ class CheckList extends React.Component {
         <Row key={item.id}>
             <Col> <input type="checkbox" checked={item.completed} onChange={() => dispatchSetCheckItemCompleted(item.id,  !(item.completed), item.name)}/> </Col>
             <Col> {item.name}  </Col>
-            <Col className="buttonX"> X </Col>
+            <Col onClick={ () => dispatchDeleteChecklistItem(item.id)}className="buttonX"> X </Col>
             <hr/>
           </Row>
           
@@ -61,14 +62,15 @@ class CheckList extends React.Component {
 const mapStateToProps = (state, props) => console.log("STATE" ,state.checkLists) || ({
   //name: state.checkList.name,
    checkList: state.checkLists.find(checkList => checkList.id === props.idCheckList),
-   checklistItems: state.checkLists.find(checkList => checkList.id === props.idCheckList).checklistItems,
+   checklistItems: state.checkLists.find(checkList => checkList.id === props.idCheckList).checklistItems
+
 
 })
 
 const mapDispatchToProps = (dispatch, props) => ({
   dispatchAddNewChecklistItem: (item) => dispatch(addNewChecklistItem(props.idCheckList, item)),
 
-  dispatchDeleteChecklistItem: (item) => dispatch(deleteChecklistItem(props.id, item)),
+  dispatchDeleteChecklistItem: (item) => dispatch(deleteChecklistItem(props.idCheckList, item)),
     dispatchSetCheckItemCompleted: (id,completed, name) => {
       console.log("SET COMPLETED TO ", id, props.idCheckList, completed)
       dispatch(setCheckItemCompleted(id,props.idCheckList, completed, name))

@@ -21,7 +21,7 @@ const checklistItems = (state = initCheckList.checklistItems, action ) => {
     case ADD_CHECKLIST_ITEM:
       return [ ...state, action.payload.newItem]
     case DELETE_CHECKLIST_ITEM:
-      return state.filter(id => id !== action.payload.itemToDelete)
+      return state.filter(item => item.id !== action.payload.idItemToDelete)
     default:
       return state;
   }
