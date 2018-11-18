@@ -55,7 +55,7 @@ componentDidMount(){
 
   render() {
     const {
-      card
+      card, labels, checkLists
     } = this.props
     const closeBtn = <button className="close" onClick={this.closeSettings}>&times;</button>;
     if(!card){
@@ -81,11 +81,12 @@ componentDidMount(){
             <hr/>
             <CardDuedate idCard={card.id}/>
             <hr/>
-            <CardLabels idCard={card.id}/>  
+             <CardLabels idCard={card.id}/> 
+            <hr/>
+             <CardCheckList idCard={card.id}/> 
             <hr/>
             <CardComments idCard={card.id}/>
-            <hr/>
-            <CardCheckList idCard={card.id}/>
+            
           </Col>
           <Col className="buttonsSettingCard" xs="3">
             <CardAddParam idCard={card.id}/>
@@ -104,6 +105,7 @@ componentDidMount(){
 }
 const mapStateToProps = (state, props) => console.log(state.comments) || ({
   labels: state.labels.filter(label => label.idCard === props.match.params.idCard),
+  checkLists: state.checkLists.filter(checkList => checkList.idCard === props.idCard),
   card : state.cards.find(card => card.id.toString()=== props.match.params.idCard),
   comments: state.comments.filter(comment => comment.idCard === props.match.params.idCard)
 })

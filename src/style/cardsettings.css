@@ -79,3 +79,15 @@
   width: 100%;
 
 }
+
+.buttonX {
+  text-align: center;
+  color: red;
+  padding: 0;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.buttonX:hover{
+  color: orange;
+}

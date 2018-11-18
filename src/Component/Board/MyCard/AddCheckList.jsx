@@ -26,7 +26,7 @@ class AddCheckList extends React.Component {
     event.preventDefault();
     const data = new FormData(event.target);
         console.log(data.get('checkListName'));
-    this.props.dispatchAddCheckListToBoard( this.props.idBoard, data.get('checkListName')); 
+    this.props.dispatchAddCheckListToBoard( data.get('checkListName')); 
 
    // this.props.dispatchAddLabelToBoard(  data.get('labelName'), data.get('color'));  
    // fetchBoardLabels(this.props.idBoard)
@@ -69,9 +69,9 @@ const mapStateToProps = ( state, props ) => {
 }
 
 const mapDispatchToProps = ( dispatch, props ) => ( {
-  dispatchAddCheckListToBoard: (idBoard, name) => {
+  dispatchAddCheckListToBoard: (name) => {
    console.log("DANS ADD LABEL TO BOARD ", name);
-    dispatch(addCheckListToBoard( idBoard, props.idCard, name)) 
+    dispatch(addCheckListToBoard( props.idCard, name)) 
   },
   dispatchSetCheckLists : (check) => dispatch(setCheckLists(check)),
 

@@ -1,36 +1,78 @@
 // Modules
 import React from 'react';
 import { connect } from 'react-redux';
-
+import { Col, Row} from 'reactstrap';
 // Action builder
-import { addNewChecklistItem, deleteChecklistItem } from '../../action/actionChecklist';
+import { addNewChecklistItem, deleteChecklistItem } from '../../../action/actionChecklist';
+import {  setCheckItemCompleted} from '../../../action/actionCheckItem';
+import InputText from '../../Input/InputText'
 
 
 // Components
 //import CheckItem from './CheckItem'
 
-const CheckList = ({
-  name,
-  checklistItems,
-  dispatchAddNewChecklistItem,
-}) => (
-  <div className="CheckList">
-    <label>
-        {name}
-    </label>
-    <h4>{checklistItems}</h4>
-    <button onClick ={() => dispatchAddNewChecklistItem("hello")}>Add Item</button>
-  </div>
-);
+class CheckList extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+     
+    };
 
-const mapStateToProps = (state, props) => ({
-  name: state.checkList.name,
-  checklistItems: state.checkList.checklistItems
+  }
+
+  render() {
+    const {
+      checkList,
+      dispatchAddNewChecklistItem,
+      dispatchSetCheckItemCompleted,
+      checklistItems
+    } = this.props
+  return (
+  <div className="CheckList">
+    <h1 style={{ textAlign : 'center'}}>
+     
+    </h1>
+
+       <Row>
+          
+            <Col> <InputText onChange={(value) =>  dispatchAddNewChecklistItem( value)}/>  </Col>
+            <Col className="buttonX"> X </Col>
+            <hr/>
+          </Row>
+   
+    {checklistItems.map((item, index) => (
+        <Row key={item.id}>
+            <Col> <input type="checkbox" checked={item.completed} onChange={() => dispatchSetCheckItemCompleted(item.id,  !(item.completed), item.name)}/> </Col>
+            <Col> {item.name}  </Col>
+            <Col className="buttonX"> X </Col>
+            <hr/>
+          </Row>
+          
+    ))
+  }
+
+  </div>
+)
+}
+
+
+}
+
+const mapStateToProps = (state, props) => console.log("STATE" ,state.checkLists) || ({
+  //name: state.checkList.name,
+   checkList: state.checkLists.find(checkList => checkList.id === props.idCheckList),
+   checklistItems: state.checkLists.find(checkList => checkList.id === props.idCheckList).checklistItems,
+
 })
 
 const mapDispatchToProps = (dispatch, props) => ({
-  dispatchAddNewChecklistItem: (item) => dispatch(addNewChecklistItem(props.id, item)),
-  dispatchDeleteChecklistItem: (item) => dispatch(deleteChecklistItem(props.id, item))
+  dispatchAddNewChecklistItem: (item) => dispatch(addNewChecklistItem(props.idCheckList, item)),
+
+  dispatchDeleteChecklistItem: (item) => dispatch(deleteChecklistItem(props.id, item)),
+    dispatchSetCheckItemCompleted: (id,completed, name) => {
+      console.log("SET COMPLETED TO ", id, props.idCheckList, completed)
+      dispatch(setCheckItemCompleted(id,props.idCheckList, completed, name))
+}
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CheckList); 

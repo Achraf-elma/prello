@@ -1,28 +1,32 @@
 // Modules
 import React from 'react';
 import { connect } from 'react-redux';
-import {Row,Col, Badge, Progress} from 'reactstrap';
-
+import {Row,Col, Badge, Progress,Container, Card, CardHeader, CardBody} from 'reactstrap';
+import InputText from '../../../Input/InputText'
 // Actions
 import { setCardDesc } from '../../../../action/actionCard';
-
+import CheckList from '../../CheckList/Checklist';
 const CardCheckList = ({checkLists}) => (
-  <Row>
+  <Container>
      
-     <Col className="labelField" xs="6"> 
-     <i className="fa fa-tags" aria-hidden="true"></i>&nbsp; To do list : </Col>
+     <Row className="labelField" xs="6"> 
+     <i className="fa fa-tags" aria-hidden="true"></i>&nbsp; To do list : </Row>
     
-    <Col>
     
     {checkLists.map((checkList) => (
-    <Col key={checkList.id}>
-        {checkList.name}
-        <div className="text-center">50%</div>
+      <Row  key={checkList.id}>
+     <Card  style={{width : '100%'}}>
+         <CardHeader> <div className="text-center">{checkList.name} - 50% in progress</div>
         <Progress value={50} />
-    </Col>
+         </CardHeader>
+         <CardBody>
+              <CheckList idCheckList={checkList.id}/>
+         </CardBody>
+    </Card>
+    </Row>
     ))}
-    </Col>
-  </Row>
+
+ </Container>
 );
 
 const mapStateToProps = (state, props) => ({

@@ -3,7 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Route, NavLink } from 'react-router-dom';
 
-
+import {Modal} from 'reactstrap';
 // Action builder
 import { setBoard } from '../../action/actionBoard';
 import { setLists } from '../../action/actionLists';
@@ -52,9 +52,15 @@ class BoardViewHandler extends React.Component{
     .catch(error => error instanceof ErrorNotFound ? this.props.history.push('/home') : Promise.reject(error))
     .catch(error => console.error(error) || this.props.history.push('/login'));
   }
-
   render() {
     const { board } = this.props;
+    if(!board){
+        return (
+          <Modal size="lg" isOpen={true}>
+          LOADING
+          </Modal>
+        )
+      }
     return (
       <div>
         <div className="board-background"/>
