@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component , Children} from "react";
 import {connect} from 'react-redux';
 import Download from '@axetroy/react-download';
 import { Route } from 'react-router-dom';
@@ -17,6 +17,15 @@ const localizer = Calendar.momentLocalizer(moment);
 
 const DnDCalendar = withDragAndDrop(Calendar);
 
+const CURRENT_DATE = moment().toDate();
+
+const ColoredDateCellWrapper = ({children, value}) =>
+  React.cloneElement(Children.only(children), {
+    style: {
+      ...children.style,
+      backgroundColor: value < CURRENT_DATE ? 'lightgreen' : 'lightblue',
+    },
+  });
 class CalendarView extends Component {
   constructor(props) {
     super(props)
@@ -30,11 +39,13 @@ class CalendarView extends Component {
     this.moveEvent = this.moveEvent.bind(this);
 }
 
+
+
   componentDidMount(){
    let events = this.state.events.map( event => ({
     title: event.title,
-    start: event.start,
-    end: event.end
+    start: moment(event.start).format('YYYY-M-D-H-m').split("-"),
+    end: moment(event.end).format('YYYY-M-D-H-m').split("-")
   }));
     ics.createEvents(events, (error, value) => {
       if (error) {
@@ -81,7 +92,7 @@ class CalendarView extends Component {
   }
 
   render() {
-    const { match } = this.props;
+    const { match , events} = this.props;
     return (
       <div className="calendar">
         <Download file="test.ics" content={this.state.calendarICS}>
@@ -95,11 +106,14 @@ class CalendarView extends Component {
           localizer={localizer}
           defaultDate={new Date()}
           defaultView="month"
-          events={this.state.events}
+          events={events}
           onSelectEvent={this.toggle}
           onEventDrop={this.moveEvent}
           selectable
           style={{ height: "100vh" }}
+            components={{
+        dateCellWrapper: ColoredDateCellWrapper,
+      }}
         />
         <Route path={`${match.path}/card/:idCard`} component={CardSettings} />
 
