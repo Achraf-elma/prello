@@ -9,16 +9,20 @@ const NavBar = ({ location }) => (
     <Navbar light expand="md">
       <Link to="/"> <img alt="Prello" src="./assets/logo1.png"/></Link>
       <Nav className="ml-auto" navbar>
-        <NavItem>
-          <NavLink  to="/home">My Boards</NavLink>
-        </NavItem>
+        { client.me &&
+          <NavItem>
+            <NavLink  to="/home">My Boards</NavLink>
+          </NavItem>
+        } {client.me &&
         <NavItem>
           <NavLink to="/members/me" > My Account</NavLink>
         </NavItem>
+        } {client.me &&
         <NavItem>
           <NavLink to="/organizations">Team Management</NavLink>
         </NavItem>
-        {!client.getCredentials() ? 
+        }
+        {!client.me ? 
           <div>
         <NavItem>
           <NavLink to="/login" >Login</NavLink>
