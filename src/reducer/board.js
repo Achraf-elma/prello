@@ -44,6 +44,7 @@ const desc = (state = initBoard.desc, action ) => {
 const members = (state = initBoard.members, action ) => {
   switch(action["type"]) {
     case SET_BOARD:
+      return action.payload.members;
     case REMOVE_MEMBER_FROM_BOARD:
       return state.filter(member => member.id !== action.payload);
     case ADD_MEMBER_TO_BOARD:
