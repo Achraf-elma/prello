@@ -17,10 +17,10 @@ const BoardList = ({
   dispatchCloseBoardFromBoards,
 }) => (
   <div>
-    <Container>
+    <Container className="boardsListContainer">
       <Row>
         <Col>
-              <h1 className="loginTitle"><i className="fa fa-tasks"></i>{boardListTitle}</h1>
+              <h1 className="titleCustom"><i className="fa fa-tasks"></i>&nbsp; {boardListTitle}</h1>
         </Col>
       </Row>
       <hr className="separator" />

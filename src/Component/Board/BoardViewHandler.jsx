@@ -67,7 +67,7 @@ class BoardViewHandler extends React.Component{
         <div className="container full-width">
           <div className="row board-info">
             <div className="col">
-              <h1 className="board-title"><i className="fa fa-tasks"></i>{board.name}</h1>
+              <h1 className="titleCustom"><i className="fa fa-tasks"></i>&nbsp; {board.name}</h1>
             </div>
             <div className="col">
               <NavLink className="btn btn-primary" to={`${this.props.match.url}/board`}>Board View</NavLink>
