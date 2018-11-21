@@ -1,24 +1,15 @@
 // Modules
 import React from 'react';
-import Select from 'react-select';
-import makeAnimated from 'react-select/lib/animated';
 import { Modal, ModalBody, Button, Form, FormGroup, Label, Input } from 'reactstrap';
 // Components
 
 import '../../style/home.css';
-const members = [
-  { value: 'idAchraf', label: 'Achraf' },
-  { value: 'idAssil', label: 'Assil' },
-  { value: 'idClement', label: 'Clement' },
-  { value: 'idJulia', label: 'Julia' },
-  { value: 'idHugo', label: 'Hugo' }
-];
 
 const BoardCreator = ({ handleSubmit, history}) => (
   <Modal isOpen={true} toggle={() => history.goBack()}>
     <ModalBody>
       <Form  onSubmit={(e)=> {handleSubmit(e); history.goBack()}}>
-        <span className="ListCreator">
+        <span className="boardCreator">
           <FormGroup>
             <Label for="boarddName">Board Name</Label>
             <Input type="text" name="name"/>
@@ -34,18 +25,6 @@ const BoardCreator = ({ handleSubmit, history}) => (
             <option value={true}>Public</option>
             </Input>
           </FormGroup>
-          <FormGroup>
-            <Label for="boarddName">Members</Label>
-            <Select 
-            closeMenuOnSelect={false}
-            components={makeAnimated()}
-            defaultValue={[]}
-            isMulti
-            options={members}
-            name="members" /> 
-
-          </FormGroup>
-            
         </span>
         <div className="buttons">
           <Button className="submit" type="submit" >Create</Button>
