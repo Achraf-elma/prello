@@ -12,7 +12,7 @@ export const initCard = {
   isClosed: false,
   idList : null,
   idBoard : null,
-  idMembers : [],
+  idMembers : [{}],
   idLabels : [],
   idChecklists : []
   }

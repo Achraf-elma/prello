@@ -2,7 +2,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link, Route } from "react-router-dom";
-
+import { Col, Row, Container, Card,ListGroupItem, ListGroup} from "reactstrap";
 // Component
 import OrganizationModal from './OrganizationModal';
 import OrganizationCard from './OrganizationCard';
@@ -38,24 +38,35 @@ class OrganizationList extends React.Component{
       match
     } = this.props
     return (
-      <div>
-        <div className="teams">
+      <Container>
+        <div>
           <div className="background" />
-          <div className="namelist">
+          <div>
             {organizationListName}
           </div>
-          <Link className="btn btn-lg btn-primary" to={`${match.url}/new`}> Create a Team</Link>
-          <ul className="organizationList list-group">
-            {organizations.map((organization) => (
-              <OrganizationCard key={organization.id} organization={organization} />
+        <Row className="upperBar">
+          <Link className="createBoardButton" to={`${match.url}/new`}><i className="fa fa-plus" aria-hidden="true"></i>&nbsp; Create a Team</Link>
+          
+        </Row>
+        <Card className="cardTeam">
+           
+           <ListGroup>
+
+           {organizations.map((organization) => (
+              <ListGroupItem className="teamElementList">
+                 <OrganizationCard key={organization.id} organization={organization} />
+              </ListGroupItem>
             ))}
-          </ul>
+              </ListGroup>
+        </Card>
+
+            
           <Route
             path={`${match.path}/new`}
             render={(props) => <OrganizationModal {...props} newOrganization={this.newOrganization} />}
           />
         </div>
-      </div>
+      </Container>
     );
   }
 }

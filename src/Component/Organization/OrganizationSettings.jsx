@@ -67,7 +67,7 @@ class OrganizationSettings extends React.Component {
           <Label for="newWebsite">Website</Label>
           <input className="form-control" ref={this.websiteInput} type="text" name="website" defaultValue={website} readOnly={!isOwner} />
           <Label for="newDesc">Description</Label>
-          <input className="form-control" ref={this.descInput} type="textarea" name="description" defaultValue={desc} readOnly={!isOwner} />
+          <input className="form-control descSettings" ref={this.descInput} type="textarea" name="description" defaultValue={desc} readOnly={!isOwner} />
           { isOwner && (<input type="submit" className="btn btn-lg btn-success" value="Save Changes" />)}
           { isOwner && (<input type="button" className="btn btn-lg btn-danger" onClick={this.disbandOrganization} value="Disband organization" />)}
           { isOwner || (<input type="button" className="btn btn-lg btn-danger" onClick={this.quitOrganization} value="Quit organization" />)}

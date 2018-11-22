@@ -1,3 +1,26 @@
+.cardTeam{
+  background: transparent !important;
+color: white;
+border: none !important;
+width: 60%;
+margin: auto;
+}
+.teamElementList{
+  background: transparent !important;
+`padding-bottom: 0px;
+margin-bottom: 1px;
+margin-top: 1px;
+border: none !important;
+}
+.descSettings{
+  margin-bottom: 20px;
+}
+.teamElementList .list-group-item.active {
+    z-index: 2;
+    color: #fff;
+    background-color: #0d3584 !important;
+    border: 1px solid aliceblue !important;
+}
 .organization-background{
     /* = background image div */ 
       content: "";

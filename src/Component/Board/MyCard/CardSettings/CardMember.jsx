@@ -11,7 +11,7 @@ const CardMember = ({idMembers}) => (
   <Row>
      
      <Col className="labelField" xs="6"> 
-     <i className="fa fa-tags" aria-hidden="true"></i>&nbsp; Member : </Col>
+     <i className="fa fa-address-book" aria-hidden="true"></i>&nbsp; Member : </Col>
     
     <Col>
     
@@ -23,7 +23,7 @@ const CardMember = ({idMembers}) => (
 );
 
 const mapStateToProps = (state, props) => console.log(state) || ({
-  /// idMembers :  Object.keys( state.cards.find(card => card.id === props.idCard).idMembers).map( key => ({ index: key, id: state.cards.find(card => card.id === props.idCard).idMembers[key] })) || [],
+ // idMembers :  Object.keys( state.cards.find(card => card.id === props.idCard).idMembers).map( key => ({ index: key, id: state.cards.find(card => card.id === props.idCard).idMembers[key] })) || [],
   card :  state.cards.find(card => card.id === props.idCard)
 
 })

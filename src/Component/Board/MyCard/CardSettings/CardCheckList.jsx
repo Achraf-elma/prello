@@ -11,7 +11,7 @@ const CardCheckList = ({checkLists}) => (
   <Container>
      
      <Row className="labelField" xs="6"> 
-     <i className="fa fa-tags" aria-hidden="true"></i>&nbsp; To do list : </Row>
+     <i className="fa fa-list-ol" aria-hidden="true"></i>&nbsp; To do list : </Row>
     
     
     {checkLists.map((checkList) => (

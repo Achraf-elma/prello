@@ -2,7 +2,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import { Switch, Route, NavLink, Redirect } from 'react-router-dom';
-
+import {Container, Col, Row} from 'reactstrap';
 // Action builder
 import { setOrganization } from '../../action/actionOrganization';
 
@@ -37,21 +37,22 @@ class OrganizationViewHandler extends React.Component{
   render() { 
     const { name, match } = this.props;
     return (
-      <div>
+      <Container>
         <div className="organization-background" />
         <div className="container">
           <div className="row organization-info">
             <div className="col">
-              <h1 className="organization-title">{name}</h1>
+              <h1 className="titleCustom">
+              <i className="fa fa-user-circle-o" aria-hidden="true"></i>&nbsp;Team : {name}</h1>
             </div>
 
-            <div className="viewSelection">
-              <div className="col">
-                <NavLink className="btn btn-primary" to={`${match.url}/boards`} >Boards</NavLink>
-                <NavLink className="btn btn-primary" to={`${match.url}/members`} >Members</NavLink>
-                <NavLink className="btn btn-primary" to={`${match.url}/settings`} >Settings</NavLink>
-              </div>
-            </div>
+            <Row className="viewSelection">
+              <Col className="col">
+                <NavLink className="createBoardButton" to={`${match.url}/boards`} >Boards</NavLink>
+                <NavLink className="createBoardButton" to={`${match.url}/members`} >Members</NavLink>
+                <NavLink className="createBoardButton" to={`${match.url}/settings`} >Settings</NavLink>
+              </Col>
+            </Row>
           </div>
           <hr className="separator" />
           <Switch>
@@ -61,7 +62,7 @@ class OrganizationViewHandler extends React.Component{
             <Route path={`${match.path}/settings`} component={OrganizationSettings} />
           </Switch>
         </div>
-      </div>
+      </Container>
     );
   }
 }

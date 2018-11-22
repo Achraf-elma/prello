@@ -56,11 +56,11 @@ class OrganizationBoards extends React.Component {
       match,
     } = this.props;
     return (
-      <div className="Organization">
+      <div>
         <Container>
           <BoardList boardListTitle={
             <Link
-              className="btn btn-lg btn-primary"
+              className="buttonCustom"
               to={`${match.url}/addBoard`}>
               Create board
         </Link>

@@ -58,7 +58,7 @@ class OrganizationMembers extends React.Component {
         <h1 className="organization-title">Members management</h1>
         { isOwner && (
           <Form onSubmit={this.inviteMember}>
-            <Label className="organization-labels" for="newMemberEmail">Add member :</Label>
+            <Label className="organization-labels" for="newMemberEmail">Add member :</Label><br/>
             <input
               className="addEmail"
               type="email"
@@ -71,6 +71,7 @@ class OrganizationMembers extends React.Component {
             {this.state.message && <strong>{this.state.message}</strong>}
           </Form>
         )}
+
         <ListGroup>
           {members.map(member => console.log(member) || (
             <span key={member.email}>
