@@ -17,7 +17,7 @@ const CardCheckList = ({checkLists}) => (
     {checkLists.map((checkList) => (
       <Row  key={checkList.id}>
      <Card  style={{width : '100%'}}>
-         <CardHeader> <div className="text-center">{checkList.name} - 50% in progress</div>
+         <CardHeader> <div className="text-center">{checkList.name}</div>
         
          </CardHeader>
          <CardBody>
