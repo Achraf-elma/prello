@@ -57,8 +57,8 @@ class Home extends React.Component{
           render={(props) => (<BoardCreator {...props} handleSubmit={this.addingBoard} />)}
         />
         <Container className="boardlistHeader">
-          <Row>
-            <Col>
+          <Row className="upperBar">
+            <Col >
               <Link className="createBoardButton" to={`${match.url}/addBoard`}>Create a Board</Link>
             </Col>
           </Row>
@@ -70,10 +70,7 @@ class Home extends React.Component{
         <BoardList
           boardListTitle="All boards"
         />
-        <BoardList
-          boardListTitle="My boards"
-          boardFilter={this.filterMyboard}
-        />
+       
       </div>
     );
   }

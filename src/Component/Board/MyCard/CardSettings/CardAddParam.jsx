@@ -40,11 +40,7 @@ render() {
         <button className="addElementButton" id={"card-label"+card.id} onClick={() => this.togglePopover(0)}><i className="fa fa-plus-circle" aria-hidden="true"></i>&nbsp;Label</button> <br/>
         <button id={"card-check"+card.id} onClick={() => this.togglePopover(2)} className="addElementButton"><i className="fa fa-plus-circle" aria-hidden="true"></i>&nbsp; Checklist</button><br/>
 
-      <div>
-      
-        <Col className="labelField" xs="6"> <i className="fa fa-calendar-times-o" aria-hidden="true"></i>&nbsp;Card Done :</Col>
-       <Col> <input type="checkbox" checked={card.dueComplete} onChange={() => dispatchSetCardDueComplete(!(card.dueComplete))}/> </Col>
-      </div>
+    
       
         <Popover placement="right" isOpen={this.state.popoverOpen[0]} target={"card-label"+card.id} toggle={() => this.togglePopover(0)}>
           <PopoverHeader>Labels</PopoverHeader>

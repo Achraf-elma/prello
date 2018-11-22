@@ -6,6 +6,7 @@ import InputText from '../../../Input/InputText'
 // Actions
 import { setCardDesc } from '../../../../action/actionCard';
 import CheckList from '../../CheckList/Checklist';
+
 const CardCheckList = ({checkLists}) => (
   <Container>
      
@@ -16,8 +17,8 @@ const CardCheckList = ({checkLists}) => (
     {checkLists.map((checkList) => (
       <Row  key={checkList.id}>
      <Card  style={{width : '100%'}}>
-         <CardHeader> <div className="text-center">{checkList.name} - 50% in progress</div>
-        <Progress value={50} />
+         <CardHeader> <div className="text-center">{checkList.name}</div>
+        
          </CardHeader>
          <CardBody>
               <CheckList idCheckList={checkList.id}/>
