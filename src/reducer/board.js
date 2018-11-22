@@ -78,12 +78,12 @@ const idOwner = (state = initBoard.idOwner, action ) => {
       return state;
   }
 }
-const closed = (state = initBoard.closed, action ) => {
+const isClosed = (state = initBoard.isClosed, action ) => {
   switch(action["type"]) {
     case SET_BOARD:
       return action.payload.isClosed;
     case SET_BOARD_CLOSE:
-      return action.payload.closed
+      return action.payload.isClosed
     default:
       return state;
   }
@@ -119,7 +119,7 @@ export default combineReducers({
   desc,
   members, 
   idOwner,
-  closed, 
+  isClosed, 
   isPublic,
   labelNames,
   organizations

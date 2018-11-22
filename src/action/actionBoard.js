@@ -37,7 +37,7 @@ export const initBoard = {
   members:[],
   idOwner:null,
   organizations:[],
-  closed: false,
+  isClosed: false,
   isPublic: true,
 }
 
@@ -83,11 +83,11 @@ export const addListToBoard = (idBoard, listName, position) => ({
   }
 })
 
-export const setBoardClose = (id, closed) => ({
+export const setBoardClose = (id, isClosed) => ({
   type: SET_BOARD_CLOSE,
   payload: {
     id,
-    closed
+    isClosed
   }
 })
 

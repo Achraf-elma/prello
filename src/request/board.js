@@ -94,3 +94,11 @@ export const expulseOrganizationFromBoard = (idBoard, idOrganization) => (
   client.delete(`/api/boards/${idBoard}/organizations/${idOrganization}`)
     .then(response => response.data)
 )
+
+export const closeBoard = (idBoard) => (
+  client.put(`/api/boards/${idBoard}`, {
+    isClosed: true,
+  })
+    .then(response => response.data)
+    .catch(rematchError)
+)

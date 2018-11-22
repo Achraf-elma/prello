@@ -12,7 +12,7 @@ import { setBoardClose } from '../../action/actionBoard';
 // http
 import client from '../../request/client';
 import { fetchUserBoards } from '../../request/user';
-import { createBoard } from '../../request/board';
+import { createBoard, closeBoard } from '../../request/board';
 
 // Components
 import BoardCreator from '../BoardList/BoardCreator';
@@ -28,6 +28,12 @@ class Home extends React.Component{
     fetchUserBoards()
     .then( boardList => this.props.dispatchSetBoardList( boardList ))
     .catch(error => console.error(error) || this.props.history.push('/login'))
+  }
+
+  closeBoard = (idBoard, closed) => {
+    closeBoard(idBoard)
+      .then(done => this.props.dispatchCloseBoardFromBoards(idBoard, closed))
+      .catch( error => console.error( error ))
   }
 
   filterRecent = (boards) => boards.slice(0,3);
@@ -66,11 +72,12 @@ class Home extends React.Component{
         <BoardList
           boardListTitle="Recently Opened"
           boardFilter={this.filterRecent}
+          dispatchCloseBoardFromBoards={this.closeBoard}
         />
         <BoardList
           boardListTitle="All boards"
+          dispatchCloseBoardFromBoards={this.closeBoard}
         />
-       
       </div>
     );
   }
